@@ -1,20 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Carousel, Card } from 'react-bootstrap';
-import Img from 'react-image';
-import { media } from '../../pages/media_style';
+import {  Card } from 'react-bootstrap';
 
+import { media } from '../../media_style';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Header from './header';
 import Parallax from './parallax';
 import componentsStyle from './style';
+import Image from '../image'
 
 class all extends React.Component {
 	render() {
 		const { classes, ...rest } = this.props;
-		const Banner = styled(Img)`
-			width: 100%;
-		`;
 		const CardContainer = styled.div`
 			margin-left: 10%;
 			margin-right: 10%;
@@ -45,33 +42,7 @@ class all extends React.Component {
 				/>
 
 				<Parallax>
-					<Carousel>
-						<Carousel.Item>
-							<Banner
-								class="d-block w-100"
-								src={'https://res.cloudinary.com/dkfptto8m/image/upload/v1556654670/img.jpg'}
-								alt="First slide"
-							/>
-						</Carousel.Item>
-						<Carousel.Item>
-							<Banner
-								class="d-block w-100"
-								src={
-									'https://res.cloudinary.com/dkfptto8m/image/upload/v1557942816/Mongodb%20hackathon%20project/2017-chevrolet-bolt-ev.jpg'
-								}
-								alt="Third slide"
-							/>
-						</Carousel.Item>
-						<Carousel.Item>
-							<Banner
-								class="d-block w-100"
-								src={
-									'https://res.cloudinary.com/dkfptto8m/image/upload/v1557942816/Mongodb%20hackathon%20project/tesla.jpg'
-								}
-								alt="Third slide"
-							/>
-						</Carousel.Item>
-					</Carousel>
+					 <Image />
 				</Parallax>
 
 
