@@ -10,15 +10,15 @@ import Update from "./updates/update"
 import Footer from "../components/footer"
 import About from "../components/about"
 
-import All from "../components/banner/all"
+import Header from "../components/header"
 
 const IndexPage = () => (
   <div>
+    <Header />
+    <Profile />
     <Layout>
       <SEO title="Home" />
       <>
-       
-        <Profile />
         <About />
         <Update />
       </>

@@ -1,18 +1,38 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { Flex } from "styled-flex-component"
-import Image from '../components/image'
+import Image from "../components/image"
+import { media } from "../media_style"
 
 const Div = styled.div`
+  ${media.tablet`
+height : 60vh
+padding-top : 10%
+`}
+  ${media.phone`
+  height : 50vh
+padding-top : 15%
+`}
+color : white
 width : 100%
-height : 70vh
-background-color : #fff
-margin-left : 3%
+padding-top : 5%
+height : 65vh
+background: linear-gradient(to bottom,#591af7,#1b2f7d);
+  text-align: center;
 `
 
+const Contain = styled.div`
+  margin-top: 3%;
+  ${media.tablet`
+  margin-top: 10%;
+`}
+  ${media.phone`
+  margin-top: 5%;
+`}
+`
 const Text = styled.p`
     font-size : 1em
+    margin-top : 10%
 `
 
 const Github = styled.button`
@@ -29,18 +49,31 @@ const Github = styled.button`
 `
 
 const Name = styled.h1`
-    font-weight : bold
+    font-weight : bold 
+    font-size : 4em
+    ${media.tablet`
+    font-size :  3em
+  `}
+    ${media.phone`
+    font-size :  2em
+  `}
 `
 
 const IndexPage = () => (
-<div>
-    <Div>
-    <Text> Hey   ................   I am : </Text>
-    <Name>  Nwani Victory </Name>
-    <Text> Software Engineer from Lagos , Nigeria , Africa.  </Text>
-    <Github> CONTACT ME  </Github>
-    </Div>
-</div>
+  <Div>
+    <div style={{
+        width: '100vw',
+        height: '55vh',
+        position: 'relative',
+        top: '-2px',
+      }} >
+      <Name> Nwani Victory </Name>
+      <Text> Software Engineer from Lagos , Nigeria , Africa. </Text>
+      <Github> CONTACT ME </Github>
+
+      <Image />
+    </div>
+  </Div>
 )
 
 export default IndexPage
