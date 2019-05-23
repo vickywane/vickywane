@@ -14,17 +14,13 @@ const Header = styled.h3`
 const Div = styled.div`
   background-color: #2c3e50;
   width: 100%;
-  height: 100vh;
-`
-
-const Text = styled.p`
-  text-align: center;
-  color: white;
-`
-
-const Intro = styled.p`
-padding-left : 20px 
-color: white;
+  height: 130vh;
+  ${media.tablet`
+  height: 115vh;
+  `}
+  ${media.phone`
+  height: 110vh;
+  `}
 `
 
 const Title = styled.h5`
@@ -45,6 +41,15 @@ const Github = styled.button`
   margin-left : 10%
   margin-top : 100%
   font-weight : bold
+  ${media.tablet`
+  
+  `}
+  ${media.phone`
+  border: 1.1px solid palevioletred;
+  font-size : 0.7em
+  width : 77%
+  margin-top : 150%
+  `}
 `
 
 const Project = styled.button`
@@ -58,7 +63,17 @@ const Project = styled.button`
   width : 50% 
   height : 60px
   margin-left : 23%
+  margin-top : 5%
   font-weight : bold
+  color: #022b69;
+  ${media.tablet`
+   
+  `}
+  ${media.phone`
+  height : 50px
+  width : 70% 
+  margin-left : 17%
+  `}
 `
 
 const Contain = styled.div`
@@ -66,9 +81,19 @@ const Contain = styled.div`
 `
 
 const Description = styled.p`
+  font-size : 1.1em
+  text-align: center;
+  color: #212529;
+  ${media.tablet`
   font-size : 0.85em
   text-align: center;
   color: #212529;
+  `}
+  ${media.phone`
+  font-size : 0.85em
+  text-align: center;
+  color: #212529;
+  `}
 `
 
 const Slider = styled.div`
@@ -79,9 +104,30 @@ padding-right : 10px
 `
 
 const Note = styled.p`
+  ${media.tablet`
+color : white
+padding-left : 30px
+font-size : 0.8em
+`}
+  ${media.phone`
+color : white
+padding-left : 30px
+font-size : 0.8em
+`}
   color : white
-  padding-left : 30px
-  font-size : 0.8em
+  padding-left : 7%
+  font-size : 1.1em
+`
+
+const StyledCard = styled.div`
+width:   100%  
+background :  white  
+border-radius : 10px
+${media.tablet`
+`}
+${media.phone`
+margin-top:  10% 
+`}
 `
 
 export default class projects extends Component {
@@ -104,22 +150,22 @@ export default class projects extends Component {
   }
 
   render() {
-    const { index, direction } = this.state
     return (
       <div>
         <Div>
-          <Header> RECENT PROJECTS </Header> <hr />  
+          <Header> RECENT PROJECTS </Header> <hr />
           <Note>
-          <u> NOTE  </u>: These are my personal i built or joined in building not belonging to a firm.   
-        </Note>
+            <u> NOTE </u>: These are my personal i built or joined in building
+            not belonging to a firm.
+          </Note>
           <Flex>
             <Contain>
-              <Github> VIEW GITHUB PROJECTS</Github>
+              <Github> GITHUB PROJECTS</Github>
             </Contain>
             <Slider>
               <Carousel>
                 <Carousel.Item>
-                  <Card style={{ width: " 100%", height: "620px" }}>
+                  <StyledCard>
                     <Card.Img
                       variant="top"
                       src={
@@ -139,12 +185,12 @@ export default class projects extends Component {
                       </Description>
                       <Project> VIEW PROJECT </Project>
                     </Card.Body>
-                  </Card>
+                  </StyledCard>
                   ;
                 </Carousel.Item>
 
                 <Carousel.Item>
-                  <Card style={{ width: " 100%", height: "620px" }}>
+                  <StyledCard>
                     <Card.Img
                       variant="top"
                       src={
@@ -158,15 +204,15 @@ export default class projects extends Component {
                         squatting space .
                       </Description>
                       <Description>
-                        <b> Tools: </b> Graphql || React || Postgresql ||
+                        <b> Tools: </b> Graphql || React || Postgresql
                       </Description>
                       <Project> VIEW PROJECT </Project>
                     </Card.Body>
-                  </Card>
+                  </StyledCard>
                 </Carousel.Item>
 
                 <Carousel.Item>
-                  <Card style={{ width: " 100%", height: "620px" }}>
+                  <StyledCard>
                     <Card.Img
                       variant="top"
                       src={
@@ -186,11 +232,11 @@ export default class projects extends Component {
                       </Description>
                       <Project> VIEW PROJECT </Project>
                     </Card.Body>
-                  </Card>
+                  </StyledCard>
                 </Carousel.Item>
 
                 <Carousel.Item>
-                  <Card style={{ width: " 100%", height: "620px" }}>
+                  <StyledCard>
                     <Card.Img
                       variant="top"
                       src={
@@ -209,11 +255,11 @@ export default class projects extends Component {
                       </Description>
                       <Project> VIEW PROJECT </Project>
                     </Card.Body>
-                  </Card>
+                  </StyledCard>
                 </Carousel.Item>
 
                 <Carousel.Item>
-                  <Card style={{ width: " 100%", height: "620px" }}>
+                  <StyledCard>
                     <Card.Img
                       variant="top"
                       src={
@@ -231,13 +277,12 @@ export default class projects extends Component {
                       </Description>
                       <Project> VIEW PROJECT </Project>
                     </Card.Body>
-                  </Card>
+                  </StyledCard>
                 </Carousel.Item>
               </Carousel>
             </Slider>
           </Flex>
         </Div>
-     
       </div>
     )
   }

@@ -6,33 +6,30 @@ import { media } from "../media_style"
 
 const Div = styled.div`
   ${media.tablet`
-height : 60vh
+height : 62vh
 padding-top : 10%
 `}
   ${media.phone`
-  height : 50vh
+  height : 62vh
 padding-top : 15%
 `}
 color : white
 width : 100%
 padding-top : 5%
-height : 65vh
+height : 60vh
 background: linear-gradient(to bottom,#591af7,#1b2f7d);
   text-align: center;
 `
-
-const Contain = styled.div`
-  margin-top: 3%;
-  ${media.tablet`
-  margin-top: 10%;
-`}
-  ${media.phone`
-  margin-top: 5%;
-`}
-`
+ 
 const Text = styled.p`
     font-size : 1em
-    margin-top : 10%
+    margin-top : 5%
+    ${media.tablet`
+    margin-top: 10%;
+  `}
+    ${media.phone`
+    margin-top: 9%;
+  `}
 `
 
 const Github = styled.button`
