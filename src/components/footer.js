@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Flex from "styled-flex-component"
 import { Icon } from "semantic-ui-react"
 import "semantic-ui-css/semantic.min.css"
+import { media } from "../media_style"
 
 const Div = styled.div`
     width : 100%
@@ -31,24 +32,50 @@ const Social = styled.div`
 `
 
 const Icons = styled.div`
-  margin-left: 35%;
+  margin-left: 25%;
+  ${media.tablet`
+  margin-left: 11%;
+`}
+  ${media.phone`
+  margin-left: 7%;
+`}
 `
+
+const IconContain = styled.div`
+  margin-left: 5%;
+  margin-right: 5%;
+  ${media.tablet`
+  margin-left: 5%;
+  margin-right: 5%;
+`}
+  ${media.phone`
+  margin-left: 3%;
+  margin-right: 3%;
+`}
+`
+
 export default function footer() {
   return (
     <>
       <Social>
         <Text> Find me on </Text> <hr />
-        <Flex>
-          <Icons>
-            <Icon name="instagram" size="huge" link color="green" />
+        <Icons>
+          <Flex>
+            <IconContain>
+              <Icon name="instagram" size="huge" link color="green" />
+            </IconContain>
+            <IconContain>
+              <Icon name="facebook" size="huge" link color="blue" />
+            </IconContain>
+            <IconContain>
+              <Icon name="google plus square" link size="huge" color="red" />
+            </IconContain>
 
-            <Icon name="facebook" size="huge" link color="blue" />
-
-            <Icon name="google plus square" link size="huge" color="red" />
-
-            <Icon name="twitter" size="huge" link color="blue" />
-          </Icons>
-        </Flex>
+            <IconContain>
+              <Icon name="twitter" size="huge" link color="blue" />
+            </IconContain>
+          </Flex>
+        </Icons>
       </Social>
 
       <Div>

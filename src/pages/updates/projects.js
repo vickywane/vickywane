@@ -14,9 +14,10 @@ const Header = styled.h3`
 const Div = styled.div`
   background-color: #2c3e50;
   width: 100%;
-  height: 130vh;
+  max-height: 25%;
+height: 102vh;
   ${media.tablet`
-  height: 115vh;
+  height: 80vh;
   `}
   ${media.phone`
   height: 110vh;
@@ -121,11 +122,19 @@ font-size : 0.8em
 
 const StyledCard = styled.div`
 width:   100%  
+max-width: 75%;
 background :  white  
 border-radius : 10px
+margin-left: 11%
 ${media.tablet`
+max-width: 100%;
+margin-left: 0%
+
 `}
 ${media.phone`
+max-width: 100%;
+margin-left: 0%
+
 margin-top:  10% 
 `}
 `
