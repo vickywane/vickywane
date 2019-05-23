@@ -6,7 +6,7 @@ import { media } from "../media_style"
 
 const Div = styled.div`
   ${media.tablet`
-height : 62vh
+height : 61vh
 padding-top : 10%
 `}
   ${media.phone`
