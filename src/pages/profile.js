@@ -20,14 +20,18 @@ height : 60vh
 background: linear-gradient(to bottom,#591af7,#1b2f7d);
   text-align: center;
 `
- 
+
 const Text = styled.p`
-    font-size : 1em
-    margin-top : 5%
+    font-size : 1.3em
+    margin-top : 2.5%
+    margin-bottom : 2.5%
     ${media.tablet`
-    margin-top: 10%;
+    font-size : 1.3em
+    margin-top: 5%;
+    margin-bottom: 5%;
   `}
     ${media.phone`
+    font-size : 1.1em
     margin-top: 9%;
   `}
 `
@@ -39,10 +43,22 @@ const Github = styled.button`
   color: palevioletred;
   margin: 0 1em;
   padding: 0.25em 1em;
-  font-size : 0.9em
-  width : 40%
+  font-size : 1.1em
+  width : 30%
   height : 60px
   font-weight : bold
+	&:hover {
+    cursor: pointer;
+    color: white;
+    background: #1b2f7d;
+  }
+  ${media.tablet`
+  font-size : 1em
+  width : 35%
+`}
+  ${media.phone`
+  width : 35%
+`}
 `
 
 const Name = styled.h1`
@@ -58,12 +74,14 @@ const Name = styled.h1`
 
 const IndexPage = () => (
   <Div>
-    <div style={{
-        width: '100vw',
-        height: '55vh',
-        position: 'relative',
-        top: '-2px',
-      }} >
+    <div
+      style={{
+        width: "100vw",
+        height: "55vh",
+        position: "relative",
+        top: "-2px",
+      }}
+    >
       <Name> Nwani Victory </Name>
       <Text> Software Engineer from Lagos , Nigeria , Africa. </Text>
       <Github> CONTACT ME </Github>
