@@ -62,17 +62,17 @@ export default function footer() {
         <Icons>
           <Flex>
             <IconContain>
-              <Icon name="instagram" size="huge" link color="green" />
+              <Icon name="instagram" size="big" link color="green" />
             </IconContain>
             <IconContain>
-              <Icon name="facebook" size="huge" link color="blue" />
+              <Icon name="facebook" size="big" link color="blue" />
             </IconContain>
             <IconContain>
-              <Icon name="google plus square" link size="huge" color="red" />
+              <Icon name="google plus square" link size="big" color="red" />
             </IconContain>
 
             <IconContain>
-              <Icon name="twitter" size="huge" link color="blue" />
+              <Icon name="twitter" size="big" link color="blue" />
             </IconContain>
           </Flex>
         </Icons>
