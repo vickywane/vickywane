@@ -28,7 +28,7 @@ const Text = styled.p`
     ${media.tablet`
     font-size : 1.3em
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
   `}
     ${media.phone`
     font-size : 1.1em

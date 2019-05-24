@@ -7,7 +7,7 @@ import { media } from "../media_style"
 
 const Div = styled.div`
     width : 100%
-    height : 20vh
+    height : 25vh
     background: linear-gradient(to bottom,#591af7,#1b2f7d);
     color : white
     text-align: center;

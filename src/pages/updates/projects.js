@@ -15,7 +15,7 @@ const Div = styled.div`
   background-color: #2c3e50;
   width: 100%;
   max-height: 25%;
-height: 102vh;
+  height: 110vh;
   ${media.tablet`
   height: 80vh;
   `}
@@ -40,7 +40,7 @@ const Github = styled.button`
   width : 75%
   height : 70px
   margin-left : 10%
-  margin-top : 100%
+  margin-top : 90%
   font-weight : bold
   ${media.tablet`
   
