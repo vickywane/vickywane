@@ -178,8 +178,9 @@ export default class projects extends Component {
                     <Card.Img
                       variant="top"
                       src={
-                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1557942816/Mongodb%20hackathon%20project/2017-chevrolet-bolt-ev.jpg"
+                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png"
                       }
+                      style={{ maxHeight: "250px" }}
                     />
                     <Title> UNISPOON </Title>
                     <Card.Body>
@@ -203,14 +204,14 @@ export default class projects extends Component {
                     <Card.Img
                       variant="top"
                       src={
-                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1557942816/Mongodb%20hackathon%20project/2017-chevrolet-bolt-ev.jpg"
+                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1559072566/portfolio/Screenshot_17.png"
                       }
                     />
-                    <Title> SPACE - FINDAR </Title>
+                    <Title> Vetro - Pay </Title>
                     <Card.Body>
                       <Description>
-                        Web based platform for students and squatters to find a
-                        squatting space .
+                        A local payment solution. Front-end App was built with
+                        React Native
                       </Description>
                       <Description>
                         <b> Tools: </b> Graphql || React || Postgresql
@@ -249,8 +250,9 @@ export default class projects extends Component {
                     <Card.Img
                       variant="top"
                       src={
-                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1557942816/Mongodb%20hackathon%20project/2017-chevrolet-bolt-ev.jpg"
+                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073225/portfolio/pati.png"
                       }
+                      style={{ maxHeight: "270px" }}
                     />
                     <Title> PATFIN </Title>
                     <Card.Body>
@@ -272,7 +274,7 @@ export default class projects extends Component {
                     <Card.Img
                       variant="top"
                       src={
-                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1557942816/Mongodb%20hackathon%20project/2017-chevrolet-bolt-ev.jpg"
+                        "https://res.cloudinary.com/dkfptto8m/image/upload/v1559075312/portfolio/portfo.png"
                       }
                     />
                     <Title> MY PORTFOLIO </Title>
@@ -284,7 +286,6 @@ export default class projects extends Component {
                         <b> Tools: </b> Graphql || React || Gatsby ||
                         Styled-Components
                       </Description>
-                      <Project> VIEW PROJECT </Project>
                     </Card.Body>
                   </StyledCard>
                 </Carousel.Item>
