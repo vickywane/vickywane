@@ -171,7 +171,7 @@ class Profile extends Component {
           }}
         >
           <Name> Nwani Victory </Name>
-          <Text> Software Engineer from Lagos , Nigeria , Africa. </Text>
+          <Text> Software Engineer from Lagos, Nigeria , Africa. </Text>
           <Github onClick={() => this.setState({ modal: true })}>
             {" "}
             CONTACT ME{" "}
