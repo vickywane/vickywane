@@ -1,6 +1,5 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import { media } from "../../../media_style"
 import Flex from "styled-flex-component"
 import { Card } from "react-bootstrap"
 
@@ -48,6 +47,21 @@ const Projects = () => {
     },
   ]
 
+  const [Width, setWidth] = useState(null)
+
+  setTimeout(function() {
+    setWidth(window.innerWidth)
+  }, 500)
+
+  const handleResize = value => {
+    setWidth(value)
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize.bind(this))
+    return () => window.removeEventListener("resize", handleResize.bind(this))
+  }, [])
+
   return (
     <ProjectBody>
       <ProjectHeader> RECENT PROJECTS </ProjectHeader>
@@ -55,27 +69,51 @@ const Projects = () => {
       <hr style={{ background: "#fff" }} />
 
       <Flex>
-        <Items>
-          {Data.map(({ id, name, description, imgUrl, link, tools }) => {
-            return (
-              <StyledCard key={id}>
-                <Card.Img
-                  variant="top"
-                  src={imgUrl}
-                  style={{ maxHeight: "250px" }}
-                />
-                <ProjectTitle> {name} </ProjectTitle>
-                <Card.Body>
-                  <Text description>
-                    <b> Tools: </b> Graphql || React Native || Mongodb || Ms Bot
-                    Framework
-                  </Text>
-                  <Button> VIEW PROJECT </Button>
-                </Card.Body>
-              </StyledCard>
-            )
-          })}
-        </Items>
+        {Width >= 1000 ? (
+          <Flex justifyBetween>
+            {Data.map(({ id, name, description, imgUrl, link, tools }) => {
+              return (
+                <StyledCard key={id}>
+                  <Card.Img
+                    variant="top"
+                    src={imgUrl}
+                    style={{ maxHeight: "250px" }}
+                  />
+                  <ProjectTitle> {name} </ProjectTitle>
+                  <Card.Body>
+                    <Text description>
+                      <b> Tools: </b> Graphql || React Native || Mongodb || Ms
+                      Bot Framework
+                    </Text>
+                    <Button> VIEW PROJECT </Button>
+                  </Card.Body>
+                </StyledCard>
+              )
+            })}
+          </Flex>
+        ) : (
+          <Items>
+            {Data.map(({ id, name, description, imgUrl, link, tools }) => {
+              return (
+                <StyledCard key={id}>
+                  <Card.Img
+                    variant="top"
+                    src={imgUrl}
+                    style={{ maxHeight: "250px" }}
+                  />
+                  <ProjectTitle> {name} </ProjectTitle>
+                  <Card.Body>
+                    <Text description>
+                      <b> Tools: </b> Graphql || React Native || Mongodb || Ms
+                      Bot Framework
+                    </Text>
+                    <Button> VIEW PROJECT </Button>
+                  </Card.Body>
+                </StyledCard>
+              )
+            })}
+          </Items>
+        )}
       </Flex>
     </ProjectBody>
   )
