@@ -8,7 +8,7 @@ const Banner = () => {
       <BannerBody>
         <div>
           <Name> Nwani Victory </Name>
-          <Text> Software Engineer from Lagos, Nigeria , Africa. </Text>
+          <Text banner> Software Engineer from Lagos, Nigeria , Africa. </Text>
           <Button onClick={() => alert("work in progress")}>CONTACT ME </Button>
         </div>
       </BannerBody>

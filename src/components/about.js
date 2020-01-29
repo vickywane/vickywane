@@ -1,48 +1,11 @@
-import React, { Component } from "react"
-import styled from "styled-components"
-import { media } from "../media_style"
+import React from "react"
 
-const Div = styled.div`
-    padding-top : 7%
-    padding-bottom : 10px
-    ${media.tablet`
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 2%;
-  `}
-    ${media.phone`
-    margin-top: 5%;
-  `}
-`
-
-const Text = styled.p`
-margin-left: 5%;
-margin-right: 5%;
-margin-top: 2%; 
-font-size: 1.1em;
-  letter-spacing: 0.05em
-  color: #212529;   
-  ${media.tablet`
-  margin-top: 3%;
- font-size: 1em; 
- margin-left: 1%;
-`}
-  ${media.phone`
-  font-size: 0.9em;
-  margin-top: 0%;
-`}
-`
-
-const Title = styled.h2`
-  text-align: center;
-  font-weight: bold;
-  font-family: comic sans ms;
-  letter-spacing: 0.1em;
-`
+import { Text, Body, Title } from "../styles/styles"
 
 export default function about() {
   return (
-    <Div>
+    <Body>
+      <br />
       <Title> Hi , I'm Nwani </Title>
       <Text>
         I'm a software engineer and also a freelancer from Lagos Nigeria . I am
@@ -83,6 +46,6 @@ export default function about() {
       <br /> <br />
       <br /> <br />
       <br /> <br />
-    </Div>
+    </Body>
   )
 }
