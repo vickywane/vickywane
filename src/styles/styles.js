@@ -18,6 +18,15 @@ const Body = styled.div`
 `};
 `
 
+const FooterBody = styled.div`
+  width: 100%;
+  padding: 0.5em 1em;
+  height: auto;
+  background: linear-gradient(to bottom, #591af7, #1b2f7d);
+  color: white;
+  text-align: center;
+`
+
 const Name = styled.h1`
   font-size: 3.5em;
 `
@@ -82,4 +91,13 @@ font-size: ${props => (props.banner ? "1em " : "1.10em")};
   `};
 `
 
-export { Name, Title, Body, BannerContain, Text, Button, BannerBody }
+export {
+  Name,
+  FooterBody,
+  Title,
+  Body,
+  BannerContain,
+  Text,
+  Button,
+  BannerBody,
+}
