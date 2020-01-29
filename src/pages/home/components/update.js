@@ -8,7 +8,6 @@ export default function update() {
   return (
     <div>
       <Tools /> <br />
-
       <Projects />
     </div>
   )

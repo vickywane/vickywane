@@ -79,6 +79,7 @@ const Title = styled.h2`
 `
 
 const Text = styled.p`
+  color: ${props => (props.description ? "#fff" : null)};
   font-size: ${props => (props.banner ? "1.3em " : "1.1em")};
   text-align: center ${media.lessThan("medium")`
   font-size: ${props => (props.banner ? "1.10em " : "1.20em")};
@@ -91,7 +92,50 @@ font-size: ${props => (props.banner ? "1em " : "1.10em")};
   `};
 `
 
+const ProjectBody = styled.div`
+  background-color: #2c3e50;
+  width: 100%;
+  height: auto;
+  padding: 0.5em 0.5em;
+`
+
+const ProjectHeader = styled.h3`
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  padding-top: 30px;
+`
+
+const ProjectTitle = styled.h5`
+  text-align: center;
+  font-weight: bold;
+`
+
+const autoGrid = (minColumnWidth = 200, gridGap = 0) => ({
+  display: "grid",
+  gridTemplateColumns: `repeat(auto-fill, minmax(${minColumnWidth}px, 1fr))`,
+  gridGap,
+})
+
+const Items = styled.div({
+  ...autoGrid(220, 20),
+  padding: "1em",
+  marginLeft: "0.5em",
+})
+
+const StyledCard = styled.div`
+  width: 100%;
+  background: white;
+  box-shadow: 0px 3px 4px grey;
+  margin: 1em;
+`
+
 export {
+  StyledCard,
+  Items,
+  ProjectTitle,
+  ProjectHeader,
+  ProjectBody,
   Name,
   FooterBody,
   Title,

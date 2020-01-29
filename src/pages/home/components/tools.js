@@ -1,8 +1,7 @@
 import React from "react"
 import { Container, Grid, Icon } from "semantic-ui-react"
 import styled from "styled-components"
-import { media } from '../../media_style'
-
+import { media } from "../../../media_style"
 
 const Contain = styled.div`
   text-align: center;
@@ -22,10 +21,9 @@ min-height: 900px
 `}
 `
 
-
-const About = () => (
+const Tools = () => (
   <div style={{ position: "relative" }}>
-     <Div>
+    <Div>
       <Container>
         <Grid
           stackable
@@ -35,7 +33,7 @@ const About = () => (
             borderRadius: "5px",
             position: "relative",
             bottom: "100px",
-             paddingTop : "20px",
+            paddingTop: "20px",
             backgroundColor: "white",
             boxShadow:
               "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
@@ -66,9 +64,9 @@ const About = () => (
             <p>Expressjs</p>
             <p>MongoDB</p>
             <p>GraphQL</p>
-          </Contain> 
+          </Contain>
 
-<hr />
+          <hr />
           <Contain>
             <Icon color="violet" name="computer" size="huge" />
             <p
@@ -80,7 +78,7 @@ const About = () => (
             >
               Frontend Development
             </p>
-             
+
             <p
               style={{
                 marginTop: "10px",
@@ -95,7 +93,7 @@ const About = () => (
             <p>CSS</p>
             <p>JavaScript</p>
           </Contain>
-<hr />
+          <hr />
 
           <Contain>
             <Icon color="violet" name="paint brush" size="huge" />
@@ -108,8 +106,7 @@ const About = () => (
             >
               Design
             </p>
-           
-            
+
             <p>UI/UX</p>
             <p>iOS/Android</p>
             <p>Logos</p>
@@ -132,4 +129,4 @@ const About = () => (
   </div>
 )
 
-export default About
+export default Tools
