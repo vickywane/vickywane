@@ -59,12 +59,9 @@ const Button = styled.button`
   border: 1.1px solid palevioletred;
   color: palevioletred;
   margin: 0 1em;
-  padding: 0.25em 1em;
-  font-size : 1.1em
-  width : 30%
-  height : 60px
-  font-weight : bold
-	&:hover {
+  padding: 0.25em 2em;
+  font-size: 1.1em;
+  &:hover {
     cursor: pointer;
     color: white;
     background: #1b2f7d;
@@ -73,10 +70,11 @@ const Button = styled.button`
 
 const Title = styled.h2`
   text-align: center;
-  font-weight: bold;
-  font-family: ${props => (props.project ? null : "comic sans ms")};
+  font-weight: ${props => (props.project ? "lighter" : "bold")};
+  font-family: ${props => (props.regular ? null : "comic sans ms")};
+  color: ${props => (props.black ? "black" : null)};
   letter-spacing: ${props => (props.project ? null : "0.05em")};
-  font-size: ${props => (props.project ? "2.2em" : null)};
+  font-size: ${props => (props.project ? "1.5em" : null)};
 `
 
 const Text = styled.p`
@@ -95,9 +93,10 @@ font-size: ${props => (props.banner ? "1em " : "1.10em")};
 
 const ProjectBody = styled.div`
   background-color: #2c3e50;
+  color: #fff;
   width: 100%;
   height: auto;
-  padding: 0.5em 0.5em;
+  padding: 1em 0.5em;
 `
 
 const ProjectHeader = styled.h3`
@@ -114,20 +113,41 @@ const autoGrid = (minColumnWidth = 200, gridGap = 0) => ({
 })
 
 const Items = styled.div({
-  ...autoGrid(220, 20),
-  padding: "1em",
-  marginLeft: "0.5em",
+  ...autoGrid(220, 15),
+  padding: "0.5em",
+})
+
+const IconautoGrid = (minColumnWidth = 50, gridGap = 0) => ({
+  display: "grid",
+  gridTemplateColumns: `repeat(auto-fill, minmax(${minColumnWidth}px, 0.5fr))`,
+  gridGap,
+})
+
+const IconItems = styled.div({
+  ...IconautoGrid(35, 7),
+  paddingBottom: "15px",
+  paddingLeft: "20px",
 })
 
 const StyledCard = styled.div`
-  width: 100%;
   background: white;
-  box-shadow: 0px 3px 4px grey;
+  box-shadow: 0px 5px 7px black;
   margin: 1em;
 `
 
+const Hover = styled.div`
+  cursor: pointer;
+`
+
+const Contain = styled.div`
+  padding 0.5em 0.5em;
+  padding-bottom : 15px;
+`
+
 export {
+  Contain,
   StyledCard,
+  Hover,
   Items,
   ProjectHeader,
   ProjectBody,
@@ -135,6 +155,7 @@ export {
   FooterBody,
   Title,
   Body,
+  IconItems,
   BannerContain,
   Text,
   Button,

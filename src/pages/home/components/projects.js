@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react"
 import Flex from "styled-flex-component"
-import { Card } from "react-bootstrap"
-import {} from "react-icons/fi"
+import { Card, Image } from "react-bootstrap"
+import { FiGithub } from "react-icons/fi"
 
 import {
   ProjectBody,
-  Button,
-  ProjectHeader,
   StyledCard,
   Title,
   Items,
+  Hover,
+  IconItems,
   Text,
+  Contain,
+  Body,
 } from "../../../styles/styles"
 
 const data = [
@@ -44,17 +46,45 @@ const StyledCardComponent = props => {
   return (
     <StyledCard key={props.id}>
       <Card.Img
-        variant="top"
+        fluid
+        alt="project illustration"
         src={props.imgUrl}
-        style={{ maxHeight: "250px" }}
+        style={{ maxHeight: "400px" }}
       />
-      <Title> {props.name} </Title>
-      <Card.Body>
-        <Text description>
-          <b> Tools: </b> Graphql || React Native || Mongodb || Ms Bot Framework
-        </Text>
-        <Button> VIEW PROJECT </Button>
-      </Card.Body>
+      <Title black regular project>
+        {props.name}
+      </Title>
+      <Contain>
+        <Flex>
+          <Text style={{ color: "#000" }}>
+            <b> Tools: </b>
+          </Text>
+        </Flex>
+
+        <IconItems>
+          <Hover>
+            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+          </Hover>
+          <Hover>
+            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+          </Hover>
+          <Hover>
+            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+          </Hover>
+          <Hover>
+            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+          </Hover>
+        </IconItems>
+
+        <Flex justifyBetween>
+          <Hover>
+            <FiGithub style={{ fontSize: "1.7em", color: "black" }} />{" "}
+          </Hover>
+          <Hover>
+            <FiGithub style={{ fontSize: "1.7em", color: "black" }} />{" "}
+          </Hover>
+        </Flex>
+      </Contain>
     </StyledCard>
   )
 }
@@ -77,7 +107,7 @@ const Projects = () => {
 
   return (
     <ProjectBody>
-      <Title project> RECENT PROJECTS </Title>
+      <Title regular>RECENT PROJECTS </Title>
       <Text white>These are my personal and side projects.</Text>
       <hr style={{ background: "#fff" }} />
 
@@ -86,13 +116,15 @@ const Projects = () => {
           <Flex justifyBetween>
             {data.map(({ id, name, description, imgUrl, link, tools }) => {
               return (
-                <StyledCardComponent
-                  name={name}
-                  id={id}
-                  imgUrl={imgUrl}
-                  tools={tools}
-                  link={link}
-                />
+                <Body>
+                  <StyledCardComponent
+                    name={name}
+                    id={id}
+                    imgUrl={imgUrl}
+                    tools={tools}
+                    link={link}
+                  />
+                </Body>
               )
             })}
           </Flex>
