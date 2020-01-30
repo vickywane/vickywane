@@ -18,23 +18,47 @@ import {
 const data = [
   {
     id: 1,
-    name: "UNISPOON",
+    name: "Unispoon",
     link: "",
     tools: "",
     imgUrl:
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
   {
-    id: 1,
-    name: "UNISPOON",
+    id: 2,
+    name: "EvoHub",
     link: "",
     tools: "",
     imgUrl:
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
   {
-    id: 1,
-    name: "UNISPOON",
+    id: 3,
+    name: "Travoi",
+    link: "",
+    tools: "",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+  {
+    id: 4,
+    name: "Remotify",
+    link: "",
+    tools: "",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+  {
+    id: 5,
+    name: "UseCases",
+    link: "",
+    tools: "",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+  {
+    id: 4,
+    name: "EventFul",
     link: "",
     tools: "",
     imgUrl:
@@ -90,60 +114,27 @@ const StyledCardComponent = props => {
 }
 
 const Projects = () => {
-  const [Width, setWidth] = useState(null)
-
-  setTimeout(function() {
-    setWidth(window.innerWidth)
-  }, 500)
-
-  const handleResize = value => {
-    setWidth(value)
-  }
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize.bind(this))
-    return () => window.removeEventListener("resize", handleResize.bind(this))
-  }, [])
-
   return (
     <ProjectBody>
       <Title regular>RECENT PROJECTS </Title>
       <Text white>These are my personal and side projects.</Text>
       <hr style={{ background: "#fff" }} />
 
-      <Flex>
-        {Width >= 1000 ? (
-          <Flex justifyBetween>
-            {data.map(({ id, name, description, imgUrl, link, tools }) => {
-              return (
-                <Body>
-                  <StyledCardComponent
-                    name={name}
-                    id={id}
-                    imgUrl={imgUrl}
-                    tools={tools}
-                    link={link}
-                  />
-                </Body>
-              )
-            })}
-          </Flex>
-        ) : (
-          <Items>
-            {data.map(({ id, name, description, imgUrl, link, tools }) => {
-              return (
-                <StyledCardComponent
-                  name={name}
-                  id={id}
-                  imgUrl={imgUrl}
-                  tools={tools}
-                  link={link}
-                />
-              )
-            })}
-          </Items>
-        )}
-      </Flex>
+      <Body>
+        <Items>
+          {data.map(({ id, name, description, imgUrl, link, tools }) => {
+            return (
+              <StyledCardComponent
+                name={name}
+                id={id}
+                imgUrl={imgUrl}
+                tools={tools}
+                link={link}
+              />
+            )
+          })}
+        </Items>
+      </Body>
     </ProjectBody>
   )
 }

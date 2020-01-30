@@ -6,7 +6,7 @@ export default function about() {
   return (
     <Body>
       <br />
-      <Title> Hi , I'm Nwani </Title>
+      <Title> Hi, I'm Nwani </Title>
       <Text>
         I'm a software engineer and also a freelancer from Lagos Nigeria . I am
         a mixture of a backend and frontend engineer as i have worked on both

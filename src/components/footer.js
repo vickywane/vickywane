@@ -2,7 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import Flex from "styled-flex-component"
 
-import { FiInstagram, FiFacebook, FiTwitter, FiLinkedin } from "react-icons/fi"
+import {
+  FiInstagram,
+  FiMail,
+  FiFacebook,
+  FiTwitter,
+  FiLinkedin,
+} from "react-icons/fi"
 
 import { FooterBody, Body } from "../styles/styles"
 
@@ -67,7 +73,7 @@ const Footer = () => {
                 href="https://twitter.com/iamnwani01"
                 rel="noopener noreferrer"
               >
-                <FiTwitter style={{ fontSize: "2em" }} />
+                <FiMail style={{ fontSize: "2em" }} />
               </a>
             </Hover>
 

@@ -36,7 +36,9 @@
     "pretty-quick": "^2.0.1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "portfolio",
+    "react"
   ],
   "license": "MIT",
   "scripts": {

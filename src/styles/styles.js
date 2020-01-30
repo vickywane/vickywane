@@ -29,21 +29,28 @@ const FooterBody = styled.div`
 
 const Name = styled.h1`
   font-size: 3.5em;
+  ${media.lessThan("medium")`
+font-size: 2.5em ;
+  `};
+  ${media.lessThan("large")`
+font-size: 3em ;
+`};
+  ${media.lessThan("small")`
+font-size: 2.2em ;
+  `};
 `
 
 const BannerBody = styled.div`
   color: white;
   width: 100%;
-  height: 60vh;
+  height: 57vh;
   background: linear-gradient(to bottom, #591af7, #1b2f7d);
   text-align: center;
   width: 100vw;
-  height: 55vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  top: -2px;
 `
 
 const BannerContain = styled.div`
@@ -56,16 +63,27 @@ const BannerContain = styled.div`
 const Button = styled.button`
   background: transparent;
   border-radius: 3px;
-  border: 1.1px solid palevioletred;
+  border: 1px solid palevioletred;
   color: palevioletred;
-  margin: 0 1em;
-  padding: 0.25em 2em;
-  font-size: 1.1em;
+  outline: 0px;
+  padding: 0.6em 3em;
+  margin: 0.5em 0.5em;
+  font-size: 1em;
   &:hover {
     cursor: pointer;
     color: white;
     background: #1b2f7d;
   }
+  ${media.lessThan("small")`
+font-size: 0.9em ;
+  `};
+  ${media.lessThan("medium")`
+  padding: 0.60em 4em;
+  `};
+
+  ${media.lessThan("large")`
+  padding: 0.60em 5em;
+  `};
 `
 
 const Title = styled.h2`
@@ -79,8 +97,9 @@ const Title = styled.h2`
 
 const Text = styled.p`
   color: ${props => (props.white ? "#fff" : null)};
-  font-size: ${props => (props.banner ? "1.3em " : "1.1em")};
-  text-align: center ${media.lessThan("medium")`
+  font-size: ${props => (props.banner ? "1.3em " : "1.3em")};
+  text-align: center;
+  ${media.lessThan("medium")`
   font-size: ${props => (props.banner ? "1.10em " : "1.20em")};
 `};
   ${media.lessThan("large")`
@@ -113,7 +132,7 @@ const autoGrid = (minColumnWidth = 200, gridGap = 0) => ({
 })
 
 const Items = styled.div({
-  ...autoGrid(220, 15),
+  ...autoGrid(240, 15),
   padding: "0.5em",
 })
 

@@ -10,6 +10,9 @@ const Banner = () => {
           <Name> Nwani Victory </Name>
           <Text banner> Software Engineer from Lagos, Nigeria , Africa. </Text>
           <Button onClick={() => alert("work in progress")}>CONTACT ME </Button>
+          <Button onClick={() => alert("work in progress")}>
+            View E-Resume{" "}
+          </Button>
         </div>
       </BannerBody>
       <Image />
