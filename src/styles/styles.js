@@ -74,12 +74,13 @@ const Button = styled.button`
 const Title = styled.h2`
   text-align: center;
   font-weight: bold;
-  font-family: comic sans ms;
-  letter-spacing: 0.05em;
+  font-family: ${props => (props.project ? null : "comic sans ms")};
+  letter-spacing: ${props => (props.project ? null : "0.05em")};
+  font-size: ${props => (props.project ? "2.2em" : null)};
 `
 
 const Text = styled.p`
-  color: ${props => (props.description ? "#fff" : null)};
+  color: ${props => (props.white ? "#fff" : null)};
   font-size: ${props => (props.banner ? "1.3em " : "1.1em")};
   text-align: center ${media.lessThan("medium")`
   font-size: ${props => (props.banner ? "1.10em " : "1.20em")};
@@ -106,11 +107,6 @@ const ProjectHeader = styled.h3`
   padding-top: 30px;
 `
 
-const ProjectTitle = styled.h5`
-  text-align: center;
-  font-weight: bold;
-`
-
 const autoGrid = (minColumnWidth = 200, gridGap = 0) => ({
   display: "grid",
   gridTemplateColumns: `repeat(auto-fill, minmax(${minColumnWidth}px, 1fr))`,
@@ -133,7 +129,6 @@ const StyledCard = styled.div`
 export {
   StyledCard,
   Items,
-  ProjectTitle,
   ProjectHeader,
   ProjectBody,
   Name,
