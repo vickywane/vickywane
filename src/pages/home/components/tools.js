@@ -1,7 +1,6 @@
 import React from "react"
 import { Container, Grid, Icon } from "semantic-ui-react"
 import styled from "styled-components"
-import { media } from "../../../media_style"
 
 const Contain = styled.div`
   text-align: center;
@@ -13,12 +12,7 @@ width: 100vw
 min-height: 400px 
 margin-bottom: 10%
 background-color: #591af7  
-${media.tablet`
-min-height: 400px 
-`}
-${media.phone`
-min-height: 900px 
-`}
+ 
 `
 
 const Tools = () => (
