@@ -66,7 +66,7 @@ const Button = styled.button`
   border: 1px solid palevioletred;
   color: palevioletred;
   outline: 0px;
-  padding: 0.6em 3em;
+  padding: 0.6em 5em;
   margin: 0.5em 0.5em;
   font-size: 1em;
   &:hover {
