@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import media from "styled-media-query"
+import posed from "react-pose"
 
 const Body = styled.div`
   padding-left: ${props => (props.banner ? "12em" : "8em")};
@@ -115,7 +116,7 @@ const ProjectBody = styled.div`
   color: #fff;
   width: 100%;
   height: auto;
-  padding: 1em 0.5em;
+  padding: 0.5em 0.5em;
 `
 
 const ProjectHeader = styled.h3`
@@ -151,7 +152,7 @@ const IconItems = styled.div({
 const StyledCard = styled.div`
   background: white;
   box-shadow: 0px 5px 7px black;
-  margin: 1em;
+  margin: 0.5em;
 `
 
 const Hover = styled.div`
@@ -163,7 +164,24 @@ const Contain = styled.div`
   padding-bottom : 15px;
 `
 
+const Bounce = posed.div({
+  hoverable: true,
+  init: {
+    scale: 1,
+    boxShadow: "0px 0px 0px rgba(0,0,0,0)",
+    textAlign: "center",
+  },
+  hover: {
+    scale: 1.05,
+  },
+  press: {
+    scale: 1.05,
+    boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+  },
+})
+
 export {
+  Bounce,
   Contain,
   StyledCard,
   Hover,
