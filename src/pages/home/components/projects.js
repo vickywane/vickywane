@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import Flex from "styled-flex-component"
 import { Card, Image } from "react-bootstrap"
-import { FiGithub } from "react-icons/fi"
+import { FiGithub, FiChevronDown, FiGlobe } from "react-icons/fi"
 
 import {
   ProjectBody,
@@ -10,6 +10,7 @@ import {
   Items,
   Hover,
   IconItems,
+  Bounce,
   Text,
   Contain,
   Body,
@@ -105,7 +106,7 @@ const StyledCardComponent = props => {
             <FiGithub style={{ fontSize: "1.7em", color: "black" }} />{" "}
           </Hover>
           <Hover>
-            <FiGithub style={{ fontSize: "1.7em", color: "black" }} />{" "}
+            <FiGlobe style={{ fontSize: "1.7em", color: "black" }} />{" "}
           </Hover>
         </Flex>
       </Contain>
@@ -114,6 +115,8 @@ const StyledCardComponent = props => {
 }
 
 const Projects = () => {
+  const [More, setMore] = useState(false)
+
   return (
     <ProjectBody>
       <Title regular>RECENT PROJECTS </Title>
@@ -124,16 +127,34 @@ const Projects = () => {
         <Items>
           {data.map(({ id, name, description, imgUrl, link, tools }) => {
             return (
-              <StyledCardComponent
-                name={name}
-                id={id}
-                imgUrl={imgUrl}
-                tools={tools}
-                link={link}
-              />
+              <Bounce>
+                <StyledCardComponent
+                  name={name}
+                  id={id}
+                  imgUrl={imgUrl}
+                  tools={tools}
+                  link={link}
+                />
+              </Bounce>
             )
           })}
         </Items>
+
+        <Flex justifyCenter>
+          <Hover
+            onClick={() => {
+              setMore(true)
+            }}
+          >
+            <Flex>
+              <p style={{ paddingRight: "5px", paddingTop: "4px" }}>
+                {" "}
+                See More{" "}
+              </p>
+              <FiChevronDown style={{ fontSize: "2.1em" }} />
+            </Flex>
+          </Hover>
+        </Flex>
       </Body>
     </ProjectBody>
   )
