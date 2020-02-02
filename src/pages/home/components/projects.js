@@ -75,15 +75,14 @@ const data = [
   },
 ]
 
-let newdata = []
 //spliting d data array for small pagination
-const chunk = (arr, size) => {
-  arr.reduce(
-    (acc, _, i) =>
-      i % size ? acc : [...acc, arr.slice(i, i + size), (newdata = arr)],
-    []
-  )
-}
+// const chunk = (arr, size) => {
+//   arr.reduce(
+//     (acc, _, i) =>
+//       i % size ? acc : [...acc, arr.slice(i, i + size), (newdata = data)],
+//     []
+//   );
+// };
 
 const StyledCardComponent = props => {
   return (
@@ -141,16 +140,34 @@ const StyledCardComponent = props => {
 }
 
 const Projects = () => {
-  const [More, setMore] = useState(false)
   const [Display, setDisplay] = useState(false)
+  const [Index, setIndex] = useState(0)
+
+  const newdata = data.reduce(
+    (acc, _, i) => (i % 3 ? acc : [...acc, data.slice(i, i + 3)]),
+    []
+  )
+
+  const [Width, setWidth] = useState(null)
+
+  setTimeout(function() {
+    setWidth(window.innerWidth)
+  }, 500)
+
+  const handleResize = value => {
+    setWidth(value)
+  }
 
   useEffect(() => {
-    chunk(data, 3)
+    window.addEventListener("resize", handleResize.bind(this))
+    return () => window.removeEventListener("resize", handleResize.bind(this))
   }, [])
 
   setTimeout(() => {
     setDisplay(true)
   }, 1000)
+
+  console.log(newdata)
 
   return (
     <ProjectBody>
@@ -159,31 +176,53 @@ const Projects = () => {
       <hr style={{ background: "#fff" }} />
 
       <Body>
-        {!Display ? (
-          <p style={{ textAlign: "center" }}> Loading ... </p>
-        ) : (
-          <Items>
-            {newdata.map(({ id, name, description, imgUrl, link, tools }) => {
+        {Width >= 1300 ? (
+          <Flex justifyBetween>
+            {data.map(({ id, name, description, imgUrl, link, tools }) => {
               return (
-                <Bounce>
+                <Bounce style={{ margin: "0.5em" }}>
                   <StyledCardComponent
                     name={name}
                     id={id}
                     imgUrl={imgUrl}
                     tools={tools}
                     link={link}
+                    gitlink=""
                   />
                 </Bounce>
               )
             })}
-          </Items>
+          </Flex>
+        ) : (
+          <div>
+            {!Display ? (
+              <p style={{ textAlign: "center" }}> Loading ... </p>
+            ) : (
+              <Items>
+                {newdata[1].map(
+                  ({ id, name, description, imgUrl, link, tools }) => {
+                    return (
+                      <Bounce>
+                        <StyledCardComponent
+                          name={name}
+                          id={id}
+                          imgUrl={imgUrl}
+                          tools={tools}
+                          link={link}
+                          gitlink=""
+                        />
+                      </Bounce>
+                    )
+                  }
+                )}
+              </Items>
+            )}
+          </div>
         )}
-
         <Flex justifyCenter>
           <Hover
             onClick={() => {
-              setMore(true)
-              console.log(newdata)
+              alert("falied to fetch")
             }}
           >
             <Flex>
