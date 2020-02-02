@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react"
 import Flex from "styled-flex-component"
 import { Card, Image } from "react-bootstrap"
 import { FiGithub, FiChevronDown, FiGlobe } from "react-icons/fi"
+import {
+  DiReact,
+  DiJavascript,
+  DiMongodb,
+  DiSass,
+  DiGo,
+  DiGoogleCloudPlatform,
+} from "react-icons/di"
 
 import {
   ProjectBody,
@@ -58,7 +66,7 @@ const data = [
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
   {
-    id: 4,
+    id: 6,
     name: "EventFul",
     link: "",
     tools: "",
@@ -66,6 +74,16 @@ const data = [
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
 ]
+
+let newdata = []
+//spliting d data array for small pagination
+const chunk = (arr, size) => {
+  arr.reduce(
+    (acc, _, i) =>
+      i % size ? acc : [...acc, arr.slice(i, i + size), (newdata = arr)],
+    []
+  )
+}
 
 const StyledCardComponent = props => {
   return (
@@ -88,25 +106,33 @@ const StyledCardComponent = props => {
 
         <IconItems>
           <Hover>
-            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+            <DiGoogleCloudPlatform
+              style={{ fontSize: "1.5em", color: "grey" }}
+            />
           </Hover>
           <Hover>
-            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+            <DiJavascript style={{ fontSize: "1.5em", color: "grey" }} />
           </Hover>
           <Hover>
-            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+            <DiMongodb style={{ fontSize: "1.5em", color: "grey" }} />
           </Hover>
           <Hover>
-            <FiGithub style={{ fontSize: "1.5em", color: "grey" }} />{" "}
+            <DiReact style={{ fontSize: "1.5em", color: "grey" }} />
+          </Hover>
+          <Hover>
+            <DiGo style={{ fontSize: "1.5em", color: "grey" }} />
+          </Hover>
+          <Hover>
+            <DiSass style={{ fontSize: "1.5em", color: "grey" }} />
           </Hover>
         </IconItems>
 
         <Flex justifyBetween>
           <Hover>
-            <FiGithub style={{ fontSize: "1.7em", color: "black" }} />{" "}
+            <FiGithub style={{ fontSize: "1.7em", color: "black" }} />
           </Hover>
           <Hover>
-            <FiGlobe style={{ fontSize: "1.7em", color: "black" }} />{" "}
+            <FiGlobe style={{ fontSize: "1.7em", color: "black" }} />
           </Hover>
         </Flex>
       </Contain>
@@ -116,6 +142,15 @@ const StyledCardComponent = props => {
 
 const Projects = () => {
   const [More, setMore] = useState(false)
+  const [Display, setDisplay] = useState(false)
+
+  useEffect(() => {
+    chunk(data, 3)
+  }, [])
+
+  setTimeout(() => {
+    setDisplay(true)
+  }, 1000)
 
   return (
     <ProjectBody>
@@ -124,33 +159,35 @@ const Projects = () => {
       <hr style={{ background: "#fff" }} />
 
       <Body>
-        <Items>
-          {data.map(({ id, name, description, imgUrl, link, tools }) => {
-            return (
-              <Bounce>
-                <StyledCardComponent
-                  name={name}
-                  id={id}
-                  imgUrl={imgUrl}
-                  tools={tools}
-                  link={link}
-                />
-              </Bounce>
-            )
-          })}
-        </Items>
+        {!Display ? (
+          <p style={{ textAlign: "center" }}> Loading ... </p>
+        ) : (
+          <Items>
+            {newdata.map(({ id, name, description, imgUrl, link, tools }) => {
+              return (
+                <Bounce>
+                  <StyledCardComponent
+                    name={name}
+                    id={id}
+                    imgUrl={imgUrl}
+                    tools={tools}
+                    link={link}
+                  />
+                </Bounce>
+              )
+            })}
+          </Items>
+        )}
 
         <Flex justifyCenter>
           <Hover
             onClick={() => {
               setMore(true)
+              console.log(newdata)
             }}
           >
             <Flex>
-              <p style={{ paddingRight: "5px", paddingTop: "4px" }}>
-                {" "}
-                See More{" "}
-              </p>
+              <p style={{ paddingRight: "5px", paddingTop: "4px" }}>See More</p>
               <FiChevronDown style={{ fontSize: "2.1em" }} />
             </Flex>
           </Hover>

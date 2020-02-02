@@ -146,7 +146,7 @@ const IconautoGrid = (minColumnWidth = 50, gridGap = 0) => ({
 const IconItems = styled.div({
   ...IconautoGrid(35, 7),
   paddingBottom: "15px",
-  paddingLeft: "20px",
+  paddingLeft: "10px",
 })
 
 const StyledCard = styled.div`
