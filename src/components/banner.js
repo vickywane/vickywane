@@ -2,6 +2,8 @@ import React from "react"
 import Image from "../components/image"
 import { BannerBody, BannerContain, Text, Name, Button } from "../styles/styles"
 
+import Wave from "../assets/svg/wave.svg"
+
 const Banner = () => {
   return (
     <BannerContain>
@@ -13,9 +15,19 @@ const Banner = () => {
           <Button onClick={() => alert("work in progress")}>
             View E-Resume{" "}
           </Button>
+          <br />
         </div>
       </BannerBody>
-      <Image />
+      <img
+        src={Wave}
+        alt="wave"
+        style={{
+          margin: "0",
+          width: "100vw",
+          position: "absolute",
+          bottom: "-1px",
+        }}
+      />
     </BannerContain>
   )
 }

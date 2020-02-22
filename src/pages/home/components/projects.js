@@ -26,14 +26,6 @@ const data = [
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
   {
-    id: 2,
-    name: "EvoHub",
-    link: "",
-    tools: "",
-    imgUrl:
-      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
-  },
-  {
     id: 3,
     name: "Travoi",
     link: "",

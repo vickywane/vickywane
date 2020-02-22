@@ -44,7 +44,7 @@ font-size: 2.2em ;
 const BannerBody = styled.div`
   color: white;
   width: 100%;
-  height: 57vh;
+  height: 85vh;
   background: linear-gradient(to bottom, #591af7, #1b2f7d);
   text-align: center;
   width: 100vw;
@@ -52,6 +52,17 @@ const BannerBody = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  ${media.lessThan("large")`
+      padding-bottom: 5rem;
+  height: 60vh;
+  `};
+  ${media.lessThan("medium")`
+      padding-bottom: 2rem;
+  `};
+  ${media.lessThan("small")`
+      padding-bottom: 1rem;
+  height: 57vh;
+  `};
 `
 
 const BannerContain = styled.div`
