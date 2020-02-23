@@ -11,7 +11,7 @@ import {
   DiGoogleCloudPlatform,
 } from "react-icons/di"
 import Img from "gatsby-image"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import {
   ProjectBody,
@@ -47,7 +47,7 @@ const data = [
   },
   {
     id: 4,
-    name: "Patfin",
+    name: "Patfin School",
     link: "",
     tools: "",
     gitlink: "https://github.com/patfin-school/website",
@@ -96,16 +96,14 @@ const StyledCardComponent = (props, data) => {
         fluid
         alt="project illustration"
         src={props.imgUrl}
-        style={{ maxHeight: "400px" }}
+        style={{ height: "15rem" }}
       />
       <Title black regular project>
         {props.name}
       </Title>
       <Contain>
         <Flex>
-          <Text style={{ color: "#000" }}>
-            <b> Tools: </b>
-          </Text>
+          <Text style={{ color: "#000", fontWeight: "700px" }}>Tools:</Text>
         </Flex>
 
         <IconItems>
@@ -224,16 +222,20 @@ const Projects = () => {
           </div>
         )}
         <Flex justifyCenter>
-          <Hover
-            onClick={() => {
-              alert("falied to fetch")
-            }}
-          >
+          <Link to="/projects">
             <Flex>
-              <p style={{ paddingRight: "5px", paddingTop: "4px" }}>See More</p>
+              <p
+                style={{
+                  paddingRight: "5px",
+                  paddingTop: "4px",
+                  color: "#fff",
+                }}
+              >
+                See More
+              </p>
               <FiChevronDown style={{ fontSize: "2.1em" }} />
             </Flex>
-          </Hover>
+          </Link>
         </Flex>
       </Body>
     </ProjectBody>
