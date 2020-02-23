@@ -10,6 +10,8 @@ import {
   DiGo,
   DiGoogleCloudPlatform,
 } from "react-icons/di"
+import Img from "gatsby-image"
+import { graphql } from "gatsby"
 
 import {
   ProjectBody,
@@ -32,28 +34,32 @@ const data = [
     tools: "",
     imgUrl:
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+    gitlink: "https://github.com/vickywane/unispoon",
   },
   {
     id: 3,
     name: "Travoi",
     link: "",
     tools: "",
+    gitlink: "https://github.com/vickywane/travoi",
     imgUrl:
-      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1582424123/portfolio/travoy.png",
   },
   {
     id: 4,
-    name: "Remotify",
+    name: "Patfin",
     link: "",
     tools: "",
+    gitlink: "https://github.com/patfin-school/website",
     imgUrl:
-      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1582423440/portfolio/Screenshot_304.png",
   },
   {
     id: 5,
     name: "UseCases",
     link: "",
     tools: "",
+    gitlink: "https://github.com/vickywane/usecases",
     imgUrl:
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
@@ -62,21 +68,28 @@ const data = [
     name: "EventFul",
     link: "",
     tools: "",
+    gitlink: "https://github.com/fundry/event",
     imgUrl:
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
 ]
 
-//spliting d data array for small pagination
-// const chunk = (arr, size) => {
-//   arr.reduce(
-//     (acc, _, i) =>
-//       i % size ? acc : [...acc, arr.slice(i, i + size), (newdata = data)],
-//     []
-//   );
-// };
+// TODO : use gatsby-image later
+export const query = graphql`
+  query {
+    file(relativePath: { eq: "../../../images/gatsby-icon.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        # Makes it trivial to update as your page's design changes.
+        fixed(width: 125, height: 125) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`
 
-const StyledCardComponent = props => {
+const StyledCardComponent = (props, data) => {
   return (
     <StyledCard key={props.id}>
       <Card.Img
@@ -119,9 +132,9 @@ const StyledCardComponent = props => {
         </IconItems>
 
         <Flex justifyBetween>
-          <Hover>
+          <a href={props.gitlink}>
             <FiGithub style={{ fontSize: "1.7em", color: "black" }} />
-          </Hover>
+          </a>
           <Hover>
             <FiGlobe style={{ fontSize: "1.7em", color: "black" }} />
           </Hover>
@@ -133,10 +146,9 @@ const StyledCardComponent = props => {
 
 const Projects = () => {
   const [Display, setDisplay] = useState(false)
-  const [Index, setIndex] = useState(0)
 
   const newdata = data.reduce(
-    (acc, _, i) => (i % 3 ? acc : [...acc, data.slice(i, i + 3)]),
+    (acc, _, i) => (i % 2 ? acc : [...acc, data.slice(i, i + 3)]),
     []
   )
 
@@ -170,7 +182,7 @@ const Projects = () => {
       <Body>
         {Width >= 1300 ? (
           <Flex justifyBetween>
-            {data.map(({ id, name, description, imgUrl, link, tools }) => {
+            {data.map(({ id, name, gitlink, imgUrl, link, tools }) => {
               return (
                 <Bounce style={{ margin: "0.5em" }}>
                   <StyledCardComponent
@@ -179,7 +191,7 @@ const Projects = () => {
                     imgUrl={imgUrl}
                     tools={tools}
                     link={link}
-                    gitlink=""
+                    gitlink={gitlink}
                   />
                 </Bounce>
               )
@@ -192,7 +204,7 @@ const Projects = () => {
             ) : (
               <Items>
                 {newdata[1].map(
-                  ({ id, name, description, imgUrl, link, tools }) => {
+                  ({ id, name, gitlink, imgUrl, link, tools }) => {
                     return (
                       <Bounce>
                         <StyledCardComponent
@@ -201,7 +213,7 @@ const Projects = () => {
                           imgUrl={imgUrl}
                           tools={tools}
                           link={link}
-                          gitlink=""
+                          gitlink={gitlink}
                         />
                       </Bounce>
                     )
