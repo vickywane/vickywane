@@ -33,7 +33,7 @@ const Hover = styled.div`
 const Footer = () => {
   return (
     <FooterBody>
-      <div>
+      <div id="footer">
         <Text> Connect with me </Text> <br />
         <Body>
           <Flex justifyBetween>

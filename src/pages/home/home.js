@@ -7,6 +7,7 @@ import Footer from "../../components/footer"
 
 import Project from "./components/projects"
 import Tools from "./components/tools"
+import Articles from "./components/articles"
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <About />
 
       <Tools />
+      <Articles />
       <Project />
 
       <br />

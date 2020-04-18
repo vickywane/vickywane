@@ -191,7 +191,10 @@ const Bounce = posed.div({
   },
 })
 
+const ArticleCard = styled.div``
+
 export {
+  ArticleCard,
   Bounce,
   Contain,
   StyledCard,

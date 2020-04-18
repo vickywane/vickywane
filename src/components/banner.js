@@ -2,6 +2,7 @@ import React from "react"
 import Image from "../components/image"
 import { BannerBody, BannerContain, Text, Name, Button } from "../styles/styles"
 
+import { Link } from "gatsby"
 import Wave from "../assets/svg/wave.svg"
 
 const Banner = () => {
@@ -11,8 +12,16 @@ const Banner = () => {
         <div>
           <Name> Nwani Victory </Name>
           <Text banner> Software Engineer from Lagos, Nigeria , Africa. </Text>
-          <Button onClick={() => alert("work in progress")}>CONTACT ME </Button>
-          <Button onClick={() => alert("work in progress")}>
+
+          <Link
+            to="/#footer"
+            style={{
+              textDecoration: `none`,
+            }}
+          >
+            <Button>CONTACT ME </Button>
+          </Link>
+          <Button onClick={() => alert("Loading Download")}>
             View E-Resume{" "}
           </Button>
           <br />
