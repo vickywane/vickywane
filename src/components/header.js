@@ -1,41 +1,41 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import Flex from "styled-flex-component"
+import { FiMenu } from "react-icons/fi"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h4 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h4>
-    </div>
-  </header>
-)
+import { HeaderBody, Text } from "../styles/styles"
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+const Header = props => {
+  const { title, link } = props
+  return (
+    <HeaderBody>
+      <Flex justifyBetween>
+        <Flex>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <img
+              alt="avatar"
+              src={require("../assets/images/my_avatar.png")}
+              style={{ height: "auto", width: "3rem", borderRadius: "50%" }}
+            />
+          </Link>
 
-Header.defaultProps = {
-  siteTitle: ``,
+          <Link
+            to={`/${link}`}
+            style={{ color: "#fff", textDecoration: "none" }}
+          >
+            <h4>| {title}</h4>
+          </Link>
+        </Flex>
+
+        <FiMenu style={{ fontSize: "2rem" }} />
+      </Flex>
+    </HeaderBody>
+  )
 }
 
 export default Header

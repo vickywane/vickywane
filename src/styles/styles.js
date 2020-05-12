@@ -5,17 +5,17 @@ import posed from "react-pose"
 const Body = styled.div`
   padding-left: ${props => (props.banner ? "12em" : "8em")};
   padding-right: ${props => (props.banner ? "12em" : "8em")};
+  ${media.lessThan("huge")`
+  padding: 1rem 5rem;
+  `};
   ${media.lessThan("large")`
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+  padding: 0.5rem 1.5rem;
   `};
   ${media.lessThan("medium")`
-  padding-left: 1.5em;
-  padding-right: 1.5em;
+padding: 0.5rem 0.5rem;
   `};
   ${media.lessThan("small")`
-  padding-left: 0.4em;
-  padding-right: 0.4em;
+padding: 0.5rem 0.5rem;
 `};
 `
 
@@ -44,32 +44,38 @@ font-size: 2.2em ;
 const BannerBody = styled.div`
   color: white;
   width: 100%;
-  height: 85vh;
+  height: 80vh;
   background: linear-gradient(to bottom, #591af7, #1b2f7d);
   text-align: center;
   width: 100vw;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  padding-top: 7rem;
   position: relative;
   ${media.lessThan("large")`
       padding-bottom: 5rem;
+  padding-top: 1rem;
+  justify-content: center;
   height: 60vh;
   `};
   ${media.lessThan("medium")`
-      padding-bottom: 2rem;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
   `};
   ${media.lessThan("small")`
-      padding-bottom: 1rem;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   height: 57vh;
   `};
 `
 
 const BannerContain = styled.div`
   width: 100%;
-  width: 100vw;
   position: relative;
-  top: -2px;
+  top: -10px;
 `
 
 const Button = styled.button`
@@ -80,7 +86,8 @@ const Button = styled.button`
   outline: 0px;
   padding: 0.6em 5em;
   margin: 0.5em 0.5em;
-  font-size: 1em;
+  transition: all 400ms;
+  font-size: 1.2em;
   &:hover {
     cursor: pointer;
     color: white;
@@ -92,25 +99,35 @@ font-size: 0.9em ;
   ${media.lessThan("medium")`
   padding: 0.60em 4em;
   `};
-
   ${media.lessThan("large")`
   padding: 0.60em 5em;
   `};
 `
 
-const Title = styled.h2`
+const Title = styled.h1`
   text-align: center;
-  font-weight: ${props => (props.project ? "lighter" : "bold")};
-  font-family: ${props => (props.regular ? null : "comic sans ms")};
-  color: ${props => (props.black ? "black" : null)};
+  font-weight: ${props => (props.bold ? "bold" : "lighter")};
+  font-family: ${props => (props.regular ? null : "monospace")};
+  color: ${props => (props.colored ? "#591af7" : "#fff")};
   letter-spacing: ${props => (props.project ? null : "0.05em")};
-  font-size: ${props => (props.project ? "1.5em" : null)};
+  font-size: ${props => (props.small ? "2.5em" : "4.5rem")};
+  ${media.lessThan("large")`
+  font-size: ${props => (props.small ? "2.3em" : "3.7rem")};
+  `};
+  ${media.lessThan("medium")`
+  font-size: ${props => (props.small ? "2em" : "3rem")};
+  `};
+  ${media.lessThan("small")`
+  font-size: ${props => (props.small ? "1.7em" : "2.2rem")};
+  `};
 `
 
 const Text = styled.p`
   color: ${props => (props.white ? "#fff" : null)};
-  font-size: ${props => (props.banner ? "1.3em " : "1.3em")};
-  text-align: center;
+  font-size: ${props => (props.banner ? "1.5rem " : "1.3rem")};
+  text-align: ${props => (props.center ? "center" : null)};
+  line-height: 1.8rem;
+  word-spacing: 0.1rem;
   ${media.lessThan("medium")`
   font-size: ${props => (props.banner ? "1.10em " : "1.20em")};
 `};
@@ -193,11 +210,128 @@ const Bounce = posed.div({
 
 const ArticleCard = styled.div``
 
+const CustomImage = styled.img`
+  margin: 0;
+  width: 100vw;
+  position: absolute;
+  bottom: -5px;
+  ${media.lessThan("huge")`
+  bottom: -20px;
+  `};
+  ${media.lessThan("large")`
+  bottom: -10px;
+  `};
+  ${media.lessThan("medium")`
+  bottom: -5px;
+  `};
+  ${media.lessThan("small")`
+  bottom: -55px;
+  `};
+`
+
+const HeaderBody = styled.header`
+  padding: 0.5rem 1.7rem;
+  background: rebeccapurple;
+  color: #fff;
+  h4 {
+    padding: 0.5rem 0.7rem;
+  }
+  ${media.lessThan("large")`
+    h4 {
+font-size : 1.7rem; 
+    }
+  `};
+  ${media.lessThan("medium")`
+    h4 {
+font-size : 1.6rem; 
+    }
+  `};
+  ${media.lessThan("small")`
+    h4 {
+font-size :  1.5rem; 
+    }
+  `};
+`
+
+const Quote = styled.h1`
+  font-weight: 530;
+  ${media.lessThan("medium")`
+font-size: 2rem;
+  `};
+  ${media.lessThan("small")`
+font-size: 2rem;
+  `};
+`
+
+const QuoteContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 1rem 1rem;
+  background: #090e3a;
+  color: #fff;
+  ${media.lessThan("medium")`
+  padding: 4rem 1rem 0.5rem;
+  `};
+  ${media.lessThan("small")`
+  padding: 3rem 1rem 0.3rem;
+  `};
+`
+
+const CardBody = styled.div`
+  border-radius: 1rem;
+  border: 1px solid grey;
+  padding: 1rem 1rem;
+  width: 32rem;
+  transition: all 450ms;
+  ${media.lessThan("large")`
+  width: auto;
+  `};
+  ${media.lessThan("medium")`
+  width: auto;
+  border-radius: 0.7rem;
+  margin : 1rem 2rem; 
+  `};
+  ${media.lessThan("small")`
+  width: auto;
+  margin : 1rem 1rem;
+  `};
+`
+
+const ArticleGrid = styled.div`
+  display: grid;
+  grid-gap: 3rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  ${media.lessThan("huge")`
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  `};
+  ${media.lessThan("large")`
+  grid-template-columns: repeat(auto-fit, minmax(23rem, 2fr));
+  `};
+  ${media.lessThan("medium")`
+   display: flex;
+   flex-direction: column;
+    align-items: center;
+  `};
+  ${media.lessThan("small")`
+   display: flex;
+   flex-direction: column;
+    align-items: center;
+  `};
+`
+
 export {
+  Quote,
+  QuoteContainer,
+  ArticleGrid,
+  CardBody,
+  HeaderBody,
   ArticleCard,
   Bounce,
   Contain,
   StyledCard,
+  CustomImage,
   Hover,
   Items,
   ProjectHeader,

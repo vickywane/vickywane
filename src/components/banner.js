@@ -1,6 +1,13 @@
 import React from "react"
 import Image from "../components/image"
-import { BannerBody, BannerContain, Text, Name, Button } from "../styles/styles"
+import {
+  BannerBody,
+  BannerContain,
+  Text,
+  Name,
+  Button,
+  CustomImage,
+} from "../styles/styles"
 
 import { Link } from "gatsby"
 import Wave from "../assets/svg/wave.svg"
@@ -9,6 +16,15 @@ const Banner = () => {
   return (
     <BannerContain>
       <BannerBody>
+        <img
+          alt="My Avatar "
+          style={{
+            height: "auto",
+            width: "10rem",
+            borderRadius: "50%",
+          }}
+          src={require("../assets/images/my_avatar.png")}
+        />
         <div>
           <Name> Nwani Victory </Name>
           <Text banner> Software Engineer from Lagos, Nigeria , Africa. </Text>
@@ -22,21 +38,12 @@ const Banner = () => {
             <Button>CONTACT ME </Button>
           </Link>
           <Button onClick={() => alert("Loading Download")}>
-            View E-Resume{" "}
+            View E-Resume
           </Button>
           <br />
         </div>
       </BannerBody>
-      <img
-        src={Wave}
-        alt="wave"
-        style={{
-          margin: "0",
-          width: "100vw",
-          position: "absolute",
-          bottom: "-1px",
-        }}
-      />
+      <CustomImage src={Wave} alt="wave" />
     </BannerContain>
   )
 }

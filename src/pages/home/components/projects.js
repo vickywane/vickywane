@@ -98,7 +98,7 @@ const StyledCardComponent = (props, data) => {
         src={props.imgUrl}
         style={{ height: "15rem" }}
       />
-      <Title black regular project>
+      <Title colored style={{ fontSize: "2rem" }} regular small>
         {props.name}
       </Title>
       <Contain>
@@ -173,8 +173,12 @@ const Projects = () => {
 
   return (
     <ProjectBody>
-      <Title regular>RECENT PROJECTS </Title>
-      <Text white>These are my personal and side projects.</Text>
+      <Title bold regular small white>
+        RECENT PROJECTS
+      </Title>
+      <Text white center>
+        These are my personal and side projects.
+      </Text>
       <hr style={{ background: "#fff" }} />
 
       <Body>
