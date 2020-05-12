@@ -1,49 +1,7 @@
 import React from "react"
-import styled from "styled-components"
-import { Quote, QuoteContainer, Text } from "../../styles/styles"
-import media from "styled-media-query"
+import { Quote, QuoteContainer, Text, Tag } from "../../styles/styles"
 
 import hooks from "../hooks"
-
-const Tag = styled.div`
-  padding: 0.5rem 1rem;
-  height: auto;
-  transition: all 400ms;
-  border-top: 2px solid #fff;
-  border-style: dashed;
-  width: 70rem;
-  justify-content: center;
-  div {
-    display: flex;
-  }
-  ${media.lessThan("large")`
-    width : 70rem;
-    height: auto;
-      div {
-    display: flex;
-  }
-  `};
-  ${media.lessThan("medium")`
-    width : auto;
-    height: auto;
-    div {
-    display: grid;
-    grid-gap: 1rem 0.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-    }
-    margin : 0rem 0.5rem;
-  `};
-  ${media.lessThan("small")`
-    width : auto;
-    margin : 0rem 1rem;
-    height: auto;
-    div {
-    display: grid;
-    grid-gap: 1rem 0.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
-    }
-    `};
-`
 
 const QuoteComponent = props => {
   const { maintext, quote, text, showTags, tags } = props
