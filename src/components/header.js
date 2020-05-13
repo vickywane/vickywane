@@ -52,7 +52,10 @@ const Header = props => {
       <Notification>
         <Text small>
           This space is under active development. Please "{" "}
-          <a target="_blank" href="https://github.com/vickywane">
+          <a
+            target="_blank"
+            href="https://github.com/vickywane/Portfolio/issues/new"
+          >
             raise an issue{" "}
           </a>
           " if you spot something wrong.
