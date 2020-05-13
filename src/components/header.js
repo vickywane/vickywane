@@ -50,12 +50,12 @@ const Header = props => {
         </Flex>
       </HeaderBody>
       <Notification>
-        <Text>
-          This space is under active development. Please{" "}
+        <Text small>
+          This space is under active development. Please "{" "}
           <a target="_blank" href="https://github.com/vickywane">
             raise an issue{" "}
-          </a>{" "}
-          if you spot something wrong{" "}
+          </a>
+          " if you spot something wrong.{" "}
         </Text>
       </Notification>
     </div>

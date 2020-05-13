@@ -225,8 +225,6 @@ const Bounce = posed.div({
   },
 })
 
-const ArticleCard = styled.div``
-
 const CustomImage = styled.img`
   margin: 0;
   width: 100vw;
@@ -377,15 +375,32 @@ const Tag = styled.div`
     }
     `};
 `
+const ProjectGrid = styled.div`
+  display: grid;
+  grid-gap: 2rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  ${media.lessThan("large")`
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  `};
+  ${media.lessThan("medium")`
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  `};
+  ${media.lessThan("small")`
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  `};
+`
+
+const Upcoming = styled.div``
 
 export {
+  Upcoming,
+  ProjectGrid,
   Tag,
   Quote,
   QuoteContainer,
   ArticleGrid,
   CardBody,
   HeaderBody,
-  ArticleCard,
   Bounce,
   Contain,
   StyledCard,

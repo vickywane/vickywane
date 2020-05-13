@@ -4,25 +4,17 @@ import { FiChevronDown } from "react-icons/fi"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-import { ProjectBody, Title, Text, Bounce, Body } from "../../styles/styles"
+import {
+  ProjectBody,
+  Title,
+  Text,
+  Bounce,
+  Body,
+  ProjectGrid as Grid,
+} from "../../styles/styles"
 import { ProjectData as data } from "./data"
 import ProjectCard from "./projectCard"
 import media from "styled-media-query"
-
-const Grid = styled.div`
-  display: grid;
-  grid-gap: 2rem 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  ${media.lessThan("large")`
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  `};
-  ${media.lessThan("medium")`
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  `};
-  ${media.lessThan("small")`
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  `};
-`
 
 const Projects = () => {
   const [Display, setDisplay] = useState(false)

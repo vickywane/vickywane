@@ -27,7 +27,11 @@ const Banner = () => {
         />
         <div>
           <Name> Nwani Victory </Name>
-          <Text> Software Engineer from Lagos, Nigeria , Africa. </Text>
+          <Text>
+            {" "}
+            <b style={{ fontWeight: "570" }}>FullStack developer</b> from Lagos,
+            Nigeria , Africa.{" "}
+          </Text>
 
           <Link
             to="/#footer"

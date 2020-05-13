@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Flex from "styled-flex-component"
-import { Card, Image } from "react-bootstrap"
-import { FiGithub, FiChevronDown, FiGlobe } from "react-icons/fi"
+import { Card } from "react-bootstrap"
+import { FiGithub, FiGlobe } from "react-icons/fi"
 import {
   DiReact,
   DiJavascript,
@@ -10,7 +10,7 @@ import {
   DiGo,
   DiGoogleCloudPlatform,
 } from "react-icons/di"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import {
   StyledCard,
@@ -43,7 +43,7 @@ const ProjectCard = props => {
         fluid
         alt="project illustration"
         src={props.imgUrl}
-        style={{ height: "15rem" }}
+        style={{ height: "17.5rem" }}
       />
       <Title colored style={{ fontSize: "2rem" }} regular small>
         {props.name}

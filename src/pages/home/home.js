@@ -6,7 +6,7 @@ import About from "../../components/about"
 
 import Project from "../projects/projects"
 import Tools from "./components/tools"
-import Articles from "./components/articles"
+import ComingUp from "./components/comingUp"
 
 const Home = () => {
   return (
@@ -15,7 +15,7 @@ const Home = () => {
       <About />
 
       <Tools />
-      <Articles />
+      <ComingUp />
       <Project />
 
       <br />
