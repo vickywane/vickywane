@@ -109,7 +109,7 @@ const Projects = () => {
   // }
 
   useEffect(() => {
-    ProjectData.forEach(() => {
+    data.forEach(() => {
       setNumber(number + 1)
     })
   }, [])
