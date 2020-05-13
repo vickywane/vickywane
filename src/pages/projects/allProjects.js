@@ -44,7 +44,7 @@ const Input = styled.input`
   flex: 1;
   margin: 0rem 0.7rem;
   outline: 0px
-  background: transparent;
+  background: #7c3ae9;
   color: #fff;
   font-size : 1.1rem;
   height: auto;
@@ -84,6 +84,7 @@ const Projects = () => {
                 <Input
                   placeholder="Project keyword"
                   value={SearchResults}
+                  style={{ background: "#8861c8" }}
                   onChange={e => {
                     setSearchResults(e.target.value)
                   }}
