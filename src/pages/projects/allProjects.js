@@ -7,7 +7,6 @@ import Flex from "styled-flex-component"
 import Header from "../../components/header"
 import Layout from "../../components/layout"
 import { Body, ProjectGrid, Bounce, Text } from "../../styles/styles"
-import { ProjectData } from "./data"
 import ProjectCard from "./projectCard"
 
 const SearchBody = styled.div`
