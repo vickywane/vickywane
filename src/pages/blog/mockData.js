@@ -1,3 +1,5 @@
+import React from "react"
+
 const Articles = [
   {
     id: 1,
@@ -24,5 +26,13 @@ const Articles = [
       " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
   },
 ]
+
+export const Data = () => {
+  return (
+    <div>
+      <p> NOT A COMPONENT JUST A MOCK FILE </p>
+    </div>
+  )
+}
 
 export { Articles }

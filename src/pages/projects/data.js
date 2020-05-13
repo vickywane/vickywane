@@ -1,3 +1,5 @@
+import React from "react"
+
 const ProjectData = [
   {
     id: 1,
@@ -45,5 +47,13 @@ const ProjectData = [
       "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
   },
 ]
+
+export const Data = () => {
+  return (
+    <div>
+      <p> NOT A COMPONENT JUST A MOCK FILE </p>
+    </div>
+  )
+}
 
 export { ProjectData }
