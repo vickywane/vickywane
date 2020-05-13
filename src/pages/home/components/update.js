@@ -1,7 +1,7 @@
 import React from "react"
 
 // =================
-import Projects from "./projects"
+import Projects from "../../projects/projects"
 import Tools from "./tools"
 
 export default function update() {

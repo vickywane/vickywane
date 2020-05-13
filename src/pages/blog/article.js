@@ -9,7 +9,7 @@ import { Body, Title, Text } from "../../styles/styles"
 const Ref = styled.a`
   transition: all 400ms;
   text-decoration: none;
-  padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.7rem;
   color: green;
   &: hover {
     border-bottom: 2px solid blue;
@@ -37,9 +37,9 @@ const Article = () => {
         ]}
       />
       <br />
-      <Body>
-        <Body>
-          <Text>
+      <Body article>
+        <Body article>
+          <Text article>
             Recently, i spent some time working on a fun side project of called
             <Ref
               style={{ textDecoration: "none" }}
@@ -67,8 +67,82 @@ const Article = () => {
             of the entire layer was something i did to make my workflow easier.
           </Text>
 
-          <Text>
-            Next, was where to deploy the entire image to without much expenses
+          <Text article>
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+          </Text>
+
+          <Text article>
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+          </Text>
+
+          <Text article>
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+          </Text>
+
+          <Text article>
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+          </Text>
+
+          <Text article>
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+          </Text>
+
+          <Text article>
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
+            Next, was where to deploy the entire image to without much expenses.
           </Text>
         </Body>
       </Body>

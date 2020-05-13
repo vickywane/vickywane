@@ -27,7 +27,7 @@ const Banner = () => {
         />
         <div>
           <Name> Nwani Victory </Name>
-          <Text banner> Software Engineer from Lagos, Nigeria , Africa. </Text>
+          <Text> Software Engineer from Lagos, Nigeria , Africa. </Text>
 
           <Link
             to="/#footer"

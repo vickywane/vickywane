@@ -3,8 +3,7 @@ import media from "styled-media-query"
 import posed from "react-pose"
 
 const Body = styled.div`
-  padding-left: ${props => (props.banner ? "12em" : "8em")};
-  padding-right: ${props => (props.banner ? "12em" : "8em")};
+  padding: ${props => (props.article ? "1rem 13em" : "1rem 5em")};
   ${media.lessThan("huge")`
   padding: 1rem 5rem;
   `};
@@ -124,18 +123,25 @@ const Title = styled.h1`
 
 const Text = styled.p`
   color: ${props => (props.white ? "#fff" : null)};
-  font-size: ${props => (props.banner ? "1.5rem " : "1.3rem")};
+  font-size: ${props => (props.article ? "1.5rem " : "1.5rem")};
   text-align: ${props => (props.center ? "center" : null)};
-  line-height: 1.8rem;
-  word-spacing: 0.1rem;
-  ${media.lessThan("medium")`
-  font-size: ${props => (props.banner ? "1.10em " : "1.20em")};
+  line-height: ${props => (props.article ? "2rem " : "1.8rem")};
+  word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
+  ${media.lessThan("huge")`
+  font-size: ${props => (props.article ? "1.6em " : "1.3em")};
+  word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
 `};
   ${media.lessThan("large")`
-font-size: ${props => (props.banner ? "1.20em " : "1.1em")};
+  font-size: ${props => (props.article ? "1.5em " : "1.3em")};
+  word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
+`};
+  ${media.lessThan("medium")`
+font-size: ${props => (props.article ? "1.4em " : "1.2em")};
+  word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
 `};
   ${media.lessThan("small")`
-font-size: ${props => (props.banner ? "1em " : "1.10em")};
+font-size: ${props => (props.article ? "1.3em " : "1.2em")};
+  word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
   `};
 `
 
@@ -181,6 +187,17 @@ const StyledCard = styled.div`
   background: white;
   box-shadow: 0px 5px 7px black;
   margin: 0.5em;
+  height: auto;
+  width: auto;
+  ${media.lessThan("large")`
+  margin: 0.5rem 0.5rem;
+  `};
+  ${media.lessThan("medium")`
+  margin: 0.5rem 4rem;
+  `};
+  ${media.lessThan("small")`
+  margin: 0.5rem 1rem;
+  `};
 `
 
 const Hover = styled.div`
@@ -200,10 +217,10 @@ const Bounce = posed.div({
     textAlign: "center",
   },
   hover: {
-    scale: 1.05,
+    scale: 1.01,
   },
   press: {
-    scale: 1.05,
+    scale: 1.01,
     boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
   },
 })
@@ -231,10 +248,10 @@ const CustomImage = styled.img`
 
 const HeaderBody = styled.header`
   padding: 0.5rem 1.7rem;
-  background: rebeccapurple;
+  background: #7c2cfe;
   color: #fff;
   h4 {
-    padding: 0.5rem 0.7rem;
+    padding: 0.5rem 2rem;
   }
   ${media.lessThan("large")`
     h4 {

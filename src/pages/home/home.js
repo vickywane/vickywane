@@ -4,7 +4,7 @@ import Banner from "../../components/banner"
 import Layout from "../../components/layout"
 import About from "../../components/about"
 
-import Project from "./components/projects"
+import Project from "../projects/projects"
 import Tools from "./components/tools"
 import Articles from "./components/articles"
 
