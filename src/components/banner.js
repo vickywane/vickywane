@@ -10,7 +10,7 @@ import {
 } from "../styles/styles"
 
 import { Link } from "gatsby"
-import Wave from "../assets/svg/wave.svg"
+import Wave from "../images/wave.svg"
 
 const Banner = () => {
   return (
