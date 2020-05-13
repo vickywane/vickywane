@@ -4,18 +4,7 @@ import styled from "styled-components"
 import Quote from "./quote"
 import Layout from "../../components/layout"
 import Header from "../../components/header"
-import { Body, Title, Text } from "../../styles/styles"
-
-const Ref = styled.a`
-  transition: all 400ms;
-  text-decoration: none;
-  padding: 0.2rem 0.7rem;
-  color: green;
-  &: hover {
-    border-bottom: 2px solid blue;
-    cursor: pointer;
-  }
-`
+import { Body, Title, Text, Ref } from "../../styles/styles"
 
 const Article = () => {
   return (

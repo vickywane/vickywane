@@ -392,7 +392,19 @@ const ProjectGrid = styled.div`
 
 const Upcoming = styled.div``
 
+const Ref = styled.a`
+  transition: all 400ms;
+  text-decoration: none;
+  padding: 0.2rem 0.7rem;
+  color: green;
+  &: hover {
+    border-bottom: 2px solid blue;
+    cursor: pointer;
+  }
+`
+
 export {
+  Ref,
   Upcoming,
   ProjectGrid,
   Tag,

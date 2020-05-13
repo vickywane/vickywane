@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import Flex from "styled-flex-component"
 import { FiChevronDown } from "react-icons/fi"
 import { Link } from "gatsby"
-import styled from "styled-components"
 
 import {
   ProjectBody,
@@ -12,9 +11,56 @@ import {
   Body,
   ProjectGrid as Grid,
 } from "../../styles/styles"
-import { ProjectData as data } from "./data"
 import ProjectCard from "./projectCard"
 import media from "styled-media-query"
+
+const data = [
+  {
+    id: 1,
+    name: "Unispoon",
+    link: "",
+    tools: "",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+    gitlink: "https://github.com/vickywane/unispoon",
+  },
+  {
+    id: 3,
+    name: "Travoi",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/vickywane/travoi",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1582424123/portfolio/travoy.png",
+  },
+  {
+    id: 4,
+    name: "Patfin School",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/patfin-school/website",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1582423440/portfolio/Screenshot_304.png",
+  },
+  {
+    id: 5,
+    name: "UseCases",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/vickywane/usecases",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+  {
+    id: 6,
+    name: "EventFul",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/fundry/event",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+]
 
 const Projects = () => {
   const [Display, setDisplay] = useState(false)

@@ -52,6 +52,54 @@ const Input = styled.input`
 
 // TODO: Read on the usage of Arr.Find(() => {})
 
+const data = [
+  {
+    id: 1,
+    name: "Unispoon",
+    link: "",
+    tools: "",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+    gitlink: "https://github.com/vickywane/unispoon",
+  },
+  {
+    id: 3,
+    name: "Travoi",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/vickywane/travoi",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1582424123/portfolio/travoy.png",
+  },
+  {
+    id: 4,
+    name: "Patfin School",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/patfin-school/website",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1582423440/portfolio/Screenshot_304.png",
+  },
+  {
+    id: 5,
+    name: "UseCases",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/vickywane/usecases",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+  {
+    id: 6,
+    name: "EventFul",
+    link: "",
+    tools: "",
+    gitlink: "https://github.com/fundry/event",
+    imgUrl:
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1559073852/portfolio/unis-2.png",
+  },
+]
+
 const Projects = () => {
   const [Search, setSearch] = useState(false)
   const [SearchResults, setSearchResults] = useState("")
@@ -108,7 +156,7 @@ const Projects = () => {
 
         <hr />
         <ProjectGrid>
-          {ProjectData.map(({ id, name, gitlink, imgUrl, link, tools }) => {
+          {data.map(({ id, name, gitlink, imgUrl, link, tools }) => {
             return (
               <Bounce>
                 <ProjectCard
