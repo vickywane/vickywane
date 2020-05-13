@@ -23,7 +23,7 @@ const Banner = () => {
             width: "10rem",
             borderRadius: "50%",
           }}
-          src={require("../assets/images/my_avatar.png")}
+          src={require("../images/my_avatar.png")}
         />
         <div>
           <Name> Nwani Victory </Name>

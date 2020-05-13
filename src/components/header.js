@@ -28,7 +28,7 @@ const Header = props => {
             >
               <img
                 alt="avatar"
-                src={require("../assets/images/my_avatar.png")}
+                src={require("../images/my_avatar.png")}
                 style={{ height: "auto", width: "3rem", borderRadius: "50%" }}
               />
             </Link>
@@ -55,7 +55,7 @@ const Header = props => {
           <a target="_blank" href="https://github.com/vickywane">
             raise an issue{" "}
           </a>
-          " if you spot something wrong.{" "}
+          " if you spot something wrong.
         </Text>
       </Notification>
     </div>
