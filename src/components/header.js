@@ -3,6 +3,7 @@ import React from "react"
 import Flex from "styled-flex-component"
 import { FiMenu } from "react-icons/fi"
 import styled from "styled-components"
+import media from "styled-media-query"
 
 import { HeaderBody, Text } from "../styles/styles"
 
@@ -11,6 +12,12 @@ const Notification = styled.div`
   color: #fff;
   padding: 0.5rem 1rem;
   text-align: center;
+  p {
+    font-size: 1.1rem;
+  }
+  ${media.lessThan("small")`
+  font-size:1rem;
+  `};
 `
 
 const Header = props => {
@@ -50,7 +57,7 @@ const Header = props => {
         </Flex>
       </HeaderBody>
       <Notification>
-        <Text small>
+        <p>
           This space is under active development. Please "{" "}
           <a
             target="_blank"
@@ -59,7 +66,7 @@ const Header = props => {
             raise an issue{" "}
           </a>
           " if you spot something wrong.
-        </Text>
+        </p>
       </Notification>
     </div>
   )
