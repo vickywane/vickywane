@@ -40,7 +40,10 @@ const QuoteComponent = props => {
           </Tag>
         </div>
       ) : null}
-      <Text center> {text} </Text>
+      <Text center white>
+        {" "}
+        {text}{" "}
+      </Text>
     </QuoteContainer>
   )
 }

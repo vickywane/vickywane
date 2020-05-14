@@ -116,7 +116,7 @@ const Projects = () => {
 
   return (
     <Layout>
-      <Header />
+      <Header title="Projects" link="/projects/allprojects" />
       <Body>
         <Flex justifyCenter>
           <Body>

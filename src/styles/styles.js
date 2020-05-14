@@ -60,12 +60,12 @@ const BannerBody = styled.div`
   `};
   ${media.lessThan("medium")`
   justify-content: center;
-  padding-top: 1rem;
+  padding-top: 0rem;
   padding-bottom: 2rem;
   `};
   ${media.lessThan("small")`
   justify-content: center;
-  padding-top: 1rem;
+  padding-top: 0rem;
   padding-bottom: 1rem;
   height: 57vh;
   `};
@@ -122,10 +122,11 @@ const Title = styled.h1`
 `
 
 const Text = styled.p`
-  color: ${props => (props.white ? "#fff" : null)};
+  color: ${props => (props.white ? "#fff" : "#5f6368")};
   font-size: ${props => (props.article ? "1.5rem " : "1.5rem")};
   text-align: ${props => (props.center ? "center" : null)};
-  line-height: ${props => (props.article ? "2rem " : "1.8rem")};
+  line-height: ${props => (props.article ? "2.5rem " : "1.8rem")};
+  font-family: calibri;
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
   ${media.lessThan("huge")`
   font-size: ${props => (props.article ? "1.6em " : "1.3em")};

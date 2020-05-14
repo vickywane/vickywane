@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Victory Nwani`,
-    description: `An SPA website to showcase my projects and stuff.`,
+    description: `FullStack developer and Cloud Engineer from Lagos, Nigeria, Africa.`,
     author: `@vickywane`,
   },
   plugins: [
