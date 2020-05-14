@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import media from "styled-media-query"
 
 import Quote from "./quote"
 import Layout from "../../components/layout"
@@ -23,6 +24,20 @@ const QuoteText = styled.div`
     color: #1b2f7d;
     text-align: center;
   }
+  ${media.lessThan("medium")`
+     h5 {
+    font-weight: 400;
+    line-height: 2.3rem;
+    font-size: 1.4rem;
+  }
+`};
+  ${media.lessThan("small")`
+     h5 {
+    font-weight: 400;
+    line-height: 2rem;
+    font-size: 1.3rem;
+  }
+`};
 `
 
 const Label = styled.label`
@@ -30,6 +45,14 @@ const Label = styled.label`
   font-weight: 550;
   list-style: round;
   padding: 2rem 1rem 0rem;
+  ${media.lessThan("medium")`
+      font-size: 1.5rem;
+  font-weight: 500;
+`};
+  ${media.lessThan("small")`
+       font-size: 1.4rem;
+  font-weight: 450;
+`};
 `
 
 const Article = () => {
@@ -64,10 +87,20 @@ const Article = () => {
                 Oasis
               </Ref>
               and when it was ready for live testing I came across an article
-              written by Timothy Okeke on Google Cloud Run. Here is my usecase
-              on how I used it for a Golang written Graphql API connected to a
-              Postgres Cloud Instance and also did tracing using{" "}
-              <Ref href="/">Datadog </Ref> .
+              written by{" "}
+              <Ref
+                style={{ textDecoration: "none" }}
+                href="https://my-event.netlify.com"
+              >
+                Timothy Okeke{" "}
+              </Ref>{" "}
+              on Google Cloud Run. Here is my usecase on how I used it for a
+              Golang written Graphql API connected to a Postgres Cloud Instance
+              and also did tracing using{" "}
+              <Ref style={{ textDecoration: "none" }} href="/">
+                Datadog{" "}
+              </Ref>{" "}
+              .
             </Text>
             <br /> <Label> What is the Google Cloud Run ? </Label>{" "}
             <QuoteText>
@@ -103,12 +136,20 @@ const Article = () => {
               Since it was only for testing, I didn’t want to get billed;
               considering I would only test for some few hours. More
               documentation can be found at the{" "}
-              <Ref href="https://cloud.google.com/run.">Google Cloud Docs </Ref>
+              <Ref
+                style={{ textDecoration: "none" }}
+                href="https://cloud.google.com/run."
+              >
+                Google Cloud Docs{" "}
+              </Ref>
               Asides this, Cloud Run also integrates with partner technologies.
               In my usecase, I needed Datadog to perform tracing on the graphql
               Api. List of supported technologies that can be integrated are
               listed within the Cloud Run{" "}
-              <Ref href="https://cloud.google.com/run#partners">
+              <Ref
+                style={{ textDecoration: "none" }}
+                href="https://cloud.google.com/run#partners"
+              >
                 {" "}
                 Documentation{" "}
               </Ref>
@@ -118,7 +159,10 @@ const Article = () => {
             <Text article>
               Containers can be fired up on Cloud Run after they have been
               deployed to the{" "}
-              <Ref href="https://cloud.google.com/run#partners">
+              <Ref
+                style={{ textDecoration: "none" }}
+                href="https://cloud.google.com/run#partners"
+              >
                 Google Container Registry
               </Ref>
               , this also makes it easy to add existing images here is a link on

@@ -127,6 +127,7 @@ const Text = styled.p`
   text-align: ${props => (props.center ? "center" : null)};
   line-height: ${props => (props.article ? "2.5rem " : "1.8rem")};
   font-family: calibri;
+  text-decoration: none;
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
   ${media.lessThan("huge")`
   font-size: ${props => (props.article ? "1.6em " : "1.3em")};
@@ -246,25 +247,29 @@ const CustomImage = styled.img`
 `
 
 const HeaderBody = styled.header`
-  padding: 0.5rem 1.7rem;
+  padding: 0.5rem 5rem;
   background: #7c2cfe;
   color: #fff;
   h4 {
     padding: 0.5rem 2rem;
   }
   ${media.lessThan("large")`
-    h4 {
+  padding: 0.5rem 2rem;
+    h4 {     padding: 0.5rem 1rem;
 font-size : 1.7rem; 
     }
   `};
   ${media.lessThan("medium")`
-    h4 {
-font-size : 1.6rem; 
+  padding: 0.5rem 1rem;
+    h4 {  padding: 0.5rem 1rem;
+font-size : 1.5rem; 
     }
   `};
   ${media.lessThan("small")`
-    h4 {
-font-size :  1.5rem; 
+  padding: 0.5rem 0.5rem;
+    h4 { 
+ padding: 0.5rem 0.7rem;
+font-size :  1.4rem; 
     }
   `};
 `

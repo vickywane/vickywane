@@ -15,7 +15,11 @@ import Wave from "../images/wave.svg"
 const Banner = () => {
   return (
     <BannerContain>
-      <BannerBody>
+      <BannerBody
+        style={{
+          transition: "all 450ms",
+        }}
+      >
         <img
           alt="My Avatar "
           style={{
@@ -36,7 +40,8 @@ const Banner = () => {
           <Link
             to="/#footer"
             style={{
-              textDecoration: `none`,
+              textDecoration: "none",
+              transition: "all 450ms",
             }}
           >
             <Button>CONTACT ME </Button>

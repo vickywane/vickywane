@@ -9,9 +9,9 @@ import { Body, Title, Text, CardBody, ArticleGrid } from "../../styles/styles"
 const Articles = [
   {
     id: 1,
-    title: "Deploy Services to Google Cloud Run",
+    title: "Optimising Google Cloud Run For Individual Use",
     summary:
-      " The Cloud Run was built for dvelopers to deploy stateless containers to the cloud while minimising the cost. Lorem ipisum  ipisum ipisum ipisum ipisum ipisum ipisum ipisum ipisum ipisum ipisum ",
+      " The Google Cloud Run provides a way to deploy stateless containers to the cloud while minimising the cost by only keeping it running in presence of http traffic. Here is an example of how i leveraged this feature for my individual use ",
   },
   {
     id: 2,
@@ -20,14 +20,14 @@ const Articles = [
       " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
   },
   {
-    id: 2,
-    title: "Leveraging Google Cloud Fuctions for Severless Softwares",
+    id: 3,
+    title: "Leveraging Native USSD For A Wider Audience ",
     summary:
       " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
   },
   {
-    id: 2,
-    title: "Leveraging Google Cloud Fuctions for Severless Softwares",
+    id: 4,
+    title: "Engineering Through The Looking Glass",
     summary:
       " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
   },
@@ -62,7 +62,8 @@ const Blog = () => {
                   </Title>
                 </Link>
                 <br />
-                <Text style={{ color: "#090e3a" }}>{summary}</Text>
+                <Text style={{ color: "#090e3a" }}>{summary}</Text> <hr />{" "}
+                <Text center> 12 - 12 - 12 </Text>
               </CardBody>
             )
           })}
