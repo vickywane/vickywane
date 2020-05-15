@@ -8,19 +8,18 @@ import {
   Label,
 } from "../../../styles/styles"
 
+// TODO: Convert && extract this into an independent functional hook
 class Tools extends React.Component {
   state = {
     opacity: 0,
   }
 
   componentDidMount() {
-    if (typeof window.IntersectionObserver === `function`) {
-      this.observer = new window.IntersectionObserver(this.observerCallback, {
-        threshold: 0.8,
-      })
+    this.observer = new window.IntersectionObserver(this.observerCallback, {
+      threshold: 0.5,
+    })
 
-      this.observer.observe(this.container)
-    }
+    this.observer.observe(this.container)
   }
 
   observerCallback = entries => {
@@ -28,11 +27,10 @@ class Tools extends React.Component {
       const entry = entries.slice(0).shift()
       if (entry.isIntersecting) {
         this.setState({
-          // visible: entry.isIntersecting,
           opacity: 1,
         })
       }
-    }, 100)
+    }, 50)
   }
 
   componentWillUnmount() {

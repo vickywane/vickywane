@@ -36,6 +36,7 @@ import * as React from "react"
 
 // export default Tools;
 
-export const m = () => {
+const Text = () => {
   return <p> kuhfgrd,k</p>
 }
+export default Text
