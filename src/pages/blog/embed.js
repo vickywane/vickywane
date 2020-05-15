@@ -1,6 +1,7 @@
 import React from "react"
 
-// Taken from REACT_GIST libraruy for creating git embed file snippets
+// Taken from a StackOverflow answer on using gists with REACT.
+// TODO refactor this to functional component later && also lifecycle methods
 
 class Gist extends React.PureComponent {
   componentDidMount() {
@@ -34,12 +35,10 @@ class Gist extends React.PureComponent {
     const elementId = file ? `gist-${id}-${file}` : `gist-${id}`
     const resizeScript = `onload="parent.document.getElementById('${elementId}').style.height=document.body.scrollHeight + 'px'"`
     const iframeHtml = `<html><head><base target="_parent">${styles}</head><body ${resizeScript}>${gistScript}</body></html>`
-
     doc.open()
     doc.writeln(iframeHtml)
     doc.close()
   }
-
   render() {
     const { id, file } = this.props
 

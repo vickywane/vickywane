@@ -6,10 +6,11 @@ import Quote from "./quote"
 import Layout from "../../components/layout"
 import Header from "../../components/header"
 import { Body, Title, Text, Ref } from "../../styles/styles"
+import Gist from "./embed"
 
 const QuoteText = styled.div`
   padding: 1rem 1rem;
-  margin: 1rem 1rem;
+  margin: 1rem 0rem;
   word-spacing: 0.2rem;
   height: auto;
   width: auto;
@@ -53,6 +54,10 @@ const Label = styled.label`
        font-size: 1.4rem;
   font-weight: 450;
 `};
+`
+
+const CodeBody = styled.code`
+  padding: 2rem 1rem;
 `
 
 const Article = () => {
@@ -171,6 +176,11 @@ const Article = () => {
               multi-stage containers and here is a copy of my dockerfile; Also
               my docker-compose.yml
             </Text>
+            <Gist id="vickywane/7b28555c61f35b2697a3f347a7162059" />{" "}
+            <Text> Here is a copy of my docker-compose file</Text>
+            <Gist id="vickywane/9b28f6b64cd481c4ca57c9028ffe96ed" /> <br />
+            <CodeBody> cos </CodeBody>
+            <br />
             <Label> Using Datadog </Label>
           </section>
         </Body>

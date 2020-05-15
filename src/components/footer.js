@@ -21,7 +21,7 @@ const Copyright = styled.div`
 `
 
 const Hover = styled.div`
-  margin: 2% 5%;
+  margin: 1% 5%;
   cursor: pointer;
 `
 
@@ -82,7 +82,7 @@ const Footer = () => {
           </Hover>
         </Flex>
       </Body>
-      <hr style={{ background: "#fff" }} />
+      <hr style={{ background: "#fff", borderStyle: "dashed" }} />
       <Contain>
         <Text white> Nwani Victory - Lagos , Nigeria , Africa.</Text>
         <Copyright>
