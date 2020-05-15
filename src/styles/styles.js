@@ -209,7 +209,10 @@ const Hover = styled.div`
 const Contain = styled.div`
   padding 0.5em 0.5em;
   padding-bottom : 15px;
-`
+  text-align: ${props => (props.center ? "center" : null)};
+  border-bottom: ${props => (props.borderBottom ? "3px solid #8c43ff" : null)};
+    border-bottom-style: ${props => (props.borderBottom ? "dashed" : null)};
+    `
 
 const Bounce = posed.div({
   hoverable: true,
@@ -401,7 +404,7 @@ const Upcoming = styled.div``
 const Ref = styled.a`
   transition: all 400ms;
   text-decoration: none;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.5rem;
   color: green;
   &: hover {
     border-bottom: 2px solid blue;
@@ -409,7 +412,66 @@ const Ref = styled.a`
   }
 `
 
+const QuoteText = styled.div`
+  padding: 1rem 1rem;
+  margin: 1rem 0rem;
+  word-spacing: 0.2rem;
+  height: auto;
+  width: auto;
+  background: #f3f3f3;
+  border-right: 7px solid #591af7;
+  h5 {
+    font-weight: 400;
+    line-height: 2.7rem;
+    font-size: 1.55rem;
+  }
+  p {
+    color: #1b2f7d;
+    text-align: center;
+  }
+  ${media.lessThan("medium")`
+     h5 {
+    font-weight: 400;
+    line-height: 2.3rem;
+    font-size: 1.4rem;
+  }
+`};
+  ${media.lessThan("small")`
+     h5 {
+    font-weight: 400;
+    line-height: 2rem;
+    font-size: 1.3rem;
+  }
+`};
+`
+
+const Label = styled.label`
+  font-size: 1.7rem;
+  font-weight: 550;
+  color: ${props => props.color};
+  list-style: round;
+  padding: 2rem 1rem 0rem;
+  ${media.lessThan("medium")`
+      font-size: 1.5rem;
+  font-weight: 500;
+`};
+  ${media.lessThan("small")`
+       font-size: 1.4rem;
+  font-weight: 450;
+`};
+`
+
+const ToolsBody = styled.div`
+  width: 100vw;
+  min-height: 400px;
+  margin-bottom: 10%;
+  background-color: #591af7;
+`
+
 export {
+  ToolsBody,
+  QuoteText,
+  Label,
   Ref,
   Upcoming,
   ProjectGrid,

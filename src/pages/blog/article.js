@@ -5,59 +5,44 @@ import media from "styled-media-query"
 import Quote from "./quote"
 import Layout from "../../components/layout"
 import Header from "../../components/header"
-import { Body, Title, Text, Ref } from "../../styles/styles"
+import { Body, Title, Text, Ref, QuoteText, Label } from "../../styles/styles"
 import Gist from "./embed"
 
-const QuoteText = styled.div`
-  padding: 1rem 1rem;
-  margin: 1rem 0rem;
-  word-spacing: 0.2rem;
-  height: auto;
-  width: auto;
-  background: #f3f3f3;
-  border-right: 7px solid #591af7;
-  h5 {
-    font-weight: 400;
-    line-height: 2.7rem;
-    font-size: 1.55rem;
-  }
-  p {
-    color: #1b2f7d;
-    text-align: center;
-  }
-  ${media.lessThan("medium")`
-     h5 {
-    font-weight: 400;
-    line-height: 2.3rem;
-    font-size: 1.4rem;
-  }
-`};
-  ${media.lessThan("small")`
-     h5 {
-    font-weight: 400;
-    line-height: 2rem;
-    font-size: 1.3rem;
-  }
-`};
-`
-
-const Label = styled.label`
-  font-size: 1.7rem;
-  font-weight: 550;
-  list-style: round;
-  padding: 2rem 1rem 0rem;
-  ${media.lessThan("medium")`
-      font-size: 1.5rem;
-  font-weight: 500;
-`};
-  ${media.lessThan("small")`
-       font-size: 1.4rem;
-  font-weight: 450;
-`};
-`
-
 const CodeBody = styled.code`
-  padding: 2rem 1rem;
+  background-color: #feb;
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  margin-bottom: -1em;
+  padding-right: 1em;
+  border-left: 0.25em solid #f99;
+  padding-left: 1em;
+`
+
+const code = `
+func main() {
+  PORT := 4040
+
+	r := gin.Default()
+	r.Use(
+		cors.New(cors.Config{ 
+			AllowMethods:    []string{"GET", "PUT", "POST", "DELETE"},
+			AllowHeaders:    []string{"content-type"},
+			AllowAllOrigins: true,
+		}),
+		gin.Recovery(),
+		 InternalMiddleware.GinContextToContextMiddleware(),
+		 InternalMiddleware.PlaygroundAuth(),
+	)
+
+	r.POST("/query", InternalMiddleware.JWT(),
+		graphqlHandler(),
+	)
+
+	r.GET("/", playgroundHandler())
+	r.Run(PORT)
+}
+
 `
 
 const Article = () => {
@@ -179,7 +164,10 @@ const Article = () => {
             <Gist id="vickywane/7b28555c61f35b2697a3f347a7162059" />{" "}
             <Text> Here is a copy of my docker-compose file</Text>
             <Gist id="vickywane/9b28f6b64cd481c4ca57c9028ffe96ed" /> <br />
-            <CodeBody> cos </CodeBody>
+            <pre class="language-go">
+              <span> server.go </span>
+              <CodeBody>{code}</CodeBody>
+            </pre>
             <br />
             <Label> Using Datadog </Label>
           </section>

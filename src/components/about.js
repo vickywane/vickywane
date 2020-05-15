@@ -40,18 +40,23 @@ const About = () => {
         </Flex>
         <br />
         <Text>
-          I have a high intrest in modern Software development. I try to
+          I have a high interest in modern Software development. I try to
           achitect Scalable digital solutions while working either as a
-          FullStack Developer or a Cloud Engineer.
+          <b> FullStack Developer</b> or a <b>Cloud Engineer </b> using best
+          pratices within my knowledge gap .
           <br />
+          <br />I also have a interest in building and contributing to Open
+          Sourced tools and projects, as i take part in maintaining and
+          contributing to some used packages and libraries on Github and i also
+          happen to be a member of the <b>Open Source Initiative(OSI)</b>.
           <br />
-          I have a high intrest in modern Software development. I try to
-          achitect Scalable digital solutions while working either as a
-          FullStack Developer or a Cloud Engineer.
-          <br />
-          <br />I have a high intrest in modern Software development. I try to
-          achitect Scalable digital solutions while working either as a
-          FullStack Developer or a Cloud Engineer.
+          <br /> Although i have a working idea of other programming languages,
+          i write mainly <b>Golang</b> and <b>JavaScript</b> while working on
+          projects. Asides these, i have a solid knowledge of{" "}
+          <b>Cloud Computing </b>
+          generally and how to use technologies supported by the Google Cloud
+          Platform as i happen to be an <b>Associate Cloud Expert</b> certified
+          by Google.
         </Text>
       </Description>
       <br />
