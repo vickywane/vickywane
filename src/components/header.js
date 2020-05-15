@@ -6,6 +6,7 @@ import styled from "styled-components"
 import media from "styled-media-query"
 
 import { HeaderBody, Text } from "../styles/styles"
+import useWindowWidth from "../pages/hooks"
 
 const Notification = styled.div`
   background: rebeccapurple;
@@ -15,13 +16,23 @@ const Notification = styled.div`
   p {
     font-size: 1.1rem;
   }
-  ${media.lessThan("small")`
-  font-size:1rem;
+  ${media.lessThan("medium")`{
+   p {
+    font-size: 1rem;
+  }
+  `};
+  ${media.lessThan("small")`{
+   p {
+    font-size: 0.85rem;
+  }
   `};
 `
 
 const Header = props => {
   const { title, link } = props
+
+  const Width = useWindowWidth()
+
   return (
     <div>
       <HeaderBody>
@@ -45,10 +56,7 @@ const Header = props => {
                 to={`/${link}`}
                 style={{ color: "#fff", textDecoration: "none" }}
               >
-                <h4>
-                  {" "}
-                  / <i> {title}</i>
-                </h4>
+                <h4> / {title}</h4>
               </Link>
             ) : null}
           </Flex>
@@ -57,16 +65,29 @@ const Header = props => {
         </Flex>
       </HeaderBody>
       <Notification>
-        <p>
-          This space is under active development. Please "{" "}
-          <a
-            target="_blank"
-            href="https://github.com/vickywane/Portfolio/issues/new"
-          >
-            raise an issue{" "}
-          </a>
-          " if you spot something wrong.
-        </p>
+        {Width >= 650 ? (
+          <p>
+            This space is under active development. Please "
+            <a
+              target="_blank"
+              href="https://github.com/vickywane/Portfolio/issues/new"
+            >
+              raise an issue
+            </a>
+            " if you spot something wrong.
+          </p>
+        ) : (
+          <p>
+            Please "
+            <a
+              target="_blank"
+              href="https://github.com/vickywane/Portfolio/issues/new"
+            >
+              raise an issue
+            </a>
+            " if you spot something wrong.
+          </p>
+        )}
       </Notification>
     </div>
   )

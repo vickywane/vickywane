@@ -89,8 +89,6 @@ const Projects = () => {
     setDisplay(true)
   }, 1000)
 
-  console.log(newdata)
-
   return (
     <ProjectBody>
       <Title bold regular small white>

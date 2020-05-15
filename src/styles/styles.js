@@ -256,6 +256,11 @@ const HeaderBody = styled.header`
   h4 {
     padding: 0.5rem 2rem;
   }
+  &: hover {
+    h4 {
+      color: #090e3a;
+    }
+  }
   ${media.lessThan("large")`
   padding: 0.5rem 2rem;
     h4 {     padding: 0.5rem 1rem;
@@ -265,14 +270,14 @@ font-size : 1.7rem;
   ${media.lessThan("medium")`
   padding: 0.5rem 1rem;
     h4 {  padding: 0.5rem 1rem;
-font-size : 1.5rem; 
+font-size : 1.4rem; 
     }
   `};
   ${media.lessThan("small")`
   padding: 0.5rem 0.5rem;
     h4 { 
  padding: 0.5rem 0.7rem;
-font-size :  1.4rem; 
+font-size :  1.3rem; 
     }
   `};
 `
@@ -280,10 +285,10 @@ font-size :  1.4rem;
 const Quote = styled.h1`
   font-weight: 530;
   ${media.lessThan("medium")`
-font-size: 2rem;
+font-size: 1.8rem;
   `};
   ${media.lessThan("small")`
-font-size: 2rem;
+font-size: 1.6rem;
   `};
 `
 
@@ -325,13 +330,15 @@ const CardBody = styled.div`
 
 const ArticleGrid = styled.div`
   display: grid;
-  grid-gap: 3rem 1rem;
+  grid-gap: 3rem 3rem;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   ${media.lessThan("huge")`
+  grid-gap: 3rem 2rem;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   `};
   ${media.lessThan("large")`
   grid-template-columns: repeat(auto-fit, minmax(23rem, 2fr));
+  grid-gap: 3rem 1rem;
   `};
   ${media.lessThan("medium")`
    display: flex;
@@ -468,7 +475,17 @@ const ToolsBody = styled.div`
   background-color: #591af7;
 `
 
+const ToolsGrid = styled.div`
+  opacity: ${props => props.opacity};
+  transition: all 450ms;
+  display: grid;
+  grid-gap: 2rem 1rem;
+  background: ${props => props.backgroundColor};
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+`
+
 export {
+  ToolsGrid,
   ToolsBody,
   QuoteText,
   Label,

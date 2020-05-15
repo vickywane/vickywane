@@ -26,7 +26,8 @@ func main() {
 	r := gin.Default()
 	r.Use(
 		cors.New(cors.Config{ 
-			AllowMethods:    []string{"GET", "PUT", "POST", "DELETE"},
+			AllowMethods:    []string{"GET", "PUT", 
+                                "POST", "DELETE"},
 			AllowHeaders:    []string{"content-type"},
 			AllowAllOrigins: true,
 		}),
@@ -59,7 +60,7 @@ const Article = () => {
           "Postgres",
           "Gqlgen",
           "Cloud Run",
-          "Containerization",
+          "Containers",
           "Docker",
           "DevOps",
         ]}
@@ -92,7 +93,7 @@ const Article = () => {
               </Ref>{" "}
               .
             </Text>
-            <br /> <Label> What is the Google Cloud Run ? </Label>{" "}
+            <br /> <Label> Google Cloud Run </Label>{" "}
             <QuoteText>
               <h5>
                 &quot; Cloud Run is a fully managed compute platform that

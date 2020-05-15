@@ -1,0 +1,129 @@
+import * as React from 'react';
+import { Container } from 'semantic-ui-react';
+
+import {
+  ToolsBody,
+  Contain,
+  ToolsGrid as Grid,
+  Label,
+} from '../../../styles/styles';
+
+const Tools = () => {
+  const [opacity, setOpacity] = React.useState(0);
+  const [Element, setElement] = React.useState(null);
+
+  const ElementRef = React.useRef();
+
+  React.useState(() => {
+    if (typeof window.IntersectionObserver === `function`) {
+      const observer = new window.IntersectionObserver(
+        () => {
+          observerCallback();
+        },
+        {
+          threshold: 0.8,
+        }
+      );
+
+      if (Element !== null) {
+        observer.observe(Element);
+      }
+    }
+  }, []);
+
+  const observerCallback = (entries) => {
+    setTimeout(() => {
+      const entry = entries.slice(0).shift();
+      if (entry.isIntersecting) {
+        alert('i am up');
+        setOpacity(1);
+      }
+    }, 100);
+  };
+
+  console.log(Element);
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <ToolsBody>
+        <Container>
+          <Grid
+            opacity={opacity}
+            ref={(node) => setElement(node)}
+            backgroundColor="white"
+            style={{
+              borderRadius: '5px',
+              position: 'relative',
+              bottom: '100px',
+              paddingTop: '20px',
+              boxShadow:
+                '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+            }}
+          >
+            <Contain borderBottom center style={{ paddingBottom: '5%' }}>
+              <Label
+                color="#8c43ff"
+                style={{
+                  fontSize: '1.5rem',
+                }}
+              >
+                Backend Development
+              </Label>
+
+              <p>Nodejs</p>
+              <p>Expressjs</p>
+              <p>MongoDB</p>
+              <p>GraphQL</p>
+            </Contain>
+
+            <Contain center borderBottom>
+              <Label
+                color="#8c43ff"
+                style={{
+                  fontSize: '1.5rem',
+                }}
+              >
+                Frontend Development
+              </Label>
+              <p>React</p>
+              <p>HTML</p>
+              <p>CSS</p>
+              <p>JavaScript</p>
+            </Contain>
+
+            <Contain center borderBottom>
+              <Label
+                color="#8c43ff"
+                style={{
+                  fontSize: '1.5rem',
+                }}
+              >
+                Design
+              </Label>
+
+              <p>UI/UX</p>
+              <p>iOS/Android</p>
+              <p>Logos</p>
+            </Contain>
+
+            <Contain center borderBottom>
+              <Label
+                color="#8c43ff"
+                style={{
+                  fontSize: '1.5rem',
+                }}
+              >
+                Tools
+              </Label>
+              <p>Adobe Illustrator</p>
+              <p>Adobe Photoshop</p>
+              <p>Adobe Xd</p>
+            </Contain>
+          </Grid>
+        </Container>
+      </ToolsBody>
+    </div>
+  );
+};
+
+export default Tools;
