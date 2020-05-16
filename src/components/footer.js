@@ -61,8 +61,7 @@ const Footer = () => {
                 setMsg(true)
               }}
             >
-              {" "}
-              Send{" "}
+              Send Message
             </Button>
           </Grid>
         </Flex>

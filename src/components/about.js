@@ -45,7 +45,7 @@ const About = () => {
           <b> FullStack Developer</b> or a <b>Cloud Engineer </b> using best
           pratices within my knowledge gap .
           <br />
-          <br />I also have a interest in building and contributing to Open
+          <br />I also have an interest in building and contributing to Open
           Sourced tools and projects, as i take part in maintaining and
           contributing to some used packages and libraries on Github and i also
           happen to be a member of the <b>Open Source Initiative(OSI)</b>.
