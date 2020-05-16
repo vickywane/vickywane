@@ -29,8 +29,9 @@ const QuoteComponent = props => {
               {tags.map(tag => {
                 return (
                   <Text
-                    style={{ textAlign: "center", margin: "0rem 1rem" }}
+                    style={{ textAlign: "center", margin: "0.5rem 1rem" }}
                     white
+                    center
                   >
                     {tag}
                   </Text>

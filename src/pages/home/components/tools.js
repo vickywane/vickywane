@@ -6,6 +6,8 @@ import {
   Contain,
   ToolsGrid as Grid,
   Label,
+  ListItems,
+  Text,
 } from "../../../styles/styles"
 
 // TODO: Convert && extract this into an independent functional hook
@@ -56,19 +58,41 @@ class Tools extends React.Component {
               }}
             >
               <Contain borderBottom center style={{ paddingBottom: "5%" }}>
-                <Label
-                  color="#8c43ff"
-                  style={{
-                    fontSize: "1.5rem",
-                  }}
-                >
-                  Backend Development
-                </Label>
-
-                <p>Nodejs</p>
-                <p>Expressjs</p>
-                <p>MongoDB</p>
-                <p>GraphQL</p>
+                <ul>
+                  {" "}
+                  <Label
+                    color="#8c43ff"
+                    style={{
+                      fontSize: "1.5rem",
+                    }}
+                  >
+                    Backend Development
+                  </Label>
+                  <ListItems>
+                    <Text> Node.js </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> Express.js </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> GraphQL </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> MongoDB </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> Golang </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> Gin </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> gRPC </Text>{" "}
+                  </ListItems>{" "}
+                  <ListItems>
+                    <Text> Postgres </Text>{" "}
+                  </ListItems>
+                </ul>
               </Contain>
 
               <Contain center borderBottom>
@@ -81,11 +105,10 @@ class Tools extends React.Component {
                   Frontend Development
                 </Label>
                 <p>React</p>
-                <p>HTML</p>
-                <p>CSS</p>
+                <p>Vue</p>
+                <p>Svelte</p>
                 <p>JavaScript</p>
               </Contain>
-
               <Contain center borderBottom>
                 <Label
                   color="#8c43ff"
@@ -93,14 +116,13 @@ class Tools extends React.Component {
                     fontSize: "1.5rem",
                   }}
                 >
-                  Design
+                  Technologies
                 </Label>
-
-                <p>UI/UX</p>
-                <p>iOS/Android</p>
-                <p>Logos</p>
+                <p>Docker</p>
+                <p>Kubernetes</p>
+                <p>Cloud Sql</p>
+                <p>Prometheus</p>
               </Contain>
-
               <Contain center borderBottom>
                 <Label
                   color="#8c43ff"
@@ -110,9 +132,10 @@ class Tools extends React.Component {
                 >
                   Tools
                 </Label>
-                <p>Adobe Illustrator</p>
-                <p>Adobe Photoshop</p>
-                <p>Adobe Xd</p>
+                <p>WebStorm</p>
+                <p>Goland</p>
+                <p>Vs Code</p>
+                <p>PgAdmin</p>
               </Contain>
             </Grid>
           </Container>

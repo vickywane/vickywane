@@ -11,13 +11,15 @@ import ComingUp from "./components/comingUp"
 const Home = () => {
   return (
     <Layout>
-      <Banner />
-      <About />
-
-      <Tools />
-      <Project />
-
-      <br />
+      <div
+        style={{ overflow: "hidden", overflowX: "hidden", overflowY: "hidden" }}
+      >
+        <Banner />
+        <About />
+        <Tools />
+        <Project />
+        <br />{" "}
+      </div>
     </Layout>
   )
 }
