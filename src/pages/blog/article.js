@@ -46,6 +46,11 @@ func main() {
 
 `
 
+const Image = styled.img`
+  height: auto;
+  width: 35rem;
+`
+
 const Article = () => {
   return (
     <Layout>
@@ -67,14 +72,13 @@ const Article = () => {
       />
       <br />
       <Body article>
-        <br />
         <div
           style={{
             display: "flex",
             justifyContent: "center",
           }}
         >
-          <img
+          <Image
             src="https://res.cloudinary.com/dkfptto8m/image/upload/v1589673282/blog/cloud_Run.png"
             style={{
               display: "flex",
@@ -84,6 +88,7 @@ const Article = () => {
             }}
           />
         </div>
+        <br />
         <br />
         <section>
           <Text article>
