@@ -67,6 +67,24 @@ const Article = () => {
       />
       <br />
       <Body article>
+        <br />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src="https://res.cloudinary.com/dkfptto8m/image/upload/v1589673282/blog/cloud_Run.png"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              height: "auto",
+              maxWidt: "100%",
+            }}
+          />
+        </div>
+        <br />
         <section>
           <Text article>
             I recently spent some time building a Golang written backend for
