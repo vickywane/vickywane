@@ -43,9 +43,9 @@ const ProjectCard = props => {
         fluid
         alt="project illustration"
         src={props.imgUrl}
-        style={{ height: "17.5rem" }}
+        style={{ height: "17rem" }}
       />
-      <Title colored style={{ fontSize: "2rem" }} regular small>
+      <Title colored style={{ fontSize: "1.7rem" }} regular small>
         {props.name}
       </Title>
       <Contain>
@@ -77,12 +77,12 @@ const ProjectCard = props => {
         </IconItems>
 
         <Flex justifyBetween>
-          <a href={props.gitlink}>
+          <a href={props.gitlink} targe="_blank">
             <FiGithub style={{ fontSize: "1.7em", color: "black" }} />
           </a>
-          <Hover>
+          <a href={props.projectUrl} targe="_blank">
             <FiGlobe style={{ fontSize: "1.7em", color: "black" }} />
-          </Hover>
+          </a>
         </Flex>
       </Contain>
     </StyledCard>

@@ -98,7 +98,6 @@ const Projects = () => {
                 <Input
                   placeholder="Project keyword"
                   value={SearchResults}
-                  style={{ background: "#8861c8" }}
                   onChange={e => {
                     setSearchResults(e.target.value)
                   }}

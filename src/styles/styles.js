@@ -142,7 +142,7 @@ font-size: ${props => (props.article ? "1.4em " : "1.2em")};
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
 `};
   ${media.lessThan("small")`
-font-size: ${props => (props.article ? "1.3em " : "1.2em")};
+font-size: ${props => (props.article ? "1.3em " : "1.1em")};
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
   `};
 `
@@ -180,9 +180,9 @@ const IconautoGrid = (minColumnWidth = 50, gridGap = 0) => ({
 })
 
 const IconItems = styled.div({
-  ...IconautoGrid(35, 7),
+  ...IconautoGrid(30, 7),
   paddingBottom: "15px",
-  paddingLeft: "10px",
+  textAlign: "center",
 })
 
 const StyledCard = styled.div`
@@ -198,7 +198,7 @@ const StyledCard = styled.div`
   margin: 0.5rem 4rem;
   `};
   ${media.lessThan("small")`
-  margin: 0.5rem 1rem;
+  margin: 0.5rem 0.5rem;
   `};
 `
 
@@ -212,6 +212,13 @@ const Contain = styled.div`
   text-align: ${props => (props.center ? "center" : null)};
   border-bottom: ${props => (props.borderBottom ? "3px solid #8c43ff" : null)};
     border-bottom-style: ${props => (props.borderBottom ? "dashed" : null)};
+    ${media.lessThan("small")`
+text-align : left ;
+  padding 0.5em 5rem;
+ p {
+  padding 0em 2rem;
+}
+`};
     `
 
 const Bounce = posed.div({
@@ -245,7 +252,7 @@ const CustomImage = styled.img`
   bottom: -5px;
   `};
   ${media.lessThan("small")`
-  bottom: -55px;
+  bottom: -2px;
   `};
 `
 
@@ -437,6 +444,7 @@ const QuoteText = styled.div`
     text-align: center;
   }
   ${media.lessThan("large")`
+  border-right: 6px solid #591af7;
      h5 {
     font-weight: 400;
     line-height: 2.3rem;
@@ -444,6 +452,7 @@ const QuoteText = styled.div`
   }
 `};
   ${media.lessThan("medium")`
+  border-right: 5px solid #591af7;
      h5 {
     font-weight: 400;
     line-height: 2.3rem;
@@ -451,7 +460,7 @@ const QuoteText = styled.div`
   }
 `};
   ${media.lessThan("small")`
-    border-right: 5px solid #591af7;
+    border-right: 3px solid #591af7;
      h5 {
     font-weight: 350;
     line-height: 2rem;
@@ -477,7 +486,7 @@ const Label = styled.label`
 `
 
 const ToolsBody = styled.div`
-  width: 100vw;
+  width: auto;
   min-height: 400px;
   margin-bottom: 10%;
   background-color: #591af7;
@@ -523,16 +532,17 @@ const Input = styled.input`
   padding: 0.3rem 0.5rem;
   border: 0px;
   width: auto;
+  background: transparent;
   flex: 1;
   margin: 0rem 0.7rem;
-  outline: 0px
-  background: #7c3ae9;
+  outline: 0px;
   color: #fff;
-  font-size : 1.1rem;
+  placeholder-color: #fff;
+  font-size: 1.1rem;
   height: auto;
 `
 
-const ListItems = styled.li`
+const ListItems = styled.div`
   list-style: none;
 `
 

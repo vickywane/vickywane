@@ -95,24 +95,23 @@ const Article = () => {
         <br />
         <section>
           <Text article>
-            I recently spent some time building a Golang written backend for
+            Recently, i needed to do some beta testing of a Golang backend i
+            wrote for
             <Ref
               style={{ textDecoration: "none" }}
               href="https://my-event.netlify.com"
             >
-              Oasis
+              Oasis.
             </Ref>
-            and when it was ready for live testing I came across an article
-            written by{" "}
-            <Ref
-              style={{ textDecoration: "none" }}
-              href="https://my-event.netlify.com"
-            >
+            Just before then, i read an article by
+            <Ref style={{ textDecoration: "none" }} href="https://twitter.com">
               Timothy Okeke{" "}
             </Ref>{" "}
-            on Google Cloud Run. Here is my usecase on how I used it for a
-            Golang written Graphql API connected to a Postgres Cloud Instance
-            and also did tracing using{" "}
+            on Google Cloud Run so i decided to give it a try considering that i
+            was very familiar with the Google Cloud Platform and most of its
+            cloud tools. Here is my usecase on how I used it for a Golang
+            written Graphql API connected to a Postgres Cloud Instance and also
+            did tracing using{" "}
             <Ref style={{ textDecoration: "none" }} href="/">
               Datadog{" "}
             </Ref>{" "}

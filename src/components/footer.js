@@ -1,24 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import Flex from "styled-flex-component"
 
 import {
   FiInstagram,
-  FiMail,
   FiGithub,
   FiFacebook,
   FiTwitter,
   FiLinkedin,
 } from "react-icons/fi"
 
-import {
-  FooterBody,
-  Body,
-  Text,
-  Input,
-  SearchBody,
-  Button,
-} from "../styles/styles"
+import { FooterBody, Body, Text } from "../styles/styles"
 
 const Contain = styled.div`
   padding-top: 15px;
@@ -33,41 +25,12 @@ const Hover = styled.div`
   cursor: pointer;
 `
 
-const Grid = styled.div`
-  display: grid;
-  grid-gap: 1rem 1rem;
-  grid-template-columns: repeat(uto-fit, minmax(57rem, 1fr));
-`
-
 const Footer = () => {
-  const [Msg, setMsg] = useState(false)
-
   return (
     <FooterBody id="footer">
-      <Text white> Connect or Reach Out to me </Text> <br />
-      {!Msg ? (
-        <Flex justifyCenter>
-          <Grid>
-            <SearchBody>
-              <Flex>
-                <FiMail style={{ fontSize: "1.7rem" }} />
-                <Input
-                  placeholder="Shoot an email"
-                  style={{ background: "transparent" }}
-                />{" "}
-              </Flex>
-            </SearchBody>{" "}
-            <Button
-              onClick={() => {
-                setMsg(true)
-              }}
-            >
-              Send Message
-            </Button>
-          </Grid>
-        </Flex>
-      ) : null}
       <br />
+      <br />
+      <Text white> Connect with me via </Text>
       <Body>
         <Flex justifyBetween>
           <Hover>

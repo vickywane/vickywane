@@ -9,6 +9,7 @@ import {
   ListItems,
   Text,
 } from "../../../styles/styles"
+import Flex from "styled-flex-component"
 
 // TODO: Convert && extract this into an independent functional hook
 class Tools extends React.Component {
@@ -57,8 +58,8 @@ class Tools extends React.Component {
                   "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
               }}
             >
-              <Contain borderBottom center style={{ paddingBottom: "5%" }}>
-                <ul>
+              <Contain center borderBottom style={{ paddingBottom: "5%" }}>
+                <div>
                   {" "}
                   <Label
                     color="#8c43ff"
@@ -66,7 +67,7 @@ class Tools extends React.Component {
                       fontSize: "1.5rem",
                     }}
                   >
-                    Backend Development
+                    Backend
                   </Label>
                   <ListItems>
                     <Text> Node.js </Text>{" "}
@@ -92,9 +93,8 @@ class Tools extends React.Component {
                   <ListItems>
                     <Text> Postgres </Text>{" "}
                   </ListItems>
-                </ul>
+                </div>
               </Contain>
-
               <Contain center borderBottom>
                 <Label
                   color="#8c43ff"
@@ -102,7 +102,7 @@ class Tools extends React.Component {
                     fontSize: "1.5rem",
                   }}
                 >
-                  Frontend Development
+                  Frontend
                 </Label>
                 <p>React</p>
                 <p>Vue</p>

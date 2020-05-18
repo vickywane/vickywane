@@ -1,5 +1,7 @@
 import React from "react"
 import Image from "../components/image"
+import styled from "styled-components"
+import media from "styled-media-query"
 import {
   BannerBody,
   BannerContain,
@@ -12,6 +14,18 @@ import {
 import { Link } from "gatsby"
 import Wave from "../images/wave.svg"
 
+const StyledImg = styled.img`
+  height: auto;
+  width: 10rem;
+  border-radius: 50%;
+  ${media.lessThan("medium")`
+  width: 8rem;
+`};
+  ${media.lessThan("small")`
+  width: 7rem;
+`};
+`
+
 const Banner = () => {
   return (
     <BannerContain>
@@ -20,20 +34,12 @@ const Banner = () => {
           transition: "all 450ms",
         }}
       >
-        <img
-          alt="My Avatar "
-          style={{
-            height: "auto",
-            width: "10rem",
-            borderRadius: "50%",
-          }}
-          src={require("../images/my_avatar.png")}
-        />
+        <StyledImg alt="My Avatar " src={require("../images/my_avatar.png")} />
         <div>
           <Name> Nwani Victory </Name>
-          <Text>
+          <Text white>
             {" "}
-            <b style={{ fontWeight: "570" }}>FullStack developer</b> from Lagos,
+            <b style={{ fontWeight: "570" }}>FullStack developer</b> from
             Nigeria , Africa.{" "}
           </Text>
 
