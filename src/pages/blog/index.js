@@ -45,7 +45,7 @@ const Blog = () => {
                 </Link>
                 <br />
                 <Text style={{ color: "#090e3a" }}>{summary}</Text> <hr />{" "}
-                <Text center> 12 - 12 - 12 </Text>
+                <Text center> 18th - May - 2020 </Text>
               </CardBody>
             )
           })}

@@ -20,6 +20,11 @@ const Layout = ({ children }) => (
       <div>
         <Helmet>
           <meta charSet="utf-8" />
+          <title> Nwani Victory </title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"

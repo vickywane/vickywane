@@ -202,6 +202,17 @@ const Article = () => {
           <br />
           <Label> Connecting Datadog </Label>
         </section>
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            style={{
+              width: "5rem",
+              border: "5px solid #591af7",
+              borderStyle: "dashed",
+              alignItems: "center",
+            }}
+          />
+        </div>
       </Body>
       <br />
       <br />

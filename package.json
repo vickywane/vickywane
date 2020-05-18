@@ -1,8 +1,12 @@
 {
   "name": "victory",
   "private": true,
-  "description": "My personal website built with Gatsby",
+  "description": "Nwani Victory, fullstack developer from Nigeria, Africa.",
   "version": "0.1.0",
+  "tags": [
+    "Gatsby",
+    "Blog"
+  ],
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.18.12",
