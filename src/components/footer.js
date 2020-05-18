@@ -5,6 +5,7 @@ import Flex from "styled-flex-component"
 import {
   FiInstagram,
   FiMail,
+  FiGithub,
   FiFacebook,
   FiTwitter,
   FiLinkedin,
@@ -102,10 +103,10 @@ const Footer = () => {
           <Hover>
             <a
               target="_blank"
-              href="https://twitter.com/iamnwani01"
+              href="https://www.github.com/vickywane"
               rel="noopener noreferrer"
             >
-              <FiMail style={{ fontSize: "2em" }} />
+              <FiGithub style={{ fontSize: "2em" }} />
             </a>
           </Hover>
 

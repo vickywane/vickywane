@@ -13,24 +13,6 @@ const Articles = [
     summary:
       " The Google Cloud Run provides a way to deploy stateless containers to the cloud while minimising the cost by only keeping it running in presence of http traffic. Here is an example of how i leveraged this feature for my individual use ",
   },
-  {
-    id: 2,
-    title: "Leveraging Google Cloud Fuctions for Severless Softwares",
-    summary:
-      " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
-  },
-  {
-    id: 3,
-    title: "Leveraging Native USSD For A Wider Audience ",
-    summary:
-      " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
-  },
-  {
-    id: 4,
-    title: "Engineering Through The Looking Glass",
-    summary:
-      " The Cloud Functions was built to help handle mundane tasks within backend servers. It provides a way to handle simple tasks with a minimal setip.  ",
-  },
 ]
 
 const Blog = () => {
@@ -40,7 +22,7 @@ const Blog = () => {
 
       <Quote
         maintext='"The best way to learn is by Practicing "'
-        quote=" Rob pike, Concatenate Conf 2020"
+        quote="Someone learning PHP somewhere"
         text="All articles written here are drawn from real - life engineering
           expreriences and experiments."
       />

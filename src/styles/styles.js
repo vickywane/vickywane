@@ -430,12 +430,19 @@ const QuoteText = styled.div`
   h5 {
     font-weight: 400;
     line-height: 2.7rem;
-    font-size: 1.55rem;
+    font-size: 1.5rem;
   }
   p {
     color: #1b2f7d;
     text-align: center;
   }
+  ${media.lessThan("large")`
+     h5 {
+    font-weight: 400;
+    line-height: 2.3rem;
+    font-size: 1.3rem;
+  }
+`};
   ${media.lessThan("medium")`
      h5 {
     font-weight: 400;
@@ -444,10 +451,11 @@ const QuoteText = styled.div`
   }
 `};
   ${media.lessThan("small")`
+    border-right: 5px solid #591af7;
      h5 {
-    font-weight: 400;
+    font-weight: 350;
     line-height: 2rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 `};
 `
@@ -506,7 +514,7 @@ const SearchBody = styled.div`
   border: 3px solid #7c3ae9;
   `};
   ${media.lessThan("small")`
-  width: 24rem;
+  width: 20rem;
   border: 2px solid #7c3ae9;
   `};
 `
