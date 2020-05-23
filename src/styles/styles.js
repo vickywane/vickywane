@@ -134,15 +134,15 @@ const Text = styled.p`
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
 `};
   ${media.lessThan("large")`
-  font-size: ${props => (props.article ? "1.5em " : "1.3em")};
+  font-size: ${props => (props.article ? "1.4em " : "1.3em")};
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
 `};
   ${media.lessThan("medium")`
-font-size: ${props => (props.article ? "1.4em " : "1.2em")};
+font-size: ${props => (props.article ? "1.3em " : "1.2em")};
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
 `};
   ${media.lessThan("small")`
-font-size: ${props => (props.article ? "1.3em " : "1.1em")};
+font-size: ${props => (props.article ? "1.2em " : "1.1em")};
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
   `};
 `
