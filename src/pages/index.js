@@ -5,9 +5,9 @@ import { ThemeContext } from "../state/context/"
 
 const IndexPage = () => {
   return (
-    <div>
+    <body>
       <Home />
-    </div>
+    </body>
   )
 }
 

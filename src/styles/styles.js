@@ -43,20 +43,17 @@ font-size: 2.2em ;
 const BannerBody = styled.div`
   color: white;
   width: 100%;
-  height: 80vh;
-  background: linear-gradient(to bottom, #591af7, #1b2f7d);
   text-align: center;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 7rem;
+  padding-top: 3rem;
   position: relative;
   ${media.lessThan("large")`
-      padding-bottom: 5rem;
+  padding-bottom: 5rem;
   padding-top: 1rem;
   justify-content: center;
-  height: 60vh;
   `};
   ${media.lessThan("medium")`
   justify-content: center;
@@ -67,12 +64,12 @@ const BannerBody = styled.div`
   justify-content: center;
   padding-top: 0rem;
   padding-bottom: 1rem;
-  height: 57vh;
   `};
 `
 
 const BannerContain = styled.div`
   width: 100%;
+  background: linear-gradient(to bottom, #591af7, #1b2f7d);
   position: relative;
   top: -10px;
 `
@@ -106,7 +103,6 @@ font-size: 0.9em ;
 const Title = styled.h1`
   text-align: center;
   font-weight: ${props => (props.bold ? "bold" : "lighter")};
-  font-family: ${props => (props.regular ? null : "monospace")};
   color: ${props => (props.colored ? "#591af7" : "#fff")};
   letter-spacing: ${props => (props.project ? null : "0.05em")};
   font-size: ${props => (props.small ? "2.5em" : "4.5rem")};
@@ -126,7 +122,6 @@ const Text = styled.p`
   font-size: ${props => (props.article ? "1.5rem " : "1.5rem")};
   text-align: ${props => (props.center ? "center" : null)};
   line-height: ${props => (props.article ? "2.5rem " : "1.8rem")};
-  font-family: calibri;
   text-decoration: none;
   word-spacing: ${props => (props.article ? "0.2em " : "0.1em")};
   ${media.lessThan("huge")`
@@ -238,22 +233,8 @@ const Bounce = posed.div({
 })
 
 const CustomImage = styled.img`
-  margin: 0;
-  width: 100vw;
-  position: absolute;
-  bottom: -5px;
-  ${media.lessThan("huge")`
-  bottom: -20px;
-  `};
-  ${media.lessThan("large")`
-  bottom: -10px;
-  `};
-  ${media.lessThan("medium")`
-  bottom: -5px;
-  `};
-  ${media.lessThan("small")`
-  bottom: -2px;
-  `};
+  width: 100%;
+  transform: translateY(-7%);
 `
 
 const HeaderBody = styled.header`
