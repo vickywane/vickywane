@@ -1,14 +1,20 @@
 import React from "react"
-import Home from "./home/home"
+import { Link } from "gatsby"
 
-import { ThemeContext } from "../state/context/"
+import Layout from "../components/layout"
+import Image from "../components/image"
+import SEO from "../components/seo"
+import Home from './home/'
 
-const IndexPage = () => {
-  return (
-    <body>
-      <Home />
-    </body>
-  )
-}
+
+const IndexPage = () => (
+  <Layout>
+    <SEO title="Home" />
+
+    <Home />
+
+
+  </Layout>
+)
 
 export default IndexPage
