@@ -1,3 +1,30 @@
+@font-face {
+  font-family: "Helvetica-Narrow";
+  src: url("../styles/font/@font-face/5a4cd90b04b94bfd8c4e37368228a4dd.eot"); /* IE9*/
+  src: url("../styles/font/@font-face/5a4cd90b04b94bfd8c4e37368228a4dd.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("../styles/font/@font-face/5a4cd90b04b94bfd8c4e37368228a4dd.woff2")
+      format("woff2"),
+    /* chrome、firefox */
+      url("../styles/font/@font-face/5a4cd90b04b94bfd8c4e37368228a4dd.woff")
+      format("woff"),
+    /* chrome、firefox */
+      url("../styles/font/@font-face/5a4cd90b04b94bfd8c4e37368228a4dd.ttf")
+      format("truetype"),
+    /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url("../styles/font/@font-face/5a4cd90b04b94bfd8c4e37368228a4dd.svg#Helvetica-Narrow")
+      format("svg"); /* iOS 4.1- */
+}
+
+* {
+  font-family: "Helvetica-Narrow" !important;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -10,7 +37,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  /* font-family: georgia, serif; */
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -566,9 +593,9 @@ td:last-child {
 tt,
 code {
   background-color: hsla(0, 0%, 0%, 0.04);
-  border-radius: 3px;
+  /* border-radius: 3px;
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono",
-    "Liberation Mono", Menlo, Courier, monospace;
+    "Liberation Mono", Menlo, Courier, monospace; */
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
