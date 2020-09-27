@@ -1,5 +1,4 @@
 {
-
   "name": "victory-nwani",
   "private": true,
   "description": "My personal space on the wild internet!",
@@ -23,6 +22,7 @@
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
+    "husky": "^4.3.0",
     "prettier": "2.1.1"
   },
   "keywords": [
