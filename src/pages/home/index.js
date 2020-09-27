@@ -1,18 +1,18 @@
 import React, { useState } from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { Link } from "gatsby"
 import { DiStackoverflow, DiGithubBadge } from "react-icons/di"
-import { FiLinkedin, FiTwitter } from "react-icons/fi"
+import { FiLinkedin, FiTwitter, FiBookOpen, FiCode } from "react-icons/fi"
 import { CSSTransition } from "react-transition-group"
 
-import { CardData } from "../data"
+import { CardData } from "../../data"
 import { HomeBackground, Text, Title, Button, center } from "../../styles/"
 import Experiences from "./experiences"
 
 const UserCard = styled.div`
   background-color: #282c34;
-  height: 80%;
-  width: 60%;
+  height: 85%;
+  width: 70%;
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 7px;
@@ -45,8 +45,13 @@ export const StyledHover = styled.div`
   align-items: center;
   transition: all 350ms;
   margin: 0 0.7rem;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
   &: hover {
     background: #141821;
+    cursor: pointer;
   }
 `
 
@@ -68,23 +73,38 @@ const Card = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 2rem 1rem;
   width: 18rem;
-  border-radius: 2px;
+  border-radius: 4px;
   transition: all 350ms;
   background: #141821;
   border: 1px solid #141821;
   &: hover {
-    transform: translateY(-10%);
+    transform: translateY(-5%);
     box-shadow: 0 1px 2px black;
   }
+`
+
+const WavingHand = keyframes`
+from {
+  transform: rotate(30deg);
+}
+to {
+  transform: rotate(0deg);
+}
 `
 
 const Wave = styled.img`
   height: 110px;
   width: 110px;
   object-fit: contain;
+  animation: ${WavingHand} 1000ms ease-in-out 0s 300ms;
 `
+
+const StyledText = styled(Text)`
+    padding : 0 5rem;
+`
+
 
 const Home = () => {
   const [CurrentView, setCurrentView] = useState("home")
@@ -110,19 +130,39 @@ const Home = () => {
               >
                 <div style={{ display: "flex" }}>
                   <StyledHover>
-                    <DiStackoverflow style={{ fontSize: "1.6rem" }} />
+                    <a
+                      href="https://stackoverflow.com/users/9141305/wane01"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <DiStackoverflow style={{ fontSize: "1.5rem" }} />
+                    </a>
                   </StyledHover>
 
                   <StyledHover>
-                    <DiGithubBadge style={{ fontSize: "1.6rem" }} />
+                    <a
+                      rel="noopener"
+                      target="_blank"
+                      href="https://github.com/vickywane"
+                    >
+                      <DiGithubBadge style={{ fontSize: "1.5rem" }} />
+                    </a>
                   </StyledHover>
 
                   <StyledHover>
-                    <FiLinkedin style={{ fontSize: "1.6rem" }} />
+                    <a
+                      rel="noopener"
+                      target="_blank"
+                      href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
+                    >
+                      <FiLinkedin style={{ fontSize: "1.5rem" }} />
+                    </a>
                   </StyledHover>
 
                   <StyledHover>
-                    <FiTwitter style={{ fontSize: "1.6rem" }} />
+                    <a href="" target="_blank">
+                      <FiTwitter style={{ fontSize: "1.5rem" }} />
+                    </a>
                   </StyledHover>
                 </div>
 
@@ -148,12 +188,12 @@ const Home = () => {
                 </div>
 
                 <Title align="center"> Hi , I'm Nwani Victory </Title>
-                <Text align="center">
+                <StyledText align="center">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Accusantium numquam quidem autem, quisquam dicta eos mollitia.
                   Alias molestiae consequuntur iste saepe illo. Velit cum
                   corrupti quasi sed dolore, amet esse!
-                </Text>
+                </StyledText>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <Button style={{ padding: "0 3rem" }}> Contact Me </Button>
                 </div>
@@ -161,18 +201,21 @@ const Home = () => {
             </Grid>
             <br />
             <br />
+
+            <Text style={{paddingLeft : "3rem"}} > Outside my working hours, i do the following : </Text>
             <Cards>
-              {CardData.map(({ id, name, text }) => {
+              {CardData.map(({ id, name, text, icon }) => {
                 return (
                   <Card key={id}>
                     <div>
                       <div
-                        style={{ display: "flex", justifyContent: "center" }}
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginBottom: "15px",
+                        }}
                       >
-                        <Wave
-                          alt="reading lamp"
-                          src={require("../../images/lamp.png")}
-                        />
+                        {icon}
                       </div>
 
                       <Title
