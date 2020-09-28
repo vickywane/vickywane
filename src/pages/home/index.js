@@ -4,10 +4,13 @@ import { Link } from "gatsby"
 import { DiStackoverflow, DiGithubBadge } from "react-icons/di"
 import { FiLinkedin, FiTwitter, FiBookOpen, FiCode } from "react-icons/fi"
 import { CSSTransition } from "react-transition-group"
+import media from "styled-media-query"
+import { FiMail } from "react-icons/fi"
 
 import { CardData } from "../../data"
 import { HomeBackground, Text, Title, Button, center } from "../../styles/"
 import Experiences from "./experiences"
+import Contact from "./contact"
 
 const UserCard = styled.div`
   background-color: #282c34;
@@ -17,6 +20,10 @@ const UserCard = styled.div`
   padding: 0.5rem 1rem;
   border-radius: 7px;
   box-shadow: 0 2px 3px black;
+  ${media.lessThan("large")`
+    height: 90%;
+    width: 90%;
+  `};
 `
 
 const Image = styled.img`
@@ -24,6 +31,10 @@ const Image = styled.img`
   width: 170px;
   height: 170px;
   object-fit: contain;
+  ${media.lessThan("large")`
+    width: 130px;
+    height: 130px;
+  `};
 `
 
 export const Header = styled.div`
@@ -34,6 +45,9 @@ export const Header = styled.div`
   align-items: center;
   border-bottom: 1px dashed #ffff;
   margin-bottom: 1rem;
+  ${media.lessThan("medium")`
+    padding: 0;
+  `};
 `
 
 export const StyledHover = styled.div`
@@ -53,6 +67,9 @@ export const StyledHover = styled.div`
     background: #141821;
     cursor: pointer;
   }
+  ${media.lessThan("large")`
+    margin: 0 0.4rem;
+  `};
 `
 
 export const Grid = styled.div`
@@ -60,6 +77,11 @@ export const Grid = styled.div`
   grid-template-columns: 40% auto;
   grid-gap: 1rem 3rem;
   place-items: center;
+  ${media.lessThan("large")`
+      display : flex;
+      flex-direction : column;
+      align-items : center;
+  `};
 `
 
 const Cards = styled.div`
@@ -67,6 +89,10 @@ const Cards = styled.div`
   grid-gap: 1rem 3rem;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   place-items: center;
+  ${media.lessThan("large")`
+    grid-gap: 1rem 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  `};
 `
 
 const Card = styled.div`
@@ -84,6 +110,14 @@ const Card = styled.div`
     transform: translateY(-5%);
     box-shadow: 0 1px 2px black;
   }
+  ${media.lessThan("large")`
+    width: 17rem; 
+    padding: 0.5rem 0.5rem;
+  `};
+  ${media.lessThan("medium")`
+  width: 17rem; 
+  padding: 0.5rem 0.5rem;
+`};
 `
 
 const WavingHand = keyframes`
@@ -100,10 +134,22 @@ const Wave = styled.img`
   width: 100px;
   object-fit: contain;
   animation: ${WavingHand} 1000ms ease-in-out 0s 300ms;
+  ${media.lessThan("large")`
+    display : none;
+  `}
 `
 
 const StyledText = styled(Text)`
   padding: 0 5rem;
+  ${media.lessThan("huge")`
+  padding: 0 3rem;
+`};
+  ${media.lessThan("large")`
+    padding: 0 5rem;
+  `};
+  ${media.lessThan("medium")`
+  padding: 0 2rem;
+`};
 `
 
 const Home = () => {
@@ -114,12 +160,27 @@ const Home = () => {
       <HomeBackground>
         <UserCard>
           <CSSTransition
+            in={CurrentView === "Contact"}
+            unmountOnExit
+            timeout={300}
+            classNames={""}
+          >
+            <Contact setView={val => setCurrentView(val)} />
+          </CSSTransition>
+
+          <CSSTransition
             in={CurrentView === "home"}
             unmountOnExit
             timeout={300}
             classNames={""}
           >
-            <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
               <Header>
                 <div
                   style={{
@@ -160,7 +221,7 @@ const Home = () => {
                     </StyledHover>
 
                     <StyledHover>
-                      <a href="" target="_blank">
+                      <a href="https://twitter.com/iamnwani01" target="_blank">
                         <FiTwitter style={{ fontSize: "1.4rem" }} />
                       </a>
                     </StyledHover>
@@ -171,6 +232,7 @@ const Home = () => {
                   </Button>
                 </div>
               </Header>
+
               <Grid>
                 <div style={{ ...center }}>
                   <Image
@@ -187,61 +249,76 @@ const Home = () => {
                     />
                   </div>
 
-                  <Title style={{ padding:  "10px 0", margin: 0 }} align="center">
-                    Hi , I'm Nwani Victory{" "}
+                  <Title
+                    style={{ padding: "10px 0", margin: 0 }}
+                    align="center"
+                  >
+                    Hi , I'm Nwani Victory 
                   </Title>
                   <StyledText align="center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Accusantium numquam quidem autem, quisquam dicta eos
                     mollitia. Alias molestiae consequuntur iste saepe illo.
-                    Velit cum corrupti quasi sed dolore, amet esse!
                   </StyledText>
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Button style={{ padding: "0 3rem" }}> Contact Me </Button>
+                    <Button
+                      onClick={() => setCurrentView("Contact")}
+                      style={{ padding: "0 3rem", ...center }}
+                    >
+                      <div style={{ margin: "0 .5rem", ...center }}>
+                        <FiMail style={{ fontSize: "1.4rem" }} /> 
+                      </div> 
+                      Contact Me
+                    </Button>
                   </div>
                 </div>
               </Grid>
-              <br />
-              <Text style={{ paddingLeft: "3rem" }}>
-                {" "}
-                Outside my working hours, i do the following :{" "}
-              </Text>
-              <Cards>
-                {CardData.map(({ id, name, text, icon, link }) => {
-                  return (
-                    <Card key={id}>
-                      <div>
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            marginBottom: "15px",
-                          }}
-                        >
-                          {icon}
-                        </div>
 
-                        <Title
-                          style={{ padding: "0 10px", margin: "0 10px" }}
-                          align="center"
-                        >
-                          {name}{" "}
-                        </Title>
-                        <Text align="center"> {text} </Text>
-                        <div
-                          style={{ display: "flex", justifyContent: "center" }}
-                        >
-                          <Link to={`/${link}`} style={{ color: "#fff" }}>
-                            <Text style={{ textTransform: "capitalize" }}>
-                              View {link}
-                            </Text>
-                          </Link>
+              <div>
+                <Text style={{ paddingLeft: "3rem" }}>
+                   
+                  Outside my working hours, i do the following : 
+                </Text>
+                <Cards>
+                  {CardData.map(({ id, name, text, icon, link }) => {
+                    return (
+                      <Card key={id}>
+                        <div>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              marginBottom: "15px",
+                            }}
+                          >
+                            {icon}
+                          </div>
+
+                          <Title
+                            style={{ padding: "0 10px", margin: "0 10px" }}
+                            align="center"
+                          >
+                            {name} 
+                          </Title>
+                          <Text align="center"> {text} </Text>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <Link to={`/${link}`} style={{ color: "#fff" }}>
+                              <Text style={{ textTransform: "capitalize" }}>
+                                View {link}
+                              </Text>
+                            </Link>
+                          </div>
                         </div>
-                      </div>
-                    </Card>
-                  )
-                })}
-              </Cards>
+                      </Card>
+                    )
+                  })}
+                </Cards>
+              </div>
             </div>
           </CSSTransition>
 
