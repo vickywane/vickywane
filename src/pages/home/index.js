@@ -21,8 +21,8 @@ const UserCard = styled.div`
 
 const Image = styled.img`
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   object-fit: contain;
 `
 
@@ -73,13 +73,14 @@ const Card = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
-  width: 18rem;
+  padding: 1rem 1rem;
+  width: 20rem;
   border-radius: 4px;
   transition: all 350ms;
   background: #141821;
   border: 1px solid #141821;
   &: hover {
+    cursor: pointer;
     transform: translateY(-5%);
     box-shadow: 0 1px 2px black;
   }
@@ -95,8 +96,8 @@ to {
 `
 
 const Wave = styled.img`
-  height: 110px;
-  width: 110px;
+  height: 80px;
+  width: 100px;
   object-fit: contain;
   animation: ${WavingHand} 1000ms ease-in-out 0s 300ms;
 `
@@ -111,7 +112,6 @@ const Home = () => {
   return (
     <div style={{ height: "100vh" }}>
       <HomeBackground>
-        <br />
         <UserCard>
           <CSSTransition
             in={CurrentView === "home"}
@@ -135,7 +135,7 @@ const Home = () => {
                         target="_blank"
                         rel="noopener"
                       >
-                        <DiStackoverflow style={{ fontSize: "1.5rem" }} />
+                        <DiStackoverflow style={{ fontSize: "1.4rem" }} />
                       </a>
                     </StyledHover>
 
@@ -145,7 +145,7 @@ const Home = () => {
                         target="_blank"
                         href="https://github.com/vickywane"
                       >
-                        <DiGithubBadge style={{ fontSize: "1.5rem" }} />
+                        <DiGithubBadge style={{ fontSize: "1.4rem" }} />
                       </a>
                     </StyledHover>
 
@@ -155,13 +155,13 @@ const Home = () => {
                         target="_blank"
                         href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
                       >
-                        <FiLinkedin style={{ fontSize: "1.5rem" }} />
+                        <FiLinkedin style={{ fontSize: "1.4rem" }} />
                       </a>
                     </StyledHover>
 
                     <StyledHover>
                       <a href="" target="_blank">
-                        <FiTwitter style={{ fontSize: "1.5rem" }} />
+                        <FiTwitter style={{ fontSize: "1.4rem" }} />
                       </a>
                     </StyledHover>
                   </div>
@@ -187,7 +187,9 @@ const Home = () => {
                     />
                   </div>
 
-                  <Title align="center"> Hi , I'm Nwani Victory </Title>
+                  <Title style={{ padding:  "10px 0", margin: 0 }} align="center">
+                    Hi , I'm Nwani Victory{" "}
+                  </Title>
                   <StyledText align="center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Accusantium numquam quidem autem, quisquam dicta eos
@@ -200,14 +202,12 @@ const Home = () => {
                 </div>
               </Grid>
               <br />
-              <br />
-
               <Text style={{ paddingLeft: "3rem" }}>
                 {" "}
                 Outside my working hours, i do the following :{" "}
               </Text>
               <Cards>
-                {CardData.map(({ id, name, text, icon }) => {
+                {CardData.map(({ id, name, text, icon, link }) => {
                   return (
                     <Card key={id}>
                       <div>
@@ -225,10 +225,18 @@ const Home = () => {
                           style={{ padding: "0 10px", margin: "0 10px" }}
                           align="center"
                         >
-                          {" "}
                           {name}{" "}
                         </Title>
                         <Text align="center"> {text} </Text>
+                        <div
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
+                          <Link to={`/${link}`} style={{ color: "#fff" }}>
+                            <Text style={{ textTransform: "capitalize" }}>
+                              View {link}
+                            </Text>
+                          </Link>
+                        </div>
                       </div>
                     </Card>
                   )

@@ -1,21 +1,21 @@
 import styled from "styled-components"
 
 export const Text = styled.p`
-  font-size: 1.1rem;
+  font-size: 0.85rem;
   text-align: ${props => props.align};
 `
 
 export const Title = styled.h3`
   font-weight: normal;
   text-align: ${props => props.align};
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `
 
 export const HomeBackground = styled.div`
   display: flex;
   justify-content: center;
-  height : 100%;
-  width : 100%;
+  height: 100%;
+  width: 100%;
   align-items: center;
   background-color: #141821;
 `
@@ -23,10 +23,11 @@ export const HomeBackground = styled.div`
 export const Button = styled.button`
   background-color: ${props =>
     props.background ? props.background : "#6C15B1"};
-  height: 50px;
+  height: 45px;
   width: auto;
   padding: 0.5rem 1rem;
   color: #fff;
+  font-size: 0.8rem;
   transition: all 400ms;
   border: 1px solid
     ${props => (props.background ? props.background : "#6C15B1")};
