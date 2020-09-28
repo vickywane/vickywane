@@ -102,148 +102,152 @@ const Wave = styled.img`
 `
 
 const StyledText = styled(Text)`
-    padding : 0 5rem;
+  padding: 0 5rem;
 `
-
 
 const Home = () => {
   const [CurrentView, setCurrentView] = useState("home")
 
   return (
-    <HomeBackground style={{ height: window.innerHeight }}>
-      <br />
-      <UserCard>
-        <CSSTransition
-          in={CurrentView === "home"}
-          unmountOnExit
-          timeout={300}
-          classNames={""}
-        >
-          <div>
-            <Header>
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div style={{ display: "flex" }}>
-                  <StyledHover>
-                    <a
-                      href="https://stackoverflow.com/users/9141305/wane01"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      <DiStackoverflow style={{ fontSize: "1.5rem" }} />
-                    </a>
-                  </StyledHover>
+    <div style={{ height: "100vh" }}>
+      <HomeBackground>
+        <br />
+        <UserCard>
+          <CSSTransition
+            in={CurrentView === "home"}
+            unmountOnExit
+            timeout={300}
+            classNames={""}
+          >
+            <div>
+              <Header>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div style={{ display: "flex" }}>
+                    <StyledHover>
+                      <a
+                        href="https://stackoverflow.com/users/9141305/wane01"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        <DiStackoverflow style={{ fontSize: "1.5rem" }} />
+                      </a>
+                    </StyledHover>
 
-                  <StyledHover>
-                    <a
-                      rel="noopener"
-                      target="_blank"
-                      href="https://github.com/vickywane"
-                    >
-                      <DiGithubBadge style={{ fontSize: "1.5rem" }} />
-                    </a>
-                  </StyledHover>
+                    <StyledHover>
+                      <a
+                        rel="noopener"
+                        target="_blank"
+                        href="https://github.com/vickywane"
+                      >
+                        <DiGithubBadge style={{ fontSize: "1.5rem" }} />
+                      </a>
+                    </StyledHover>
 
-                  <StyledHover>
-                    <a
-                      rel="noopener"
-                      target="_blank"
-                      href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
-                    >
-                      <FiLinkedin style={{ fontSize: "1.5rem" }} />
-                    </a>
-                  </StyledHover>
+                    <StyledHover>
+                      <a
+                        rel="noopener"
+                        target="_blank"
+                        href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
+                      >
+                        <FiLinkedin style={{ fontSize: "1.5rem" }} />
+                      </a>
+                    </StyledHover>
 
-                  <StyledHover>
-                    <a href="" target="_blank">
-                      <FiTwitter style={{ fontSize: "1.5rem" }} />
-                    </a>
-                  </StyledHover>
+                    <StyledHover>
+                      <a href="" target="_blank">
+                        <FiTwitter style={{ fontSize: "1.5rem" }} />
+                      </a>
+                    </StyledHover>
+                  </div>
+
+                  <Button onClick={() => setCurrentView("experiences")} up>
+                    Work Experiences
+                  </Button>
                 </div>
-
-                <Button onClick={() => setCurrentView("experiences")} up>
-                  Work Experiences
-                </Button>
-              </div>
-            </Header>
-            <Grid>
-              <div style={{ ...center }}>
-                <Image
-                  src={require("../../images/my_avatar.png")}
-                  alt="an avatar of me"
-                />
-              </div>
-
-              <div>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <Wave
-                    alt="waving greet hand"
-                    src={require("../../images/waving.png")}
+              </Header>
+              <Grid>
+                <div style={{ ...center }}>
+                  <Image
+                    src={require("../../images/my_avatar.png")}
+                    alt="an avatar of me"
                   />
                 </div>
 
-                <Title align="center"> Hi , I'm Nwani Victory </Title>
-                <StyledText align="center">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Accusantium numquam quidem autem, quisquam dicta eos mollitia.
-                  Alias molestiae consequuntur iste saepe illo. Velit cum
-                  corrupti quasi sed dolore, amet esse!
-                </StyledText>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <Button style={{ padding: "0 3rem" }}> Contact Me </Button>
+                <div>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Wave
+                      alt="waving greet hand"
+                      src={require("../../images/waving.png")}
+                    />
+                  </div>
+
+                  <Title align="center"> Hi , I'm Nwani Victory </Title>
+                  <StyledText align="center">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Accusantium numquam quidem autem, quisquam dicta eos
+                    mollitia. Alias molestiae consequuntur iste saepe illo.
+                    Velit cum corrupti quasi sed dolore, amet esse!
+                  </StyledText>
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Button style={{ padding: "0 3rem" }}> Contact Me </Button>
+                  </div>
                 </div>
-              </div>
-            </Grid>
-            <br />
-            <br />
+              </Grid>
+              <br />
+              <br />
 
-            <Text style={{paddingLeft : "3rem"}} > Outside my working hours, i do the following : </Text>
-            <Cards>
-              {CardData.map(({ id, name, text, icon }) => {
-                return (
-                  <Card key={id}>
-                    <div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          marginBottom: "15px",
-                        }}
-                      >
-                        {icon}
+              <Text style={{ paddingLeft: "3rem" }}>
+                {" "}
+                Outside my working hours, i do the following :{" "}
+              </Text>
+              <Cards>
+                {CardData.map(({ id, name, text, icon }) => {
+                  return (
+                    <Card key={id}>
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            marginBottom: "15px",
+                          }}
+                        >
+                          {icon}
+                        </div>
+
+                        <Title
+                          style={{ padding: "0 10px", margin: "0 10px" }}
+                          align="center"
+                        >
+                          {" "}
+                          {name}{" "}
+                        </Title>
+                        <Text align="center"> {text} </Text>
                       </div>
+                    </Card>
+                  )
+                })}
+              </Cards>
+            </div>
+          </CSSTransition>
 
-                      <Title
-                        style={{ padding: "0 10px", margin: "0 10px" }}
-                        align="center"
-                      >
-                        {" "}
-                        {name}{" "}
-                      </Title>
-                      <Text align="center"> {text} </Text>
-                    </div>
-                  </Card>
-                )
-              })}
-            </Cards>
-          </div>
-        </CSSTransition>
-
-        <CSSTransition
-          in={CurrentView === "experiences"}
-          unmountOnExit
-          timeout={300}
-          classNames={""}
-        >
-          <Experiences setView={val => setCurrentView(val)} />
-        </CSSTransition>
-      </UserCard>
-    </HomeBackground>
+          <CSSTransition
+            in={CurrentView === "experiences"}
+            unmountOnExit
+            timeout={300}
+            classNames={""}
+          >
+            <Experiences setView={val => setCurrentView(val)} />
+          </CSSTransition>
+        </UserCard>
+      </HomeBackground>
+    </div>
   )
 }
 

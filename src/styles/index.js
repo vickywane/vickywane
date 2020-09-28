@@ -14,6 +14,8 @@ export const Title = styled.h3`
 export const HomeBackground = styled.div`
   display: flex;
   justify-content: center;
+  height : 100%;
+  width : 100%;
   align-items: center;
   background-color: #141821;
 `
