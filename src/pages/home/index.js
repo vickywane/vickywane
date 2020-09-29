@@ -93,6 +93,11 @@ const Cards = styled.div`
     grid-gap: 1rem 1rem;
     grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   `};
+  ${media.lessThan("medium")`
+      display : flex;
+      flex-direction : column;
+      align-items : center;
+  `};
 `
 
 const Card = styled.div`
@@ -111,7 +116,7 @@ const Card = styled.div`
     box-shadow: 0 1px 2px black;
   }
   ${media.lessThan("large")`
-    width: 17rem; 
+    width: 16rem; 
     padding: 0.5rem 0.5rem;
   `};
   ${media.lessThan("medium")`
@@ -253,12 +258,12 @@ const Home = () => {
                     style={{ padding: "10px 0", margin: 0 }}
                     align="center"
                   >
-                    Hi , I'm Nwani Victory 
+                    Hi , I'm Nwani Victory
                   </Title>
                   <StyledText align="center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Accusantium numquam quidem autem, quisquam dicta eos
-                    mollitia. Alias molestiae consequuntur iste saepe illo.
+                    mollitia.
                   </StyledText>
                   <div style={{ display: "flex", justifyContent: "center" }}>
                     <Button
@@ -266,18 +271,17 @@ const Home = () => {
                       style={{ padding: "0 3rem", ...center }}
                     >
                       <div style={{ margin: "0 .5rem", ...center }}>
-                        <FiMail style={{ fontSize: "1.4rem" }} /> 
-                      </div> 
+                        <FiMail style={{ fontSize: "1.4rem" }} />
+                      </div>
                       Contact Me
                     </Button>
                   </div>
                 </div>
               </Grid>
-
+              <br />
               <div>
                 <Text style={{ paddingLeft: "3rem" }}>
-                   
-                  Outside my working hours, i do the following : 
+                  Outside my working hours, i do the following :
                 </Text>
                 <Cards>
                   {CardData.map(({ id, name, text, icon, link }) => {
@@ -295,10 +299,11 @@ const Home = () => {
                           </div>
 
                           <Title
+                            small
                             style={{ padding: "0 10px", margin: "0 10px" }}
                             align="center"
                           >
-                            {name} 
+                            {name}
                           </Title>
                           <Text align="center"> {text} </Text>
                           <div

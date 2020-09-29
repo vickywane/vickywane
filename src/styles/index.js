@@ -1,4 +1,4 @@
-import styled from "styled-components"
+  import styled from "styled-components"
 import media from 'styled-media-query'
 
 export const Text = styled.p`
@@ -12,9 +12,9 @@ export const Text = styled.p`
 export const Title = styled.h3`
   font-weight: normal;
   text-align: ${props => props.align};
-  font-size: 1.2rem;
+  font-size: ${props => props.small ?  "1rem"  : "1.2rem"};
   ${media.lessThan("large")`
-    font-size: 1.1rem;
+     font-size: ${props => props.small ?  "0.95rem"  : "1.2rem"};
   `};
 `
 

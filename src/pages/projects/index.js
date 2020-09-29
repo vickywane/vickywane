@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react"
+import { HomeBackground, Title, Text } from "../../styles/"
 
-function index() {
-    return (
-        <div>
-            <p> blog space  </p>
-        </div>
-    )
+const index = () => {
+  return (
+    <HomeBackground>
+      <p> my projects </p>
+    </HomeBackground>
+  )
 }
 
 export default index
