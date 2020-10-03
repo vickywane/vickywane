@@ -51,14 +51,14 @@ export const Header = styled.div`
 `
 
 export const StyledHover = styled.div`
-  padding: 0.5rem 0.7rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 5px;
   background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 350ms;
-  margin: 0 0.7rem;
+  margin: 0 0.5rem;
   a {
     text-decoration: none;
     color: #fff;
@@ -68,6 +68,7 @@ export const StyledHover = styled.div`
     cursor: pointer;
   }
   ${media.lessThan("large")`
+    padding: 0.3rem 0.4rem;
     margin: 0 0.4rem;
   `};
 `
@@ -110,6 +111,11 @@ const Card = styled.div`
   transition: all 350ms;
   background: #141821;
   border: 1px solid #141821;
+  span {
+    h3 {
+      margin-top: 10px;
+    }
+  }
   &: hover {
     cursor: pointer;
     transform: translateY(-5%);
@@ -120,8 +126,19 @@ const Card = styled.div`
     padding: 0.5rem 0.5rem;
   `};
   ${media.lessThan("medium")`
-  width: 17rem; 
+  height : 8vh;
+  width: 25rem; 
   padding: 0.5rem 0.5rem;
+  span {
+    display : flex;
+    flex-direction   : row;
+    h3 {
+      margin-top: 3px;
+    }
+    p {
+      display : none;
+    }
+  }
 `};
 `
 
@@ -286,39 +303,48 @@ const Home = () => {
                 <Cards>
                   {CardData.map(({ id, name, text, icon, link }) => {
                     return (
-                      <Card key={id}>
-                        <div>
+                      <Card key={id}   >
+                        <span>
                           <div
                             style={{
                               display: "flex",
                               justifyContent: "center",
-                              marginBottom: "15px",
                             }}
                           >
                             {icon}
                           </div>
 
-                          <Title
-                            small
-                            style={{ padding: "0 10px", margin: "0 10px" }}
-                            align="center"
-                          >
-                            {name}
-                          </Title>
-                          <Text align="center"> {text} </Text>
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          >
-                            <Link to={`/${link}`} style={{ color: "#fff" }}>
-                              <Text style={{ textTransform: "capitalize" }}>
-                                View {link}
-                              </Text>
+                          <div style={{ ...center }}>
+                            <Link
+                              to={`/${link}`}
+                              style={{ color: "#fff", textDecoration: "none" }}
+                            >
+                              <Title
+                                small
+                                style={{ padding: "0 10px" }}
+                                align="center"
+                              >
+                                {name}
+                              </Title>
                             </Link>
                           </div>
-                        </div>
+
+                          <div>
+                            <Text align="center"> {text} </Text>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <Link to={`/${link}`} style={{ color: "#fff" }}>
+                                <Text style={{ textTransform: "capitalize" }}>
+                                  View {link}
+                                </Text>
+                              </Link>
+                            </div>
+                          </div>
+                        </span>
                       </Card>
                     )
                   })}

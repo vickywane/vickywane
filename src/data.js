@@ -1,10 +1,25 @@
 import React from "react"
 import { FiCode, FiBookOpen } from "react-icons/fi"
+import styled from "styled-components"
+import media from "styled-media-query"
+
+const Book = styled(FiBookOpen)`
+  font-size: 2.2rem;
+  ${media.lessThan("medium")`
+font-size : 1.7rem;
+`};
+`
+const Build = styled(FiCode)`
+  font-size: 2.2rem;
+  ${media.lessThan("medium")`
+  font-size : 1.7rem;
+  `};
+`
 
 export const CardData = [
   {
     id: 1,
-    icon: <FiBookOpen style={{ fontSize: "2.1rem" }} />,
+    icon: <Book />,
     name: "Write Technical Articles",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
     link: "blog",
@@ -12,14 +27,14 @@ export const CardData = [
   {
     id: 2,
     name: "Build Projects",
-    icon: <FiCode style={{ fontSize: "2.1rem" }} />,
+    icon: <Build />,
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
     link: "projects",
   },
   {
     id: 3,
     name: "Give Technical Talks",
-    icon: <FiBookOpen style={{ fontSize: "2.1rem" }} />,
+    icon: <Book />,
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
     link: "talks",
   },
