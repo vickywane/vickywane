@@ -3,6 +3,7 @@ import media from 'styled-media-query'
 
 export const Text = styled.p`
   font-size: 0.85rem;
+  color : ${props => props.color};
   text-align: ${props => props.align};
   ${media.lessThan("large")`
   font-size: 0.80rem;
@@ -13,6 +14,7 @@ export const Title = styled.h3`
   font-weight: normal;
   text-align: ${props => props.align};
   font-size: ${props => props.small ?  "1rem"  : "1.2rem"};
+  color : ${props => props.color};
   ${media.lessThan("large")`
      font-size: ${props => props.small ?  "0.95rem"  : "1.2rem"};
   `};
