@@ -1,22 +1,28 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
+
+import { Text, Title, center } from "../styles/index"
+
+const HeaderBody = styled.header`
+  height: 60px;
+  background: rebeccapurple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 960;
+  span {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+`
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
+  <HeaderBody>
+    <span>
+      <div style={{ ...center }}>
         <Link
           to="/"
           style={{
@@ -24,19 +30,23 @@ const Header = ({ siteTitle }) => (
             textDecoration: `none`,
           }}
         >
-          {siteTitle}
+          <Title small> Home </Title>
         </Link>
-      </h1>
-    </div>
-  </header>
+      </div>
+
+      <div style={{ ...center }}>
+        <Link
+          to="/"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+        >
+          <Title small> Menu </Title>
+        </Link>
+      </div>
+    </span>
+  </HeaderBody>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header

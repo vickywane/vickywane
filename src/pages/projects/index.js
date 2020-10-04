@@ -1,11 +1,28 @@
 import React from "react"
-import { HomeBackground, Title, Text } from "../../styles/"
+import { HomeBackground, Title, Text, ProjectCard } from "../../styles/"
+import Header from "../../components/header"
+import styled from "styled-components"
 
-const index = () => {
+const data = [{}, {}, {}]
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, max-content));
+  grid-gap: 2rem 2rem;
+`
+
+const index = props => {
   return (
-    <HomeBackground>
-      <p> my projects </p>
-    </HomeBackground>
+    <div>
+      <Header />
+      <HomeBackground style={{ height: "100vh" }}>
+        <Grid>
+          {data.map(() => (
+            <ProjectCard />
+          ))}
+        </Grid>
+      </HomeBackground>
+    </div>
   )
 }
 

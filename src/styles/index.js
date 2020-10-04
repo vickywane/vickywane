@@ -1,9 +1,18 @@
-  import styled from "styled-components"
-import media from 'styled-media-query'
+import styled from "styled-components"
+import media from "styled-media-query"
+
+export const ProjectCard = styled.div`
+  height: 370px;
+  background: #282c34;
+  box-shadow: 0 2px 3px black;
+  width: 24rem;
+  border-radius: 5px;
+  border: 1px solid #282c34;
+`
 
 export const Text = styled.p`
   font-size: 0.85rem;
-  color : ${props => props.color};
+  color: ${props => props.color};
   text-align: ${props => props.align};
   ${media.lessThan("large")`
   font-size: 0.80rem;
@@ -13,10 +22,10 @@ export const Text = styled.p`
 export const Title = styled.h3`
   font-weight: normal;
   text-align: ${props => props.align};
-  font-size: ${props => props.small ?  "1rem"  : "1.2rem"};
-  color : ${props => props.color};
+  font-size: ${props => (props.small ? "1rem" : "1.2rem")};
+  color: ${props => props.color};
   ${media.lessThan("large")`
-     font-size: ${props => props.small ?  "0.95rem"  : "1.2rem"};
+     font-size: ${props => (props.small ? "0.95rem" : "1.2rem")};
   `};
 `
 
@@ -34,7 +43,7 @@ export const Button = styled.button`
     props.background ? props.background : "#6C15B1"};
   height: 45px;
   width: auto;
-  display : flex;
+  display: flex;
   padding: 0.5rem 1rem;
   color: #fff;
   font-size: 0.85rem;
