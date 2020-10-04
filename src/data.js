@@ -2,6 +2,7 @@ import React from "react"
 import { FiCode, FiBookOpen } from "react-icons/fi"
 import styled from "styled-components"
 import media from "styled-media-query"
+import Emoji from "./components/emoji"
 
 const Book = styled(FiBookOpen)`
   font-size: 2.2rem;
@@ -19,7 +20,7 @@ const Build = styled(FiCode)`
 export const CardData = [
   {
     id: 1,
-    icon: <Book />,
+    icon: <Emoji symbol="✍🏽" size="2.5rem" label="write" />,
     name: "Write Technical Articles",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
     link: "blog",
@@ -27,14 +28,14 @@ export const CardData = [
   {
     id: 2,
     name: "Build Projects",
-    icon: <Build />,
+    icon:   <Emoji symbol="👩🏽‍💻" size="2.5rem" label="write" />,
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
     link: "projects",
   },
   {
     id: 3,
     name: "Give Technical Talks",
-    icon: <Book />,
+    icon:   <Emoji symbol="🧑🏽‍🎤" size="2.5rem" label="write" />,
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
     link: "talks",
   },

@@ -11,15 +11,22 @@ import { CardData } from "../../data"
 import { HomeBackground, Text, Title, Button, center } from "../../styles/"
 import Experiences from "./experiences"
 import Contact from "./contact"
+import Emoji from "../../components/emoji"
+import "../../styles/transitions.css"
 
 const UserCard = styled.div`
   background-color: #282c34;
   height: 85%;
-  width: 70%;
+  transition: all 300ms;
+  width: 75%;
   color: #fff;
   padding: 0.5rem 1rem;
   border-radius: 7px;
   box-shadow: 0 2px 3px black;
+  ${media.lessThan("huge")`
+    height: 95%;
+    width: 95%;
+  `};
   ${media.lessThan("large")`
     height: 90%;
     width: 90%;
@@ -142,23 +149,17 @@ const Card = styled.div`
 `};
 `
 
-const WavingHand = keyframes`
-from {
-  transform: rotate(30deg);
-}
-to {
-  transform: rotate(0deg);
-}
-`
-
-const Wave = styled.img`
-  height: 80px;
-  width: 100px;
-  object-fit: contain;
-  animation: ${WavingHand} 1000ms ease-in-out 0s 300ms;
-  ${media.lessThan("large")`
-    display : none;
-  `}
+const WaveContainer = styled.div`
+  margin: 2rem 0;
+  span {
+    font-size: 4rem;
+  }
+  ${media.lessThan("huge")`
+  margin : 0;
+  span {
+     display : none;
+  }
+  `};
 `
 
 const StyledText = styled(Text)`
@@ -185,7 +186,7 @@ const Home = () => {
             in={CurrentView === "Contact"}
             unmountOnExit
             timeout={300}
-            classNames={""}
+            classNames={"contact"}
           >
             <Contact setView={val => setCurrentView(val)} />
           </CSSTransition>
@@ -264,13 +265,18 @@ const Home = () => {
                 </div>
 
                 <div>
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Wave
-                      alt="waving greet hand"
-                      src={require("../../images/waving.png")}
-                    />
-                  </div>
-
+                  <WaveContainer
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <span
+                      className="emoji"
+                      role="img"
+                      aria-label={"hand"}
+                      aria-hidden={true}
+                    >
+                      ✌🏽
+                    </span>
+                  </WaveContainer>
                   <Title
                     style={{ padding: "10px 0", margin: 0 }}
                     align="center"
@@ -297,13 +303,17 @@ const Home = () => {
               </Grid>
               <br />
               <div>
-                <Text style={{ paddingLeft: "3rem" }}>
-                  Outside my working hours, i do the following :
-                </Text>
+                <div style={{ display: "flex" }}>
+                  <Text style={{ paddingLeft: "3rem", margin: "0 .7rem" }}>
+                    Outside my working hours, i do the following
+                  </Text>
+
+                  <Emoji label="down" symbol="👇🏽" size="1.6rem" />
+                </div>
                 <Cards>
                   {CardData.map(({ id, name, text, icon, link }) => {
                     return (
-                      <Card key={id}   >
+                      <Card key={id}>
                         <span>
                           <div
                             style={{
@@ -357,7 +367,7 @@ const Home = () => {
             in={CurrentView === "experiences"}
             unmountOnExit
             timeout={300}
-            classNames={""}
+            classNames={"work"}
           >
             <Experiences setView={val => setCurrentView(val)} />
           </CSSTransition>
