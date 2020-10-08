@@ -2,8 +2,9 @@ import React from "react"
 import { IceCream } from "react-kawaii"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import Header from "../../components/header"
 
-import { HomeBackground, Button, Text, Title } from "../../styles/"
+import { HomeBackground, Button  , Title , Text} from "../../styles/"
 
 const Card = styled.div`
   background-color: #282c34;
@@ -15,29 +16,34 @@ const Card = styled.div`
 
 function index() {
   return (
-    <HomeBackground style={{ height: "100vh" }}>
-      <Card>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <IceCream size={220} />
-        </div>
+    <div>
+      <Header />
 
-        <Title align="center" small color="white">
-          This space is currently under development and would be rolled out soon{" "}
-        </Title>
-        <br />
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/">
-            <Button> Back To Home </Button>
-          </Link>
-        </div>
-      </Card>
-    </HomeBackground>
+      <HomeBackground style={{ height: "100vh" }}>
+        <Card>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IceCream size={220} />
+          </div>
+
+          <Title align="center" small color="white">
+            This space is currently under development and would be rolled out
+            soon{" "}
+          </Title>
+          <br />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link to="/">
+              <Button> Back To Home </Button>
+            </Link>
+          </div>
+        </Card>
+      </HomeBackground>
+    </div>
   )
 }
 
