@@ -1,9 +1,10 @@
 import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
 import styled from "styled-components"
+import media from "styled-media-query"
+import { FiMenu } from "react-icons/fi"
 
-import { Title, center } from "../styles/index"
+import { Text, center, IconHover } from "../styles/"
 
 const HeaderBody = styled.header`
   height: 60px;
@@ -29,7 +30,32 @@ const Image = styled.img`
   }
 `
 
-const Header = ({ siteTitle }) => (
+const List = styled.ul`
+  list-style: none;
+  display: flex;
+  padding-top: 15px;
+  flex-direction: row;
+  li {
+    margin: 0 1rem;
+  }
+  ${media.lessThan("medium")`
+
+  `};
+  ${media.lessThan("small")`
+      display : none; 
+  `};
+`
+
+const MenuIconContainer = styled.div`
+  display: none;
+  ${media.lessThan("small")`
+      display : flex;
+      justify-content : center;
+      align-items : center;
+  `}
+`
+
+const Header = ({ siteText }) => (
   <HeaderBody>
     <span>
       <Link to="/">
@@ -42,17 +68,49 @@ const Header = ({ siteTitle }) => (
         </div>
       </Link>
 
-      <div style={{ ...center }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          <Title small> Menu </Title>
-        </Link>
-      </div>
+      <List>
+        <li>
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >
+            <Text small> Contact Me </Text>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >
+            <Text small> Talks </Text>
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/"
+            style={{
+              color: `white`,
+              textDecoration: `none`,
+            }}
+          >
+            <Text small> Blog </Text>
+          </Link>
+        </li>
+      </List>
+
+      <MenuIconContainer>
+        <IconHover onClick={() => {}}>
+          <FiMenu style={{ fontSize: "1.8rem" }} />
+        </IconHover>
+      </MenuIconContainer>
     </span>
   </HeaderBody>
 )

@@ -3,7 +3,7 @@ import { Ghost } from "react-kawaii"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-import { HomeBackground, Button, Text, Title } from "../../styles/"
+import { HomeBackground, Button, Text, Title, center } from "../../styles/"
 
 const Card = styled.div`
   background-color: #282c34;
@@ -15,7 +15,7 @@ const Card = styled.div`
 
 function index() {
   return (
-    <HomeBackground style={{ height: "100vh" }}>
+    <HomeBackground style={{ height: "100vh", ...center }}>
       <Card>
         <div>
           <Link to="/">
