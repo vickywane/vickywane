@@ -185,9 +185,9 @@ const Card = styled.div`
 `
 
 const WaveContainer = styled.div`
-  margin: 2rem 0;
+  margin: .5rem 0;
   span {
-    font-size: 4rem;
+    font-size: 3rem;
   }
   ${media.lessThan("huge")`
   margin : 0;
