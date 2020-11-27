@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { IoIosArrowRoundBack, IoMdCalendar } from "react-icons/io"
 import { HiOutlineSparkles } from "react-icons/hi"
 
-import { Text, Title, center } from "../../styles/"
+import { Text, Title, center, Button } from "../../styles/"
 import { StyledHover, Header } from "./"
 import { WorkPlaces, Programs } from "../../data"
 
@@ -55,7 +55,9 @@ const Experiences = props => {
             <IoIosArrowRoundBack style={{ fontSize: "1.8rem" }} />
           </StyledHover>
 
-          <p style={{ opacity: 0 }}>.</p>
+          <div>
+            <Button> View My Certifications </Button>
+          </div>
         </div>
       </Header>
       {/* <div style={{ display: "flex", justifyContent: "center" }}>
@@ -105,7 +107,7 @@ const Experiences = props => {
 
       <br />
       <Title> Professional Programs </Title>
-      <hr  style={{background : "#fff"}} />
+      <hr style={{ background: "#fff" }} />
       <List>
         {Programs.map(({ id, name, link, role }) => {
           return (

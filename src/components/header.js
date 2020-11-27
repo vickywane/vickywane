@@ -22,8 +22,10 @@ const HeaderBody = styled.header`
 `
 
 const Image = styled.img`
+  margin-top : 5px;
   height: 50px;
   width: 50px;
+  object-fit : contain;
   border-radius: 50%;
   &: hover {
     cursor: pointer;
