@@ -8,7 +8,7 @@ import { HomeBackground, Button, Text, Title, center } from "../../styles/"
 const Card = styled.div`
   background-color: #282c34;
   width: 30rem;
-  height: 55vh;
+  height: auto;
   padding: 1rem 1rem;
   border-radius: 10px;
 `

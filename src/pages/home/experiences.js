@@ -58,7 +58,7 @@ const Experiences = props => {
           <p style={{ opacity: 0 }}>.</p>
         </div>
       </Header>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      {/* <div style={{ display: "flex", justifyContent: "center" }}>
         <NoticeBox>
           <HiOutlineSparkles style={{ color: "#fff" }} />{" "}
           <Text align="center">
@@ -66,7 +66,7 @@ const Experiences = props => {
             cupiditate doloremque aliquid voluptas esse accusantium?
           </Text>
         </NoticeBox>
-      </div>
+      </div> */}
 
       <List>
         {WorkPlaces.map(({ id, name, link, role }) => {
@@ -105,6 +105,7 @@ const Experiences = props => {
 
       <br />
       <Title> Professional Programs </Title>
+      <hr  style={{background : "#fff"}} />
       <List>
         {Programs.map(({ id, name, link, role }) => {
           return (

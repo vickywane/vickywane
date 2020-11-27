@@ -9,7 +9,7 @@ import { Projects } from "../../data"
 const Grid = styled.div`
   padding: 1rem 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
   grid-gap: 2rem 2rem;
   ${media.lessThan("large")`
     grid-gap: 3rem 1rem;
@@ -20,10 +20,12 @@ const Grid = styled.div`
 
 const index = props => {
   return (
-    <div style={{ height: "100%", overflow: "none" }}>
+    <div style={{ height: "100%" }}>
       <Header />
 
-      <HomeBackground style={{ height: "calc(100vh - 60px)" }}>
+      <HomeBackground
+        style={{ height: "calc(100vh - 60px)", overflow: "auto" }}
+      >
         <Grid>
           {Projects.map(({ id, name, description }) => (
             <ProjectCard>

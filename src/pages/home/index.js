@@ -16,6 +16,7 @@ import "../../styles/transitions.css"
 const UserCard = styled.div`
   background-color: #282c34;
   height: 82%;
+  overflow : auto;
   transition: all 300ms;
   width: 70%;
   color: #fff;
@@ -401,7 +402,7 @@ const Home = () => {
 
               <div>
                 <SectionText style={{ display: "flex" }}>
-                  <Text>Outside my working hours, i do these things </Text>
+                  <Text style={{paddingTop : "5px"}} >Outside my working hours, i do these things </Text>
 
                   <ResponsiveEmoji>
                     <span

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { FiLinkedin, FiTwitter } from "react-icons/fi"
 import { IoIosArrowRoundBack } from "react-icons/io"
@@ -23,12 +23,18 @@ const InputBody = styled.div`
     color: #000;
     font-size: 0.9rem;
     padding: 0 1rem;
+    &: focus {
+      box-shadow: 0 2px 3px #6c15b1;
+    }
   }
   textarea {
     border-radius: 3px;
     height: 15vh;
     font-size: 0.9rem;
     padding: 1rem 1rem;
+    &: focus {
+      box-shadow: 0 2px 3px #6c15b1;
+    }
   }
 `
 
@@ -44,7 +50,12 @@ const Grid = styled.div`
 `
 
 const Contact = props => {
+  const [isSendingMessage, sendMessage] = useState(false)
   const { setView } = props
+
+  const handleMessage = () => {
+    sendMessage(true)
+  }
 
   return (
     <div>
@@ -59,50 +70,104 @@ const Contact = props => {
           <StyledHover onClick={() => setView("home")}>
             <IoIosArrowRoundBack style={{ fontSize: "1.8rem" }} />
           </StyledHover>
-          .
+
+          <p style={{ opacity: 0 }}> .</p>
         </div>
       </Header>
 
-      <div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Emoji size="3rem" symbol="🙌🏾" label="contact emoji" />{" "}
+      {!isSendingMessage ? (
+        <div>
+          <div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Emoji size="3rem" symbol="🙌🏾" label="contact emoji" />{" "}
+            </div>
+            <br />
+            <Title align="center">
+              Want to reach out to me for something? Let's Get In Touch!{" "}
+            </Title>
+          </div>
+
+          <Grid>
+            <a
+              href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
+              target="_blank"
+              rel="norefferrer"
+              style={{ textDecoration: "none" }}
+            >
+              <Button>
+                <div style={{ margin: "0 .5rem" }}>
+                  <FiLinkedin style={{ fontSize: "1.4rem" }} />
+                </div>
+                Contact me on Linkedin
+              </Button>
+            </a>
+
+            <a
+              target="_blank"
+              rel="norefferrer"
+              href="https://twitter.com/iamnwani01"
+              style={{ textDecoration: "none" }}
+            >
+              <br />
+              <Button>
+                <div style={{ margin: "0 .5rem" }}>
+                  <FiTwitter style={{ fontSize: "1.4rem" }} />
+                </div>
+                Message me on Twitter
+              </Button>
+            </a>
+          </Grid>
+
+          <InputBody>
+            <label> Your Name </label>
+            <input placeholder="Your name or just a nick name" type="text" />
+          </InputBody>
+
+          <InputBody>
+            <label> What do you wanna talk about ? </label>
+            <textarea
+              placeholder="A brief summary of what you want to reach out to me for."
+              type="text"
+            />
+          </InputBody>
+
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <p style={{ opacity: 0 }}> . </p>
+            <Button
+              onClick={_ => handleMessage()}
+              style={{ textAlign: "right" }}
+            >
+              Send the message my way
+            </Button>
+          </div>
         </div>
-        <Title align="center"> Let's Get In Touch </Title>
-      </div>
-
-      <Grid>
-        <a style={{ textDecoration: "none" }}>
-          <Button>
-            <div style={{ margin: "0 .5rem" }}>
-              <FiLinkedin style={{ fontSize: "1.4rem" }} />
+      ) : (
+        <div
+          style={{
+            height: "60vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Emoji size="4rem" symbol="🙌🏾" label="contact emoji" />{" "}
             </div>
-            Contact me on Linkdeln
-          </Button>
-        </a>
+            <br />
+            <br />
+            <Title small align="center">
+              Your message has been sent! <br /> My response would be coming
+              your way soon!{" "}
+            </Title>
+            <br />
 
-        <a style={{ textDecoration: "none" }}>
-          <br />
-          <Button>
-            <div style={{ margin: "0 .5rem" }}>
-              <FiTwitter style={{ fontSize: "1.4rem" }} />
+            <div style={{ ...center }}>
+              <Button onClick={() => setView("home")}>Move Back Home</Button>
             </div>
-            Message me on Twitter
-          </Button>
-        </a>
-      </Grid>
-
-      <InputBody>
-        <label> Your Name </label>
-        <input placeholder="Your name or username" type="text" />
-      </InputBody>
-
-      <InputBody>
-        <label> What do you wanna talk about ? </label>
-        <textarea
-          placeholder="Tip: I'll respond faster if it's work cum dollars 🤑"
-          type="text"
-        />
-      </InputBody>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
