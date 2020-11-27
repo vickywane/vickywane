@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Header from "../../components/header"
 
-import { HomeBackground, Button, Title, Text , center} from "../../styles/"
+import { HomeBackground, Button, Title, Text, center } from "../../styles/"
 
 const Card = styled.div`
   background-color: #282c34;
@@ -15,10 +15,10 @@ const Card = styled.div`
 `
 function index() {
   return (
-    <div>
+    <div style={{ height: "100%", overflow: "none" }}>
       <Header />
 
-      <HomeBackground style={{ height: "100vh" , ...center }}>
+      <HomeBackground style={{ height: "calc(100vh - 60px)", ...center }}>
         <Card>
           <div
             style={{

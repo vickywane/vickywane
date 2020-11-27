@@ -6,7 +6,6 @@ import { FiLinkedin, FiTwitter, FiBookOpen, FiCode } from "react-icons/fi"
 import { CSSTransition } from "react-transition-group"
 import media from "styled-media-query"
 import { FiMail } from "react-icons/fi"
-import { IoIosArrowForward } from "react-icons/io"
 
 import { CardData } from "../../data"
 import { HomeBackground, Text, Title, Button, center } from "../../styles/"
@@ -16,11 +15,11 @@ import "../../styles/transitions.css"
 
 const UserCard = styled.div`
   background-color: #282c34;
-  height: 85%;
+  height: 82%;
   transition: all 300ms;
-  width: 75%;
+  width: 70%;
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 2rem 1rem;
   border-radius: 7px;
   box-shadow: 0 2px 3px black;
   ${media.lessThan("huge")`
@@ -33,8 +32,8 @@ const UserCard = styled.div`
   `};
   ${media.lessThan("small")`
     padding: 0.5rem .5rem;
-    height: 96%;
-    width: 96%;
+    height: 97%;
+    width: 97%;
   `};
 `
 
@@ -169,8 +168,9 @@ const Card = styled.div`
 `};
   ${media.lessThan("small")`
     width: 100%; 
-    height : 7vh;
+    height : 6.5vh;
     padding: 0.5rem 0.5rem;
+    margin : .2rem 0;
     span {
     display : flex;
     flex-direction   : row;
@@ -185,7 +185,7 @@ const Card = styled.div`
 `
 
 const WaveContainer = styled.div`
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   span {
     font-size: 3rem;
   }
@@ -244,9 +244,10 @@ const Home = () => {
   const [CurrentView, setCurrentView] = useState("home")
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100%" }}>
       <HomeBackground
         style={{
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -270,6 +271,7 @@ const Home = () => {
           >
             <div
               style={{
+                height : "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -326,6 +328,7 @@ const Home = () => {
                   </Button>
                 </div>
               </Header>
+
               <Grid>
                 <div style={{ ...center }}>
                   <Image
@@ -395,7 +398,6 @@ const Home = () => {
                   </div>
                 </div>
               </Grid>
-              <br />
 
               <div>
                 <SectionText style={{ display: "flex" }}>
@@ -472,18 +474,13 @@ const Home = () => {
                                 >
                                   <Text
                                     style={{
+                                      color: "orange",
                                       margin: 0,
                                       textTransform: "capitalize",
                                     }}
                                   >
                                     View {link}
                                   </Text>
-
-                                  <StyledHover
-                                    style={{ padding: 0, marginTop: "5px", marginRight :"2px" }}
-                                  >
-                                    <IoIosArrowForward style={{ margin: 0 , fontSize : "1.25rem" }} />
-                                  </StyledHover>
                                 </div>
                               </Link>
                             </div>

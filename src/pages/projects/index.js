@@ -20,10 +20,10 @@ const Grid = styled.div`
 
 const index = props => {
   return (
-    <div>
+    <div style={{ height: "100%", overflow: "none" }}>
       <Header />
 
-      <HomeBackground style={{ height: "100vh" }}>
+      <HomeBackground style={{ height: "calc(100vh - 60px)" }}>
         <Grid>
           {Projects.map(({ id, name, description }) => (
             <ProjectCard>
