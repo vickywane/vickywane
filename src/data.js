@@ -49,7 +49,7 @@ export const CardData = [
           aria-label={"write"}
           aria-hidden={true}
         >
-          👩🏽‍💻
+                    🧑🏽‍💻
         </span>
       </ResponsiveEmoji>
     ),
@@ -67,7 +67,7 @@ export const CardData = [
           aria-label={"write"}
           aria-hidden={true}
         >
-          🧑🏽‍🎤
+          🎤
         </span>
       </ResponsiveEmoji>
     ),
