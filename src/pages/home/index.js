@@ -15,7 +15,7 @@ import "../../styles/transitions.css"
 
 const UserCard = styled.div`
   background-color: #282c34;
-  height: 82%;
+  height: 87%;
   overflow : auto;
   transition: all 300ms;
   width: 70%;
