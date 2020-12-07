@@ -21,7 +21,7 @@ export const Text = styled.p`
   color: ${props => props.color};
   text-align: ${props => props.align};
   ${media.lessThan("large")`
-  font-size: 0.80rem;
+  font-size: 0.85rem;
   `};
 `
 
