@@ -26,17 +26,29 @@ const index = props => {
       <HomeBackground
         style={{ height: "calc(100vh - 60px)", overflow: "auto" }}
       >
-        <Grid>
-          {Projects.map(({ id, name, description }) => (
-            <ProjectCard>
-              <div>
-                <Title align="center"> {name} </Title>
-              </div>
+        <div style={{ textAlign: "center", color: "white" }}>
+          <br />
+          <Title>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
+            voluptas!
+          </Title>
 
-              <Text> {description} </Text>
-            </ProjectCard>
-          ))}
-        </Grid>
+          <Text>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
+            ex optio a perspiciatis magni nemo natus corrupti error! Possimus,
+            incidunt.
+          </Text>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            alt="My project view"
+            src={
+              "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+            }
+            style={{ height: "80%", width: "80%", objectFit: "contain" }}
+          />
+        </div>
       </HomeBackground>
     </div>
   )
