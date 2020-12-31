@@ -73,19 +73,19 @@ const Header = ({ siteText }) => (
       <List>
         <li>
           <Link
-            to="/"
+            to="/blog"
             style={{
               color: `white`,
               textDecoration: `none`,
             }}
           >
-            <Text small> Contact Me </Text>
+            <Text small> Articles </Text>
           </Link>
         </li>
 
         <li>
           <Link
-            to="/"
+            to="/talks"
             style={{
               color: `white`,
               textDecoration: `none`,
@@ -97,13 +97,13 @@ const Header = ({ siteText }) => (
 
         <li>
           <Link
-            to="/"
+            to="/projects"
             style={{
               color: `white`,
               textDecoration: `none`,
             }}
           >
-            <Text small> Blog </Text>
+            <Text small> Work </Text>
           </Link>
         </li>
       </List>

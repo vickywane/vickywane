@@ -19,6 +19,8 @@ export const ProjectCard = styled.div`
 export const Text = styled.p`
   font-size: 0.9rem;
   color: ${props => props.color};
+  font-weight: normal;
+
   text-align: ${props => props.align};
   ${media.lessThan("large")`
   font-size: 0.85rem;
