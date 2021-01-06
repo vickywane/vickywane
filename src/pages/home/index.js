@@ -16,7 +16,7 @@ import "../../styles/transitions.css"
 const UserCard = styled.div`
   background-color: #282c34;
   height: 87%;
-  overflow : auto;
+  overflow: auto;
   transition: all 300ms;
   width: 70%;
   color: #fff;
@@ -241,6 +241,16 @@ const SectionText = styled.div`
     `}
 `
 
+const HoverLink = styled.div`
+  padding-left: 10px;
+  color: orange;
+  cursor: pointer;
+  &: hover {
+    text-decoration: 1.5px orange underline;
+    text-decoration-style: wavy;
+  }
+`
+
 const Home = () => {
   const [CurrentView, setCurrentView] = useState("home")
 
@@ -272,7 +282,7 @@ const Home = () => {
           >
             <div
               style={{
-                height : "100%",
+                height: "100%",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -364,45 +374,25 @@ const Home = () => {
                     I work as a Frontend Engineer and also an advocate for Cloud
                     Engineering through written articles on Cloud Technologies
                     as a Technical Author.
-                    <span style={{ color: "orange", cursor: "pointer" }}>
-                      <p> Learn More About Me </p>
-                    </span>
                   </StyledText>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                    }}
+                  <StyledText
+                    style={{ display: "flex", justifyContent: "center" }}
+                    align="center"
                   >
-                    <Button
-                      onClick={() => setCurrentView("Contact")}
-                      style={{
-                        padding: "0 3rem",
-                        ...center,
-                      }}
-                    >
-                      <div
-                        style={{
-                          margin: "0 .5rem",
-                          ...center,
-                        }}
-                      >
-                        <FiMail
-                          style={{
-                            fontSize: "1.4rem",
-                          }}
-                        />
-                      </div>
-                      Contact Me
-                    </Button>
-                  </div>
+                    Hiring?
+                    <HoverLink>
+                      <p> Learn More About Me </p>
+                    </HoverLink>
+                  </StyledText>
                 </div>
               </Grid>
 
               <div>
                 <SectionText style={{ display: "flex" }}>
-                  <Text style={{paddingTop : "5px"}} >Outside my working hours, i do these things </Text>
+                  <Text style={{ paddingTop: "5px" }}>
+                    Outside my working hours, i do these things{" "}
+                  </Text>
 
                   <ResponsiveEmoji>
                     <span

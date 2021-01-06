@@ -16,7 +16,7 @@ const ResponsiveEmoji = styled.div`
     margin-top : 10px;
     font-size: 1.3rem;
     `};
-  }
+  } 
 `
 
 export const CardData = [
@@ -35,7 +35,8 @@ export const CardData = [
       </ResponsiveEmoji>
     ),
     name: "Write Technical Articles",
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
+    text:
+      "I create technical content which simplifies cloud engineering for Frontend Developers",
     link: "blog",
   },
   {
@@ -49,7 +50,7 @@ export const CardData = [
           aria-label={"write"}
           aria-hidden={true}
         >
-                    🧑🏽‍💻
+          🧑🏽‍💻
         </span>
       </ResponsiveEmoji>
     ),
