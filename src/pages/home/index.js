@@ -5,10 +5,18 @@ import { DiStackoverflow, DiGithubBadge } from "react-icons/di"
 import { FiLinkedin, FiTwitter, FiBookOpen, FiCode } from "react-icons/fi"
 import { CSSTransition } from "react-transition-group"
 import media from "styled-media-query"
-import { FiMail } from "react-icons/fi"
+import { useStaticQuery, graphql } from "gatsby"
 
+import GatsbyImage from "../../components/image"
 import { CardData } from "../../data"
-import { HomeBackground, Text, Title, Button, center } from "../../styles/"
+import {
+  HomeBackground,
+  Text,
+  Title,
+  Button,
+  center,
+  HoverLink,
+} from "../../styles/"
 import Experiences from "./experiences"
 import Contact from "./contact"
 import "../../styles/transitions.css"
@@ -241,18 +249,22 @@ const SectionText = styled.div`
     `}
 `
 
-const HoverLink = styled.div`
-  padding-left: 10px;
-  color: orange;
-  cursor: pointer;
-  &: hover {
-    text-decoration: 1.5px orange underline;
-    text-decoration-style: wavy;
-  }
-`
-
 const Home = () => {
   const [CurrentView, setCurrentView] = useState("home")
+
+  const data = useStaticQuery(
+    graphql`
+      query HomeQuery {
+        file(relativePath: { eq: "my_avatar.png" }) {
+          childImageSharp {
+            fixed(height: 160) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }
+    `
+  )
 
   return (
     <div style={{ height: "100%" }}>
@@ -342,8 +354,8 @@ const Home = () => {
 
               <Grid>
                 <div style={{ ...center }}>
-                  <Image
-                    src={require("../../images/my_avatar.png")}
+                  <GatsbyImage
+                    fixed={data.file.childImageSharp.fixed}
                     alt="an avatar of me"
                   />
                 </div>
@@ -390,9 +402,17 @@ const Home = () => {
 
               <div>
                 <SectionText style={{ display: "flex" }}>
-                  <Text style={{ paddingTop: "5px" }}>
-                    Outside my working hours, i do these things{" "}
-                  </Text>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center              ",
+                    }}
+                  >
+                    <Text style={{ paddingTop: "5px" }}>
+                      Outside my working hours, i do these things{" "}
+                    </Text>
+                  </div>
 
                   <ResponsiveEmoji>
                     <span

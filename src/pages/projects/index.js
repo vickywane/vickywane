@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import media from "styled-media-query"
 
 import { HomeBackground, Title, Text } from "../../styles/"
@@ -6,57 +7,24 @@ import Header from "../../components/header"
 import { CSSTransition } from "react-transition-group"
 import GalleryComponent from "./gallery"
 
-const sample = [
-  [
-    {
-      title: "GraphQL Upload Starter App",
-      description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Voluptates beatae neque repudiandae quis dolores illo corrupti
-quae, similique est optio!`,
-      images: [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/dkfptto8m/image/upload/v1600414581/Screenshot_from_2020-09-18_08-33-49.png",
-        ,
-        "https://res.cloudinary.com/dkfptto8m/image/upload/v1556654670/img.jpg",
-      ],
-    },
-  ],
-  [
-    {
-      title: "TryChameleon Interview",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Voluptates beatae neque repudiandae quis dolores illo corrupti
-quae, similique est optio!`,
-      images: [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-      ],
-    },
-  ],
-  [
-    {
-      title: "GitStart Interview",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Voluptates beatae neque repudiandae quis dolores illo corrupti
-quae, similique est optio!`,
-      images: [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-      ],
-    },
-  ],
-]
-
 const Projects = () => {
   const [Target, setTarget] = useState(0)
 
+  const data = useStaticQuery(graphql`
+    query portfolio {
+      article {
+        getProjects {
+          description
+          git_link
+          images_uri
+          name
+        }
+      }
+    }
+  `)
+  const { description, git_link, images_uri, name } = data.article.getProjects[
+    Target
+  ]
   return (
     <div style={{ height: "100%", overflow: "hidden" }}>
       <Header />
@@ -74,11 +42,11 @@ const Projects = () => {
           </Text>
         </div>
 
-        {sample[Target].map((data, index) => {
+        {data.article.getProjects.map((data, index) => {
           return (
             <CSSTransition unmountOnExit timeout={400} in={index === 0}>
               <GalleryComponent
-                data={data}
+                data={{ description, git_link, images_uri, name }}
                 target={Target}
                 prevSlide={() => {
                   if (Target > 0) {
@@ -86,9 +54,9 @@ const Projects = () => {
                   }
                 }}
                 nextSlide={() => {
-                  if (Target + 2 <= sample.length) {
-                    setTarget(Target + 1)
-                  }
+                  // if (Target + 2 <= sample.length) {
+                  //   setTarget(Target + 1)
+                  // }
                 }}
               />
             </CSSTransition>

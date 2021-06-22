@@ -101,9 +101,10 @@ const GalleryComponent = ({ data, nextSlide, prevSlide, target }) => {
             alignContent: "center",
           }}
         >
+          {/* <Image alt={data.title} fixed={mainImage || data.images_uri[0]}  /> */}
           <img
             alt="My project view"
-            src={mainImage || data.images[0]}
+            src={mainImage || data.images_uri[0]}
             style={{
               height: "80%",
               width: "80%",
@@ -113,7 +114,7 @@ const GalleryComponent = ({ data, nextSlide, prevSlide, target }) => {
         </div>
 
         <Thumbnails>
-          {data.images.map((img, index) => (
+          {data.images_uri.map((img, index) => (
             <ul>
               <li>
                 <Thumbnail

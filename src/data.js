@@ -16,7 +16,7 @@ const ResponsiveEmoji = styled.div`
     margin-top : 10px;
     font-size: 1.3rem;
     `};
-  } 
+  }
 `
 
 export const CardData = [
@@ -54,7 +54,7 @@ export const CardData = [
         </span>
       </ResponsiveEmoji>
     ),
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
+    text: "I build fun projects out of my wild imaginations for people to use",
     link: "projects",
   },
   {
@@ -72,7 +72,8 @@ export const CardData = [
         </span>
       </ResponsiveEmoji>
     ),
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.Accusantium",
+    text:
+      "I enjoy speaking about various aspects engineering to people who care to listen",
     link: "talks",
   },
 ]
@@ -80,11 +81,21 @@ export const CardData = [
 export const WorkPlaces = [
   {
     id: 1,
-    name: "Liferithms",
+    name: "Liferithms.inc",
     role: "Frontend Engineer",
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde similique ea, suscipit minima officiis perferendis tempora quas quo ut culpa!",
-    link: "https://www.liferithms.inc",
+    link: "https://liferithms.com/",
+    duration: "2020 - Present",
+  },
+  {
+    id: 4,
+    name: "Smashing Magazine",
+    role: "Technical Writer",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde similique ea, suscipit minima officiis perferendis tempora quas quo ut culpa!",
+    link: "https://www.smashingmagazine.com/author/nwani-victory/",
+    duration: "2020 - Present",
   },
   {
     id: 2,
@@ -92,25 +103,21 @@ export const WorkPlaces = [
     role: "Intern",
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde similique ea, suscipit minima officiis perferendis tempora quas quo ut culpa!",
-    link: "https://www.liferithms.inc",
+    link: "https://hotels.ng/",
+    duration: "6 Months",
   },
   {
     id: 3,
     name: "Patfin High School",
-    role: "I.T Personnel",
+    role: "I.T Support Staff",
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Unde similique ea, suscipit minima officiis perferendis tempora quas quo ut culpa!",
-    link: "https://www.liferithms.inc",
+    link: "#",
+    duration: "",
   },
 ]
 
 export const Programs = [
-  {
-    id: 1,
-    name: "Open Source Contributor",
-    role: "Particpant",
-  },
-
   {
     id: 2,
     name: "Google Code In",
@@ -119,7 +126,7 @@ export const Programs = [
   {
     id: 3,
     name: "Google Africa Developer Scholarship",
-    role: "Particpant",
+    role: "Particpant ( Cloud Track )",
   },
 ]
 

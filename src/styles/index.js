@@ -16,6 +16,16 @@ export const ProjectCard = styled.div`
   `};
 `
 
+export const HoverLink = styled.div`
+  padding-left: 10px;
+  color: orange;
+  cursor: pointer;
+  &: hover {
+    text-decoration: 1.5px orange underline;
+    text-decoration-style: wavy;
+  }
+`
+
 export const Text = styled.p`
   font-size: 0.9rem;
   color: ${props => props.color};
@@ -76,6 +86,7 @@ export const Button = styled.button`
 `
 
 export const IconHover = styled.div`
+  font-size: 1rem;
   color: ${props => (props.color ? props.color : "white")};
   &: hover {
     cursor: pointer;

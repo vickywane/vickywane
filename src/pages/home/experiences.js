@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { IoIosArrowRoundBack, IoMdCalendar } from "react-icons/io"
-import { HiOutlineSparkles } from "react-icons/hi"
+import { IoIosArrowRoundBack, IoMdCalendar, IoIosLink } from "react-icons/io"
+import { FiExternalLink } from "react-icons/fi"
 
 import { Text, Title, center, Button } from "../../styles/"
 import { StyledHover, Header } from "./"
@@ -31,13 +31,6 @@ const List = styled.ul`
   }
 `
 
-const NoticeBox = styled.div`
-  width: 90%;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  border: 1px dashed #fff;
-`
-
 const Experiences = props => {
   const { setView } = props
 
@@ -55,21 +48,9 @@ const Experiences = props => {
             <IoIosArrowRoundBack style={{ fontSize: "1.8rem" }} />
           </StyledHover>
 
-          <div>
-            <Button> View My Certifications </Button>
-          </div>
+          <div>.{/* <Button> View My Certifications </Button> */}</div>
         </div>
       </Header>
-      {/* <div style={{ display: "flex", justifyContent: "center" }}>
-        <NoticeBox>
-          <HiOutlineSparkles style={{ color: "#fff" }} />{" "}
-          <Text align="center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-            cupiditate doloremque aliquid voluptas esse accusantium?
-          </Text>
-        </NoticeBox>
-      </div> */}
-
       <List>
         {WorkPlaces.map(({ id, name, link, role }) => {
           return (
@@ -77,12 +58,7 @@ const Experiences = props => {
               <span>
                 <div style={{ ...center }}>
                   <div style={{ display: "flex" }}>
-                    <a
-                      href={`${link}`}
-                      style={{ marginRight: ".5rem" }}
-                      target="_blank"
-                      rel="noopener"
-                    >
+                    <a href={`#`} style={{ marginRight: ".5rem" }}>
                       <Text> {name} </Text>
                     </a>
 
@@ -93,11 +69,11 @@ const Experiences = props => {
                 </div>
 
                 <div style={{ display: "flex" }}>
-                  <IoMdCalendar style={{ fontSize: "1.4rem" }} />
-
-                  <div style={{ display: "flex" }}>
-                    <Text style={{ margin: "0 0.3rem" }}>2 years 2 months</Text>
-                  </div>
+                  <StyledHover onClick={() => setView("home")}>
+                    <a href={link} target="_blank" rel="noopener">
+                      <FiExternalLink />
+                    </a>
+                  </StyledHover>
                 </div>
               </span>
             </li>
@@ -106,7 +82,7 @@ const Experiences = props => {
       </List>
 
       <br />
-      <Title> Professional Programs </Title>
+      <Title small> Professional Programs </Title>
       <hr style={{ background: "#fff" }} />
       <List>
         {Programs.map(({ id, name, link, role }) => {
@@ -131,11 +107,11 @@ const Experiences = props => {
                 </div>
 
                 <div style={{ display: "flex" }}>
-                  <IoMdCalendar style={{ fontSize: "1.4rem" }} />
-
-                  <div style={{ display: "flex" }}>
-                    <Text style={{ margin: "0 0.3rem" }}>2 years 2 months</Text>
-                  </div>
+                  <StyledHover onClick={() => setView("home")}>
+                    <a href={link} target="_blank" rel="noopener">
+                      <FiExternalLink />
+                    </a>
+                  </StyledHover>
                 </div>
               </span>
             </li>

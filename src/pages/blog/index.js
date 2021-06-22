@@ -3,17 +3,10 @@ import { IceCream } from "react-kawaii"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Header from "../../components/header"
-import { FiClock } from "react-icons/fi"
+import { IoMdCalendar } from "react-icons/io"
 import media from "styled-media-query"
 
-import {
-  HomeBackground,
-  Button,
-  Title,
-  Text,
-  center,
-  IconHover,
-} from "../../styles/"
+import { HomeBackground, Button, Title, Text, IconHover } from "../../styles/"
 
 const Grid = styled.div`
   padding: 1rem 1rem;
@@ -32,7 +25,7 @@ const Card = styled.div`
 `
 
 const Body = styled(HomeBackground)`
-  padding: 1rem 1rem;
+  padding: 1rem 0.5rem;
   height: calc(100vh - 60px);
   overflow: auto;
   display: flex;
@@ -110,7 +103,7 @@ const TitleHover = styled.a`
   text-decoration: none;
   color: orange;
   transition: all 300ms;
-  padding: 0.5rem;
+  padding: 0 0.5rem;
   &: hover {
     text-decoration: underline;
   }
@@ -143,18 +136,18 @@ function index() {
               <Card>
                 <div style={{ display: "flex" }}>
                   <IconHover style={{ marginTop: "3px", marginRight: "5px" }}>
-                    <FiClock />
+                    <IoMdCalendar />
                   </IconHover>
 
                   <Text small color="white">
                     {date}
                   </Text>
                 </div>
+
                 <TitleHover href={link}>
                   <Title color="white">{title}</Title>
                 </TitleHover>
                 <Text color="white">{description} </Text>
-                <br />
 
                 <a href={link}>
                   <Button> Continue Reading ... </Button>

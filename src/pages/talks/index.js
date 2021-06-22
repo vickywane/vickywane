@@ -3,7 +3,7 @@ import { Ghost } from "react-kawaii"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-import { HomeBackground, Button, Text, Title, center } from "../../styles/"
+import { HomeBackground, Button, Text, Title, center , HoverLink } from "../../styles/"
 
 const Card = styled.div`
   background-color: #282c34;
@@ -45,7 +45,7 @@ function index() {
             Please
             <span style={{ textDecorationStyle: "wavy" }}> drop a line </span>,
             i would love to give a talk based on my
-            <Link to="/blog"> written articles </Link> .
+            <Link style={{textDecoration : "none"}} to="/blog"> <HoverLink> written articles </HoverLink></Link>
           </Text>
         </div>
       </Card>
