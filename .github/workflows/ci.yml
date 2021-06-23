@@ -27,4 +27,4 @@ jobs:
           CI: true
 
       - name: Install application dependencies
-        run: npm run install
+        run: npm install
