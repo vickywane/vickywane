@@ -1,12 +1,29 @@
 {
   "blog": [
     {
+      "id": 6,
+      "title": "Integrating A Dialogflow Agent Into A React Application",
+      "description":
+      "When it comes to building a conversational chat assistant that could be used at a small or enterprise level, Dialogflow would most likely be one of the first options that would show up in your search list. But apart from its console that is provided to design and manage an Agent, how can we create a chat assistant that can be used within our built web applications, too?",
+      "link": "https://www.smashingmagazine.com/2021/01/dialogflow-agent-react-application/",
+      "date": "January 14, 2021"
+    },
+    {
+      "id": 5,
+      "title":
+      "Getting Started With Webpack",
+      "description":
+      "Modern browsers provide good support for JavaScript modules, but module bundlers such as webpack stay a critical part of the JavaScript toolchain. Let’s take a deep dive into what webpack is and how to use it in your development workflow.",
+      "link": "https://www.smashingmagazine.com/2021/06/getting-started-webpack/",
+      "date": "June 4th, 2021"
+    },
+    {
       "id": 3,
       "title":
       "Building A Conversational N.L.P Enabled Chatbot Using Google’s Dialogflow",
       "description":
       "The 2019 Capgemini research institute’s report published after a research on the use of chat assistants showed a drastic 76% increase in customer satisfaction from organizations where chat assistants where built and incorporated into their services. But how does Dialogflow, a product from Google’s ecosystem aid developers in building chat assistants and contribute to this quota?.",
-      "link": "#",
+      "link": "https://www.smashingmagazine.com/2020/12/conversational-nlp-enabled-chatbot-google-dialogflow/",
       "date": "Dec 10, 2020"
     },
     {
