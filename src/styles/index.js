@@ -20,7 +20,7 @@ export const HoverLink = styled.div`
   padding-left: 10px;
   color: orange;
   cursor: pointer;
-  &: hover {
+  &:hover {
     text-decoration: 1.5px orange underline;
     text-decoration-style: wavy;
   }
@@ -38,7 +38,7 @@ export const Text = styled.p`
 `
 
 export const Title = styled.h3`
-  font-weight: normal;
+  font-weight: ${props => props.weight ? props.weight : 'normal'};
   text-align: ${props => props.align};
   font-size: ${props => (props.small ? "1rem" : "1.2rem")};
   color: ${props => props.color};

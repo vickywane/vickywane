@@ -7,7 +7,7 @@ import { FiMenu } from "react-icons/fi"
 import { Text, center, IconHover } from "../styles/"
 
 const HeaderBody = styled.header`
-  height: 60px;
+  height: 70px;
   background: rebeccapurple;
   display: flex;
   justify-content: center;

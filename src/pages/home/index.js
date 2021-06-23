@@ -30,7 +30,7 @@ const UserCard = styled.div`
   color: #fff;
   padding: 0.5rem 1rem 2rem 1rem;
   border-radius: 7px;
-  box-shadow: 0 2px 3px black;
+  box-shadow: 24px 31px 21px -8px rgba(0,0,0,0.9);
   ${media.lessThan("huge")`
     height: 95%;
     width: 95%;
@@ -257,7 +257,7 @@ const Home = () => {
       query HomeQuery {
         file(relativePath: { eq: "my_avatar.png" }) {
           childImageSharp {
-            fixed(height: 160) {
+            fixed(height: 170) {
               ...GatsbyImageSharpFixed
             }
           }
@@ -384,7 +384,7 @@ const Home = () => {
                   </Title>
                   <StyledText align="center">
                     I work as a Frontend Engineer and also an advocate for Cloud
-                    Engineering through written articles on Cloud Technologies
+                    Engineering through written articles on Cloud Services
                     as a Technical Author.
                   </StyledText>
 
