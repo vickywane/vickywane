@@ -5,7 +5,7 @@ import media from "styled-media-query"
 import { HomeBackground, Title, Text } from "../../styles/"
 import Header from "../../components/header"
 import { CSSTransition } from "react-transition-group"
-import GalleryComponent from "./gallery"
+// import GalleryComponent from "./gallery"
 
 const sample = [
   [
