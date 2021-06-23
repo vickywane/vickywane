@@ -58,7 +58,7 @@ const MenuIconContainer = styled.div`
 `
 
 const Header = ({ siteText }) => (
-  <HeaderBody>
+  <HeaderBody data-testid="header-component" >
     <span>
       <Link to="/">
         <div style={{ ...center }}>

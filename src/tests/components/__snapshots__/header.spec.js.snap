@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Id displays the header element It displays home page 1`] = `
+<header
+  className="sc-iCoHVE eOpKBc"
+  data-testid="header-component"
+>
+  <span>
+    <a
+      href="/"
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <img
+          alt="me"
+          className="sc-fujyUd bxLXBt"
+          src="test-file-stub"
+          style={Object {}}
+        />
+      </div>
+    </a>
+    <ul
+      className="sc-pNWxx cOfbTw"
+    >
+      <li>
+        <a
+          href="/blog"
+          style={
+            Object {
+              "color": "white",
+              "textDecoration": "none",
+            }
+          }
+        >
+          <p
+            className="sc-dlnjPT jucbKh"
+          >
+             Articles 
+          </p>
+        </a>
+      </li>
+      <li>
+        <a
+          href="/talks"
+          style={
+            Object {
+              "color": "white",
+              "textDecoration": "none",
+            }
+          }
+        >
+          <p
+            className="sc-dlnjPT jucbKh"
+          >
+             Talks 
+          </p>
+        </a>
+      </li>
+      <li>
+        <a
+          href="/projects"
+          style={
+            Object {
+              "color": "white",
+              "textDecoration": "none",
+            }
+          }
+        >
+          <p
+            className="sc-dlnjPT jucbKh"
+          >
+             Work 
+          </p>
+        </a>
+      </li>
+    </ul>
+    <div
+      className="sc-jrsJCI dLfXIF"
+    >
+      <div
+        className="sc-gKAblj hqExXV"
+        onClick={[Function]}
+      >
+        <svg
+          fill="none"
+          height="1em"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          style={
+            Object {
+              "color": undefined,
+              "fontSize": "1.8rem",
+            }
+          }
+          viewBox="0 0 24 24"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="3"
+            x2="21"
+            y1="12"
+            y2="12"
+          />
+          <line
+            x1="3"
+            x2="21"
+            y1="6"
+            y2="6"
+          />
+          <line
+            x1="3"
+            x2="21"
+            y1="18"
+            y2="18"
+          />
+        </svg>
+      </div>
+    </div>
+  </span>
+</header>
+`;

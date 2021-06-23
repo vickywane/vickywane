@@ -28,3 +28,6 @@ jobs:
 
       - name: Install application dependencies
         run: npm install
+
+      - name: Run Application Tests
+        run: npm run test
