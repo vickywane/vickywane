@@ -59,6 +59,18 @@ const TitleHover = styled.a`
   }
 `
 
+const BrandsList = styled.div`
+  display: grid;
+  grid-gap: 1rem 2rem;
+  place-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  img {
+    width: 8rem;
+    height: 40px;
+    object-fit: contain;
+  }
+`
+
 function index() {
   return (
     <div style={{ height: "100%" }}>
@@ -76,9 +88,14 @@ function index() {
             know.
           </Text>
 
-          {/* <div>
-            <Org> Smashing Magazine </Org>
-          </div> */}
+          <BrandsList id={'brands-list'} >
+            <img src={require('../../images/brands/strapi-logo-light.svg')} />
+              <img src={require('../../images/brands/smashingmag-logo.svg')} />
+              <img src={require('../../images/brands/rancher-logo-horiz-color.png')} />
+              <img src={require('../../images/brands/egghead.png')} />
+              <img src={require('../../images/brands/ContentLab-logo.png')} />
+          </BrandsList>
+<br />
           <hr style={{ background: "white" }} />
 
           <Grid>
