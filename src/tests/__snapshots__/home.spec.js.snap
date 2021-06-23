@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Portfolio Home page It displays home page 1`] = `
-<h1
-  data-testid="hero-title"
->
-  Gatsby is awesome!
-</h1>
-`;

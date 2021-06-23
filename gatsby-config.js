@@ -5,6 +5,7 @@ module.exports = {
     author: `@vickywane`,
   },
   plugins: [
+    'gatsby-plugin-nullish-coalescing-operator',
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {

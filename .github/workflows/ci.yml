@@ -1,4 +1,4 @@
-name: Portfolio Application CI Build
+name: Portfolio Application C.I Build
 
 on:
   push:
@@ -14,10 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14'
 
       - name: Install npm
         run: |
@@ -31,3 +31,10 @@ jobs:
 
       - name: Run Application Tests
         run: npm run test
+
+      - name: Wait for Netlify preview deployment
+        uses: jakepartusch/wait-for-netlify-action@v1
+        id: get-netlify-url
+        with:
+          site_name: "nwani"
+          max_timeout: 180

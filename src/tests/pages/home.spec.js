@@ -1,17 +1,10 @@
-/**
- * @jest-environment jsdom
- */
-import React from 'react'
-import renderer from 'react-test-renderer'
+import React from "react"
+import { render } from "@testing-library/react"
+import Home from '../../pages/home/index'
 
+test("Displays the Home Card", () => {
+    const { getByTestId } = render(<Home />)
+    const homeCard = getByTestId("home-card")
 
-const Title = () => <h1 data-testid="hero-title">Gatsby is awesome!</h1>
-
-describe('Portfolio Home page',  () => {
-    it('It displays home page', function () {
-        const tree = renderer.create(<Title />).toJSON()
-
-        expect(tree).toMatchSnapshot()
-    });
-});
-
+    expect(homeCard).not.toBeDisabled()
+})
