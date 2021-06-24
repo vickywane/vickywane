@@ -39,3 +39,8 @@ jobs:
         with:
           site_name: "nwani"
           max_timeout: 180
+      
+      - name: Run the semantic-release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
