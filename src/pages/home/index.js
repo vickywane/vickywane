@@ -7,6 +7,7 @@ import { CSSTransition } from "react-transition-group"
 import media from "styled-media-query"
 import { useStaticQuery, graphql } from "gatsby"
 
+import Seo from '../../components/seo'
 import GatsbyImage from "../../components/image"
 import { CardData } from "../../data"
 import {
@@ -268,6 +269,7 @@ const Home = () => {
 
   return (
     <div style={{ height: "100%" }}>
+      <Seo title={"Victory Nwani"} />
       <HomeBackground
         style={{
           height: "100vh",
@@ -276,7 +278,7 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <UserCard>
+        <UserCard data-testid={"home-card"} >
           <CSSTransition
             in={CurrentView === "Contact"}
             unmountOnExit
@@ -355,7 +357,7 @@ const Home = () => {
               <Grid>
                 <div style={{ ...center }}>
                   <GatsbyImage
-                    fixed={data.file.childImageSharp.fixed}
+                    fixed={data?.file?.childImageSharp?.fixed}
                     alt="an avatar of me"
                   />
                 </div>

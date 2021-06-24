@@ -2,6 +2,7 @@ import React from "react"
 import { Ghost } from "react-kawaii"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import Seo from '../../components/seo'
 
 import { HomeBackground, Button, Text, Title, center , HoverLink } from "../../styles/"
 
@@ -16,6 +17,7 @@ const Card = styled.div`
 function index() {
   return (
     <HomeBackground style={{ height: "100vh", ...center }}>
+      <Seo />
       <Card>
         <div>
           <Link to="/">
