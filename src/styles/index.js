@@ -16,6 +16,15 @@ export const ProjectCard = styled.div`
   `};
 `
 
+export const Card = styled.div`
+  background-color: #282c34;
+  width: 95%;
+  height: auto;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  margin: 1rem 0.5rem;
+`
+
 export const HoverLink = styled.div`
   padding-left: 10px;
   color: orange;

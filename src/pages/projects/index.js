@@ -1,85 +1,71 @@
-
 import React, { useState } from "react"
-import media from "styled-media-query"
+import styled from "styled-components"
+import { FiGithub } from "react-icons/fi"
+import { CSSTransition } from "react-transition-group"
 
+import { Card, Button } from "../../styles/"
 import { HomeBackground, Title, Text } from "../../styles/"
 import Header from "../../components/header"
-import { CSSTransition } from "react-transition-group"
-// import GalleryComponent from "./gallery"
+import ProjectData from "../../data/data.json"
 
-const sample = [
-  [
-    {
-      title: "GraphQL Upload Starter App",
-      description: ` Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Voluptates beatae neque repudiandae quis dolores illo corrupti
-quae, similique est optio!`,
-      images: [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/dkfptto8m/image/upload/v1600414581/Screenshot_from_2020-09-18_08-33-49.png",
-        ,
-        "https://res.cloudinary.com/dkfptto8m/image/upload/v1556654670/img.jpg",
-      ],
-    },
-  ],
-  [
-    {
-      title: "TryChameleon Interview",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Voluptates beatae neque repudiandae quis dolores illo corrupti
-quae, similique est optio!`,
-      images: [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-      ],
-    },
-  ],
-  [
-    {
-      title: "GitStart Interview",
-      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Voluptates beatae neque repudiandae quis dolores illo corrupti
-quae, similique est optio!`,
-      images: [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        ,
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-      ],
-    },
-  ],
-]
+const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  grid-gap: 1rem 1rem;
+  color: white;
+  place-items: center;
+`
+
+const ProjectCard = styled(Card)`
+  .images {
+  }
+  img {
+    object-fit: contain;
+    height: 110px;
+    margin: 0.5rem 0.5rem;
+  }
+`
 
 const Projects = () => {
-  const [Target, setTarget] = useState(0)
-
   return (
     <div style={{ height: "100%", overflow: "hidden" }}>
       <Header />
 
-      <HomeBackground
-        style={{ height: "calc(100vh - 60px)", overflowY: "hidden" }}
-      >
+      <HomeBackground>
         <div style={{ textAlign: "center", color: "white" }}>
           <br />
           <Title>A Gallery Of My Projects</Title>
 
           <Text>
-            Here's a gallery of my projects. Use your keyboard or the icons to
-            navigate around.
+            Here's a gallery of starter templates i have built while explaining
+            a topic, when working as a technical author for various cloud
+            services.
           </Text>
         </div>
 
-        <div style={{
-          display : 'flex', justifyContent: 'center', alignItems: 'center'
-        }} >
-          <h1> ABOUT TO GET BUILT </h1>
-        </div>
+        <ProjectsGrid>
+          {ProjectData.projects.map(({ title, description, images }) => (
+            <ProjectCard>
+              <Title> {title} </Title>
+              <Text>{description}</Text>
+
+              <div className="images">
+                {images.map(url => (
+                  <img src={url} />
+                ))}
+              </div>
+              <br />
+              <div>
+                <Button>
+                  <div style={{ margin: "0 .5rem" }}>
+                    <FiGithub size={22} />
+                  </div>
+                  View Project Codebase
+                </Button>
+              </div>
+            </ProjectCard>
+          ))}
+        </ProjectsGrid>
       </HomeBackground>
     </div>
   )

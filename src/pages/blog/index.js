@@ -1,12 +1,10 @@
 import React from "react"
 import { IceCream } from "react-kawaii"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import Header from "../../components/header"
 import { IoMdCalendar } from "react-icons/io"
-import media from "styled-media-query"
-import data from '../../data/data.json'
-import Seo from '../../components/seo'
+import data from "../../data/data.json"
+import Seo from "../../components/seo"
 
 import { HomeBackground, Button, Title, Text, IconHover } from "../../styles/"
 
@@ -38,18 +36,6 @@ const BodyContent = styled.div`
   max-width: 1300px;
 `
 
-const Org = styled.div`
-  padding: 0.7rem 1rem;
-  border-radius: 15px;
-  border: 1px dashed #fff;
-  color: #fff;
-  text-align: center;
-  width: 15rem;
-  &:hover {
-    cursor: pointer;
-  }
-`
-
 const TitleHover = styled.a`
   text-decoration: none;
   color: orange;
@@ -75,7 +61,7 @@ const BrandsList = styled.div`
 function index() {
   return (
     <div style={{ height: "100%" }}>
-        <Seo title={"Blog"}/>
+      <Seo title={"Blog"} />
       <Header />
 
       <Body>
@@ -90,14 +76,16 @@ function index() {
             know.
           </Text>
 
-          <BrandsList id={'brands-list'} >
-            <img src={require('../../images/brands/strapi-logo-light.svg')} />
-              <img src={require('../../images/brands/smashingmag-logo.svg')} />
-              <img src={require('../../images/brands/rancher-logo-horiz-color.png')} />
-              <img src={require('../../images/brands/egghead.png')} />
-              <img src={require('../../images/brands/ContentLab-logo.png')} />
+          <BrandsList id={"brands-list"}>
+            <img src={require("../../images/brands/strapi-logo-light.svg")} />
+            <img src={require("../../images/brands/smashingmag-logo.svg")} />
+            <img
+              src={require("../../images/brands/rancher-logo-horiz-color.png")}
+            />
+            <img src={require("../../images/brands/egghead.png")} />
+            <img src={require("../../images/brands/ContentLab-logo.png")} />
           </BrandsList>
-<br />
+          <br />
           <hr style={{ background: "white" }} />
 
           <Grid>

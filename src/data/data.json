@@ -66,7 +66,42 @@
     }
   ],
   "projects": [
-
+    {
+      "title": "Node.js GraphQL API Starter App",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corrupti uae, similique est optio!",
+      "images": [
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/dkfptto8m/image/upload/v1600414581/Screenshot_from_2020-09-18_08-33-49.png",
+        "https://res.cloudinary.com/dkfptto8m/image/upload/v1556654670/img.jpg"
+      ]
+    },
+    {
+      "title": "React Dialogflow Application",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corruptiquae, similique est optio!",
+      "images": [
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+      ]
+    },
+    {
+      "title": "MongoDB Realm React Native Offline App",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corruptiquae, similique est optio!",
+      "images": [
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+      ]
+    },
+    {
+      "title": "Oketo Flask Container Resource",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corruptiquae, similique est optio!",
+      "images": [
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
+        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+      ]
+    }
   ],
   "talks": [
 
