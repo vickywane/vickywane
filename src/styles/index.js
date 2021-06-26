@@ -3,10 +3,14 @@ import media from "styled-media-query"
 
 export const Flex = styled.div`
   display: flex;
-  flex-direction: ${props => (props.responsive ? "column" : props.direction)};
+  flex-direction: ${props => props.direction};
   justify-content: ${props => props.justify};
   align-items: ${props => props.alignItems};
   row-gap: ${props => props.rowGap}px;
+  ${media.lessThan("medium")`
+    flex-direction: ${props =>
+      props.direction && (props.responsive ? "column" : props.direction)};
+  `};
 `
 
 export const ProjectCard = styled.div`

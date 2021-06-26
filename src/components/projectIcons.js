@@ -8,44 +8,44 @@ import {
 } from "react-icons/si"
 import { FaReact, FaMobileAlt, FaDocker } from "react-icons/fa"
 
+import { MdErrorOutline } from "react-icons/md"
 import { GrGraphQl } from "react-icons/gr"
 
 const ProjectToolsIcon = ({ icon, size }) => {
   switch (icon) {
     case "graphql":
-      return <GrGraphQl size={size} />
+      return <GrGraphQl id={icon} size={size} />
 
     case "javascript":
-      return <IoLogoJavascript size={size} />
+      return <IoLogoJavascript id={icon} size={size} />
 
     case "openapi":
-      return <SiOpenapiinitiative size={size} />
+      return <SiOpenapiinitiative id={icon} size={size} />
 
     case "react":
-      return <FaReact size={size} />
+      return <FaReact id={icon} size={size} />
 
     case "mongodb":
-      return <SiMongodb size={size} />
+      return <SiMongodb id={icon} size={size} />
 
     case "mobile":
-      return <FaMobileAlt size={size} />
+      return <FaMobileAlt id={icon} size={size} />
 
     case "docker":
-      return <FaDocker size={size} />
+      return <FaDocker id={icon} size={size} />
 
     case "python":
-      return <IoLogoPython size={size} />
+      return <IoLogoPython id={icon} size={size} />
 
     case "kubernetes":
-      return <SiKubernetes size={size} />
+      return <SiKubernetes id={icon} size={size} />
 
     case "chatbot":
-      return <SiProbot size={size} />
+      return <SiProbot id={icon} size={size} />
 
     default:
-      return <p> ?</p>
+      return <MdErrorOutline id={"fallback-icon"} size={size} />
   }
 }
-
 
 export default ProjectToolsIcon

@@ -87,9 +87,13 @@ const Projects = () => {
                     ))}
                 </div>
 
-                <Flex 
-                rowGap={20}
-                responsive justify="space-between" alignItems="center">
+                <Flex
+                  rowGap={20}
+                  direction="row"
+                  responsive
+                  justify="space-between"
+                  alignItems="center"
+                >
                   <Button>
                     <a
                       href={git_link}

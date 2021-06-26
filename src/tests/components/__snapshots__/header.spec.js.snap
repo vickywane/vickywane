@@ -2,7 +2,7 @@
 
 exports[`Id displays the header element It displays home page 1`] = `
 <header
-  className="sc-iCoHVE eOpKBc"
+  className="sc-pNWxx fNZDHu"
   data-testid="header-component"
 >
   <span>
@@ -20,14 +20,14 @@ exports[`Id displays the header element It displays home page 1`] = `
       >
         <img
           alt="me"
-          className="sc-fujyUd bxLXBt"
+          className="sc-jrsJCI gsYEiL"
           src="test-file-stub"
           style={Object {}}
         />
       </div>
     </a>
     <ul
-      className="sc-pNWxx cOfbTw"
+      className="sc-kEqYlL kPcRvr"
     >
       <li>
         <a
@@ -40,7 +40,7 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         >
           <p
-            className="sc-dlnjPT jucbKh"
+            className="sc-eCApGN chZrdL"
           >
              Articles 
           </p>
@@ -57,7 +57,7 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         >
           <p
-            className="sc-dlnjPT jucbKh"
+            className="sc-eCApGN chZrdL"
           >
              Talks 
           </p>
@@ -74,7 +74,7 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         >
           <p
-            className="sc-dlnjPT jucbKh"
+            className="sc-eCApGN chZrdL"
           >
              Work 
           </p>
@@ -82,10 +82,10 @@ exports[`Id displays the header element It displays home page 1`] = `
       </li>
     </ul>
     <div
-      className="sc-jrsJCI dLfXIF"
+      className="sc-iqAbSa gWJZJj"
     >
       <div
-        className="sc-gKAblj hqExXV"
+        className="sc-fujyUd HVVod"
         onClick={[Function]}
       >
         <svg
