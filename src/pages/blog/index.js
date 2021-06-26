@@ -79,6 +79,7 @@ function index() {
           <BrandsList id={"brands-list"}>
             <img src={require("../../images/brands/strapi-logo-light.svg")} />
             <img src={require("../../images/brands/smashingmag-logo.svg")} />
+            <img src={require("../../images/brands/webiny-.png")} />
             <img
               src={require("../../images/brands/rancher-logo-horiz-color.png")}
             />

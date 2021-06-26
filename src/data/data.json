@@ -2,66 +2,52 @@
   "blog": [
     {
       "id": 6,
-      "title": "Integrating A Dialogflow Agent Into A React Application",
-      "description":
-      "When it comes to building a conversational chat assistant that could be used at a small or enterprise level, Dialogflow would most likely be one of the first options that would show up in your search list. But apart from its console that is provided to design and manage an Agent, how can we create a chat assistant that can be used within our built web applications, too?",
-      "link": "https://www.smashingmagazine.com/2021/01/dialogflow-agent-react-application/",
-      "date": "January 14, 2021"
-    },
-    {
-      "id": 5,
-      "title":
-      "Getting Started With Webpack",
-      "description":
-      "Modern browsers provide good support for JavaScript modules, but module bundlers such as webpack stay a critical part of the JavaScript toolchain. Let’s take a deep dive into what webpack is and how to use it in your development workflow.",
+      "title": "Getting Started With Webpack",
+      "description": "Modern browsers provide good support for JavaScript modules, but module bundlers such as webpack stay a critical part of the JavaScript toolchain. Let’s take a deep dive into what webpack is and how to use it in your development workflow.",
       "link": "https://www.smashingmagazine.com/2021/06/getting-started-webpack/",
       "date": "June 4th, 2021"
     },
     {
+      "id": 5,
+      "title": "Integrating A Dialogflow Agent Into A React Application",
+      "description": "When it comes to building a conversational chat assistant that could be used at a small or enterprise level, Dialogflow would most likely be one of the first options that would show up in your search list. But apart from its console that is provided to design and manage an Agent, how can we create a chat assistant that can be used within our built web applications, too?",
+      "link": "https://www.smashingmagazine.com/2021/01/dialogflow-agent-react-application/",
+      "date": "January 14, 2021"
+    },
+    {
       "id": 3,
-      "title":
-      "Building A Conversational N.L.P Enabled Chatbot Using Google’s Dialogflow",
-      "description":
-      "The 2019 Capgemini research institute’s report published after a research on the use of chat assistants showed a drastic 76% increase in customer satisfaction from organizations where chat assistants where built and incorporated into their services. But how does Dialogflow, a product from Google’s ecosystem aid developers in building chat assistants and contribute to this quota?.",
+      "title": "Building A Conversational N.L.P Enabled Chatbot Using Google’s Dialogflow",
+      "description": "The 2019 Capgemini research institute’s report published after a research on the use of chat assistants showed a drastic 76% increase in customer satisfaction from organizations where chat assistants where built and incorporated into their services. But how does Dialogflow, a product from Google’s ecosystem aid developers in building chat assistants and contribute to this quota?.",
       "link": "https://www.smashingmagazine.com/2020/12/conversational-nlp-enabled-chatbot-google-dialogflow/",
       "date": "Dec 10, 2020"
     },
     {
       "id": 1,
-      "title":
-      "Building Serverless Front-End Applications Using Google Cloud Platform",
-      "description":
-      "The use of serverless applications by developers to handle the business logic of their applications in on the high increase, but how does the Google Cloud — a major service provider within the public cloud — allow developers to manage serverless applications? In this article, you will learn what serverless applications are, how they are used on the Google Cloud, and also scenarios in which they can be used in a front-end application.",
-      "link":
-      "https://www.smashingmagazine.com/2020/11/serverless-frontend-applications-google-cloud-platform/",
+      "title": "Building Serverless Front-End Applications Using Google Cloud Platform",
+      "description": "The use of serverless applications by developers to handle the business logic of their applications in on the high increase, but how does the Google Cloud — a major service provider within the public cloud — allow developers to manage serverless applications? In this article, you will learn what serverless applications are, how they are used on the Google Cloud, and also scenarios in which they can be used in a front-end application.",
+      "link": "https://www.smashingmagazine.com/2020/11/serverless-frontend-applications-google-cloud-platform/",
       "date": "Nov 6, 2020"
     },
     {
       "id": 2,
-      "title":
-      "How To Manage File Uploads In React With Google Storage And GraphQL",
-      "description":
-      " From a user’s profile picture to other media assets, data collection and storage to cloud services through file uploads have become an essential feature for most modern applications. In this article, you will learn how file uploads can be implemented in a GraphQL application.",
-      "link":
-      "https://www.smashingmagazine.com/2020/10/file-uploads-react-apollo-google-storage-graphql/",
+      "title": "How To Manage File Uploads In React With Google Storage And GraphQL",
+      "description": " From a user’s profile picture to other media assets, data collection and storage to cloud services through file uploads have become an essential feature for most modern applications. In this article, you will learn how file uploads can be implemented in a GraphQL application.",
+      "link": "https://www.smashingmagazine.com/2020/10/file-uploads-react-apollo-google-storage-graphql/",
       "date": "Oct 8, 2020"
     },
 
     {
       "id": 4,
       "title": "Django Setup Tutorial",
-      "description":
-      "After several years of constant updates and improvements, the Django [/dʒængʊ/] web framework has proven to be one of the most powerful and useful framework for building Database — Driven web applications due to its MVC-style architecture. It has been argued that Django follows the MVT pattern but for simplicity sake i would refer to it as MVC",
+      "description": "After several years of constant updates and improvements, the Django [/dʒængʊ/] web framework has proven to be one of the most powerful and useful framework for building Database — Driven web applications due to its MVC-style architecture. It has been argued that Django follows the MVT pattern but for simplicity sake i would refer to it as MVC",
       "link": "https://medium.com/@vickywane/django-setup-tutorial-2fb4b33da592",
       "date": "Nov 15, 2018"
     },
     {
       "id": 4,
       "title": "Wireless Network Communities",
-      "description":
-      "Ever since the invention of the internet, several factors have made the internet a bit inaccessible, due to high connection fees, poor connection speeds, security and several other hardware malfunctions. It is refreshing to note that solutions to these problems are being provided by well meaning individuals, organization and start-ups that have come together to provide a solution to these challenges through the invention of “Wireless Community Networks”",
-      "link":
-      "https://medium.com/@vickywane/wireless-network-communities-d41a4a8a3657",
+      "description": "Ever since the invention of the internet, several factors have made the internet a bit inaccessible, due to high connection fees, poor connection speeds, security and several other hardware malfunctions. It is refreshing to note that solutions to these problems are being provided by well meaning individuals, organization and start-ups that have come together to provide a solution to these challenges through the invention of “Wireless Community Networks”",
+      "link": "https://medium.com/@vickywane/wireless-network-communities-d41a4a8a3657",
       "date": "Nov 20, 2018"
     }
   ],
@@ -73,7 +59,10 @@
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/dkfptto8m/image/upload/v1600414581/Screenshot_from_2020-09-18_08-33-49.png",
         "https://res.cloudinary.com/dkfptto8m/image/upload/v1556654670/img.jpg"
-      ]
+      ],
+      "article_link": "https://www.smashingmagazine.com/2020/10/file-uploads-react-apollo-google-storage-graphql/",
+      "git_link": "https://github.com/vickywane/Node-graphql-upload-article",
+      "tools": ["graphql", "javascript", "openapi"]
     },
     {
       "title": "React Dialogflow Application",
@@ -82,7 +71,8 @@
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
-      ]
+      ],
+      "tools": ["javascript", "react", "chatbot"]
     },
     {
       "title": "MongoDB Realm React Native Offline App",
@@ -91,7 +81,8 @@
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
-      ]
+      ],
+      "tools": ["javascript", "react", "mobile", "mongodb"]
     },
     {
       "title": "Oketo Flask Container Resource",
@@ -100,10 +91,9 @@
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
         "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
-      ]
+      ],
+      "tools": ["kubernetes", "docker", "python", "openapi"]
     }
   ],
-  "talks": [
-
-  ]
+  "talks": []
 }

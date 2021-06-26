@@ -1,6 +1,14 @@
 import styled from "styled-components"
 import media from "styled-media-query"
 
+export const Flex = styled.div`
+  display: flex;
+  flex-direction: ${props => (props.responsive ? "column" : props.direction)};
+  justify-content: ${props => props.justify};
+  align-items: ${props => props.alignItems};
+  row-gap: ${props => props.rowGap}px;
+`
+
 export const ProjectCard = styled.div`
   height: 370px;
   background: #282c34;
@@ -47,7 +55,7 @@ export const Text = styled.p`
 `
 
 export const Title = styled.h3`
-  font-weight: ${props => props.weight ? props.weight : 'normal'};
+  font-weight: ${props => (props.weight ? props.weight : "normal")};
   text-align: ${props => props.align};
   font-size: ${props => (props.small ? "1rem" : "1.2rem")};
   color: ${props => props.color};

@@ -3,6 +3,8 @@ import React from "react"
 import styled from "styled-components"
 import media from "styled-media-query"
 import { FiMenu } from "react-icons/fi"
+import GatsbyImage from "../components/image"
+import { useStaticQuery } from "gatsby"
 
 import { Text, center, IconHover } from "../styles/"
 
@@ -12,20 +14,25 @@ const HeaderBody = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 960;
   span {
     padding: 0 2rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
   }
+  ${media.lessThan("medium")`
+    height: 60px;
+    span {
+      padding: 0 1rem;
+    }
+  `};
 `
 
 const Image = styled.img`
-  margin-top : 5px;
+  margin-top: 5px;
   height: 50px;
   width: 50px;
-  object-fit : contain;
+  object-fit: contain;
   border-radius: 50%;
   &: hover {
     cursor: pointer;
@@ -58,7 +65,7 @@ const MenuIconContainer = styled.div`
 `
 
 const Header = ({ siteText }) => (
-  <HeaderBody data-testid="header-component" >
+  <HeaderBody data-testid="header-component">
     <span>
       <Link to="/">
         <div style={{ ...center }}>
