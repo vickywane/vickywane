@@ -7,7 +7,7 @@ import { CSSTransition } from "react-transition-group"
 import media from "styled-media-query"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Seo from '../../components/seo'
+import Seo from "../../components/seo"
 import GatsbyImage from "../../components/image"
 import { CardData } from "../../data"
 import {
@@ -33,7 +33,7 @@ const UserCard = styled.div`
   border-radius: 7px;
   max-width: 1300px;
   margin: 0 auto;
-  box-shadow: 24px 31px 21px -8px rgba(0,0,0,0.9);
+  box-shadow: 24px 31px 21px -8px rgba(0, 0, 0, 0.9);
   ${media.lessThan("huge")`
     height: 95%;
     width: 95%;
@@ -265,7 +265,7 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <UserCard data-testid={"home-card"} >
+        <UserCard data-testid={"home-card"}>
           <CSSTransition
             in={CurrentView === "Contact"}
             unmountOnExit
@@ -335,9 +335,9 @@ const Home = () => {
                     </StyledHover>
                   </div>
 
-                  <Button onClick={() => setCurrentView("experiences")} up>
-                    Work Experiences
-                  </Button>
+                  <Link style={{ color: "white" }} to="/home/experiences">
+                    <Button up>Work Experiences</Button>
+                  </Link>
                 </div>
               </Header>
 
@@ -373,8 +373,8 @@ const Home = () => {
                   </Title>
                   <StyledText align="center">
                     I work as a Frontend Engineer and also an advocate for Cloud
-                    Engineering through written articles on Cloud Services
-                    as a Technical Author.
+                    Engineering through written articles on Cloud Services as a
+                    Technical Author.
                   </StyledText>
 
                   <StyledText
