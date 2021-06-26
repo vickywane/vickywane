@@ -1,6 +1,18 @@
 import styled from "styled-components"
 import media from "styled-media-query"
 
+export const Flex = styled.div`
+  display: flex;
+  flex-direction: ${props => props.direction};
+  justify-content: ${props => props.justify};
+  align-items: ${props => props.alignItems};
+  row-gap: ${props => props.rowGap}px;
+  ${media.lessThan("medium")`
+    flex-direction: ${props =>
+      props.direction && (props.responsive ? "column" : props.direction)};
+  `};
+`
+
 export const ProjectCard = styled.div`
   height: 370px;
   background: #282c34;
@@ -14,6 +26,15 @@ export const ProjectCard = styled.div`
      width: 20rem;
       height: 310px;
   `};
+`
+
+export const Card = styled.div`
+  background-color: #282c34;
+  width: 95%;
+  height: auto;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  margin: 1rem 0.5rem;
 `
 
 export const HoverLink = styled.div`
@@ -38,7 +59,7 @@ export const Text = styled.p`
 `
 
 export const Title = styled.h3`
-  font-weight: ${props => props.weight ? props.weight : 'normal'};
+  font-weight: ${props => (props.weight ? props.weight : "normal")};
   text-align: ${props => props.align};
   font-size: ${props => (props.small ? "1rem" : "1.2rem")};
   color: ${props => props.color};

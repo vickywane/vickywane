@@ -24,13 +24,15 @@ import "../../styles/transitions.css"
 
 const UserCard = styled.div`
   background-color: #282c34;
-  height: 87%;
+  height: 85%;
   overflow: auto;
   transition: all 300ms;
   width: 70%;
   color: #fff;
   padding: 0.5rem 1rem 2rem 1rem;
   border-radius: 7px;
+  max-width: 1300px;
+  margin: 0 auto;
   box-shadow: 24px 31px 21px -8px rgba(0,0,0,0.9);
   ${media.lessThan("huge")`
     height: 95%;
@@ -44,21 +46,6 @@ const UserCard = styled.div`
     padding: 0.5rem .5rem;
     height: 97%;
     width: 97%;
-  `};
-`
-
-const Image = styled.img`
-  border-radius: 50%;
-  width: 170px;
-  height: 170px;
-  object-fit: contain;
-  ${media.lessThan("large")`
-    width: 130px;
-    height: 130px;
-  `};
-  ${media.lessThan("small")`
-    width: 100px;
-    height: 100px;
   `};
 `
 

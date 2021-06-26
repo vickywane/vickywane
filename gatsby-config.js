@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Victory Nwani`,
-    description: `FullStack developer and Cloud Engineer from Lagos, Nigeria, Africa.`,
+    description: `FullStack developer and Certified Cloud Engineer from Lagos, Nigeria, Africa.`,
     author: `@vickywane`,
   },
   plugins: [
@@ -17,6 +17,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
