@@ -56,6 +56,7 @@ export const Text = styled.p`
   color: ${props => props.color};
   font-weight: normal;
 
+  max-width: ${props => props.maxWidth};
   text-align: ${props => props.align};
   ${media.lessThan("large")`
   font-size: 0.85rem;
@@ -108,6 +109,10 @@ export const Button = styled.button`
   ${media.lessThan("small")`
     font-size: 0.75rem;
   `}
+  a {
+    text-decoration : none;
+    color: ${props => props.linkColor ?  props.linkColor  : "white"};
+  }
 `
 
 export const IconHover = styled.div`

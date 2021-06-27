@@ -383,9 +383,9 @@ const Home = () => {
                     style={{ display: "flex", justifyContent: "center" }}
                     align="center"
                   >
-                    Hiring?
-                    <HoverLink>
-                      <p> Learn More About Me </p>
+                    Like To Hire Me?
+                    <HoverLink onClick={() => setCurrentView("Contact")}>
+                      <p> Get In Touch </p>
                     </HoverLink>
                   </StyledText>
                 </div>
