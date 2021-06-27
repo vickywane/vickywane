@@ -41,6 +41,10 @@ export const HoverLink = styled.div`
   padding-left: 10px;
   color: orange;
   cursor: pointer;
+  a {
+    text-decoration: none;
+    color: ${props => props.color ? props.color : "white"};
+  }
   &:hover {
     text-decoration: 1.5px orange underline;
     text-decoration-style: wavy;

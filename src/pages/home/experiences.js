@@ -4,8 +4,14 @@ import { FiExternalLink } from "react-icons/fi"
 
 import Seo from "../../components/seo"
 import Header from "../../components/header"
-import { Text, Title, center, HomeBackground, Flex } from "../../styles/"
-import { StyledHover } from "./"
+import {
+  Text,
+  Title,
+  center,
+  HoverLink,
+  HomeBackground,
+  Flex,
+} from "../../styles/"
 import Data from "../../data/data.json"
 
 const List = styled.ul`
@@ -39,9 +45,7 @@ const Body = styled(HomeBackground)`
   }
 `
 
-const Experiences = props => {
-  const { setView } = props
-
+const Experiences = () => {
   return (
     <div>
       <Header />
@@ -49,13 +53,32 @@ const Experiences = props => {
 
       <Body>
         <div className="body-content">
-          <Title color="white" align="center">
-            Experiences
-          </Title>
+          <Flex justify="center">
+            <Title color="white" align="center">
+              Experiences |
+            </Title>
+
+            <HoverLink color="orange">
+              <Flex>
+                <a
+                  href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
+                  target="_blank"
+                >
+                  View Linkedin Profile
+                </a>
+
+                <div style={{ padding: "0 .3rem" }}>
+                  <FiExternalLink color="orange" />
+                </div>
+              </Flex>
+            </HoverLink>
+          </Flex>
 
           <Text align="center" color="white">
             Below is a run down of roles i have held over the past years;
           </Text>
+
+          <div style={{ ...center }}></div>
 
           <Title color="white" small>
             {" "}
