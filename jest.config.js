@@ -4,6 +4,14 @@ module.exports = {
   transform: {
     "^.+\\.jsx?$": `<rootDir>/jest-preprocess.js`,
   },
+  collectCoverage: true,
+  coverageDirectory: "./coverage",
+  coverageReporters: ["json", "text"],
+  collectCoverageFrom: ["<rootDir>/**/*.js", "../src/"],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    ".cache",
+  ],
   moduleNameMapper: {
     ".+\\.(css|styl|less|sass|scss)$": `identity-obj-proxy`,
     ".+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": `<rootDir>/__mocks__/file-mock.js`,

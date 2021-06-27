@@ -39,6 +39,12 @@ jobs:
         with:
           site_name: "nwani"
           max_timeout: 180
+
+      - name: Generate Code Coverage Report
+        uses: codecov/codecov-action@v1
+        file: ./coverage/coverage-final.json
+        fail_ci_if_error: true
+        path_to_write_report: ./jest-coverage/codecov_report.txt
       
       - name: Run the semantic-release
         run: npx semantic-release
