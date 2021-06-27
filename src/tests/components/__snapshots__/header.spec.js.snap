@@ -40,7 +40,7 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         >
           <p
-            className="sc-eCApGN chZrdL"
+            className="sc-eCApGN kwJQEo"
           >
              Articles 
           </p>
@@ -57,7 +57,7 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         >
           <p
-            className="sc-eCApGN chZrdL"
+            className="sc-eCApGN kwJQEo"
           >
              Talks 
           </p>
@@ -74,7 +74,7 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         >
           <p
-            className="sc-eCApGN chZrdL"
+            className="sc-eCApGN kwJQEo"
           >
              Work 
           </p>

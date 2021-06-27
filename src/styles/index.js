@@ -41,6 +41,10 @@ export const HoverLink = styled.div`
   padding-left: 10px;
   color: orange;
   cursor: pointer;
+  a {
+    text-decoration: none;
+    color: ${props => props.color ? props.color : "white"};
+  }
   &:hover {
     text-decoration: 1.5px orange underline;
     text-decoration-style: wavy;
@@ -52,6 +56,7 @@ export const Text = styled.p`
   color: ${props => props.color};
   font-weight: normal;
 
+  max-width: ${props => props.maxWidth};
   text-align: ${props => props.align};
   ${media.lessThan("large")`
   font-size: 0.85rem;
@@ -104,6 +109,10 @@ export const Button = styled.button`
   ${media.lessThan("small")`
     font-size: 0.75rem;
   `}
+  a {
+    text-decoration : none;
+    color: ${props => props.linkColor ?  props.linkColor  : "white"};
+  }
 `
 
 export const IconHover = styled.div`

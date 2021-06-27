@@ -1,13 +1,13 @@
 import React, { useState } from "react"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { Link } from "gatsby"
 import { DiStackoverflow, DiGithubBadge } from "react-icons/di"
-import { FiLinkedin, FiTwitter, FiBookOpen, FiCode } from "react-icons/fi"
+import { FiLinkedin, FiTwitter } from "react-icons/fi"
 import { CSSTransition } from "react-transition-group"
 import media from "styled-media-query"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Seo from '../../components/seo'
+import Seo from "../../components/seo"
 import GatsbyImage from "../../components/image"
 import { CardData } from "../../data"
 import {
@@ -18,7 +18,6 @@ import {
   center,
   HoverLink,
 } from "../../styles/"
-import Experiences from "./experiences"
 import Contact from "./contact"
 import "../../styles/transitions.css"
 
@@ -33,7 +32,7 @@ const UserCard = styled.div`
   border-radius: 7px;
   max-width: 1300px;
   margin: 0 auto;
-  box-shadow: 24px 31px 21px -8px rgba(0,0,0,0.9);
+  box-shadow: 24px 31px 21px -8px rgba(0, 0, 0, 0.9);
   ${media.lessThan("huge")`
     height: 95%;
     width: 95%;
@@ -265,7 +264,7 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <UserCard data-testid={"home-card"} >
+        <UserCard data-testid={"home-card"}>
           <CSSTransition
             in={CurrentView === "Contact"}
             unmountOnExit
@@ -335,9 +334,12 @@ const Home = () => {
                     </StyledHover>
                   </div>
 
-                  <Button onClick={() => setCurrentView("experiences")} up>
-                    Work Experiences
-                  </Button>
+                  <Link
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/home/experiences"
+                  >
+                    <Button up>Work Experiences</Button>
+                  </Link>
                 </div>
               </Header>
 
@@ -373,17 +375,17 @@ const Home = () => {
                   </Title>
                   <StyledText align="center">
                     I work as a Frontend Engineer and also an advocate for Cloud
-                    Engineering through written articles on Cloud Services
-                    as a Technical Author.
+                    Engineering through written articles on Cloud Services as a
+                    Technical Author.
                   </StyledText>
 
                   <StyledText
                     style={{ display: "flex", justifyContent: "center" }}
                     align="center"
                   >
-                    Hiring?
-                    <HoverLink>
-                      <p> Learn More About Me </p>
+                    Like To Hire Me?
+                    <HoverLink onClick={() => setCurrentView("Contact")}>
+                      <p> Get In Touch </p>
                     </HoverLink>
                   </StyledText>
                 </div>
@@ -391,16 +393,8 @@ const Home = () => {
 
               <div>
                 <SectionText style={{ display: "flex" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center              ",
-                    }}
-                  >
-                    <Text style={{ paddingTop: "5px" }}>
-                      Outside my working hours, i do these things{" "}
-                    </Text>
+                  <div style={{ ...center }}>
+                    <Text>Outside my working hours, i do these things </Text>
                   </div>
 
                   <ResponsiveEmoji>
@@ -463,26 +457,27 @@ const Home = () => {
                                 justifyContent: "center",
                               }}
                             >
-                              <Link
-                                to={`/${link}`}
-                                style={{
-                                  color: "#fff",
-                                }}
+                              <HoverLink
+                                style={{ display: "flex", marginTop: "10px" }}
                               >
-                                <div
-                                  style={{ display: "flex", marginTop: "10px" }}
+                                <Link
+                                  to={`/${link}`}
+                                  style={{
+                                    color: "#fff",
+                                    textDecoration: "none",
+                                  }}
                                 >
                                   <Text
+                                    color="orange"
                                     style={{
-                                      color: "orange",
                                       margin: 0,
                                       textTransform: "capitalize",
                                     }}
                                   >
                                     View {link}
                                   </Text>
-                                </div>
-                              </Link>
+                                </Link>
+                              </HoverLink>
                             </div>
                           </div>
                         </span>
@@ -492,15 +487,6 @@ const Home = () => {
                 </Cards>
               </div>
             </div>
-          </CSSTransition>
-
-          <CSSTransition
-            in={CurrentView === "experiences"}
-            unmountOnExit
-            timeout={300}
-            classNames={"work"}
-          >
-            <Experiences setView={val => setCurrentView(val)} />
           </CSSTransition>
         </UserCard>
       </HomeBackground>

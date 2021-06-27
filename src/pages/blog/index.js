@@ -6,7 +6,14 @@ import { IoMdCalendar } from "react-icons/io"
 import data from "../../data/data.json"
 import Seo from "../../components/seo"
 
-import { HomeBackground, Button, Title, Text, IconHover } from "../../styles/"
+import {
+  HomeBackground,
+  HoverLink,
+  Button,
+  Title,
+  Text,
+  IconHover,
+} from "../../styles/"
 
 const Grid = styled.div`
   padding: 1rem 1rem;
@@ -36,16 +43,6 @@ const BodyContent = styled.div`
   max-width: 1300px;
 `
 
-const TitleHover = styled.a`
-  text-decoration: none;
-  color: orange;
-  transition: all 300ms;
-  padding: 0 0.5rem;
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
 const BrandsList = styled.div`
   display: grid;
   grid-gap: 1rem 2rem;
@@ -71,9 +68,9 @@ function index() {
           </Title>
 
           <Text align="center" color="white">
-            Through my written articles, i pen down my thought process for
-            others to read, learn and argue upon thus refining what i think i
-            know.
+            Through my written articles, i pen down my thought process as a
+            Technical Author <br /> for the Organizations below, for others to read,
+            learn and argue upon thus refining what i think i know.
           </Text>
 
           <BrandsList id={"brands-list"}>
@@ -102,14 +99,16 @@ function index() {
                   </Text>
                 </div>
 
-                <TitleHover href={link}>
-                  <Title color="white">{title}</Title>
-                </TitleHover>
+                <HoverLink>
+                  <a href={link}>
+                    <Title color="white">{title}</Title>{" "}
+                  </a>
+                </HoverLink>
                 <Text color="white">{description} </Text>
 
-                <a href={link}>
-                  <Button> Continue Reading ... </Button>
-                </a>
+                <Button>
+                  <a href={link}>Continue Reading ...</a>
+                </Button>
               </Card>
             ))}
           </Grid>

@@ -95,5 +95,70 @@
       "tools": ["kubernetes", "docker", "python", "openapi"]
     }
   ],
-  "talks": []
+  "talks": [],
+  "expriences": {
+    "roles": [
+      {
+        "id": 1,
+        "title": "Web Experience Engineer",
+        "company": "Ambianic.ai",
+        "company_url": "https://ambianic.ai/",
+        "start_time": "January 21st, 2021",
+        "description": "I work remotely as a web experience engineer with Ambianic.ai, an IoT company with a mission to make managing homes and workspaces easier. My key responsibilities include maintaining and implementing planned features to the Vue.js Progressive Web App.",
+        "end_time": "Present"
+      },
+      {
+        "id": 2,
+        "title": "Frontend Engineer",
+        "company": "Liferithms.Inc",
+        "company_url": "https://liferithms.com/",
+        "start_time": "August 2nd, 2020",
+        "description": "I worked remotely as a Fullstack engineer with Liferithms.inc, a data analytics company focused on aggregating the time spent on daily activities by a user for achieving better time management. My key responsibilities included working with the CTO and Lifeli Team on planning and imanaging new feature release to the Liferithm resources and managing the Lifeli App built with React Native.",
+        "end_time": "January 31, 2021"
+      },
+      {
+        "id": 3,
+        "company": "Technical Author",
+        "title": "Technical Author",
+        "company_url": "https://www.smashingmagazine.com/author/nwani-victory/",
+        "description": "After my primary working hours, I work as a technical author, creating technical articles containing tutorials that simplify cloud engineering concepts and technologies for front-end developers to use without intensive knowledge of the public cloud.",
+        "end_time": ""
+      },
+      {
+        "id": 4,
+        "title": "IT Support Staff",
+        "company": "Patfin High School",
+        "company_url": "https://liferithms.com/",
+        "start_time": "",
+        "description": " As an educational establishment located in Nigeria, Africa. Patfin High School is a citadel of learning focused on imparting knowledge to registered students of various ages and grades across the state.",
+        "end_time": ""
+      }
+    ],
+    "programs": [
+      {
+        "name": "Google Africa Developer Scholarship",
+        "role": "Cloud Mentor",
+        "description": "Grow with Google, Andela and Pluralsight trained over 30,000 learners in Africa on Mobile Web, Android, and Google Cloud courses. The aim of this program is to continuously engage with aspiring and existing developers on a track to become professional developers with skills that can get them through the Google certification to demonstrate job readiness.",
+        "program_link": "https://andela.com/alc/google-africa-developer-scholarship-gads/"
+      },
+      {
+        "name": "OpenCollective Bug Bounty Program",
+        "role": "Open Source Contributor",
+        "description": "Google Code-in was a contest that introduced pre-university students (ages 13-17) to open source software development. The contest was held for 10 years starting in November 2010 and wrapping up the final contest in January 2020.",
+        "program_link": "https://codein.withgoogle.com/archive/"
+      },
+      {
+        "name": "Weavy Think Tank",
+        "role": "Participant",
+        "description": "An annual four months internship program organized by Weavy and coordinated by Kris Ledel (Technology Evangelist at Weavy), focused on grooming young developers for real-world development by providing several growth and technical tasks.        ",
+        "program_link": "https://github.com/weavy/weavy-thinktank-co2-emission-app"
+      },
+      {
+        "name": "Google Code In",
+        "role": "Participant",
+        "description": "Google Code-in was a contest that introduced pre-university students (ages 13-17) to open source software development. The contest was held for 10 years starting in November 2010 and wrapping up the final contest in January 2020.",
+        "program_link": "https://codein.withgoogle.com/archive/"
+      }
+    ]
+  }
 }
