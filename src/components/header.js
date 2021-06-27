@@ -6,7 +6,9 @@ import { FiMenu } from "react-icons/fi"
 import GatsbyImage from "../components/image"
 import { useStaticQuery } from "gatsby"
 
-import { Text, center, IconHover } from "../styles/"
+import { useLocation } from "@reach/router"
+
+import { Text, center, IconHover, HoverLink } from "../styles/"
 
 const HeaderBody = styled.header`
   height: 70px;
@@ -64,64 +66,63 @@ const MenuIconContainer = styled.div`
   `}
 `
 
-const Header = ({ siteText }) => (
-  <HeaderBody data-testid="header-component">
-    <span>
-      <Link to="/">
-        <div style={{ ...center }}>
-          <Image
-            alt={"me"}
-            style={{}}
-            src={require("../images/my_avatar.png")}
-          />
-        </div>
-      </Link>
+const Links = [
+  {
+    id: 1,
+    route: "/blog",
+    name: "Articles",
+  },
+  {
+    id: 2,
+    route: "/home/experiences",
+    name: "Work Experience",
+  },
+  {
+    id: 3,
+    route: "/projects",
+    name: "Projects",
+  },
+  {
+    id: 4,
+    route: "/talks",
+    name: "Talks",
+  },
+]
 
-      <List>
-        <li>
-          <Link
-            to="/blog"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            <Text small> Articles </Text>
-          </Link>
-        </li>
+const Header = () => {
+  const { pathname } = useLocation()
+  return (
+    <HeaderBody data-testid="header-component">
+      <span>
+        <Link to="/">
+          <div style={{ ...center }}>
+            <Image
+              alt={"me"}
+              src={require("../images/my_avatar.png")}
+            />
+          </div>
+        </Link>
 
-        <li>
-          <Link
-            to="/talks"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            <Text small> Talks </Text>
-          </Link>
-        </li>
+        <List>
+          {Links.map(({ id, name, route }) => (
+            <li key={id} >
+              <HoverLink color={pathname === route ? "orange" : "white"}>
+                <Link to={route}>
+                  <Text small> {name} </Text>
+                </Link>
+              </HoverLink>
+            </li>
+          ))}
+        </List>
 
-        <li>
-          <Link
-            to="/projects"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            <Text small> Work </Text>
-          </Link>
-        </li>
-      </List>
-
-      <MenuIconContainer>
-        <IconHover onClick={() => {}}>
-          <FiMenu style={{ fontSize: "1.8rem" }} />
-        </IconHover>
-      </MenuIconContainer>
-    </span>
-  </HeaderBody>
-)
+        <MenuIconContainer>
+          <IconHover onClick={() => {}}>
+            <FiMenu style={{ fontSize: "1.8rem" }} />
+          </IconHover>
+        </MenuIconContainer>
+      </span>
+    </HeaderBody>
+  )
+}
 
 export default Header
