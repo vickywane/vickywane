@@ -5,6 +5,7 @@ import Header from "../../components/header"
 import { IoMdCalendar } from "react-icons/io"
 import data from "../../data/data.json"
 import Seo from "../../components/seo"
+import media from "styled-media-query"
 
 import {
   HomeBackground,
@@ -20,6 +21,9 @@ const Grid = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  ${media.lessThan("medium")`
+    padding: .4rem .2rem;
+   `};
 `
 
 const Card = styled.div`
@@ -53,6 +57,12 @@ const BrandsList = styled.div`
     height: 40px;
     object-fit: contain;
   }
+  ${media.lessThan("medium")`
+      img {
+        width: 6rem;
+        height: 35px;
+      }
+  `};
 `
 
 function index() {
@@ -69,8 +79,8 @@ function index() {
 
           <Text align="center" color="white">
             Through my written articles, i pen down my thought process as a
-            Technical Author <br /> for the Organizations below, for others to read,
-            learn and argue upon thus refining what i think i know.
+            Technical Author <br /> for the Organizations below, for others to
+            read, learn and argue upon thus refining what i think i know.
           </Text>
 
           <BrandsList id={"brands-list"}>

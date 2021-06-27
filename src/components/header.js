@@ -3,6 +3,9 @@ import React from "react"
 import styled from "styled-components"
 import media from "styled-media-query"
 import { FiMenu } from "react-icons/fi"
+import Sidebar from "./header-sidebar"
+import Data from '../data/data.json'
+
 import GatsbyImage from "../components/image"
 import { useStaticQuery } from "gatsby"
 
@@ -66,29 +69,6 @@ const MenuIconContainer = styled.div`
   `}
 `
 
-const Links = [
-  {
-    id: 1,
-    route: "/blog",
-    name: "Articles",
-  },
-  {
-    id: 2,
-    route: "/home/experiences",
-    name: "Work Experience",
-  },
-  {
-    id: 3,
-    route: "/projects",
-    name: "Projects",
-  },
-  {
-    id: 4,
-    route: "/talks",
-    name: "Talks",
-  },
-]
-
 const Header = () => {
   const { pathname } = useLocation()
   return (
@@ -96,16 +76,13 @@ const Header = () => {
       <span>
         <Link to="/">
           <div style={{ ...center }}>
-            <Image
-              alt={"me"}
-              src={require("../images/my_avatar.png")}
-            />
+            <Image alt={"me"} src={require("../images/my_avatar.png")} />
           </div>
         </Link>
 
         <List>
-          {Links.map(({ id, name, route }) => (
-            <li key={id} >
+          {Data.navigation.map(({ id, name, route }) => (
+            <li key={id}>
               <HoverLink color={pathname === route ? "orange" : "white"}>
                 <Link to={route}>
                   <Text small> {name} </Text>
@@ -115,11 +92,9 @@ const Header = () => {
           ))}
         </List>
 
-        <MenuIconContainer>
-          <IconHover onClick={() => {}}>
-            <FiMenu style={{ fontSize: "1.8rem" }} />
-          </IconHover>
-        </MenuIconContainer>
+        <div style={{ ...center }}>
+          <Sidebar />
+        </div>
       </span>
     </HeaderBody>
   )
