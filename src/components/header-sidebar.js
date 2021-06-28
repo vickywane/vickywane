@@ -4,6 +4,8 @@ import media from "styled-media-query"
 import { FiMenu, FiX } from "react-icons/fi"
 import { useLocation } from "@reach/router"
 import { Link } from "gatsby"
+import ScrollLock, { TouchScrollable } from 'react-scrolllock'
+
 
 import Data from "../data/data.json"
 import { IconHover, Text, HoverLink } from "../styles/"
@@ -14,17 +16,13 @@ const StyledMenu = styled.nav`
   flex-direction: column;
   background: #282c34;
   transform: ${({ open }) => (open ? "translateX(0)" : "translateX(200%)")};
-  height: 100vh;
-  margin-top: 3.5em;
+  height: calc(100vh - 60px);
   position: absolute;
-  top: 0;
-  width: 45%;
+  width: 80%;
   right: 0;
+  bottom: 0;
   padding: 1rem;
   transition: all 350ms;
-  ${media.lessThan("small")`
-    width: 80%;
-`};
 `
 
 const MenuIconContainer = styled.div`
@@ -45,7 +43,7 @@ const List = styled.ul`
 `
 
 const Sidebar = () => {
-  const [isSidebarOpen, setSidebar] = useState(false)
+  const [isSidebarOpen, setSidebar] = useState(true)
   const { pathname } = useLocation()
 
   return (

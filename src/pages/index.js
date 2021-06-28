@@ -13,6 +13,7 @@ const HomeComponent = () => (
   </Layout>
 )
 
+
 const IndexPage = () => (
   <Router>
     <HomeComponent path="/" exact />

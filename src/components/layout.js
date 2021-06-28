@@ -9,8 +9,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
+import ScrollLock, { TouchScrollable } from "react-scrolllock"
 
-import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -41,7 +41,14 @@ const Layout = ({ children }) => {
           rel="stylesheet"
         />
       </Helmet>
-      <main>{children}</main>{" "}
+
+      <ScrollLock isActive={true}>
+        <TouchScrollable>
+          <div>
+            <main>{children}</main>
+          </div>
+        </TouchScrollable>
+      </ScrollLock>
     </div>
   )
 }
