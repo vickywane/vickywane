@@ -43,7 +43,7 @@ const List = styled.ul`
 `
 
 const Sidebar = () => {
-  const [isSidebarOpen, setSidebar] = useState(true)
+  const [isSidebarOpen, setSidebar] = useState(false)
   const { pathname } = useLocation()
 
   return (

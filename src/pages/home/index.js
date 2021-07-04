@@ -244,7 +244,7 @@ const Home = () => {
       query HomeQuery {
         file(relativePath: { eq: "my_avatar.png" }) {
           childImageSharp {
-            fixed(height: 170) {
+            fixed(height: 150) {
               ...GatsbyImageSharpFixed
             }
           }
@@ -394,7 +394,7 @@ const Home = () => {
               <div>
                 <SectionText style={{ display: "flex" }}>
                   <div style={{ ...center }}>
-                    <Text>Outside my working hours, i do these things </Text>
+                    <Text>After working hours, i do these things </Text>
                   </div>
 
                   <ResponsiveEmoji>

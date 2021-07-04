@@ -10,7 +10,7 @@ exports[`Header component test It displays headers 1`] = `
   tabIndex="-1"
 >
   <header
-    className="sc-iqAbSa dgIjuy"
+    className="sc-crzoUp ZlEmG"
     data-testid="header-component"
   >
     <span>
@@ -28,13 +28,13 @@ exports[`Header component test It displays headers 1`] = `
         >
           <img
             alt="me"
-            className="sc-crzoUp fRCiKF"
+            className="sc-dIsAE fpaNi"
             src="test-file-stub"
           />
         </div>
       </a>
       <ul
-        className="sc-dIsAE dbBDIb"
+        className="sc-bqGHjH gakCIv"
       >
         <li>
           <div
@@ -165,7 +165,7 @@ exports[`Header component test It displays headers 1`] = `
             </div>
           </div>
           <nav
-            className="sc-pNWxx eJKgmt"
+            className="sc-pNWxx bUCJMv"
             open={false}
           >
             <ul
