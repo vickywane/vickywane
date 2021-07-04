@@ -17,6 +17,8 @@ import {
   Button,
   center,
   HoverLink,
+  Flex,
+  StyledIconHover,
 } from "../../styles/"
 import Contact from "./contact"
 import "../../styles/transitions.css"
@@ -50,7 +52,7 @@ const UserCard = styled.div`
 
 export const Header = styled.div`
   height: 60px;
-  padding: 0 1rem;
+  padding: 0 .5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,38 +61,6 @@ export const Header = styled.div`
   ${media.lessThan("medium")`
     padding: 0;
   `};
-`
-
-export const StyledHover = styled.div`
-  padding: 0.4rem 0.6rem;
-  border-radius: 5px;
-  background: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 350ms;
-  margin: 0 0.5rem;
-  font-size: 1.4rem;
-  a {
-    text-decoration: none;
-    color: #fff;
-  }
-  &: hover {
-    background: #141821;
-    cursor: pointer;
-  }
-  ${media.lessThan("large")`
-    padding: 0.3rem 0.4rem;
-    margin: 0 0.4rem;
-  `};
-  ${media.lessThan("medium")`
-      margin: 0 0.2rem;
-      font-size: 1.3rem;
-  `};
-  ${media.lessThan("small")`
-  margin: 0 0.2rem;
-  font-size: 1.2rem;
-`};
 `
 
 export const Grid = styled.div`
@@ -296,8 +266,8 @@ const Home = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <div style={{ display: "flex" }}>
-                    <StyledHover>
+                  <Flex direction="row">
+                    <StyledIconHover>
                       <a
                         href="https://stackoverflow.com/users/9141305/wane01"
                         target="_blank"
@@ -305,9 +275,9 @@ const Home = () => {
                       >
                         <DiStackoverflow />
                       </a>
-                    </StyledHover>
+                    </StyledIconHover>
 
-                    <StyledHover>
+                    <StyledIconHover>
                       <a
                         rel="noopener"
                         target="_blank"
@@ -315,9 +285,9 @@ const Home = () => {
                       >
                         <DiGithubBadge />
                       </a>
-                    </StyledHover>
+                    </StyledIconHover>
 
-                    <StyledHover>
+                    <StyledIconHover>
                       <a
                         rel="noopener"
                         target="_blank"
@@ -325,14 +295,14 @@ const Home = () => {
                       >
                         <FiLinkedin />
                       </a>
-                    </StyledHover>
+                    </StyledIconHover>
 
-                    <StyledHover>
+                    <StyledIconHover>
                       <a href="https://twitter.com/iamnwani01" target="_blank">
                         <FiTwitter />
                       </a>
-                    </StyledHover>
-                  </div>
+                    </StyledIconHover>
+                  </Flex>
 
                   <Link
                     style={{ color: "white", textDecoration: "none" }}
@@ -365,13 +335,13 @@ const Home = () => {
                       aria-hidden={true}
                     >
                       ✌🏽
-                    </span>
+                  </span>
                   </WaveContainer>
                   <Title
                     style={{ padding: "10px 0", margin: 0 }}
                     align="center"
                   >
-                    Hi , I'm Nwani Victory
+                    Hello, I'm <b>Nwani Victory</b>
                   </Title>
                   <StyledText align="center">
                     I work as a Frontend Engineer and also an advocate for Cloud

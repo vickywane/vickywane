@@ -10,7 +10,7 @@ exports[`Header component test It displays headers 1`] = `
   tabIndex="-1"
 >
   <header
-    className="sc-crzoUp ZlEmG"
+    className="sc-dIsAE kWrfWB"
     data-testid="header-component"
   >
     <span>
@@ -28,24 +28,24 @@ exports[`Header component test It displays headers 1`] = `
         >
           <img
             alt="me"
-            className="sc-dIsAE fpaNi"
+            className="sc-bqGHjH bEREqq"
             src="test-file-stub"
           />
         </div>
       </a>
       <ul
-        className="sc-bqGHjH gakCIv"
+        className="sc-ksluoS edTRLk"
       >
         <li>
           <div
-            className="sc-hKFyIo fLlqAt"
+            className="sc-eCApGN eRkBJ"
             color="white"
           >
             <a
               href="/blog"
             >
               <p
-                className="sc-eCApGN kwJQEo"
+                className="sc-jSFkmK iqMWbI"
               >
                  
                 Articles
@@ -56,14 +56,14 @@ exports[`Header component test It displays headers 1`] = `
         </li>
         <li>
           <div
-            className="sc-hKFyIo fLlqAt"
+            className="sc-eCApGN eRkBJ"
             color="white"
           >
             <a
               href="/home/experiences"
             >
               <p
-                className="sc-eCApGN kwJQEo"
+                className="sc-jSFkmK iqMWbI"
               >
                  
                 Work Experience
@@ -74,14 +74,14 @@ exports[`Header component test It displays headers 1`] = `
         </li>
         <li>
           <div
-            className="sc-hKFyIo fLlqAt"
+            className="sc-eCApGN eRkBJ"
             color="white"
           >
             <a
               href="/projects"
             >
               <p
-                className="sc-eCApGN kwJQEo"
+                className="sc-jSFkmK iqMWbI"
               >
                  
                 Projects
@@ -92,14 +92,14 @@ exports[`Header component test It displays headers 1`] = `
         </li>
         <li>
           <div
-            className="sc-hKFyIo fLlqAt"
+            className="sc-eCApGN eRkBJ"
             color="white"
           >
             <a
               href="/talks"
             >
               <p
-                className="sc-eCApGN kwJQEo"
+                className="sc-jSFkmK iqMWbI"
               >
                  
                 Talks
@@ -110,20 +110,20 @@ exports[`Header component test It displays headers 1`] = `
         </li>
       </ul>
       <div
-        style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "justifyContent": "center",
-          }
-        }
+        className="sc-jrsJCI dLfXIF"
       >
-        <div>
+        <div
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
           <div
             className="sc-jrsJCI dLfXIF"
           >
             <div
-              className="sc-fujyUd HVVod"
+              className="sc-pNWxx coNNlN"
               onClick={[Function]}
             >
               <svg
@@ -165,22 +165,22 @@ exports[`Header component test It displays headers 1`] = `
             </div>
           </div>
           <nav
-            className="sc-pNWxx bUCJMv"
+            className="sc-kEqYlL jKxVWI"
             open={false}
           >
             <ul
-              className="sc-kEqYlL gholCc"
+              className="sc-iqAbSa gfLuJr"
             >
               <li>
                 <div
-                  className="sc-hKFyIo fLlqAt"
+                  className="sc-eCApGN eRkBJ"
                   color="white"
                 >
                   <a
                     href="/blog"
                   >
                     <p
-                      className="sc-eCApGN kwJQEo"
+                      className="sc-jSFkmK iqMWbI"
                     >
                        
                       Articles
@@ -199,14 +199,14 @@ exports[`Header component test It displays headers 1`] = `
               </li>
               <li>
                 <div
-                  className="sc-hKFyIo fLlqAt"
+                  className="sc-eCApGN eRkBJ"
                   color="white"
                 >
                   <a
                     href="/home/experiences"
                   >
                     <p
-                      className="sc-eCApGN kwJQEo"
+                      className="sc-jSFkmK iqMWbI"
                     >
                        
                       Work Experience
@@ -225,14 +225,14 @@ exports[`Header component test It displays headers 1`] = `
               </li>
               <li>
                 <div
-                  className="sc-hKFyIo fLlqAt"
+                  className="sc-eCApGN eRkBJ"
                   color="white"
                 >
                   <a
                     href="/projects"
                   >
                     <p
-                      className="sc-eCApGN kwJQEo"
+                      className="sc-jSFkmK iqMWbI"
                     >
                        
                       Projects
@@ -251,14 +251,14 @@ exports[`Header component test It displays headers 1`] = `
               </li>
               <li>
                 <div
-                  className="sc-hKFyIo fLlqAt"
+                  className="sc-eCApGN eRkBJ"
                   color="white"
                 >
                   <a
                     href="/talks"
                   >
                     <p
-                      className="sc-eCApGN kwJQEo"
+                      className="sc-jSFkmK iqMWbI"
                     >
                        
                       Talks
