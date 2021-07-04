@@ -1,17 +1,23 @@
 /**
  * @jest-environment jsdom
  */
-import React from 'react'
-import renderer from 'react-test-renderer'
+import React from "react"
+import renderer from "react-test-renderer"
+import { Router } from "@reach/router"
 
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import Header from '../../components/header'
+import "@testing-library/jest-dom/extend-expect"
+import Header from "../../components/header"
 
-describe("Id displays the header element", () => {
-    it('It displays home page', function () {
-        const tree = renderer.create(<Header />).toJSON()
+describe("Header component test", () => {
+  it("It displays headers", function () {
+    const tree = renderer
+      .create(
+        <Router>
+          <Header path="/" exact />
+        </Router>
+      )
+      .toJSON()
 
-        expect(tree).toMatchSnapshot()
-    });
+    expect(tree).toMatchSnapshot()
+  })
 })

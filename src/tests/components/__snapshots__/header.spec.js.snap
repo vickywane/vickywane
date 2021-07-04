@@ -1,14 +1,114 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Id displays the header element It displays home page 1`] = `
-<header
-  className="sc-pNWxx fNZDHu"
-  data-testid="header-component"
+exports[`Header component test It displays headers 1`] = `
+<div
+  style={
+    Object {
+      "outline": "none",
+    }
+  }
+  tabIndex="-1"
 >
-  <span>
-    <a
-      href="/"
-    >
+  <header
+    className="sc-crzoUp ZlEmG"
+    data-testid="header-component"
+  >
+    <span>
+      <a
+        href="/"
+      >
+        <div
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <img
+            alt="me"
+            className="sc-dIsAE fpaNi"
+            src="test-file-stub"
+          />
+        </div>
+      </a>
+      <ul
+        className="sc-bqGHjH gakCIv"
+      >
+        <li>
+          <div
+            className="sc-hKFyIo fLlqAt"
+            color="white"
+          >
+            <a
+              href="/blog"
+            >
+              <p
+                className="sc-eCApGN kwJQEo"
+              >
+                 
+                Articles
+                 
+              </p>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div
+            className="sc-hKFyIo fLlqAt"
+            color="white"
+          >
+            <a
+              href="/home/experiences"
+            >
+              <p
+                className="sc-eCApGN kwJQEo"
+              >
+                 
+                Work Experience
+                 
+              </p>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div
+            className="sc-hKFyIo fLlqAt"
+            color="white"
+          >
+            <a
+              href="/projects"
+            >
+              <p
+                className="sc-eCApGN kwJQEo"
+              >
+                 
+                Projects
+                 
+              </p>
+            </a>
+          </div>
+        </li>
+        <li>
+          <div
+            className="sc-hKFyIo fLlqAt"
+            color="white"
+          >
+            <a
+              href="/talks"
+            >
+              <p
+                className="sc-eCApGN kwJQEo"
+              >
+                 
+                Talks
+                 
+              </p>
+            </a>
+          </div>
+        </li>
+      </ul>
       <div
         style={
           Object {
@@ -18,114 +118,168 @@ exports[`Id displays the header element It displays home page 1`] = `
           }
         }
       >
-        <img
-          alt="me"
-          className="sc-jrsJCI gsYEiL"
-          src="test-file-stub"
-          style={Object {}}
-        />
+        <div>
+          <div
+            className="sc-jrsJCI dLfXIF"
+          >
+            <div
+              className="sc-fujyUd HVVod"
+              onClick={[Function]}
+            >
+              <svg
+                fill="none"
+                height="1em"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                style={
+                  Object {
+                    "color": undefined,
+                    "fontSize": "1.8rem",
+                  }
+                }
+                viewBox="0 0 24 24"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <line
+                  x1="3"
+                  x2="21"
+                  y1="12"
+                  y2="12"
+                />
+                <line
+                  x1="3"
+                  x2="21"
+                  y1="6"
+                  y2="6"
+                />
+                <line
+                  x1="3"
+                  x2="21"
+                  y1="18"
+                  y2="18"
+                />
+              </svg>
+            </div>
+          </div>
+          <nav
+            className="sc-pNWxx bUCJMv"
+            open={false}
+          >
+            <ul
+              className="sc-kEqYlL gholCc"
+            >
+              <li>
+                <div
+                  className="sc-hKFyIo fLlqAt"
+                  color="white"
+                >
+                  <a
+                    href="/blog"
+                  >
+                    <p
+                      className="sc-eCApGN kwJQEo"
+                    >
+                       
+                      Articles
+                       
+                    </p>
+                  </a>
+                </div>
+                <hr
+                  style={
+                    Object {
+                      "background": "white",
+                      "margin": ".9rem 0",
+                    }
+                  }
+                />
+              </li>
+              <li>
+                <div
+                  className="sc-hKFyIo fLlqAt"
+                  color="white"
+                >
+                  <a
+                    href="/home/experiences"
+                  >
+                    <p
+                      className="sc-eCApGN kwJQEo"
+                    >
+                       
+                      Work Experience
+                       
+                    </p>
+                  </a>
+                </div>
+                <hr
+                  style={
+                    Object {
+                      "background": "white",
+                      "margin": ".9rem 0",
+                    }
+                  }
+                />
+              </li>
+              <li>
+                <div
+                  className="sc-hKFyIo fLlqAt"
+                  color="white"
+                >
+                  <a
+                    href="/projects"
+                  >
+                    <p
+                      className="sc-eCApGN kwJQEo"
+                    >
+                       
+                      Projects
+                       
+                    </p>
+                  </a>
+                </div>
+                <hr
+                  style={
+                    Object {
+                      "background": "white",
+                      "margin": ".9rem 0",
+                    }
+                  }
+                />
+              </li>
+              <li>
+                <div
+                  className="sc-hKFyIo fLlqAt"
+                  color="white"
+                >
+                  <a
+                    href="/talks"
+                  >
+                    <p
+                      className="sc-eCApGN kwJQEo"
+                    >
+                       
+                      Talks
+                       
+                    </p>
+                  </a>
+                </div>
+                <hr
+                  style={
+                    Object {
+                      "background": "white",
+                      "margin": ".9rem 0",
+                    }
+                  }
+                />
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
-    </a>
-    <ul
-      className="sc-kEqYlL kPcRvr"
-    >
-      <li>
-        <a
-          href="/blog"
-          style={
-            Object {
-              "color": "white",
-              "textDecoration": "none",
-            }
-          }
-        >
-          <p
-            className="sc-eCApGN kwJQEo"
-          >
-             Articles 
-          </p>
-        </a>
-      </li>
-      <li>
-        <a
-          href="/talks"
-          style={
-            Object {
-              "color": "white",
-              "textDecoration": "none",
-            }
-          }
-        >
-          <p
-            className="sc-eCApGN kwJQEo"
-          >
-             Talks 
-          </p>
-        </a>
-      </li>
-      <li>
-        <a
-          href="/projects"
-          style={
-            Object {
-              "color": "white",
-              "textDecoration": "none",
-            }
-          }
-        >
-          <p
-            className="sc-eCApGN kwJQEo"
-          >
-             Work 
-          </p>
-        </a>
-      </li>
-    </ul>
-    <div
-      className="sc-iqAbSa gWJZJj"
-    >
-      <div
-        className="sc-fujyUd HVVod"
-        onClick={[Function]}
-      >
-        <svg
-          fill="none"
-          height="1em"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          style={
-            Object {
-              "color": undefined,
-              "fontSize": "1.8rem",
-            }
-          }
-          viewBox="0 0 24 24"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <line
-            x1="3"
-            x2="21"
-            y1="12"
-            y2="12"
-          />
-          <line
-            x1="3"
-            x2="21"
-            y1="6"
-            y2="6"
-          />
-          <line
-            x1="3"
-            x2="21"
-            y1="18"
-            y2="18"
-          />
-        </svg>
-      </div>
-    </div>
-  </span>
-</header>
+    </span>
+  </header>
+</div>
 `;

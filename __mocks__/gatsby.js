@@ -1,7 +1,10 @@
 const React = require("react")
 const gatsby = jest.requireActual("gatsby")
+const Router = jest.requireActual("@reach/router")
 
 module.exports = {
+    ...Router,
+    useLocation: jest.fn(),
     ...gatsby,
     graphql: jest.fn(),
     Link: jest.fn().mockImplementation(

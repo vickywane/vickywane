@@ -1,4 +1,26 @@
 {
+  "navigation": [
+    {
+      "id": 1,
+      "route": "/blog",
+      "name": "Articles"
+    },
+    {
+      "id": 2,
+      "route": "/home/experiences",
+      "name": "Work Experience"
+    },
+    {
+      "id": 3,
+      "route": "/projects",
+      "name": "Projects"
+    },
+    {
+      "id": 4,
+      "route": "/talks",
+      "name": "Talks"
+    }
+  ],
   "blog": [
     {
       "id": 6,

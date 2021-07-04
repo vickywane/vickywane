@@ -3,10 +3,15 @@ import React from "react"
 import styled from "styled-components"
 import media from "styled-media-query"
 import { FiMenu } from "react-icons/fi"
+import Sidebar from "./header-sidebar"
+import Data from '../data/data.json'
+
 import GatsbyImage from "../components/image"
 import { useStaticQuery } from "gatsby"
 
-import { Text, center, IconHover } from "../styles/"
+import { useLocation } from "@reach/router"
+
+import { Text, center, IconHover, HoverLink } from "../styles/"
 
 const HeaderBody = styled.header`
   height: 70px;
@@ -64,64 +69,35 @@ const MenuIconContainer = styled.div`
   `}
 `
 
-const Header = ({ siteText }) => (
-  <HeaderBody data-testid="header-component">
-    <span>
-      <Link to="/">
+const Header = () => {
+  const { pathname } = useLocation()
+  return (
+    <HeaderBody data-testid="header-component">
+      <span>
+        <Link to="/">
+          <div style={{ ...center }}>
+            <Image alt={"me"} src={require("../images/my_avatar.png")} />
+          </div>
+        </Link>
+
+        <List>
+          {Data.navigation.map(({ id, name, route }) => (
+            <li key={id}>
+              <HoverLink color={pathname === route ? "orange" : "white"}>
+                <Link to={route}>
+                  <Text small> {name} </Text>
+                </Link>
+              </HoverLink>
+            </li>
+          ))}
+        </List>
+
         <div style={{ ...center }}>
-          <Image
-            alt={"me"}
-            style={{}}
-            src={require("../images/my_avatar.png")}
-          />
+          <Sidebar />
         </div>
-      </Link>
-
-      <List>
-        <li>
-          <Link
-            to="/blog"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            <Text small> Articles </Text>
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            to="/talks"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            <Text small> Talks </Text>
-          </Link>
-        </li>
-
-        <li>
-          <Link
-            to="/projects"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            <Text small> Work </Text>
-          </Link>
-        </li>
-      </List>
-
-      <MenuIconContainer>
-        <IconHover onClick={() => {}}>
-          <FiMenu style={{ fontSize: "1.8rem" }} />
-        </IconHover>
-      </MenuIconContainer>
-    </span>
-  </HeaderBody>
-)
+      </span>
+    </HeaderBody>
+  )
+}
 
 export default Header
