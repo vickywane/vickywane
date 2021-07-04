@@ -36,7 +36,7 @@ const Sidebar = () => {
   const { pathname } = useLocation()
 
   return (
-    <div>
+    <div style={{display : 'none'}}  >
       <MenuIconContainer>
         {!isSidebarOpen ? (
           <IconHover onClick={() => setSidebar(!isSidebarOpen)}>
