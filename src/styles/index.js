@@ -123,6 +123,16 @@ export const IconHover = styled.div`
   }
 `
 
+export const MenuIconContainer = styled.div`
+  display: none;
+  ${media.lessThan("small")`
+      display : flex;
+      justify-content : center;
+      align-items : center;
+  `}
+`
+
+
 export const center = {
   display: "flex",
   justifyContent: "center",

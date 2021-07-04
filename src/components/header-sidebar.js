@@ -8,7 +8,7 @@ import ScrollLock, { TouchScrollable } from 'react-scrolllock'
 
 
 import Data from "../data/data.json"
-import { IconHover, Text, HoverLink } from "../styles/"
+import { IconHover, Text, HoverLink, MenuIconContainer } from "../styles/"
 
 const StyledMenu = styled.nav`
   display: flex;
@@ -25,15 +25,6 @@ const StyledMenu = styled.nav`
   transition: all 350ms;
 `
 
-const MenuIconContainer = styled.div`
-  display: none;
-  ${media.lessThan("small")`
-      display : flex;
-      justify-content : center;
-      align-items : center;
-  `}
-`
-
 const List = styled.ul`
   margin: 0;
   list-style: none;
@@ -47,7 +38,7 @@ const Sidebar = () => {
   const { pathname } = useLocation()
 
   return (
-    <div>
+    <div style={{display : 'none'}}  >
       <MenuIconContainer>
         {!isSidebarOpen ? (
           <IconHover onClick={() => setSidebar(!isSidebarOpen)}>

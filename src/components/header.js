@@ -4,14 +4,14 @@ import styled from "styled-components"
 import media from "styled-media-query"
 import { FiMenu } from "react-icons/fi"
 import Sidebar from "./header-sidebar"
-import Data from '../data/data.json'
+import Data from "../data/data.json"
 
 import GatsbyImage from "../components/image"
 import { useStaticQuery } from "gatsby"
 
 import { useLocation } from "@reach/router"
 
-import { Text, center, IconHover, HoverLink } from "../styles/"
+import { Text, center, IconHover, MenuIconContainer, HoverLink } from "../styles/"
 
 const HeaderBody = styled.header`
   height: 70px;
@@ -60,14 +60,7 @@ const List = styled.ul`
   `};
 `
 
-const MenuIconContainer = styled.div`
-  display: none;
-  ${media.lessThan("small")`
-      display : flex;
-      justify-content : center;
-      align-items : center;
-  `}
-`
+
 
 const Header = () => {
   const { pathname } = useLocation()
@@ -92,9 +85,9 @@ const Header = () => {
           ))}
         </List>
 
-        <div style={{ ...center }}>
+        <MenuIconContainer>
           <Sidebar />
-        </div>
+        </MenuIconContainer>
       </span>
     </HeaderBody>
   )
