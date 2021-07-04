@@ -1,11 +1,18 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { FiLinkedin, FiTwitter } from "react-icons/fi"
+import { FiLinkedin, FiTwitter, FiMail, FiSend } from "react-icons/fi"
 import { IoIosArrowRoundBack } from "react-icons/io"
 import media from "styled-media-query"
 
-import { HomeBackground, Text, Title, Button, center } from "../../styles/"
-import { Header, StyledHover } from "./"
+import {
+  Text,
+  Title,
+  Button,
+  center,
+  Flex,
+  StyledIconHover,
+} from "../../styles/"
+import { Header } from "./"
 import Emoji from "../../components/emoji"
 
 const InputBody = styled.div`
@@ -17,10 +24,11 @@ const InputBody = styled.div`
     padding: 5px 0;
   }
   input {
-    border: 1px solid #fff;
+    background: #141821;
+    border: 1px solid #141821;
     border-radius: 3px;
     height: 45px;
-    color: #000;
+    color: #fff;
     font-size: 0.9rem;
     padding: 0 1rem;
     &: focus {
@@ -28,25 +36,17 @@ const InputBody = styled.div`
     }
   }
   textarea {
+    color: #fff;
+    background: #141821;
+    border: 1px solid #141821;
     border-radius: 3px;
-    height: 15vh;
+    height: 12vh;
     font-size: 0.9rem;
     padding: 1rem 1rem;
     &: focus {
       box-shadow: 0 2px 3px #6c15b1;
     }
   }
-`
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 50% 50%;
-  place-items: center;
-  ${media.lessThan("medium")`
-      display : flex;
-      flex-direction : column;
-      align-items : center;
-  `}
 `
 
 const Contact = props => {
@@ -58,88 +58,128 @@ const Contact = props => {
   }
 
   return (
-    <div>
-      <Header>
-        <div
+    <div data-testid="contact-page">
+      <Header data-testid="header">
+        <Flex
+          data-testid="header-items"
+          direction="row"
+          justify="space-between"
           style={{
-            display: "flex",
             width: "100%",
-            justifyContent: "space-between",
           }}
         >
-          <StyledHover onClick={() => setView("home")}>
+          <StyledIconHover onClick={() => setView("home")}>
             <IoIosArrowRoundBack style={{ fontSize: "1.8rem" }} />
-          </StyledHover>
+          </StyledIconHover>
 
-          <p style={{ opacity: 0 }}> .</p>
-        </div>
+          <div style={{ ...center }}>
+            <Title small> Contact Me</Title>
+          </div>
+        </Flex>
       </Header>
 
       {!isSendingMessage ? (
         <div>
           <div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <Emoji size="3rem" symbol="🙌🏾" label="contact emoji" />{" "}
+            <Flex>
+              <div style={{ ...center, marginRight: "10px" }}>
+                <Title> Hi There, </Title>
+              </div>
+
+              <div style={{ ...center }}>
+                <Emoji size="1.5rem" symbol="✌🏽" label="contact emoji" />{" "}
+              </div>
+            </Flex>
+            <Text>
+              I am always open to engaging in discussions around software
+              engineering, and technical authorship. <br /> Want to reach out to
+              me for something? - Let's Get In Touch!{" "}
+            </Text>
+          </div>
+
+          <Text>
+            Alternatively, you can also reach to me through the following
+            mediums;
+          </Text>
+          <Flex data-testid="contact-icons" direction="row">
+            <StyledIconHover style={{ margin: "0 .5rem" }}>
+              <a
+                href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
+                target="_blank"
+                rel="norefferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <FiLinkedin style={{ fontSize: "1.4rem" }} />
+              </a>
+            </StyledIconHover>
+
+            <StyledIconHover style={{ margin: "0 .5rem" }}>
+              <a
+                target="_blank"
+                rel="norefferrer"
+                href="https://twitter.com/iamnwani01"
+                style={{ textDecoration: "none" }}
+              >
+                <FiTwitter style={{ fontSize: "1.4rem" }} />
+              </a>
+            </StyledIconHover>
+
+            <StyledIconHover style={{ margin: "0 .5rem" }}>
+              <a
+                target="_blank"
+                rel="norefferrer"
+                href="mailto:vickywane@gmail.com?subject=Friendly%discussion%with%Victory&body=Description%of%our%conversation"
+                style={{ textDecoration: "none" }}
+              >
+                <FiMail style={{ fontSize: "1.4rem" }} />
+              </a>
+            </StyledIconHover>
+          </Flex>
+          <hr />
+
+          <form
+            data-testid="form-fields"
+            onSubmit={e => {
+              e.preventDefault()
+
+              handleMessage()
+            }}
+          >
+            <InputBody>
+              <label for="name"> Your Name </label>
+              <input
+                id="name"
+                data-testid="name-field"
+                placeholder="Your name or just a nick name"
+                type="text"
+              />
+            </InputBody>
+
+            <InputBody>
+              <label> What do you want to talk about ? </label>
+              <textarea
+                data-testid="description-field"
+                placeholder="A clear description of your message."
+                type="text"
+              />
+            </InputBody>
+
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <p style={{ opacity: 0 }}> . </p>
+              <Button
+                data-testid="send-message"
+                onClick={_ => handleMessage()}
+                style={{ textAlign: "right" }}
+              >
+                Deliver Message
+                <div style={{ margin: "0 .4rem" }}>
+                  <FiSend
+                    style={{ fontSize: "1.4rem", transform: "rotate(45deg)" }}
+                  />
+                </div>
+              </Button>
             </div>
-            <br />
-            <Title align="center">
-              Want to reach out to me for something? Let's Get In Touch!{" "}
-            </Title>
-          </div>
-
-          <Grid>
-            <a
-              href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
-              target="_blank"
-              rel="norefferrer"
-              style={{ textDecoration: "none" }}
-            >
-              <Button>
-                <div style={{ margin: "0 .5rem" }}>
-                  <FiLinkedin style={{ fontSize: "1.4rem" }} />
-                </div>
-                Contact me on Linkedin
-              </Button>
-            </a>
-
-            <a
-              target="_blank"
-              rel="norefferrer"
-              href="https://twitter.com/iamnwani01"
-              style={{ textDecoration: "none" }}
-            >
-              <br />
-              <Button>
-                <div style={{ margin: "0 .5rem" }}>
-                  <FiTwitter style={{ fontSize: "1.4rem" }} />
-                </div>
-                Message me on Twitter
-              </Button>
-            </a>
-          </Grid>
-
-          <InputBody>
-            <label> Your Name </label>
-            <input placeholder="Your name or just a nick name" type="text" />
-          </InputBody>
-
-          <InputBody>
-            <label> What do you wanna talk about ? </label>
-            <textarea
-              placeholder="A brief summary of what you want to reach out to me for."
-              type="text"
-            />
-          </InputBody>
-
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <p style={{ opacity: 0 }}> . </p>
-            <Button
-              onClick={_ => handleMessage()}
-              style={{ textAlign: "right" }}
-            >
-              Send the message my way
-            </Button>
-          </div>
+          </form>
         </div>
       ) : (
         <div

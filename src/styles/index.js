@@ -1,6 +1,38 @@
 import styled from "styled-components"
 import media from "styled-media-query"
 
+export const StyledIconHover = styled.div`
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 350ms;
+  margin: 0 0.5rem;
+  font-size: 1.4rem;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+  &: hover {
+    background: #141821;
+    cursor: pointer;
+  }
+  ${media.lessThan("large")`
+    padding: 0.3rem 0.4rem;
+    margin: 0 0.4rem;
+  `};
+  ${media.lessThan("medium")`
+      margin: 0 0.2rem;
+      font-size: 1.3rem;
+  `};
+  ${media.lessThan("small")`
+  margin: 0 0.2rem;
+  font-size: 1.2rem;
+`};
+`
+
 export const Flex = styled.div`
   display: flex;
   flex-direction: ${props => props.direction};
@@ -52,10 +84,9 @@ export const HoverLink = styled.div`
 `
 
 export const Text = styled.p`
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: ${props => props.color};
   font-weight: normal;
-
   max-width: ${props => props.maxWidth};
   text-align: ${props => props.align};
   ${media.lessThan("large")`
@@ -122,6 +153,16 @@ export const IconHover = styled.div`
     cursor: pointer;
   }
 `
+
+export const MenuIconContainer = styled.div`
+  display: none;
+  ${media.lessThan("small")`
+      display : flex;
+      justify-content : center;
+      align-items : center;
+  `}
+`
+
 
 export const center = {
   display: "flex",
