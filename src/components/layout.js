@@ -35,11 +35,9 @@ const Layout = ({ children }) => {
         />
       </Helmet>
 
-      <TouchScrollable>
-        <div>
-          <main>{children}</main>
-        </div>
-      </TouchScrollable>
+      <div>
+        <main>{children}</main>
+      </div>
     </div>
   )
 }

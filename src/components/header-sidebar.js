@@ -4,8 +4,6 @@ import media from "styled-media-query"
 import { FiMenu, FiX } from "react-icons/fi"
 import { useLocation } from "@reach/router"
 import { Link } from "gatsby"
-import ScrollLock, { TouchScrollable } from 'react-scrolllock'
-
 
 import Data from "../data/data.json"
 import { IconHover, Text, HoverLink, MenuIconContainer } from "../styles/"
