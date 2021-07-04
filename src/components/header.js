@@ -11,7 +11,13 @@ import { useStaticQuery } from "gatsby"
 
 import { useLocation } from "@reach/router"
 
-import { Text, center, IconHover, MenuIconContainer, HoverLink } from "../styles/"
+import {
+  Text,
+  center,
+  IconHover,
+  MenuIconContainer,
+  HoverLink,
+} from "../styles/"
 
 const HeaderBody = styled.header`
   height: 70px;
@@ -26,7 +32,7 @@ const HeaderBody = styled.header`
     justify-content: space-between;
   }
   ${media.lessThan("medium")`
-    height: 60px;
+    height: 50px;
     span {
       padding: 0 1rem;
     }
@@ -39,6 +45,10 @@ const Image = styled.img`
   width: 50px;
   object-fit: contain;
   border-radius: 50%;
+  ${media.lessThan("medium")`
+  height: 40px;
+  width: 40px;
+`};
   &: hover {
     cursor: pointer;
   }
@@ -59,8 +69,6 @@ const List = styled.ul`
       display : none; 
   `};
 `
-
-
 
 const Header = () => {
   const { pathname } = useLocation()
