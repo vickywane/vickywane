@@ -1,0 +1,13 @@
+[dev]
+port=5050
+autoLaunch=false
+
+[functions]
+included_files=["functions/root.crt"]
+
+[[headers]]
+for = "/*"
+
+[headers.values]
+Access-Control-Allow-Origin = "*"
+
