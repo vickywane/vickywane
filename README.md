@@ -18,6 +18,7 @@ I have worked as a Frontend and Fullstack Engineer for several organizations in 
 - [Egghead.io](https://egghead.io/blog/offline-applications-using-mongodb-realm)
 
 👉 Quick Read: [Kubernetes To The Cloud With AWS: Deploying a Node.js App to EKS](https://developer.okta.com/blog/2021/11/02/k8s-to-the-cloud-aws)
+
 👉 Quick Glance: [My personal website](https://nwani.netlify.com).
 
 ## Want to connect with me?
