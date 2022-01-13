@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { FiExternalLink } from "react-icons/fi"
 
+import Layout from '../../components/layout'
 import Seo from "../../components/seo"
 import Header from "../../components/header"
 import {
@@ -47,7 +48,7 @@ const Body = styled(HomeBackground)`
 
 const Experiences = () => {
   return (
-    <div>
+    <Layout>
       <Header />
       <Seo title="Experiences" />
 
@@ -183,7 +184,7 @@ const Experiences = () => {
           </List>
         </div>
       </Body>
-    </div>
+    </Layout>
   )
 }
 

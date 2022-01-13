@@ -6,6 +6,7 @@ import { IoMdCalendar } from "react-icons/io"
 import data from "../../data/data.json"
 import Seo from "../../components/seo"
 import media from "styled-media-query"
+import Layout from '../../components/layout'
 
 import {
   HomeBackground,
@@ -67,7 +68,7 @@ const BrandsList = styled.div`
 
 function index() {
   return (
-    <div style={{ height: "100%" }}>
+    <Layout style={{ height: "100%" }}>
       <Seo title={"Blog"} />
       <Header />
 
@@ -124,7 +125,7 @@ function index() {
           </Grid>
         </BodyContent>
       </Body>
-    </div>
+    </Layout>
   )
 }
 

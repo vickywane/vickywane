@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { FiGithub, FiExternalLink } from "react-icons/fi"
 import media from "styled-media-query"
 
+import Layout from '../../components/layout'
 import ProjectToolsIcon from "../../components/projectIcons"
 import Seo from "../../components/seo"
 import { HomeBackground, Title, Text, Card, Button, Flex } from "../../styles/"
@@ -46,7 +47,7 @@ const ProjectCard = styled(Card)`
 
 const Projects = () => {
   return (
-    <div style={{ height: "100%", overflow: "hidden" }}>
+    <Layout style={{ height: "100%", overflow: "hidden" }}>
       <Seo title="Projects" />
       <Header />
 
@@ -135,7 +136,7 @@ const Projects = () => {
           )}
         </ProjectsGrid>
       </HomeBackground>
-    </div>
+    </Layout>
   )
 }
 

@@ -2,8 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
-import ScrollLock, { TouchScrollable } from "react-scrolllock"
-
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -20,6 +18,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Helmet>
+        <html style="background: #282c34;" />
         <meta charSet="utf-8" />
         <link
           rel="stylesheet"
