@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Helmet>
-        <html style="background: #282c34;" />
+        <html style={{background: '#282c34'}} />
         <meta charSet="utf-8" />
         <link
           rel="stylesheet"
