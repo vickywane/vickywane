@@ -6,6 +6,7 @@ html {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
   overflow-y: auto;
+  background-color: #282c34;
 }
 body {
   margin: 0;
