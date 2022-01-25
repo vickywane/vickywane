@@ -57,7 +57,6 @@
       "link": "https://www.smashingmagazine.com/2020/10/file-uploads-react-apollo-google-storage-graphql/",
       "date": "Oct 8, 2020"
     },
-
     {
       "id": 4,
       "title": "Django Setup Tutorial",
@@ -75,49 +74,56 @@
   ],
   "projects": [
     {
-      "title": "Node.js GraphQL API Starter App",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corrupti uae, similique est optio!",
-      "images": [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/dkfptto8m/image/upload/v1600414581/Screenshot_from_2020-09-18_08-33-49.png",
-        "https://res.cloudinary.com/dkfptto8m/image/upload/v1556654670/img.jpg"
-      ],
-      "article_link": "https://www.smashingmagazine.com/2020/10/file-uploads-react-apollo-google-storage-graphql/",
-      "git_link": "https://github.com/vickywane/Node-graphql-upload-article",
-      "tools": ["graphql", "javascript", "openapi"]
+      "title": "Svelte E-commerce Starter",
+      "description": "An ecommerce application built with a Svelte.js frontend. The commerce data is managed using Medusa Headless commerce",
+      "article_link": "https://dev.to/vickywane/building-a-svelte-storefront-using-medusa-commerce-5eek",
+      "git_link": "https://github.com/vickywane/svelte-starter-medusa",
+      "tools": [
+        "graphql",
+        "javascript",
+        "ecommerce"
+      ]
     },
     {
-      "title": "React Dialogflow Application",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corruptiquae, similique est optio!",
-      "images": [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+      "title": "Tic-Tac-Toe",
+      "description": "A fun tic-tac-toe game I built using React and JavaScript. The application is fully styled using Vanilla CSS and state is managed with the Context API",
+      "tools": [
+        "javascript",
+        "react",
+        "game"
       ],
-      "tools": ["javascript", "react", "chatbot"]
+      "git_link": "https://github.com/vickywane/React-tic-tac-toe"
     },
     {
-      "title": "MongoDB Realm React Native Offline App",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corruptiquae, similique est optio!",
-      "images": [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+      "title": "Wine Recommender N.L.P Application",
+      "description": "A React.js application which uses Google Dialogflow to process a user's speech and recommed a preferred wine",
+      "tools": [
+        "javascript",
+        "react",
+        "chatbot"
       ],
-      "tools": ["javascript", "react", "mobile", "mongodb"]
+      "article_link": "https://www.smashingmagazine.com/2021/01/dialogflow-agent-react-application/",
+      "git_link": "https://github.com/vickywane/svelte-starter-medusa"
     },
     {
-      "title": "Oketo Flask Container Resource",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates beatae neque repudiandae quis dolores illo corruptiquae, similique est optio!",
-      "images": [
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png",
-        "https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_auto/w_2000/https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/6bc8cdfe-1d23-49de-8ef3-a2b494f2eec2/react-app-application-default-state.png"
+      "title": "Speech-To-Text Voice Application",
+      "description": "A React.js application that records a user's speech, converts to text, and uses the converted text to search for data",
+      "tools": [
+        "react",
+        "javascript",
+        "recorder"
       ],
-      "tools": ["kubernetes", "docker", "python", "openapi"]
+      "git_link": "https://github.com/vickywane/buttercms-voice-search-integration"
     }
   ],
-  "talks": [],
+  "talks": [
+    {
+      "title": "Building a Chatbot or Voicebot with Dialogflow in React ft. Victory Nwani - RRU 154",
+      "summary": "Victory Dumebi Nwani joins the round up to discuss integrating the Dialogflow from Google Cloud into your application to manage voice and chat capabilities for your application.",
+      "type": "podcast",
+      "external_link": "https://dev.to/reactroundup/building-a-chatbot-or-voicebot-with-dialogflow-in-react-ft-victory-nwani-rru-154"
+    }
+  ],
   "expriences": {
     "roles": [
       {

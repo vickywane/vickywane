@@ -1,5 +1,5 @@
 import React from "react"
-import { IoLogoJavascript, IoLogoPython } from "react-icons/io"
+import { IoLogoJavascript, IoLogoPython, IoMdCart } from "react-icons/io"
 import {
   SiOpenapiinitiative,
   SiMongodb,
@@ -8,8 +8,10 @@ import {
 } from "react-icons/si"
 import { FaReact, FaMobileAlt, FaDocker } from "react-icons/fa"
 
-import { MdErrorOutline } from "react-icons/md"
+import { MdErrorOutline, MdOutlineVideogameAsset, MdRecordVoiceOver } from "react-icons/md"
 import { GrGraphQl } from "react-icons/gr"
+
+// console.log(IoGameControllerOutline, IoCartOutline);
 
 const ProjectToolsIcon = ({ icon, size }) => {
   switch (icon) {
@@ -43,6 +45,15 @@ const ProjectToolsIcon = ({ icon, size }) => {
     case "chatbot":
       return <SiProbot id={icon} size={size} />
 
+    case "game":
+      return <MdOutlineVideogameAsset id={icon} size={size} />
+
+    case "recorder":
+      return <MdRecordVoiceOver id={icon} size={size} />
+      
+    case "ecommerce":
+    case "cart":
+      return <IoMdCart id={icon} size={size} />
     default:
       return <MdErrorOutline id={"fallback-icon"} size={size} />
   }

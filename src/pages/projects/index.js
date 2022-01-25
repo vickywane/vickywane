@@ -64,8 +64,8 @@ const Projects = () => {
         <hr style={{ background: "white" }} />
         <ProjectsGrid>
           {ProjectData.projects.map(
-            ({ title, description, images, tools, git_link, article_link }) => (
-              <ProjectCard>
+            ({ title, description, tools, git_link, article_link }) => (
+              <ProjectCard key={title}>
                 <Title> {title} </Title>
                 <hr style={{ backgroundColor: "white" }} />
                 <Text>{description}</Text>

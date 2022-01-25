@@ -198,7 +198,7 @@ const Home = () => {
                     align="center"
                   >
                     Like To Hire Me?
-                    <HoverLink onClick={() => setCurrentView("Contact")}>
+                    <HoverLink style={{marginLeft : "10px"}} onClick={() => setCurrentView("Contact")}>
                       <p> Get In Touch </p>
                     </HoverLink>
                   </StyledText>

@@ -7,7 +7,7 @@ export const UserCard = styled.div`
   height: 85%;
   overflow: auto;
   transition: all 300ms;
-  width: 70%;
+  width: 75%;
   color: #fff;
   padding: 0.5rem 1rem 2rem 1rem;
   border-radius: 7px;

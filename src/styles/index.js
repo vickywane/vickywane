@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import media from "styled-media-query"
 
+
 export const StyledIconHover = styled.div`
   padding: 0.4rem 0.6rem;
   border-radius: 5px;
@@ -70,7 +71,6 @@ export const Card = styled.div`
 `
 
 export const HoverLink = styled.div`
-  padding-left: 10px;
   color: orange;
   cursor: pointer;
   a {
@@ -111,6 +111,18 @@ export const HomeBackground = styled.div`
   height: 100%;
   width: 100%;
   background-color: #141821;
+`
+
+export const PageBody = styled(HomeBackground)`
+  padding: 1rem 0.5rem;
+  height: calc(100vh - 60px);
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+`
+
+export const PageContent = styled.div`
+  max-width: 1300px;
 `
 
 export const Button = styled.button`

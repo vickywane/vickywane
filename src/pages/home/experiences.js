@@ -59,7 +59,7 @@ const Experiences = () => {
               Experiences |
             </Title>
 
-            <HoverLink color="orange">
+            <HoverLink style={{ marginLeft: "10px" }} color="orange">
               <Flex>
                 <a
                   href="https://www.linkedin.com/in/victory-nwani-b820b2157/"
@@ -79,8 +79,6 @@ const Experiences = () => {
             Below is a run down of roles i have held over the past years;
           </Text>
 
-          <div style={{ ...center }}></div>
-
           <Title color="white" small>
             {" "}
             Professional Work Experience{" "}
@@ -90,46 +88,35 @@ const Experiences = () => {
             {Data.expriences.roles.map(
               ({
                 id,
-                title,
                 company,
                 company_url,
-                start_time,
                 description,
-                end_time,
               }) => {
                 return (
                   <li style={{ ...center }} key={id}>
                     <div className="card-container">
-                      <div>
-                        <Flex>
-                          <a
-                            href={company_url}
-                            style={{
-                              textDecoration: "none",
-                              color: "white",
-                              marginRight: ".5rem",
-                            }}
-                            target="_blank"
-                          >
-                            <Flex>
-                              <Title small style={{ padding: 0, margin: 0 }}>
-                                {company}
-                              </Title>
+                      <Flex>
+                        <a
+                          href={company_url}
+                          style={{
+                            textDecoration: "none",
+                            color: "white",
+                          }}
+                          target="_blank"
+                        >
+                          <Flex>
+                            <Title  style={{ padding: 0, margin: 0 }}>
+                              {company}
+                            </Title>
 
-                              <div style={{ margin: "0 .6rem", padding: 0 }}>
-                                <FiExternalLink />
-                              </div>
-                            </Flex>
-                          </a>
-                        </Flex>
-                      </div>
-                      <Text style={{ color: "#D3D3D3" }}>
-                        <i>
-                          {" "}
-                          {title} -- ( {start_time} - {end_time} ){" "}
-                        </i>
-                      </Text>
+                            <div style={{ margin: "0 .6rem", padding: 0 }}>
+                              <FiExternalLink />
+                            </div>
+                          </Flex>
+                        </a>
+                      </Flex>
 
+                      <br />
                       <Text>{description}</Text>
                     </div>
                   </li>
@@ -162,7 +149,7 @@ const Experiences = () => {
                             target="_blank"
                           >
                             <Flex>
-                              <Title small style={{ padding: 0, margin: 0 }}>
+                              <Title style={{ padding: 0, margin: 0 }}>
                                 {name}
                               </Title>
 
