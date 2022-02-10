@@ -1,6 +1,6 @@
 # Hi There 👋, 
 
-I'm Nwani Victory, a software engineer and techical writer. 
+I'm Nwani Victory, a software engineer and a techical writer. 
 
 I have worked as a Frontend and Fullstack Engineer for several organizations in building accessible and sustainable client-side applications. I have also written quality technical articles for several developer-focused blogs and communities. 
 
