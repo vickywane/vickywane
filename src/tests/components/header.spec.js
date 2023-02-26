@@ -6,14 +6,14 @@ import renderer from "react-test-renderer"
 import { Router } from "@reach/router"
 
 import "@testing-library/jest-dom/extend-expect"
-import Header from "../../components/header"
+import Index from "../../components/headers"
 
-describe("Header component test", () => {
+describe("Index component test", () => {
   it("It displays headers", function () {
     const tree = renderer
       .create(
         <Router>
-          <Header path="/" exact />
+          <Index path="/" exact />
         </Router>
       )
       .toJSON()
