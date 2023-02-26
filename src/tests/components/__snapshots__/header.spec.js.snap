@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component test It displays headers 1`] = `
+exports[`Index component test It displays headers 1`] = `
 <div
   style={
     Object {

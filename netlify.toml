@@ -1,9 +1,14 @@
+[build]
+command = "yarn build"
+publish = ".next"
+environment = { NODE_VERSION = "16", YARN_VERSION = "1.19.0" }
+
 [dev]
-port=5050
-autoLaunch=false
+port = 5050
+autoLaunch = false
 
 [functions]
-included_files=["functions/root.crt"]
+included_files = ["functions/root.crt"]
 
 [[headers]]
 for = "/*"
@@ -11,3 +16,5 @@ for = "/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
 
+[[plugins]]
+package = "@netlify/plugin-nextjs"
