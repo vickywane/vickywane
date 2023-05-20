@@ -1,0 +1,2 @@
+export const MOBILE_BREAKPOINT = 560;
+export const TABLET_BREAKPOINT = 1024;
