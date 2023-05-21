@@ -77,12 +77,11 @@ const TextDelimiter = styled(Text)`
 const HeroStats = () => (
   <Container>
     <div className={"content"}>
-      <div>
+      <Flex placeItems="center">
         <TitleText>
-          I’m an amazing dev. <br /> with added value for your <br /> business
-          solutions.
+          Software Engineer by day, <br /> Technical Writer by night.
         </TitleText>
-      </div>
+      </Flex>
 
       <Flex placeItems={"center"} justify={"center"}>
         <Flex direction={"column"}>
@@ -93,15 +92,15 @@ const HeroStats = () => (
         <TextDelimiter> | </TextDelimiter>
 
         <Flex direction={"column"}>
-          <StatsFigures align={"center"}> 34+ </StatsFigures>
-          <Text align="center"> JOBS DONE </Text>
+          <StatsFigures align={"center"}> 3 </StatsFigures>
+          <Text align="center"> Fulltime Roles </Text>
         </Flex>
 
         <TextDelimiter> | </TextDelimiter>
 
         <Flex direction={"column"}>
           <StatsFigures align={"center"}> 50+ </StatsFigures>
-          <Text align="center"> HAPPY CLIENTS </Text>
+          <Text align="center"> Technical Articles </Text>
         </Flex>
       </Flex>
     </div>

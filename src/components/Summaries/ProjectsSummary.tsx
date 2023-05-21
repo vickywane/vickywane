@@ -9,7 +9,8 @@ const ProjectSummary = () => {
     PostHog.__loaded &&
     !PostHog.isFeatureEnabled("home-engineering-projects", {
       send_event: true,
-    })
+    }) &&
+    process.env.NODE_ENV === "production"
   ) {
     return null
   }
