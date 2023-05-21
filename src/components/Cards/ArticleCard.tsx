@@ -1,5 +1,9 @@
-import { Flex, Text } from "@/styles"
-import { BsArrowRight } from "react-icons/bs"
+import { Flex, Text, Icon } from "@/styles"
+import {
+  BsArrowRight,
+  BsArrowUpRightSquare,
+  BsCalendar4Event,
+} from "react-icons/bs"
 import React from "react"
 import styled from "styled-components"
 import {
@@ -54,39 +58,65 @@ const SubTitle = styled(Text)`
   }
 `
 
-const ArticleCard = ({ articles }: ArticleProps) => (
-  <ArticleComponent>
-    <CardHeader justify={"space-between"}>
-      <Title mb="10px"> {articles.title} </Title>
+const ArticleCard = ({ articles }: ArticleProps) => {
+  return (
+    <ArticleComponent>
+      <CardHeader justify={"space-between"}>
+        <Title mb="10px">
+          <a target={"_blank"} rel="noopener" href={articles.url}>
+            {articles.title}{" "}
+          </a>
+        </Title>
 
-      <Flex placeItems={"center"}>
-        <SubTitle color={"#666666"}>
-          {new Date(articles._createdAt).toLocaleDateString("en-us", {
-            year: "numeric",
-            day: "2-digit",
-            month: "long",
-          })}
-        </SubTitle>
-      </Flex>
-    </CardHeader>
+        <Flex placeItems={"center"}>
+          <Icon mr="8px" placeItems={"center"}>
+            <BsCalendar4Event color={"#131112"} size={"20px"} />
+          </Icon>
 
-    <br />
+          <SubTitle color={"#666666"}>
+            {new Date(articles._createdAt).toLocaleDateString("en-us", {
+              year: "numeric",
+              day: "2-digit",
+              month: "long",
+            })}
+          </SubTitle>
+        </Flex>
+      </CardHeader>
+      <br />
 
-    <RichTextComponent richText={articles.summary} maxTextLength={30} />
+      <RichTextComponent richText={articles.summary} maxTextLength={30} />
 
-    <br />
+      <br />
 
-    <Flex>
-      <Text color={"#131112"} fontSize={"14px"}>
-        {" "}
-        Read More{" "}
-      </Text>
+      {articles.is_external ? (
+        <Flex>
+          <Flex placeItems="center">
+            <Text color={"#131112"} fontSize={"15px"}>
+              <a target={"_blank"} rel="noopener" href={articles.url}>
+                Read External Article
+              </a>
+            </Text>
+          </Flex>
 
-      <Flex ml="10px" placeItems={"center"}>
-        <BsArrowRight color={"#131112"} size={"20px"} />
-      </Flex>
-    </Flex>
-  </ArticleComponent>
-)
+          <Icon ml={"10px"} placeItems={"center"}>
+            <BsArrowUpRightSquare />
+          </Icon>
+        </Flex>
+      ) : (
+        <Flex>
+          <Flex placeItems="center">
+            <Text color={"#131112"} fontSize={"15px"}>
+              Read Blog Article
+            </Text>
+          </Flex>
+
+          <Icon ml="10px" placeItems={"center"}>
+            <BsArrowRight color={"#131112"} />
+          </Icon>
+        </Flex>
+      )}
+    </ArticleComponent>
+  )
+}
 
 export default ArticleCard
