@@ -1,15 +1,16 @@
-"use client";
+"use client"
 
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import { Flex, Text } from "@/styles";
-import CustomButton from "@/components/Buttons";
-import Image from "next/image";
-import { ImageLoader } from "@/utils/Cloudinary";
-import HeroStats from "@/components/heros/HeroStats";
+import React from "react"
+import styled, { keyframes } from "styled-components"
+import { Flex, Text } from "@/styles"
+import CustomButton from "@/components/Buttons"
+import HeroStats from "@/components/heros/HeroStats"
 // @ts-ignore
-import ArrowDown from "@/assets/svg/arrow-down.svg";
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery";
+import ArrowDown from "@/assets/svg/arrow-down.svg"
+import {
+  MOBILE_BREAKPOINT,
+  TABLET_BREAKPOINT,
+} from "@/styles/useStyleWidthQuery"
 
 const Hero = styled.section`
   background: #fff8f0;
@@ -45,6 +46,22 @@ const Hero = styled.section`
     text-decoration: underline;
     text-decoration-color: #d0db97;
     text-decoration-thickness: 20px;
+
+    animation: growSpan 1700ms;
+    animation-iteration-count: 2;
+    animation-delay: 500ms;
+
+    @keyframes growSpan {
+      0% {
+        text-decoration-thickness: 0;
+      }
+      50% {
+        text-decoration-thickness: 20px;
+      }
+      100% {
+        text-decoration-thickness: 0;
+      }
+    }
   }
 
   .container {
@@ -76,6 +93,18 @@ const Hero = styled.section`
 
     span {
       text-decoration-thickness: 13px;
+      animation: growSpan 1500ms;
+      animation-iteration-count: 2;
+      animation-delay: 500ms;
+  
+      @keyframes growSpan {
+        from {
+          text-decoration-thickness: 0px;
+        }
+        to {
+          text-decoration-thickness: 10px;
+        }
+      }
     }
 
     .hero-details-section {
@@ -110,21 +139,25 @@ const Hero = styled.section`
       bottom: 0;
     }
   }
-`;
+`
 
 const moveArrow = keyframes`
-  from {
+  0% {
     transform: translateY(0);
   }
 
-  to {
+  50% {
     transform: translateY(50px);
   }
-`;
+
+  100% {
+    transform: translateY(0);
+  }
+`
 
 const ArrowContainer = styled.div`
   margin-top: 4rem;
-  animation: ${moveArrow} 1200ms;
+  animation: ${moveArrow} 1500ms;
   animation-iteration-count: infinite;
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
@@ -138,7 +171,7 @@ const ArrowContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
-`;
+`
 
 const Heading = styled.h1`
   font-style: normal;
@@ -159,10 +192,10 @@ const Heading = styled.h1`
     line-height: 70px;
     text-align: center;
   }
-`;
+`
 
 interface HomeHeroProps {
-  banner_description: string;
+  banner_description: string
 }
 
 const BannerText = styled(Text)`
@@ -175,7 +208,22 @@ const BannerText = styled(Text)`
     margin-bottom: 30px;
     text-align: center;
   }
-`;
+`
+
+const HeroStar = ({ size = 82 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox={`0 0 82 82`}
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M42.6006 0.0598232L56.243 26.3592L81.0217 42.6006L54.7224 56.243L38.4809 81.0217L24.8385 54.7224L0.0598066 38.481L26.3591 24.8386L42.6006 0.0598232Z"
+      fill="#D0DB97"
+    />
+  </svg>
+)
 
 const HomeHero = ({ banner_description }: HomeHeroProps) => (
   <>
@@ -184,35 +232,41 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
         <div className={"container"}>
           <div>
             <div className={"details"}>
-              <Heading>
-                Hello, <br /> I&apos;m <span>Nwani</span> <br /> Victory
-              </Heading>
+              <Flex style={{ position: "relative" }}>
+                {/* <Flex style={{ position: "absolute", right: 150 }}>
+                  <HeroStar />
+                </Flex>
 
-              <BannerText
-                style={{ zIndex: 999 }}
-                color={"#131112"}
-              >
+                <Flex style={{ position: "absolute", left: 150, top: 120 }}>
+                  <HeroStar size={52} />
+                </Flex>
+
+                <Flex style={{ position: "absolute", right: 120, bottom: 20 }}>
+                  <HeroStar size={62} />
+                </Flex> */}
+
+                <Heading>
+                  Hello, <br /> I&apos;m <span>Nwani</span> <br /> Victory
+                </Heading>
+              </Flex>
+
+              <BannerText style={{ zIndex: 999 }} color={"#131112"}>
                 {banner_description}
               </BannerText>
 
-              <Image
+              {/* <Image
                 fill
                 loader={ImageLoader}
                 alt={"floating stars"}
                 src={"/personal-portfolio-app/float-stars.png"}
-              />
+              /> */}
             </div>
 
             <div className={"buttons-ctn"}>
-              <CustomButton
-                clickAction={() => {
-                }}
-                text={"Got A Project?"}
-              />
+              <CustomButton clickAction={() => {}} text={"Got A Project?"} />
 
               <CustomButton
-                clickAction={() => {
-                }}
+                clickAction={() => {}}
                 text={"Let's Talk!!"}
                 color={"#131112"}
                 background={"#fff"}
@@ -239,6 +293,6 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
       </ArrowContainer>
     </Flex>
   </>
-);
+)
 
-export default HomeHero;
+export default HomeHero
