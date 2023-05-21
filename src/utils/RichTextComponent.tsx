@@ -35,7 +35,7 @@ RichTextComponentProps) => {
 
       return blocks.length
     }
-  }, [])
+  }, [richText])
 
   const RichTextConfiguration = ({
     listLength,
