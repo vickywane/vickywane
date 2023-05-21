@@ -1,49 +1,30 @@
-"use client";
-import { Flex, H2Heading, Text } from "@/styles";
-import styled from "styled-components";
-import React from "react";
-import Layout from "@/styles/Layout";
+"use client"
+import { H2Heading, Text } from "@/styles"
+import React from "react"
+import Layout from "@/styles/Layout"
+import PostHog from "posthog-js"
 
-const mockData = [
-  {
-    title: "How To Deploy To Netlify",
-    summary:
-      "I work remotely as a web experience engineer with Ambianic.ai, an IoT company with a mission to make managing homes and workspaces easier.",
-    date: "May 2018 - Jan 2022",
-    thumbnail: ""
-  },
-  {
-    title: "How To Deploy To Netlify",
-    summary:
-      "I work remotely as a web experience engineer with Ambianic.ai, an IoT company with a mission to make managing homes and workspaces easier.",
-    date: "May 2018 - Jan 2022",
-    thumbnail: ""
-  },
-  {
-    title: "How To Deploy To Netlify",
-    summary:
-      "I work remotely as a web experience engineer with Ambianic.ai, an IoT company with a mission to make managing homes and workspaces easier.",
-    date: "May 2018 - Jan 2022",
-    thumbnail: ""
-  },
-  {
-    title: "How To Deploy To Netlify",
-    summary:
-      "I work remotely as a web experience engineer with Ambianic.ai, an IoT company with a mission to make managing homes and workspaces easier.",
-    date: "May 2018 - Jan 2022",
-    thumbnail: ""
+const ProjectSummary = () => {
+  if (
+    PostHog.__loaded &&
+    !PostHog.isFeatureEnabled("home-engineering-projects", {
+      send_event: true,
+    })
+  ) {
+    return null
   }
-];
 
-const ProjectSummary = () => (
-  <Layout bg={"#fff8f0"}>
-    <H2Heading>
-      My <span> Engineering Projects </span>{" "}
-    </H2Heading>
-    <Text>
-      As an educational establishment located in Nigeria, Africa. Patfin High School.
-    </Text>
-  </Layout>
-);
+  return (
+    <Layout bg={"#fff8f0"}>
+      <H2Heading>
+        My <span> Engineering Projects </span>{" "}
+      </H2Heading>
+      <Text>
+        As an educational establishment located in Nigeria, Africa. Patfin High
+        School.
+      </Text>
+    </Layout>
+  )
+}
 
-export default ProjectSummary;
+export default ProjectSummary
