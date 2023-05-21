@@ -25,6 +25,7 @@ export const HOME_QUERY = `
         publish_date,
         summary,
         tags,
+        url,
         title
       },
     engagements[] -> {

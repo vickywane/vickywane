@@ -11,17 +11,30 @@ import Layout from "@/styles/Layout"
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import Reviews from "../Reviews/Reviews"
-import { BsArrowUpSquare, BsArrowUpRightSquare, BsArrowDownSquare } from "react-icons/bs"
+import {
+  BsArrowUpSquare,
+  BsArrowUpRightSquare,
+  BsArrowDownSquare,
+} from "react-icons/bs"
+import SectionIndicator from "../SectionIndicator"
 
 const List = styled.ul`
   list-style: none;
 
-  li {
-    margin: 32px 0;
+  .work-list {
+    margin: 64px 0;
   }
 `
 
 const SummaryContainer = styled(Flex)`
+  .jobs-list {
+    margin: 10px 20px;
+
+    li {
+      margin: 30px 0;
+    }
+  }
+
   .thumbnail {
     position: relative;
     height: 78px;
@@ -128,7 +141,6 @@ const Summary = ({
         </a>
 
         <Text mt="5px" mb="10px">
-          {" "}
           {summary}{" "}
         </Text>
 
@@ -197,12 +209,18 @@ const JobSummary = ({ experiences }: JobSummaryProp) => {
         scrambled it to make a type specimen book
       </Text>
       <br />
+      <br />
+
+      <SectionIndicator text="Reviews From Colleagues" id="work-reviews" />
 
       <Reviews type="work_review" />
+      <br />
+      <br />
 
+      <SectionIndicator text="Professional Work History" id="work-history" />
       <List>
         {experiences.map((item, idx) => (
-          <li key={idx}>
+          <li className="work-list" key={idx}>
             <Summary {...item} />
           </li>
         ))}

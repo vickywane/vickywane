@@ -13,8 +13,6 @@ import { PortableTextComponents } from "@portabletext/react/src"
 
 const Container = styled.div`
   border: 2px solid rgba(0, 0, 0, 0.3);
-  //box-shadow: 0 5px 7px rgba(0, 0, 0, .3);
-  //width: max-content;
   padding: 20px;
   border-radius: 30px;
   max-width: 750px;
@@ -26,6 +24,7 @@ const Container = styled.div`
     border-radius: 50%;
     border: 2px solid #000;
     position: relative;
+    margin-right: 20px;
 
     img {
       border: 3px solid #fff8f0;
@@ -36,6 +35,21 @@ const Container = styled.div`
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     width: 100%;
     max-width: 100%;
+    padding: 12px;
+
+    .image-ctn {
+      height: 70px;
+      width: 70px;
+      min-width: 70px;
+      border-radius: 50%;
+      border: 1.5px solid #000;
+      margin-right: 10px;
+  
+      img {
+        border: 2px solid #fff8f0;
+        border-radius: inherit;
+      }
+    }
   }
 `
 
@@ -68,7 +82,7 @@ const ReviewCard = ({ review, isActive }: ReviewCardProps) => {
             />
           </div>
 
-          <Flex ml={"20px"} direction={"column"} justify={"center"}>
+          <Flex direction={"column"} justify={"center"}>
             <Text fontWeight={600}>
               <a href={review.reviewer_link} target={"_blank"}>
                 {review.name}
@@ -92,7 +106,6 @@ const ReviewCard = ({ review, isActive }: ReviewCardProps) => {
         </Flex>
 
         <PortableText value={review.review_text} components={richComponent} />
-        <br />
 
         {review.work_duration && (
           <Text style={{ fontSize: "13px" }}>

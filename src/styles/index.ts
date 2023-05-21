@@ -89,6 +89,19 @@ export const Flex = styled.div<StyledProps>`
   place-items: ${props => props.placeItems};
 `
 
+export const SectionBoxIndicator = styled(Flex)`
+  height: 50px;
+  background: #131112;
+  width: fit-content;
+  padding: 0 45px;
+  border-radius: 0 60px 0 0;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 40px;
+    padding: 0 30px;
+  }
+`
+
 export const Icon = styled(Flex)`
   font-size: 24px;
   color: ${props => props.color || "#000"};

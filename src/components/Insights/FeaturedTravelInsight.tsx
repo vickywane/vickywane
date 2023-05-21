@@ -12,6 +12,7 @@ import RichTextComponent from "@/utils/RichTextComponent"
 import CustomButton from "../Buttons"
 import { BsArrowRight } from "react-icons/bs"
 import ImageCarousel from "../Carousels/ImageCarouse"
+import SectionIndicator from "../SectionIndicator"
 
 const Container = styled.div`
   .image-ctn {
@@ -90,6 +91,10 @@ const FeaturedTravelInsight = ({ articles }: FeaturedTravelInsightProps) => {
 
   return (
     <Layout bg={"#fff8f0"}>
+      <SectionIndicator text="Vacation Jornal Around Earth" id="travel-insight" />
+      <br />
+      <br />
+
       <Container>
         <div className={"container"}>
           <div className={"contents"}>

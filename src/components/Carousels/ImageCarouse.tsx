@@ -9,7 +9,7 @@ const Container = styled.ul`
   height: auto;
   width: auto;
   background: green;
-  top: -70px;
+  top: -30px;
   left: 300px;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
