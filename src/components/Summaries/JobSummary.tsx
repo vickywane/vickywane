@@ -23,6 +23,18 @@ const List = styled.ul`
 
   .work-list {
     margin: 64px 0;
+
+    &:nth-child(1) {
+        margin: 34px 0 34px;
+    }
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    .work-list {
+      &:nth-child(1) {
+          margin: 24px 0 24px;
+      }
+    }
   }
 `
 

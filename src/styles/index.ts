@@ -151,4 +151,18 @@ export const Button = styled.button<StyledProps>`
       font-size: 13px;
     }
   }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 45px;
+
+    :hover {
+      pointer-events: none;
+    }
+
+    :active {
+      cursor: pointer;
+      filter: unset;
+      transform: translateY(0);
+    }
+  }
 `
