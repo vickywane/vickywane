@@ -14,6 +14,7 @@ import { BsArrowRight } from "react-icons/bs"
 import ImageCarousel from "../Carousels/ImageCarouse"
 import SectionIndicator from "../SectionIndicator"
 
+// @ts-ignore
 import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
 
 const Container = styled.div`
