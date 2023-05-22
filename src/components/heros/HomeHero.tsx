@@ -11,6 +11,7 @@ import {
   MOBILE_BREAKPOINT,
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
+import { posthog } from "posthog-js"
 
 const Hero = styled.section`
   background: #fff8f0;
@@ -22,7 +23,7 @@ const Hero = styled.section`
   }
 
   .hero-details-section {
-    height: 724px;
+    height: 854px;
     display: flex;
     place-items: center;
 
@@ -96,7 +97,7 @@ const Hero = styled.section`
       animation: growSpan 1500ms;
       animation-iteration-count: 2;
       animation-delay: 500ms;
-  
+
       @keyframes growSpan {
         from {
           text-decoration-thickness: 0px;
@@ -233,7 +234,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
           <div>
             <div className={"details"}>
               {/* <Flex style={{ position: "relative" }}> */}
-                {/* <Flex style={{ position: "absolute", right: 150 }}>
+              {/* <Flex style={{ position: "absolute", right: 150 }}>
                   <HeroStar />
                 </Flex>
 
@@ -245,9 +246,9 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                   <HeroStar size={62} />
                 </Flex> */}
 
-                <Heading>
-                  Hello, <br /> I&apos;m <span>Nwani</span> <br /> Victory
-                </Heading>
+              <Heading>
+                Hello, <br /> I&apos;m <span>Nwani</span> <br /> Victory
+              </Heading>
               {/* </Flex> */}
 
               <BannerText style={{ zIndex: 999 }} color={"#131112"}>
@@ -280,11 +281,13 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
         </div>
       </div>
 
-      <div className={"hero-stats-section"}>
-        <div className={"hero-stats-bottom"} />
+      {posthog.__loaded && posthog.isFeatureEnabled("home-hero-stats") && (
+        <div className={"hero-stats-section"}>
+          <div className={"hero-stats-bottom"} />
 
-        <HeroStats />
-      </div>
+          <HeroStats />
+        </div>
+      )}
     </Hero>
 
     <Flex justify={"center"}>
