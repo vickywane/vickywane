@@ -232,7 +232,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
         <div className={"container"}>
           <div>
             <div className={"details"}>
-              <Flex style={{ position: "relative" }}>
+              {/* <Flex style={{ position: "relative" }}> */}
                 {/* <Flex style={{ position: "absolute", right: 150 }}>
                   <HeroStar />
                 </Flex>
@@ -248,7 +248,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                 <Heading>
                   Hello, <br /> I&apos;m <span>Nwani</span> <br /> Victory
                 </Heading>
-              </Flex>
+              {/* </Flex> */}
 
               <BannerText style={{ zIndex: 999 }} color={"#131112"}>
                 {banner_description}

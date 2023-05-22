@@ -56,6 +56,9 @@ const StatsFigures = styled(Text)`
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     font-size: 32px;
   }
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    font-size: 24px;
+  }
 `
 
 const TextDelimiter = styled(Text)`
@@ -77,8 +80,8 @@ const TextDelimiter = styled(Text)`
 const HeroStats = () => (
   <Container>
     <div className={"content"}>
-      <Flex placeItems="center">
-        <TitleText>
+      <Flex placeItems="center" justify="center" >
+        <TitleText > 
           Software Engineer by day, <br /> Technical Writer by night.
         </TitleText>
       </Flex>

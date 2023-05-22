@@ -14,6 +14,8 @@ import { BsArrowRight } from "react-icons/bs"
 import ImageCarousel from "../Carousels/ImageCarouse"
 import SectionIndicator from "../SectionIndicator"
 
+import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
+
 const Container = styled.div`
   .image-ctn {
     height: 400px;
@@ -83,6 +85,21 @@ const CTAText = styled(Text)`
   }
 `
 
+const ArrowFlex = styled(Flex)`
+  position: absolute;
+  bottom: 0;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    right: -20px;
+  }
+`
+
+const Arrow = () => (
+  <ArrowFlex justify="center" style={{}}>
+    <InsightsArrow />
+  </ArrowFlex>
+)
+
 const FeaturedTravelInsight = ({ articles }: FeaturedTravelInsightProps) => {
   const travelInsight = useMemo(
     () => articles.find(item => item.is_travel_featured),
@@ -91,7 +108,10 @@ const FeaturedTravelInsight = ({ articles }: FeaturedTravelInsightProps) => {
 
   return (
     <Layout bg={"#fff8f0"}>
-      <SectionIndicator text="Vacation Jornal Around Earth" id="travel-insight" />
+      <SectionIndicator
+        text="Vacation Jornal Around Earth"
+        id="travel-insight"
+      />
       <br />
       <br />
 
@@ -123,12 +143,26 @@ const FeaturedTravelInsight = ({ articles }: FeaturedTravelInsightProps) => {
             </Flex>
           </div>
 
-          <div className={"cta-container"}>
-            <Flex justify={"center"} placeItems={"center"}>
+          <div
+            style={{ height: "100%", position: "relative" }}
+            className={"cta-container"}
+          >
+            <Flex
+              justify={"center"}
+              style={{
+                zIndex: 2,
+                position: "absolute",
+                right: "-40px",
+                background: "#fff8f0",
+              }}
+              placeItems={"center"}
+            >
               <CTAText color={"#333333"}>
                 What do you think of <br /> <span> Travelling? </span>
               </CTAText>
             </Flex>
+
+            <Arrow />
           </div>
         </div>
       </Container>
