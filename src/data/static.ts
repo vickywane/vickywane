@@ -1,14 +1,18 @@
 export const navigation_links = [
   {
-    name: "About"
+    name: "About",
+    to: "#personal-bio"
   },
   {
-    name: "Experience"
+    name: "Work History",
+    to: "#work-reviews"
   },
   {
-    name: "Projects"
+    name: "Engagements",
+    to: "#engagements"
   },
   {
-    name: "Writing"
+    name: "Technical Articles",
+    to: "/blog"
   }
 ];

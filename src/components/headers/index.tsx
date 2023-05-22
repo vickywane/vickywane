@@ -12,6 +12,8 @@ import {
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
 import { useDispatch, useSelector } from "react-redux"
+import Link from "next/link"
+
 import { RootState } from "@/state"
 import { handleBreadcrumbVisibility } from "@/state/slices/app.slice"
 import { AiOutlineFilePdf } from "react-icons/ai"
@@ -179,9 +181,11 @@ const Index = () => {
 
           <div className={"header-lg-items"}>
             <HeaderList>
-              {navigation_links.map(({ name }, idx) => (
+              {navigation_links.map(({ name, to }, idx) => (
                 <li key={idx}>
-                  <Anchor href={"#"}>{name}</Anchor>
+                  <Anchor href={"#"}>
+                    <Link href={to} >{name}</Link>
+                  </Anchor>
                 </li>
               ))}
 

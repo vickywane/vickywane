@@ -43,7 +43,7 @@ interface EngagementSummaryProps {
 
 const EngagementSummary = ({ engagements }: EngagementSummaryProps) => (
   <Layout bg={"#fff8f0"}>
-    <H2Heading align={"center"}>
+    <H2Heading id="engagements" align={"center"}>
       Life As A <span> Technical Speaker </span>{" "}
     </H2Heading>
     <Text align={"center"}>

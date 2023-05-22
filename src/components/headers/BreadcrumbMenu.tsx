@@ -6,6 +6,7 @@ import { RootState } from "@/state"
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import CustomButton from "@/components/Buttons"
 import { AiOutlineFilePdf } from "react-icons/ai"
+import Link from "next/link"
 
 const BreadcrumbContainer = styled.ul<{ isBreadcrumbOpen: boolean }>`
   list-style: square;
@@ -26,7 +27,7 @@ const BreadcrumbContainer = styled.ul<{ isBreadcrumbOpen: boolean }>`
       margin: 20px 20px;
 
       &:last-child {
-        list-style: none; 
+        list-style: none;
         margin: 15px 5px;
       }
     }
@@ -38,9 +39,11 @@ const BreadcrumbMenu = () => {
 
   return (
     <BreadcrumbContainer isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
-      {navigation_links.map(({ name }, idx) => (
+      {navigation_links.map(({ name, to }, idx) => (
         <li key={idx}>
-          <Text> {name} </Text>
+          <Link href={to} >
+            <Text> {name} </Text>
+          </Link>
         </li>
       ))}
 

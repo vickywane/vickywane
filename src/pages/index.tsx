@@ -1,5 +1,4 @@
 "use client"
-import { Space_Grotesk } from "@next/font/google"
 import React from "react"
 
 import Header from "@/components/headers"
@@ -23,22 +22,13 @@ import {
   WorkExperience,
 } from "@/data/schema"
 
-const font = Space_Grotesk({
-  subsets: ["latin", "vietnamese"],
-  weight: ["400", "400", "600", "700"],
-  style: ["normal"],
-})
-
 interface HomeProps {
   pageData: Homepage
 }
 
 export default function Home({ pageData: data }: HomeProps) {
   return (
-    <main
-      className={font.className}
-      style={{ height: "100vh", overflow: "auto", width: "100%" }}
-    >
+    <main style={{ height: "100vh", overflow: "auto", width: "100%" }}>
       <Header />
 
       <HomeHeroNotification
@@ -59,7 +49,7 @@ export default function Home({ pageData: data }: HomeProps) {
         experiences={(data?.experiences as unknown) as WorkExperience[]}
       />
 
-     <ProjectsSummary />
+      <ProjectsSummary />
 
       <TechnicalArticleSummary
         articles={(data?.articles as unknown) as Article[]}
