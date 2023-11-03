@@ -14,6 +14,7 @@ import {
 import { BsArrowRight } from "react-icons/bs"
 import CustomButton from "../Buttons"
 import SectionIndicator from "../SectionIndicator"
+import Link from "next/link"
 
 const ListContainer = styled.ul`
   list-style: none;
@@ -95,11 +96,13 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
         </ListContainer>
 
         <ResponsiveButton mt="20px">
-          <CustomButton
-            clickAction={() => {}}
-            icon={<BsArrowRight size={24} />}
-            text="View All Articles Within Blog"
-          />
+          <Link href={"/blog"}>
+            <CustomButton
+              clickAction={() => {}}
+              icon={<BsArrowRight size={24} />}
+              text="View All Articles Within Blog"
+            />
+          </Link>
         </ResponsiveButton>
       </div>
     </Layout>

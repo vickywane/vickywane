@@ -1,6 +1,6 @@
 "use client";
 import styled from "styled-components";
-import { H2Heading, Text } from "@/styles";
+import { H2Heading } from "@/styles";
 import { Homepage } from "@/data/schema";
 import Layout from "@/styles/Layout";
 import { TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery";
@@ -22,7 +22,7 @@ interface PersonalBioProps {
 const PersonalBio = ({ human_text }: PersonalBioProps) => {
   return (
     <Layout>
-      <H2Heading>
+      <H2Heading id="personal-bio">
         Life As A <span>Human</span>
       </H2Heading>
 
