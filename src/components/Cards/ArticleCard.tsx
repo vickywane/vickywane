@@ -10,8 +10,10 @@ import {
   MOBILE_BREAKPOINT,
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
+import Link from "next/link"
 import { Article } from "@/data/schema"
 import RichTextComponent from "@/utils/RichTextComponent"
+import { getBlogUrl } from "@/utils/linkTransforms"
 
 interface ArticleProps {
   articles: Article
@@ -62,11 +64,17 @@ const ArticleCard = ({ articles }: ArticleProps) => {
   return (
     <ArticleComponent>
       <CardHeader justify={"space-between"}>
-        <Title mb="10px">
-          <a target={"_blank"} rel="noopener" href={articles.url}>
-            {articles.title}{" "}
-          </a>
-        </Title>
+        {articles.is_external ? (
+          <Title mb="10px">
+            <a target={"_blank"} rel="noopener" href={articles.url}>
+              {articles.title}{" "}
+            </a>
+          </Title>
+        ) : (
+          <Link href={getBlogUrl(articles?.slug)}>
+            <Title mb="10px">{articles.title} </Title>
+          </Link>
+        )}
 
         <Flex placeItems={"center"}>
           <Icon mr="8px" placeItems={"center"}>

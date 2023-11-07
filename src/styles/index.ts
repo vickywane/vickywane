@@ -8,7 +8,7 @@ import {
 
 export const H2Heading = styled.h2<StyledProps>`
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${props => props.fontWeight || 400};
   font-size: 38px;
   line-height: 35px;
   color: ${props => props.color || "#115e65"};

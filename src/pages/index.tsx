@@ -21,6 +21,7 @@ import {
   Notification,
   WorkExperience,
 } from "@/data/schema"
+import NextHeader from "@/components/headers/nextHead"
 
 interface HomeProps {
   pageData: Homepage
@@ -30,6 +31,8 @@ export default function Home({ pageData: data }: HomeProps) {
   return (
     <main style={{ height: "100vh", overflow: "auto", width: "100%" }}>
       <Header />
+
+      <NextHeader name={"Nwani Victory | Overview"} />
 
       <HomeHeroNotification
         notification={(data?.notifications[0] as unknown) as Notification}
