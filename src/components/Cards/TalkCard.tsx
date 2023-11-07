@@ -1,7 +1,6 @@
 import { Button, Flex, Icon, Text } from "@/styles"
 import styled from "styled-components"
 // @ts-ignore
-import PlayIcon from "@/assets/svg/play-icon.svg"
 import Image from "next/image"
 import { Engagement } from "@/data/schema"
 import {
@@ -83,8 +82,8 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
         <div className={"img-ctn"}>
           <Image
             loader={ImageLoader}
-            src={engagement.thumbnail.public_id}
-            alt={engagement.name || ""}
+            src={engagement?.thumbnail?.public_id}
+            alt={engagement?.name || ""}
             style={{ objectFit: "cover" }}
             fill
           />

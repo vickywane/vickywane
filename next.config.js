@@ -44,7 +44,8 @@ const nextConfig = {
       ]
     });
     return config;
-  }
+  },
+  handleImages: ["jpeg", "png", "webp"]
 };
 
 module.exports = withOptimizedImage(nextConfig);

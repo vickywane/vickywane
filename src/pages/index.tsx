@@ -35,24 +35,25 @@ export default function Home({ pageData: data }: HomeProps) {
       <NextHeader name={"Nwani Victory | Overview"} />
 
       <HomeHeroNotification
-        notification={(data?.notifications && data?.notifications[0] as unknown) as Notification}
+        notification={
+          (data?.notifications &&
+            (data?.notifications[0] as unknown)) as Notification
+        }
       />
 
-      <HomeHero banner_description={data?.banner_description || ""} />
+          <HomeHero banner_description={data?.banner_description || ""} />
 
-      <PersonalBio human_text={data?.human_description} />
+        <PersonalBio human_text={data?.human_description} />
 
-      {/* <HomeMasonry galleryItems={data?.gallery as unknown as Gallery} /> */}
-
-      <FeaturedTravelInsight
+       <FeaturedTravelInsight
         articles={(data?.articles as unknown) as Article[]}
       />
 
-      <JobSummary
+         <JobSummary
         experiences={(data?.experiences as unknown) as WorkExperience[]}
       />
 
-      <ProjectsSummary />
+ <ProjectsSummary />
 
       <TechnicalArticleSummary
         articles={(data?.articles as unknown) as Article[]}
@@ -61,7 +62,7 @@ export default function Home({ pageData: data }: HomeProps) {
       <TalkSummary
         engagements={(data?.engagements as unknown) as Engagement[]}
       />
-      <Footer />
+      <Footer /> 
     </main>
   )
 }
