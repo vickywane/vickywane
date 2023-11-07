@@ -135,7 +135,7 @@ const Summary = ({
           <Image
             loader={ImageLoader}
             fill
-            alt={name}
+            alt={name || ""}
             src={thumbnail?.public_id}
           />
         </div>

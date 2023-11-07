@@ -1,5 +1,6 @@
 export const HOME_QUERY = `
     *[_type == 'homepage'][0]{ 
+      _id,
        _createdAt,
        banner_text,
        banner_description,
@@ -45,10 +46,11 @@ export const HOME_QUERY = `
         notification_text
      }, 
     }
-`;
+`
 
 export const REVIEWS_QUERY = (type: string) => `
   *[_type == 'review' && review_type[0] == "${type}"]{ 
+    _id,
        _createdAt,
        name,
        review_type, 
@@ -60,4 +62,52 @@ export const REVIEWS_QUERY = (type: string) => `
        company,
        work_duration
 }
-`;
+`
+
+interface ArticlesQueryType {
+  type?: string
+  slug?: string
+}
+
+export const ARTICLES_QUERY = ({ type, slug }: ArticlesQueryType) => {
+  if (slug) {
+    return `*[_type == 'article' && slug.current == "${slug}"] { 
+      _id,
+      _createdAt,
+      cover, 
+      body,
+      is_external,
+      is_travel_featured,
+      slug, 
+      summary, 
+      tags,
+      title, 
+      recommended[] -> {
+        _createdAt,
+        _id,
+        title, 
+        summary,
+        cover,
+        slug
+      },
+      url,
+      publish_date
+    }`
+  }
+
+  return `
+    *[_type == 'article']{
+      _id, 
+      _createdAt,
+      cover, 
+      is_external,
+      is_travel_featured,
+      slug, 
+      summary, 
+      tags,
+      title, 
+      url,
+      publish_date
+    }
+`
+}

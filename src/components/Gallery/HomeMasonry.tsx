@@ -47,7 +47,7 @@ const HomeMasonry = ({ galleryItems }: HomeMasonryProps) => {
       {/*</Flex>*/}
 
       <MasonryList className={"images-list"}>
-        {galleryItems?.images.map((item, idx) => {
+        {galleryItems?.images?.map((item, idx) => {
           return (
             <li key={idx}>
               {item?.public_id && (

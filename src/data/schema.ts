@@ -37,72 +37,7 @@ export type {
 };
 
 /**
- * Article
- *
- *
- */
-export interface Article extends SanityDocument {
-  _type: "article";
-
-  /**
-   * Article Title — `string`
-   *
-   *
-   */
-  title: string;
-
-  /**
-   * Article Summary — `array`
-   *
-   *
-   */
-  summary: Array<SanityKeyed<SanityBlock>>;
-
-  /**
-   * Article Tags — `array`
-   *
-   *
-   */
-  tags: Array<SanityKeyed<string>>;
-
-  /**
-   * External Article URL — `url`
-   *
-   *
-   */
-  url?: string;
-
-  /**
-   * Article Cover Image — `cloudinary.asset`
-   *
-   *
-   */
-  cover?: CloudinaryAsset;
-
-  /**
-   * Publish Date — `datetime`
-   *
-   *
-   */
-  publish_date?: string;
-
-  /**
-   * Travel Featured? — `boolean`
-   *
-   *
-   */
-  is_travel_featured?: boolean;
-
-  /**
-   * Is External? — `boolean`
-   *
-   *
-   */
-  is_external?: boolean;
-}
-
-/**
- * HomePage
+ * Homepage
  *
  *
  */
@@ -114,80 +49,149 @@ export interface Homepage extends SanityDocument {
    *
    *
    */
-  banner_text: string;
+  banner_text?: string;
 
   /**
-   * Banner Description — `text`
+   * Banner Description — `string`
    *
    *
    */
-  banner_description: string;
+  banner_description?: string;
 
   /**
-   * Banner Image — `image`
+   * Banner Image — `cloudinary.asset`
    *
-   *
+   * Banner Image
    */
-  banner_image?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  banner_image?: CloudinaryAsset;
 
   /**
    * Human Description — `array`
    *
    *
    */
-  human_description: Array<SanityKeyed<SanityBlock>>;
+  human_description?: Array<SanityKeyed<SanityBlock>>;
 
   /**
-   * Human Image — `image`
+   * Gallery — `array`
    *
    *
    */
-  human_image?: {
-    _type: "image";
-    asset: SanityReference<SanityImageAsset>;
-    crop?: SanityImageCrop;
-    hotspot?: SanityImageHotspot;
-  };
+  gallery?: Array<SanityKeyedReference<Gallery>>;
 
   /**
-   * Work Experience — `array`
+   * Articles — `array`
    *
    *
    */
-  experiences: Array<SanityKeyedReference<WorkExperience>>;
+  articles?: Array<SanityKeyedReference<Article>>;
 
   /**
-   * Gallery Images — `array`
+   * Experiences — `array`
    *
    *
    */
-  gallery: Array<SanityKeyedReference<Gallery>>;
+  experiences?: Array<SanityKeyedReference<WorkExperience>>;
+
+  /**
+   * Engagements — `array`
+   *
+   *
+   */
+  engagements?: Array<SanityKeyedReference<Engagement>>;
 
   /**
    * Notifications — `array`
    *
    *
    */
-  notifications: Array<SanityKeyedReference<Notification>>;
+  notifications?: Array<SanityKeyedReference<Notification>>;
+}
+
+/**
+ * Article
+ *
+ *
+ */
+export interface Article extends SanityDocument {
+  _type: "article";
 
   /**
-   * Featured Articles — `array`
+   * Title — `string`
    *
    *
    */
-  articles: Array<SanityKeyedReference<Article>>;
+  title?: string;
 
   /**
-   * Featured Engagements — `array`
+   * Url — `string`
    *
    *
    */
-  engagements: Array<SanityKeyedReference<Engagement>>;
+  url?: string;
+
+  /**
+   * Summary — `array`
+   *
+   *
+   */
+  summary?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Body — `array`
+   *
+   *
+   */
+  body?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Recommended — `array`
+   *
+   *
+   */
+  recommended?: Array<SanityKeyedReference<Article>>;
+
+  /**
+   * Is Travel Featured? — `boolean`
+   *
+   *
+   */
+  is_travel_featured?: boolean;
+
+  /**
+   * Is External? — `boolean`
+   *
+   *
+   */
+  is_external?: boolean;
+
+  /**
+   * Slug — `slug`
+   *
+   *
+   */
+  slug?: { _type: "slug"; current: string };
+
+  /**
+   * Tags for item — `array`
+   *
+   *
+   */
+  tags?: Array<SanityKeyed<string>>;
+
+  /**
+   * Cover — `cloudinary.asset`
+   *
+   * Article cover image stored on Cloudinary
+   */
+  cover?: CloudinaryAsset;
+
+  /**
+   * Publish Date — `datetime`
+   *
+   *
+   */
+  publish_date?: string;
 }
 
 /**
@@ -210,72 +214,58 @@ export interface Notification extends SanityDocument {
    *
    *
    */
-  notification_text: Array<SanityKeyed<SanityBlock>>;
+  notification_text?: Array<SanityKeyed<SanityBlock>>;
 }
 
 /**
- * Work Experience
+ * Engagement
  *
  *
  */
-export interface WorkExperience extends SanityDocument {
-  _type: "work_experience";
+export interface Engagement extends SanityDocument {
+  _type: "engagement";
 
   /**
-   * Job Role — `string`
+   * Name — `string`
+   *
+   * Enagagement Name
+   */
+  name?: string;
+
+  /**
+   * Summary — `array`
    *
    *
    */
-  role: string;
+  summary?: Array<SanityKeyed<SanityBlock>>;
 
   /**
-   * Company Name — `string`
+   * Event Name — `string`
    *
-   *
+   * Event Name
    */
-  name: string;
+  event_name?: string;
 
   /**
-   * Company Summary — `string`
+   * Event Link — `string`
    *
-   *
+   * Event Link
    */
-  summary: string;
+  event_link?: string;
 
   /**
-   * Company URL — `url`
+   * Type — `array`
    *
-   *
+   * Engagement Type
    */
-  url: string;
+  type?: Array<SanityKeyed<"talk" | "podcast">>;
 
   /**
-   * Company Thumbnail — `cloudinary.asset`
+   * Thumbnail — `cloudinary.asset`
    *
-   *
+   * Thumbnail
    */
   thumbnail?: CloudinaryAsset;
-
-  /**
-   * Start Date — `datetime`
-   *
-   *
-   */
-  start_date: string;
-
-  /**
-   * End Date — `datetime`
-   *
-   *
-   */
-  end_date?: string;
-
-  /**
-   * Work Description — `array`
-   *
-   *
-   */
-  description: Array<SanityKeyed<SanityBlock>>;
 }
 
 /**
@@ -291,7 +281,7 @@ export interface Gallery extends SanityDocument {
    *
    *
    */
-  upload_batch_name: string;
+  upload_batch_name?: string;
 
   /**
    * All Paired Image Alt texts (for hover) — `array`
@@ -305,7 +295,109 @@ export interface Gallery extends SanityDocument {
    *
    *
    */
-  images: Array<SanityKeyed<CloudinaryAsset>>;
+  images?: Array<SanityKeyed<CloudinaryAsset>>;
+}
+
+/**
+ * Company
+ *
+ *
+ */
+export interface Company extends SanityDocument {
+  _type: "company";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Company Link — `string`
+   *
+   *
+   */
+  company_link?: string;
+
+  /**
+   * Thumbnail — `cloudinary.asset`
+   *
+   * Article cover image stored on Cloudinary
+   */
+  thumbnail?: CloudinaryAsset;
+
+  /**
+   * Review Type — `array`
+   *
+   * Review Type
+   */
+  review_type?: Array<SanityKeyed<"technical_writing_review" | "work_review">>;
+}
+
+/**
+ * Work Experience
+ *
+ *
+ */
+export interface WorkExperience extends SanityDocument {
+  _type: "work_experience";
+
+  /**
+   * Role — `string`
+   *
+   *
+   */
+  role?: string;
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Url — `string`
+   *
+   *
+   */
+  url?: string;
+
+  /**
+   * Summary — `string`
+   *
+   *
+   */
+  summary?: string;
+
+  /**
+   * Description — `array`
+   *
+   *
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Thumbnail — `cloudinary.asset`
+   *
+   * Company Thumbnail
+   */
+  thumbnail?: CloudinaryAsset;
+
+  /**
+   * Start Date — `datetime`
+   *
+   *
+   */
+  start_date?: string;
+
+  /**
+   * End Date — `datetime`
+   *
+   *
+   */
+  end_date?: string;
 }
 
 /**
@@ -317,116 +409,65 @@ export interface Review extends SanityDocument {
   _type: "review";
 
   /**
-   * Reviewer Name — `string`
+   * Name — `string`
    *
-   *
+   * Reviewer Name
    */
-  name: string;
+  name?: string;
 
   /**
-   * Reviewer Profile Link — `url`
+   * Reviewer Link — `string`
    *
-   *
+   * Reviewer Profile Link
    */
   reviewer_link?: string;
 
   /**
    * Reviewer Role — `string`
    *
-   *
+   * Reviewer Role
    */
-  reviewer_role: string;
+  reviewer_role?: string;
 
   /**
-   * Company Link — `url`
+   * Company Link — `string`
    *
-   *
+   * Company Link
    */
   company_link?: string;
 
   /**
-   * Company Name — `string`
+   * Company — `string`
    *
    *
    */
-  company: string;
+  company?: string;
 
   /**
-   * Review Type — `array`
+   * Work Duration — `string`
    *
-   *
+   * Period Worked Together
    */
-  review_type: Array<SanityKeyed<string>>;
+  work_duration?: string;
 
   /**
    * Review Text — `array`
    *
    *
    */
-  review_text: Array<SanityKeyed<SanityBlock>>;
+  review_text?: Array<SanityKeyed<SanityBlock>>;
 
   /**
-   * Period Worked Together — `string`
+   * Review Type — `array`
    *
-   *
+   * Review Type
    */
-  work_duration?: string;
-
-  /**
-   * Reviewer Thumbnail — `cloudinary.asset`
-   *
-   *
-   */
-  thumbnail?: CloudinaryAsset;
-}
-
-/**
- * Engagement
- *
- *
- */
-export interface Engagement extends SanityDocument {
-  _type: "engagement";
-
-  /**
-   * Engagement Name — `string`
-   *
-   *
-   */
-  name: string;
-
-  /**
-   * Event Name — `string`
-   *
-   *
-   */
-  event_name: string;
-
-  /**
-   * Event Link — `url`
-   *
-   *
-   */
-  event_link?: string;
-
-  /**
-   * Engagement Type — `array`
-   *
-   *
-   */
-  type: Array<SanityKeyed<string>>;
-
-  /**
-   * Talk Summary — `array`
-   *
-   *
-   */
-  summary: Array<SanityKeyed<SanityBlock>>;
+  review_type?: Array<SanityKeyed<"technical_writing_review" | "work_review">>;
 
   /**
    * Thumbnail — `cloudinary.asset`
    *
-   *
+   * Reviewer Thumbnail
    */
   thumbnail?: CloudinaryAsset;
 }
@@ -444,70 +485,29 @@ export interface CompaniesList extends SanityDocument {
    *
    *
    */
-  name: string;
-
-  /**
-   * Section To Place Companies — `array`
-   *
-   *
-   */
-  section_for: Array<SanityKeyed<string>>;
-
-  /**
-   * List of Companies — `array`
-   *
-   *
-   */
-  companies_list: Array<SanityKeyedReference<Company>>;
+  name?: string;
 }
 
-/**
- * Company
- *
- *
- */
-export interface Company extends SanityDocument {
-  _type: "company";
-
-  /**
-   * Company Name — `string`
-   *
-   *
-   */
-  name: string;
-
-  /**
-   * Company Profile Link — `url`
-   *
-   *
-   */
-  company_link: string;
-
-  /**
-   * Reviewer Thumbnail — `cloudinary.asset`
-   *
-   *
-   */
-  thumbnail?: CloudinaryAsset;
-
-  /**
-   * Review Type — `array`
-   *
-   *
-   */
-  review_type: Array<SanityKeyed<string>>;
-}
+export type BlockContent = Array<
+  | SanityKeyed<SanityBlock>
+  | SanityKeyed<{
+      _type: "image";
+      asset: SanityReference<SanityImageAsset>;
+      crop?: SanityImageCrop;
+      hotspot?: SanityImageHotspot;
+    }>
+>;
 
 export type Documents =
-  | Article
   | Homepage
+  | Article
   | Notification
-  | WorkExperience
-  | Gallery
-  | Review
   | Engagement
-  | CompaniesList
-  | Company;
+  | Gallery
+  | Company
+  | WorkExperience
+  | Review
+  | CompaniesList;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

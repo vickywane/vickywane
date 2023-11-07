@@ -9,7 +9,7 @@ import React from "react"
 import { truncateText } from "./helpers"
 
 interface RichTextComponentProps {
-  richText: TypedObject | TypedObject[]
+  richText: any
   isClamped?: boolean
   maxTextLength?: number
 }
