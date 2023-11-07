@@ -91,7 +91,7 @@ const ArticleCard = ({ articles }: ArticleProps) => {
         </Flex>
       </CardHeader>
       <br />
-
+          
       <RichTextComponent richText={articles.summary} maxTextLength={30} />
 
       <br />

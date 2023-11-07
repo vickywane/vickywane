@@ -105,6 +105,7 @@ const ReviewCard = ({ review, isActive }: ReviewCardProps) => {
           </Flex>
         </Flex>
 
+        {/* @ts-ignore */}
         <PortableText value={review.review_text} components={richComponent} />
 
         {review.work_duration && (

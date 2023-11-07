@@ -79,12 +79,12 @@ const Title = styled(Text)`
 const TalkCard = ({ engagement }: TalkCardProps) => {
   return (
     <PodcastContainer>
-      <ThumbnailContainer type={engagement.type[0]}>
+      <ThumbnailContainer type={engagement?.type as unknown as string}>
         <div className={"img-ctn"}>
           <Image
             loader={ImageLoader}
             src={engagement.thumbnail.public_id}
-            alt={engagement.name}
+            alt={engagement.name || ""}
             style={{ objectFit: "cover" }}
             fill
           />

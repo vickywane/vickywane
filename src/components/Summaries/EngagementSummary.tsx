@@ -54,7 +54,7 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => (
     <ListContainer>
       {engagements.map((item, idx) => (
         <li key={item?._id}>
-          {item.type[0] === "podcasts" ? (
+          {item?.type && item?.type[0] === "podcast" ? (
             <PodcastCard engagement={item} />
           ) : (
             <TalkCard engagement={item} />

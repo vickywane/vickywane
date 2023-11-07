@@ -35,10 +35,10 @@ export default function Home({ pageData: data }: HomeProps) {
       <NextHeader name={"Nwani Victory | Overview"} />
 
       <HomeHeroNotification
-        notification={(data?.notifications[0] as unknown) as Notification}
+        notification={(data?.notifications && data?.notifications[0] as unknown) as Notification}
       />
 
-      <HomeHero banner_description={data?.banner_description} />
+      <HomeHero banner_description={data?.banner_description || ""} />
 
       <PersonalBio human_text={data?.human_description} />
 
