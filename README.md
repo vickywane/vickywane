@@ -1,3 +1,5 @@
+[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v1/monitor/wqdm.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
+
 # Hi There 👋, 
 
 I'm Nwani Victory, a software engineer and a techical writer. 
