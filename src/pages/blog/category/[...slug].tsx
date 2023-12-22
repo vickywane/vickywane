@@ -17,7 +17,7 @@ const Page = ({ category }: { category: BlogCategory }) => {
 
       <Layout bg="#FFF8F0">
         <H2Heading>
-          All articles for <span>{category.name}</span>
+          All articles for <span>{category?.name}</span>
         </H2Heading>
         <hr />
 
