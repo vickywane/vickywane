@@ -6,6 +6,14 @@ import {
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
 
+export const ArticleList = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 60px 50px;
+  list-style: none;
+  margin-top: 40px;
+`
+
 export const H2Heading = styled.h2<StyledProps>`
   font-style: normal;
   font-weight: ${props => props.fontWeight || 400};
@@ -23,7 +31,43 @@ export const H2Heading = styled.h2<StyledProps>`
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
+    font-size: 28px;
+    margin-bottom: 15px;
+
+    span {
+      text-decoration-thickness: 4px;
+      font-weight: 600;
+    }
+  }
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
     font-size: 24px;
+    margin-bottom: 15px;
+
+    span {
+      text-decoration-thickness: 3px;
+      font-weight: 600;
+    }
+  }
+`
+
+export const H3Heading = styled.h3<StyledProps>`
+  font-style: normal;
+  font-weight: ${props => props.fontWeight || 400};
+  font-size: 28px;
+  line-height: 35px;
+  color: ${props => props.color || "#115e65"};
+  text-align: ${props => props.align};
+  margin-bottom: 30px;
+
+  span {
+    text-decoration: underline;
+    text-decoration-color: #d0db97;
+    text-decoration-thickness: 7px;
+    font-weight: 700;
+  }
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    font-size: 22px;
     margin-bottom: 15px;
 
     span {
@@ -62,13 +106,14 @@ export const ContentLayout = styled.div<LayoutProps>`
   }
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     .content-elements {
-      padding: 70px 20px;
+      padding: 40px 16px;
     }
   }
 `
 
 export const Text = styled.p<StyledProps>`
   color: ${props => props.color || "#115e65"};
+  line-height: 38px;
   text-align: ${props => props.align};
   margin: ${props =>
     `${props.mt || 0} ${props.mr || 0} ${props.mb || 0} ${props.ml || 0}`};
@@ -76,6 +121,7 @@ export const Text = styled.p<StyledProps>`
   font-weight: ${props => props.fontWeight};
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    line-height: 26px;
     font-size: ${props => props.fontSize || "14px"};
   }
 `

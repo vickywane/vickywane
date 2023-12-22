@@ -195,6 +195,36 @@ export interface Article extends SanityDocument {
 }
 
 /**
+ * Blog Category
+ *
+ *
+ */
+export interface BlogCategory extends SanityDocument {
+  _type: "blogCategory";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Slug — `slug`
+   *
+   *
+   */
+  slug?: { _type: "slug"; current: string };
+
+  /**
+   * Articles — `array`
+   *
+   *
+   */
+  articles?: Array<SanityKeyedReference<Article>>;
+}
+
+/**
  * Notification
  *
  *
@@ -501,6 +531,7 @@ export type BlockContent = Array<
 export type Documents =
   | Homepage
   | Article
+  | BlogCategory
   | Notification
   | Engagement
   | Gallery

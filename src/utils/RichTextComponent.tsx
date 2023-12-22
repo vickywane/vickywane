@@ -3,10 +3,12 @@ import {
   PortableTextComponents,
   toPlainText,
 } from "@portabletext/react"
-import { Text } from "@/styles"
+import { H2Heading, H3Heading, Text } from "@/styles"
 import { TypedObject } from "@portabletext/types"
 import React from "react"
+import Image from "next/image"
 import { truncateText } from "./helpers"
+import { ImageLoader } from "./Cloudinary"
 
 interface RichTextComponentProps {
   richText: any
@@ -22,8 +24,7 @@ const RichTextComponent = ({
   richText,
   isClamped,
   maxTextLength,
-}: 
-RichTextComponentProps) => {
+}: RichTextComponentProps) => {
   let temp = ""
 
   const richTextParagraphs = React.useMemo(() => {
@@ -42,7 +43,48 @@ RichTextComponentProps) => {
     isClamped,
     maxTextLength,
   }: RichTextOpts): PortableTextComponents => ({
+    types: {
+      "cloudinary.asset": ({ value }) => {
+        return (
+          <div style={{ height: `550px`, margin: "26px 0",  width: "100%", position: "relative" }}>
+            <Image
+              fill
+              style={{ position: "absolute", objectFit: "contain" }}
+              loader={ImageLoader}
+              alt={value?.title}
+              src={value?.public_id}
+            />
+          </div>
+        )
+      },
+      image: ({ value }) => {
+        return (
+          <div>
+            <Image loader={ImageLoader} alt="" src={value} />
+          </div>
+        )
+      },
+    },
     block: {
+      h1: ({}) => {
+        return (
+          <p> HEY H1 </p>
+        )
+      },
+      h2: ({children}) => {
+        return (
+          <H2Heading fontWeight={500} >
+            {children}
+          </H2Heading>
+        )
+      },
+      h3: ({children}) => {
+        return (
+          <H3Heading fontWeight={400}>
+            {children}
+          </H3Heading>
+        )
+      },
       normal: ({ children, value, index }) => {
         if (maxTextLength && richTextParagraphs) {
           temp += toPlainText(value)
@@ -59,7 +101,7 @@ RichTextComponentProps) => {
     },
     list: {
       bullet: ({ children }) => (
-        <ul style={{ listStyle: "square" }}>
+        <ul style={{ listStyle: "square", marginLeft: "36px" }}>
           {/* @ts-ignore */}
           <Text>{children.slice(0, isClamped ? listLength : 1000)}</Text>
         </ul>

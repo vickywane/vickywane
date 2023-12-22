@@ -31,6 +31,10 @@ const ImageContainer = styled.div`
   image {
     display: absolute;
   }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 350px;
+  }
 `
 
 const SubTitle = styled(Text)`
@@ -44,7 +48,13 @@ const SubTitle = styled(Text)`
 
 const CoverContainer = styled.div`
   max-width: 1450px;
+  position: relative;
+  height: 400px;
   margin: auto;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 130px;
+  }
 `
 
 const Page = ({ article }: Props) => {
@@ -56,7 +66,7 @@ const Page = ({ article }: Props) => {
   return (
     <div>
       <Header />
-      <NextHeader name={`Victory Blog | ${article?.title}`} />
+      <NextHeader name={`Blog | ${article?.title}`} />
 
       <Layout bg="#FFF8F0">
         <Flex direction="column" mb="20px">
@@ -65,32 +75,48 @@ const Page = ({ article }: Props) => {
           <H2Heading fontWeight={600}> {article?.title} </H2Heading>
           <SubTitle color={"#666666"}>
             Published on{" "}
-            {new Date(article._createdAt).toLocaleDateString("en-us", {
-              year: "numeric",
-              day: "2-digit",
-              month: "long",
-            })}
+            <span style={{ fontWeight: 600 }}>
+              {new Date(article._createdAt).toLocaleDateString("en-us", {
+                year: "numeric",
+                day: "2-digit",
+                month: "long",
+              })}
+            </span>
             .
           </SubTitle>
         </Flex>
 
         {/* @ts-ignore */}
         <RichTextComponent richText={article.summary} />
+
+        {/* Push image down for intersection */}
+        <div style={{ height: "200px" }} />
       </Layout>
 
-      <CoverContainer>
-        <ImageContainer>
-          <Image
-            loader={ImageLoader}
-            fill
-            style={{ objectFit: "cover" }}
-            src={article?.cover?.public_id}
-            alt={`${article?.title}`}
-          />
-        </ImageContainer>
-      </CoverContainer>
+      {article?.cover && (
+        <CoverContainer>
+          <div
+            style={{
+              position: "absolute",
+              height: "500px",
+              width: "100%",
+              top: "-280px",
+            }}
+          >
+            <ImageContainer>
+              <Image
+                loader={ImageLoader}
+                fill
+                style={{ objectFit: "cover" }}
+                src={article?.cover?.public_id}
+                alt={`${article?.title}`}
+              />
+            </ImageContainer>
+          </div>
+        </CoverContainer>
+      )}
 
-      <Layout bg="#FFF8F0">
+      <Layout>
         {/* @ts-ignore */}
         <RichTextComponent richText={article.body} />
 

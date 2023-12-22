@@ -41,19 +41,19 @@ export default function Home({ pageData: data }: HomeProps) {
         }
       />
 
-          <HomeHero banner_description={data?.banner_description || ""} />
+      <HomeHero banner_description={data?.banner_description || ""} />
 
-        <PersonalBio human_text={data?.human_description} />
+      <PersonalBio human_text={data?.human_description} />
 
-       <FeaturedTravelInsight
+      <FeaturedTravelInsight
         articles={(data?.articles as unknown) as Article[]}
       />
 
-         <JobSummary
+      <JobSummary
         experiences={(data?.experiences as unknown) as WorkExperience[]}
       />
 
- <ProjectsSummary />
+      <ProjectsSummary />
 
       <TechnicalArticleSummary
         articles={(data?.articles as unknown) as Article[]}
@@ -62,7 +62,7 @@ export default function Home({ pageData: data }: HomeProps) {
       <TalkSummary
         engagements={(data?.engagements as unknown) as Engagement[]}
       />
-      <Footer /> 
+      <Footer />
     </main>
   )
 }
