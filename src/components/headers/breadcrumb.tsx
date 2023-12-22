@@ -7,7 +7,7 @@ const Breadcrumb = () => {
   const router = useRouter()
 
   return (
-    <Flex direction="row" mb="40px">
+    <Flex direction="row" mb="26px">
       {router.asPath.split("/").map((item, idx) => {
         if (item === "") {
           return (

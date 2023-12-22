@@ -64,12 +64,12 @@ export const REVIEWS_QUERY = (type: string) => `
 }
 `
 
-interface ArticlesQueryType {
+interface QueryTypeProps {
   type?: string
   slug?: string
 }
 
-export const ARTICLES_QUERY = ({ type, slug }: ArticlesQueryType) => {
+export const ARTICLES_QUERY = ({ type, slug }: QueryTypeProps) => {
   if (slug) {
     return `*[_type == 'article' && slug.current == "${slug}"] { 
       _id,
@@ -109,5 +109,32 @@ export const ARTICLES_QUERY = ({ type, slug }: ArticlesQueryType) => {
       url,
       publish_date
     }
+`
+}
+
+export const GET_CATEGORY_QUERY = ({ slug }: QueryTypeProps) => {
+  if (slug) {
+    return `
+    *[_type == 'blogCategory' && slug.current == "${slug}"] { 
+        name, 
+        slug,
+        articles[] -> {
+          _createdAt,
+          _id,
+          title, 
+          summary,
+          cover,
+          slug
+        },
+        _createdAt
+    }
+  `
+  }
+
+  return `
+  *[_type == 'blogCategory'] { 
+      slug,
+      _createdAt
+  }
 `
 }

@@ -11,6 +11,6 @@ export const SanityClient = () => {
     dataset: apiConfig.project_dataset,
     apiVersion: apiConfig.api_version,
     token: apiConfig.sanity_token,
-    useCdn: true
+    useCdn: process.env.NODE_ENV === "production"
   });
 };

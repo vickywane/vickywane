@@ -6,17 +6,8 @@ import { SanityClient } from "@/utils/Sanity"
 import { ARTICLES_QUERY } from "@/data/gqols"
 import { Article } from "@/data/schema"
 import ArticleCard from "@/components/Cards/ArticleCard"
-import styled from "styled-components"
-import { H2Heading } from "@/styles"
+import { H2Heading, ArticleList } from "@/styles"
 import NextHeader from "@/components/headers/nextHead"
-
-const ArticleList = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 60px 50px;
-  list-style: none;
-  margin-top: 40px;
-`
 
 const Blog = ({ articles }: { articles: Article[] }) => (
   <div>

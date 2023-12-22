@@ -35,17 +35,19 @@ interface RecommendationCardProps {
 const RecommendationCard = ({ article }: RecommendationCardProps) => {
   return (
     <RecommendationContainer>
-      <div className="cover_image">
-        <Image
-          alt={article?.title || ""}
-          fill
-          style={{ objectFit: "cover", borderRadius: "15px 0 0 15px"  }}
-          loader={ImageLoader}
-          src={article?.cover?.public_id}
-        />
-      </div>
+      {article?.cover && (
+        <div className="cover_image">
+          <Image
+            alt={article?.title || ""}
+            fill
+            style={{ objectFit: "cover", borderRadius: "15px 0 0 15px" }}
+            loader={ImageLoader}
+            src={article?.cover?.public_id}
+          />
+        </div>
+      )}
 
-      <Flex className="container" >
+      <Flex className="container">
         <div>
           <Text fontSize="28px" fontWeight={600} mb="22px">
             {article?.title}
