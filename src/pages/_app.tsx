@@ -4,7 +4,7 @@ import type { AppProps } from "next/app"
 import { Provider } from "react-redux"
 import { reduxStore } from "@/state"
 import PostHog from "@/providers/PostHog"
-import { Space_Grotesk } from "@next/font/google"
+import { Space_Grotesk } from "next/font/google"
 // import { GlobalStyle } from "@/styles/globalStyles";
 
 const font = Space_Grotesk({
