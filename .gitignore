@@ -11,9 +11,9 @@ pids
 *.seed
 *.pid.lock
 .next
-public
 node_modules
 .idea
+.netlify
 .next
 ./.next
 .netlify
@@ -63,7 +63,6 @@ typings/
 
 # gatsby files
 .cache/
-public
 
 # Mac files
 .DS_Store

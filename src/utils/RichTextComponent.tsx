@@ -3,7 +3,7 @@ import {
   PortableTextComponents,
   toPlainText,
 } from "@portabletext/react"
-import { Anchor, H2Heading, H3Heading, Text } from "@/styles"
+import { Anchor, H2Heading, H3Heading, Text, ULList } from "@/styles"
 import React from "react"
 import Image from "next/image"
 import { truncateText } from "./helpers"
@@ -83,10 +83,10 @@ const RichTextComponent = ({
     },
     list: {
       bullet: ({ children }) => (
-        <ul style={{ listStyle: "square", marginLeft: "16px" }}>
+        <ULList>
           {/* @ts-ignore */}
           <Text>{children.slice(0, isClamped ? listLength : 1000)}</Text>
-        </ul>
+        </ULList>
       ),
     },
   })
