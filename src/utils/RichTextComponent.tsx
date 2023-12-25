@@ -3,12 +3,12 @@ import {
   PortableTextComponents,
   toPlainText,
 } from "@portabletext/react"
-import { H2Heading, H3Heading, Text } from "@/styles"
-import { TypedObject } from "@portabletext/types"
+import { Anchor, H2Heading, H3Heading, Text } from "@/styles"
 import React from "react"
 import Image from "next/image"
 import { truncateText } from "./helpers"
 import { ImageLoader } from "./Cloudinary"
+import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
 
 interface RichTextComponentProps {
   richText: any
@@ -44,19 +44,9 @@ const RichTextComponent = ({
     maxTextLength,
   }: RichTextOpts): PortableTextComponents => ({
     types: {
-      "cloudinary.asset": ({ value }) => {
-        return (
-          <div style={{ height: `550px`, margin: "26px 0",  width: "100%", position: "relative" }}>
-            <Image
-              fill
-              style={{ position: "absolute", objectFit: "contain" }}
-              loader={ImageLoader}
-              alt={value?.title}
-              src={value?.public_id}
-            />
-          </div>
-        )
-      },
+      "cloudinary.asset": ({ value }) => (
+        <CloudinaryAssetRenderer value={value} />
+      ),
       image: ({ value }) => {
         return (
           <div>
@@ -65,25 +55,17 @@ const RichTextComponent = ({
         )
       },
     },
+    marks: {
+      link: ({ children, value }) => {
+        return <Anchor href={value.href} > {children} </Anchor>
+      },
+    },
     block: {
-      h1: ({}) => {
-        return (
-          <p> HEY H1 </p>
-        )
+      h2: ({ children }) => {
+        return <H2Heading fontWeight={500}>{children}</H2Heading>
       },
-      h2: ({children}) => {
-        return (
-          <H2Heading fontWeight={500} >
-            {children}
-          </H2Heading>
-        )
-      },
-      h3: ({children}) => {
-        return (
-          <H3Heading fontWeight={400}>
-            {children}
-          </H3Heading>
-        )
+      h3: ({ children }) => {
+        return <H3Heading fontWeight={400}>{children}</H3Heading>
       },
       normal: ({ children, value, index }) => {
         if (maxTextLength && richTextParagraphs) {
@@ -101,7 +83,7 @@ const RichTextComponent = ({
     },
     list: {
       bullet: ({ children }) => (
-        <ul style={{ listStyle: "square", marginLeft: "36px" }}>
+        <ul style={{ listStyle: "square", marginLeft: "16px" }}>
           {/* @ts-ignore */}
           <Text>{children.slice(0, isClamped ? listLength : 1000)}</Text>
         </ul>

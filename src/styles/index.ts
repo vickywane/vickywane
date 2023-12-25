@@ -6,6 +6,14 @@ import {
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
 
+export const Anchor = styled.a`
+    text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+    }
+` 
+
 export const ArticleList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));

@@ -67,15 +67,6 @@ export default function Home({ pageData: data }: HomeProps) {
   )
 }
 
-// export const getStaticProps = wrapper.getStaticProps(store => async ({ preview }) => {
-//   const data = await SanityClient().fetch(HOME_QUERY);
-//   return {
-//     props: {
-//       pageData: data
-//     }
-//   };
-// });
-
 export async function getStaticProps() {
   const pageData = await SanityClient().fetch(HOME_QUERY)
 
