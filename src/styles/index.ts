@@ -103,6 +103,42 @@ export const H3Heading = styled.h3<StyledProps>`
   }
 `
 
+export const H4Heading = styled.h3<StyledProps>`
+  font-style: normal;
+  font-weight: ${props => props.fontWeight || 400};
+  font-size: 21px;
+  line-height: 35px;
+  color: ${props => props.color || "#115e65"};
+  text-align: ${props => props.align};
+  margin-bottom: 10px;
+
+  span {
+    text-decoration: underline;
+    text-decoration-color: #d0db97;
+    text-decoration-thickness: 4px;
+    font-weight: 700;
+  }
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    font-size: 22px;
+    margin-bottom: 10px;
+
+    span {
+      text-decoration-thickness: 4px;
+      font-weight: 600;
+    }
+  }
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    font-size: 20px;
+    margin-bottom: 8px;
+
+    span {
+      text-decoration-thickness: 3px;
+      font-weight: 600;
+    }
+  }
+`
+
 export interface LayoutProps {
   bg?: string
 }

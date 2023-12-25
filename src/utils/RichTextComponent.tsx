@@ -3,7 +3,7 @@ import {
   PortableTextComponents,
   toPlainText,
 } from "@portabletext/react"
-import { Anchor, H2Heading, H3Heading, Text, ULList } from "@/styles"
+import { Anchor, H2Heading, H3Heading, H4Heading, Text, ULList } from "@/styles"
 import React from "react"
 import Image from "next/image"
 import { truncateText } from "./helpers"
@@ -66,6 +66,9 @@ const RichTextComponent = ({
       },
       h3: ({ children }) => {
         return <H3Heading fontWeight={400}>{children}</H3Heading>
+      },
+      h4: ({ children }) => {
+        return <H4Heading fontWeight={400}>{children}</H4Heading>
       },
       normal: ({ children, value, index }) => {
         if (maxTextLength && richTextParagraphs) {
