@@ -3,6 +3,8 @@ import { GoogleTagManager } from '@next/third-parties/google'
 
 const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
 
+console.log("TAG ID =>", gtmId)
+
 export default function Document() {
   return (
     <Html lang="en">
