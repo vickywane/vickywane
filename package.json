@@ -3,7 +3,6 @@
   "private": true,
   "description": "My personal space on the wild internet!",
   "version": "0.1.0",
-  "packageManager": "yarn@3.2.4",
   "author": "Victory Nwani vickywane@gmail.com",
   "dependencies": {
     "@next/third-parties": "^14.0.4",
