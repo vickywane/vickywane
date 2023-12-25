@@ -14,6 +14,7 @@ pids
 public
 node_modules
 .idea
+.netlify
 .next
 ./.next
 .netlify

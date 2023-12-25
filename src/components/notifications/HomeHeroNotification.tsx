@@ -9,17 +9,18 @@ import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import { Flex } from "@/styles"
 
 const NotificationComponent = styled.div<{ isBreadcrumbOpen: boolean }>`
-  height: 50px;
+  min-height: 50px;
   width: 100%;
   background: #d0db97;
   border-top: ${props => (props.isBreadcrumbOpen ? "3px solid #000" : 0)};
+  padding: 10px 0;
 
   display: flex;
   place-items: center;
   justify-content: center;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    padding: 0 20px;
+    padding: 5px 20px;
   }
 `
 
@@ -44,6 +45,11 @@ const Alert = styled.div`
 
   animation: ${AlertAnimation} 1400ms;
   animation-iteration-count: infinite;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 25px;
+    width: 25px;
+  }
 `
 
 interface HomeHeroNotificationProps {
@@ -58,7 +64,7 @@ const HomeHeroNotification = ({ notification }: HomeHeroNotificationProps) => {
   return (
     <NotificationComponent isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
       <Flex>
-        <Flex mr="10px">
+        <Flex placeItems="center" mr="10px">
           <Alert />
         </Flex>
 
