@@ -22,10 +22,13 @@ import {
   WorkExperience,
 } from "@/data/schema"
 import NextHeader from "@/components/headers/nextHead"
+import Script from "next/script"
 
 interface HomeProps {
   pageData: Homepage
 }
+
+const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
 
 export default function Home({ pageData: data }: HomeProps) {
   return (
@@ -63,18 +66,21 @@ export default function Home({ pageData: data }: HomeProps) {
         engagements={(data?.engagements as unknown) as Engagement[]}
       />
       <Footer />
+
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${gtmId}`} />
+
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', ${gtmId});
+        `}
+      </Script>
     </main>
   )
 }
-
-// export const getStaticProps = wrapper.getStaticProps(store => async ({ preview }) => {
-//   const data = await SanityClient().fetch(HOME_QUERY);
-//   return {
-//     props: {
-//       pageData: data
-//     }
-//   };
-// });
 
 export async function getStaticProps() {
   const pageData = await SanityClient().fetch(HOME_QUERY)

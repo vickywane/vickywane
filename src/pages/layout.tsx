@@ -1,10 +1,7 @@
 import StyledComponentsRegistry from "@/styles/StyledComponentsRegistry"
 
-import { GoogleTagManager } from '@next/third-parties/google'
-
-const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
-
-console.log("TAG ID =>", gtmId)
+// import { GoogleTagManager } from '@next/third-parties/google'
+// const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
 
 export default function RootLayout({
   children,
@@ -17,7 +14,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
 
-      <GoogleTagManager gtmId={gtmId} />
+      {/* <GoogleTagManager gtmId={gtmId} /> */}
     </html>
   )
 }
