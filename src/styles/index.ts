@@ -7,12 +7,21 @@ import {
 } from "@/styles/useStyleWidthQuery"
 
 export const Anchor = styled.a`
-    text-decoration: underline;
+  text-decoration: underline;
 
-    &:hover {
-      cursor: pointer;
-    }
-` 
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+export const ULList = styled.ul`
+  list-style: square;
+  margin-left: 26px;
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    margin-left: 16px;
+  }
+`
 
 export const ArticleList = styled.ul`
   display: grid;
@@ -104,7 +113,7 @@ export const ContentLayout = styled.div<LayoutProps>`
   .content-elements {
     margin: 0 auto;
     max-width: 1224px;
-    padding: 100px 0;
+    padding: 100px 26px;
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
@@ -142,8 +151,6 @@ export const Flex = styled.div<StyledProps>`
     `${props.mt || 0} ${props.mr || 0} ${props.mb || 0} ${props.ml || 0}`};
   place-items: ${props => props.placeItems};
 `
-
-
 
 export const Icon = styled(Flex)`
   font-size: 24px;

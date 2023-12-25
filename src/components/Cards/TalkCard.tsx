@@ -76,19 +76,22 @@ const Title = styled(Text)`
 `
 
 const TalkCard = ({ engagement }: TalkCardProps) => {
+
   return (
     <PodcastContainer>
-      <ThumbnailContainer type={engagement?.type as unknown as string}>
-        <div className={"img-ctn"}>
-          <Image
-            loader={ImageLoader}
-            src={engagement?.thumbnail?.public_id}
-            alt={engagement?.name || ""}
-            style={{ objectFit: "cover" }}
-            fill
-          />
-        </div>
-      </ThumbnailContainer>
+      {engagement?.thumbnail && (
+        <ThumbnailContainer type={(engagement?.type as unknown) as string}>
+          <div className={"img-ctn"}>
+            <Image
+              loader={ImageLoader}
+              src={engagement?.thumbnail?.public_id}
+              alt={engagement?.name || ""}
+              style={{ objectFit: "cover" }}
+              fill
+            />
+          </div>
+        </ThumbnailContainer>
+      )}
 
       <Flex direction={"column"}>
         <Title mb={"15px"} fontWeight={500}>
@@ -104,7 +107,7 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
           <Button display="flex" items="center">
             <p> Watch Recording </p>
 
-            <Icon color="#fff" >
+            <Icon color="#fff">
               <BsCameraVideo />
             </Icon>
           </Button>
