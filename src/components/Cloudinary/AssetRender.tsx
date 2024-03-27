@@ -9,7 +9,7 @@ const extractNameFromUrl = (url: string): string => {
   return slashes[slashes.length - 1]
 }
 
-const CloudinaryAssetRenderer = ({ value } : any) => {
+const CloudinaryAssetRenderer = ({ value }: any) => {
   switch (value.format) {
     case "mp3":
       return (
@@ -23,7 +23,14 @@ const CloudinaryAssetRenderer = ({ value } : any) => {
           </Text>
         </div>
       )
-
+    case "mp4":
+      return (
+        <div style={{ margin: "20px 0" }}>
+          <video controls width="100%">
+            <source src={value.secure_url} type="video/webm" />
+          </video>
+        </div>
+      )
     case "png":
     case "jpeg":
     case "jpg":
