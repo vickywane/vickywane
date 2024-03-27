@@ -53,7 +53,7 @@ const RichTextComponent = ({
             <Image loader={ImageLoader} alt="" src={value} />
           </div>
         )
-      },
+      }
     },
     marks: {
       link: ({ children, value }) => {
