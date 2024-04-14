@@ -16,7 +16,7 @@ const RecommendationContainer = styled.div`
   border-radius: 15px;
 
   .container {
-    padding: 15px 5px;
+    padding: 15px 30px;
   }
 
   .cover_image {
@@ -34,28 +34,28 @@ interface RecommendationCardProps {
 
 const RecommendationCard = ({ article }: RecommendationCardProps) => {
   return (
-    <RecommendationContainer>
-      {article?.cover && (
-        <div className="cover_image">
-          <Image
-            alt={article?.title || ""}
-            fill
-            style={{ objectFit: "cover", borderRadius: "15px 0 0 15px" }}
-            loader={ImageLoader}
-            src={article?.cover?.public_id}
-          />
-        </div>
-      )}
+    <Link href={getBlogUrl(article?.slug)}>
+      <RecommendationContainer>
+        {article?.cover && (
+          <div className="cover_image">
+            <Image
+              alt={article?.title || ""}
+              fill
+              style={{ objectFit: "cover", borderRadius: "15px 0 0 15px" }}
+              loader={ImageLoader}
+              src={article?.cover?.public_id}
+            />
+          </div>
+        )}
 
-      <Flex className="container">
-        <div>
-          <Text fontSize="28px" fontWeight={600} mb="22px">
-            {article?.title}
-          </Text>
-          <RichTextComponent richText={article.summary} />
+        <Flex className="container">
+          <div>
+            <Text fontSize="28px" fontWeight={600} mb="22px">
+              {article?.title}
+            </Text>
+            <RichTextComponent richText={article.summary} />
 
-          <Flex mt="20px">
-            <Link href={getBlogUrl(article?.slug)}>
+            <Flex mt="20px">
               <Flex>
                 <Flex placeItems="center">
                   <Text color={"#131112"} fontSize={"15px"}>
@@ -67,11 +67,11 @@ const RecommendationCard = ({ article }: RecommendationCardProps) => {
                   <BsArrowRight color={"#131112"} />
                 </Icon>
               </Flex>
-            </Link>
-          </Flex>
-        </div>
-      </Flex>
-    </RecommendationContainer>
+            </Flex>
+          </div>
+        </Flex>
+      </RecommendationContainer>
+    </Link>
   )
 }
 

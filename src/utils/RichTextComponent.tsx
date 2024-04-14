@@ -9,6 +9,7 @@ import Image from "next/image"
 import { truncateText } from "./helpers"
 import { ImageLoader } from "./Cloudinary"
 import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
+import ReactPlayer from 'react-player'
 
 interface RichTextComponentProps {
   richText: any
@@ -53,11 +54,18 @@ const RichTextComponent = ({
             <Image loader={ImageLoader} alt="" src={value} />
           </div>
         )
-      }
+      },
+      youtube: ({ value }) => {
+        return (
+          <div style={{ margin: "20px 0" }}>
+            <ReactPlayer width="100%" height="700px" url={value?.url} />
+          </div>
+        )
+      },
     },
     marks: {
       link: ({ children, value }) => {
-        return <Anchor href={value.href} > {children} </Anchor>
+        return <Anchor href={value.href}> {children} </Anchor>
       },
     },
     block: {
