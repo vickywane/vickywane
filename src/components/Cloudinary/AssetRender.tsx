@@ -23,6 +23,7 @@ const CloudinaryAssetRenderer = ({ value }: any) => {
           </Text>
         </div>
       )
+    case "mov":
     case "mp4":
       return (
         <div style={{ margin: "20px 0" }}>
