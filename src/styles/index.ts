@@ -148,7 +148,7 @@ export const ContentLayout = styled.div<LayoutProps>`
 
   .content-elements {
     margin: 0 auto;
-    max-width: 1224px;
+    max-width: 1404px;
     padding: 100px 26px;
   }
 
