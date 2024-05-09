@@ -64,6 +64,16 @@ export const REVIEWS_QUERY = (type: string) => `
 }
 `
 
+export const COMPANIES_QUERY = `
+  *[_type == 'company']{ 
+    _id,
+    _createdAt,
+    name, 
+    thumbnail,
+    company_link
+  }
+`
+
 interface QueryTypeProps {
   type?: string
   slug?: string
@@ -132,9 +142,18 @@ export const GET_CATEGORY_QUERY = ({ slug }: QueryTypeProps) => {
   }
 
   return `
-  *[_type == 'blogCategory'] { 
+    *[_type == 'blogCategory'] { 
+      name, 
       slug,
+      articles[] -> {
+        _createdAt,
+        _id,
+        title, 
+        summary,
+        cover,
+        slug
+      },
       _createdAt
-  }
-`
+    }
+  `
 }

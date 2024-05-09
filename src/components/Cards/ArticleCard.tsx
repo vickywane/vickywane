@@ -22,11 +22,15 @@ interface ArticleProps {
 const ArticleComponent = styled.div`
   background: #fff;
   max-width: 600px;
+  height: 400px;
   padding: 21px;
   overflow: auto;
   transition: all 300ms;
   filter: drop-shadow(7px 7px 0px #0d5c63);
   transform: translateY(-10px);
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-between;
 
   :hover {
     cursor: pointer;
@@ -77,9 +81,9 @@ const ArticleCard = ({ articles }: ArticleProps) => {
         )}
 
         <Flex placeItems={"center"}>
-          <Icon mr="8px" placeItems={"center"}>
+          {/* <Icon mr="8px" placeItems={"center"}>
             <BsCalendar4Event color={"#131112"} size={"20px"} />
-          </Icon>
+          </Icon> */}
 
           <SubTitle color={"#666666"}>
             {new Date(articles._createdAt).toLocaleDateString("en-us", {
@@ -90,11 +94,8 @@ const ArticleCard = ({ articles }: ArticleProps) => {
           </SubTitle>
         </Flex>
       </CardHeader>
-      <br />
           
-      <RichTextComponent richText={articles.summary} maxTextLength={30} />
-
-      <br />
+      <RichTextComponent richText={articles.summary} maxTextLength={20} />
 
       {articles.is_external ? (
         <Flex>

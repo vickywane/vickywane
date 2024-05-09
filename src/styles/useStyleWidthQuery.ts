@@ -16,7 +16,6 @@ export const useMediaQuery = (width: number) => {
 
   useEffect(() => {
     const media = window.matchMedia(`(max-width: ${width}px)`)
-    // media.addListener(updateTarget);
 
     media.addEventListener("change", updateTarget)
 

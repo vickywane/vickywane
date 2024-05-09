@@ -23,12 +23,18 @@ export const ULList = styled.ul`
   }
 `
 
-export const ArticleList = styled.ul`
+export const ColumnArticleList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 60px 50px;
   list-style: none;
   margin-top: 40px;
+`
+
+export const FlexArticleList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
 `
 
 export const H2Heading = styled.h2<StyledProps>`
@@ -148,7 +154,7 @@ export const ContentLayout = styled.div<LayoutProps>`
 
   .content-elements {
     margin: 0 auto;
-    max-width: 1404px;
+    max-width: 1304px;
     padding: 100px 26px;
   }
 

@@ -7,7 +7,8 @@ import Header from "@/components/headers"
 import Layout from "@/styles/Layout"
 import NextHeader from "@/components/headers/nextHead"
 import ArticleCard from "@/components/Cards/ArticleCard"
-import { H2Heading, ArticleList } from "@/styles"
+import { H2Heading, ColumnArticleList } from "@/styles"
+import Breadcrumb from "@/components/headers/breadcrumb"
 
 const Page = ({ category }: { category: BlogCategory }) => {
   return (
@@ -16,18 +17,20 @@ const Page = ({ category }: { category: BlogCategory }) => {
       <NextHeader name={"Victory Nwani | Blog"} />
 
       <Layout bg="#FFF8F0">
+        <Breadcrumb />
+        <br />
         <H2Heading>
           All articles for <span>{category?.name}</span>
         </H2Heading>
         <hr />
 
-        <ArticleList>
+        <ColumnArticleList>
           {category?.articles?.map((article, idx) => (
             <li key={idx}>
               <ArticleCard articles={(article as unknown) as Article} />{" "}
             </li>
           ))}
-        </ArticleList>
+        </ColumnArticleList>
       </Layout>
     </div>
   )
