@@ -1,6 +1,7 @@
 "use client"
 import styled from "styled-components"
 import React from "react"
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 import ReviewCard from "@/components/Cards/ReviewCard"
 import { useDispatch, useSelector } from "react-redux"
@@ -42,15 +43,19 @@ const Reviews = ({ type }: ReviewsProp) => {
 
   if (type === "work_review") {
     if (!work_review) return null
-
+    
     return (
-      <CardList>
-        {work_review.map((review, idx) => (
-          <li key={idx}>
-            <ReviewCard review={review} />
-          </li>
-        ))}
-      </CardList>
+      <div>
+        <ResponsiveMasonry  columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
+          <Masonry gutter="1.5rem" >
+            {work_review.map((review, idx) => (
+              <li key={idx}>
+                <ReviewCard review={review} />
+              </li>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      </div>
     )
   }
 
@@ -66,6 +71,18 @@ const Reviews = ({ type }: ReviewsProp) => {
         ))}
       </CardList>
     )
+
+    // return (
+    //   <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+    //     <Masonry>
+    //       {technical_writing_review.map((review, idx) => (
+    //         <li key={idx}>
+    //           <ReviewCard review={review} />
+    //         </li>
+    //       ))}
+    //     </Masonry>
+    //   </ResponsiveMasonry>
+    // )
   }
 
   return <></>

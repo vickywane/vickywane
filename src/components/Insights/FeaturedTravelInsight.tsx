@@ -19,13 +19,15 @@ import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
 
 const Container = styled.div`
   .image-ctn {
-    height: 400px;
+    /* height: 500px;
+    min-height: 500px; */
     width: 450px;
     margin-right: 100px;
     min-width: 450px;
-    position: relative;
-    justify-content: center;
-    display: flex;
+
+    /* position: relative; */
+    /* justify-content: center;
+    display: flex; */
   }
 
   .container {
@@ -49,7 +51,12 @@ const Container = styled.div`
     .image-ctn {
       width: 100%;
       min-width: 100%;
-      height: 400px;
+      margin-bottom: 32px;
+      /* height: 400px;
+      min-height: 400px; */
+
+      /* background-color: red; */
+      height: 100%;
 
       img {
         border-radius: 6px;
@@ -110,7 +117,7 @@ const FeaturedTravelInsight = ({ articles }: FeaturedTravelInsightProps) => {
   return (
     <Layout bg={"#fff8f0"}>
       <SectionIndicator
-        text="Vacation Jornal Around Earth"
+        text="Vacation Jornals Around Earth"
         id="travel-insight"
       />
       <br />
@@ -122,7 +129,7 @@ const FeaturedTravelInsight = ({ articles }: FeaturedTravelInsightProps) => {
             <div className={"image-ctn"}>
               <ImageCarousel />
             </div>
-
+          
             <Flex direction={"column"}>
               <br />
 

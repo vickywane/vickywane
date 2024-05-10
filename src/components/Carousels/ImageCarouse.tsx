@@ -3,19 +3,11 @@ import styled from "styled-components"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 const Container = styled.ul`
-  position: absolute;
-  height: auto;
-  width: auto;
-  background: green;
-  top: -30px;
-  left: 300px;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    top: -30px;
-     left: 140px;
-  }
+  height: 100%;
+  width: 100%;
 `
 
 export interface StyledProps {
@@ -25,9 +17,8 @@ export interface StyledProps {
 }
 
 const Item = styled.li<StyledProps>`
-  height: 300px;
-  width: 300px;
-  position: absolute;
+  height: ${props => (props.stack === 1 ? "250px" : props.stack === 4 ? "250px" : props.stack === 5 ? "150px" : "200px")};
+  width: 220px;
 
   list-style: none;
   -webkit-transform-style: preserve-3d;
@@ -46,8 +37,8 @@ const Item = styled.li<StyledProps>`
   }
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 180px;
-    width: 180px;
+    height: 150px;
+    width: 100%;
 
     &:hover {
       transform: scale(1.08);
@@ -57,26 +48,26 @@ const Item = styled.li<StyledProps>`
 `
 
 const mockImgs = [
-  "personal-portfolio-app/IMG_3871.jpg",
-  "personal-portfolio-app/okta-k8-cover.jpg",
-  "personal-portfolio-app/kcd-thumbnail.jpg",
-  "personal-portfolio-app/maureen-thumbnail.jpg",
-  "personal-portfolio-app/axe-svelte.png",
+  "personal-portfolio-app/blog/travel-journal/ghana/oraotun1uywuoa4bmxlu.jpg",
+  "personal-portfolio-app/blog/travel-journal/ghana/zuyglkptgvylyyqezloz.jpg",
+  "personal-portfolio-app/blog/travel-journal/ghana/uprl9qsvruxtvbiyxop7.jpg",
+  "personal-portfolio-app/blog/travel-journal/ghana/lu0gwcduzf0nwdzixgyq.jpg",
 ]
 
 const ImageCarousel = () => {
   return (
     <Container>
-        {mockImgs.map((item, idx) => (
-          <Item
-            key={idx}
-            idx={`-${(idx + 1) * 30}px`}
-            top={`${(idx + 1) * 30}px`}
-            active={1 === idx}
-          >
-            <Image loader={ImageLoader} fill alt={"CRAZY ALT"} src={item} />
-          </Item>
-        ))}
+      <ResponsiveMasonry style={{width: "100%"}} columnsCountBreakPoints={{ 750: 2}}>
+        <Masonry style={{width: "100%"}} gutter="1rem">
+          {mockImgs.map((item, idx) => (
+            <li style={{width: "100%", listStyle: "none"}} key={idx}>
+              <Item key={idx} stack={idx + 1}>
+                <Image loader={ImageLoader} fill alt={"CRAZY ALT"} src={item} />
+              </Item>
+            </li>
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </Container>
   )
 }
