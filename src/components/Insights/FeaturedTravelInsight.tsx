@@ -16,6 +16,8 @@ import Slider, { Settings } from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
+import { VacationPreview } from "@/data/schema"
+
 // @ts-ignore
 import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
 import Link from "next/link"
@@ -47,11 +49,8 @@ const Container = styled.div`
     .image-ctn {
       width: 100%;
       min-width: 100%;
-      margin-bottom: 32px; 
+      margin-bottom: 28px; 
       height: 100%;
-      img {
-        border-radius: 6px;
-      }
     }
 
     .contents {
@@ -64,16 +63,12 @@ const Container = styled.div`
       width: 100%;
       min-width: 100%;
       height: 300px;
-
-      img {
-        border-radius: 6px;
-      }
     }
   }
 `
 
 interface FeaturedTravelInsightProps {
-  preview: any
+  previews: Array<VacationPreview>
 }
 
 const CTAText = styled(Text)`
@@ -184,8 +179,6 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
                 )}
 
                 <Flex direction={"column"}>
-                  <br />
-
                   <CTAText fontWeight={600}> {items?.article?.title} </CTAText>
 
                   <br />

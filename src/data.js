@@ -1,7 +1,29 @@
 import React from "react"
 import styled from "styled-components"
 import media from "styled-media-query"
-import Emoji from "./components/emoji"
+
+export const GREETING_WORDS = [
+  "Hello", 
+  "Kedu",
+  "Bawo ni",
+  "Sannu",
+  "Hola",
+  "Salut",
+  "Ciao",
+  "Hallo",
+  "Merhaba",
+  "Maakye",
+  "Dia dhuit",
+  "Tere",
+  "Olá",
+  "Jambo", 
+  "Hallo",
+  "Hej",
+  "Mbote",
+  "Sawubona",
+  "Wábo ó",
+  "Obóyó"
+]
 
 const ResponsiveEmoji = styled.div`
   span {

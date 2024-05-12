@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
-import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
+import { Flex, Text } from "@/styles"
+import { LiaInfoSolid } from "react-icons/lia"
 
 const Container = styled.ul`
   height: 100%;
@@ -22,8 +24,6 @@ const Item = styled.li<StyledProps>`
       ? "250px"
       : props.stack === 4
       ? "250px"
-      : props.stack === 5
-      ? "150px"
       : "200px"};
   width: 220px;
 
@@ -39,22 +39,67 @@ const Item = styled.li<StyledProps>`
   }
 
   &:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
     cursor: pointer;
   }
 
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    width: 100%;
+  }
+
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 150px;
+    height: ${props =>
+    props.stack === 1
+      ? "165px"
+      : props.stack === 4
+      ? "165px"
+      : "130px"};
+
     width: 100%;
 
     &:hover {
-      transform: scale(1.08);
+      transform: scale(1);
       cursor: pointer;
     }
   }
 `
- 
+
+const AltContainer = styled(Flex)`
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  width: auto;
+  padding: 0 12px;
+  z-index: 5;
+  background-color: #131112;
+  justify-content: center;
+  place-items: center;
+  opacity: 0.9;
+
+  p {
+    font-size: 12px;
+  }
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    height: 20px;
+    padding: 0 4px;
+
+    p {
+      font-size: 10px;
+    }
+  }
+`
+
+const CustomImage = styled(Image)<{ blur: boolean }>`
+  transition: filter 0.3s ease-in;
+  height: 100%;
+  width: 100%;
+
+  background-color: inherit;
+`
+
 const ImageCarousel = ({ images }: { images: any }) => {
+  const [isImageLoading, setImageLoading] = useState(false)
 
   return (
     <Container>
@@ -62,14 +107,29 @@ const ImageCarousel = ({ images }: { images: any }) => {
         style={{ width: "100%" }}
         columnsCountBreakPoints={{ 750: 2 }}
       >
-        <Masonry style={{ width: "100%" }} gutter="1rem">
+        <Masonry style={{ width: "100%" }} gutter=".5rem">
           {images.map((image, idx) => (
             <li style={{ width: "100%", listStyle: "none" }} key={idx}>
               <Item key={idx} stack={idx + 1}>
-                <Image
+                <AltContainer>
+                  <Flex placeItems="center">
+                    <Text color="white">
+                      {" "}
+                      ALT{" "}
+                    </Text>
+                  </Flex>
+
+                  <Flex justify="center">
+                    <LiaInfoSolid color="white" size={16} />
+                  </Flex>
+                </AltContainer>
+
+                <CustomImage
+                  blur={isImageLoading}
                   loader={ImageLoader}
                   fill
                   alt={"CRAZY ALT"}
+                  onLoad={() => setImageLoading(true)}
                   src={image?.public_id}
                 />
               </Item>

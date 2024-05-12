@@ -184,17 +184,22 @@ const Index = () => {
               {navigation_links.map(({ name, to }, idx) => (
                 <li key={idx}>
                   <Anchor href={"#"}>
-                    <Link href={to} >{name}</Link>
+                    <Link href={to}>{name}</Link>
                   </Anchor>
                 </li>
               ))}
 
               <li style={{ listStyle: "none" }}>
-                <CustomButton
-                  icon={<AiOutlineFilePdf size={24} />}
-                  clickAction={() => {}}
-                  text={"View Resume"}
-                />
+                <a
+                  target="_blank"
+                  href="https://docs.google.com/document/d/1s_53gBc110F5yLT4yoQkBWtXgNdC6qnCz5rVBL589fc/edit?usp=sharing"
+                >
+                  <CustomButton
+                    icon={<AiOutlineFilePdf size={24} />}
+                    text={"View Resume"}
+                    clickAction={() => {}}
+                  />
+                </a>
               </li>
             </HeaderList>
           </div>
