@@ -48,6 +48,19 @@ export const HOME_QUERY = `
     }
 `
 
+export const VACATION_PREVIEW_QUERY = `
+*[_type == 'vacation_preview']{ 
+    _id,
+    vacation_name, 
+    images, 
+    article -> {
+      summary,
+      title,
+      slug
+    }
+  }
+`
+
 export const REVIEWS_QUERY = (type: string) => `
   *[_type == 'review' && review_type[0] == "${type}"]{ 
     _id,
@@ -61,7 +74,7 @@ export const REVIEWS_QUERY = (type: string) => `
        reviewer_link,
        company,
        work_duration
-}
+  }
 `
 
 interface QueryTypeProps {

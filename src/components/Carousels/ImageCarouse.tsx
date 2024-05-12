@@ -17,7 +17,14 @@ export interface StyledProps {
 }
 
 const Item = styled.li<StyledProps>`
-  height: ${props => (props.stack === 1 ? "250px" : props.stack === 4 ? "250px" : props.stack === 5 ? "150px" : "200px")};
+  height: ${props =>
+    props.stack === 1
+      ? "250px"
+      : props.stack === 4
+      ? "250px"
+      : props.stack === 5
+      ? "150px"
+      : "200px"};
   width: 220px;
 
   list-style: none;
@@ -46,23 +53,25 @@ const Item = styled.li<StyledProps>`
     }
   }
 `
+ 
+const ImageCarousel = ({ images }: { images: any }) => {
 
-const mockImgs = [
-  "personal-portfolio-app/blog/travel-journal/ghana/oraotun1uywuoa4bmxlu.jpg",
-  "personal-portfolio-app/blog/travel-journal/ghana/zuyglkptgvylyyqezloz.jpg",
-  "personal-portfolio-app/blog/travel-journal/ghana/uprl9qsvruxtvbiyxop7.jpg",
-  "personal-portfolio-app/blog/travel-journal/ghana/lu0gwcduzf0nwdzixgyq.jpg",
-]
-
-const ImageCarousel = () => {
   return (
     <Container>
-      <ResponsiveMasonry style={{width: "100%"}} columnsCountBreakPoints={{ 750: 2}}>
-        <Masonry style={{width: "100%"}} gutter="1rem">
-          {mockImgs.map((item, idx) => (
-            <li style={{width: "100%", listStyle: "none"}} key={idx}>
+      <ResponsiveMasonry
+        style={{ width: "100%" }}
+        columnsCountBreakPoints={{ 750: 2 }}
+      >
+        <Masonry style={{ width: "100%" }} gutter="1rem">
+          {images.map((image, idx) => (
+            <li style={{ width: "100%", listStyle: "none" }} key={idx}>
               <Item key={idx} stack={idx + 1}>
-                <Image loader={ImageLoader} fill alt={"CRAZY ALT"} src={item} />
+                <Image
+                  loader={ImageLoader}
+                  fill
+                  alt={"CRAZY ALT"}
+                  src={image?.public_id}
+                />
               </Item>
             </li>
           ))}
