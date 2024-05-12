@@ -2,7 +2,10 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import {
+  MOBILE_BREAKPOINT,
+  TABLET_BREAKPOINT,
+} from "@/styles/useStyleWidthQuery"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import { Flex, Text } from "@/styles"
 import { LiaInfoSolid } from "react-icons/lia"
@@ -20,11 +23,7 @@ export interface StyledProps {
 
 const Item = styled.li<StyledProps>`
   height: ${props =>
-    props.stack === 1
-      ? "250px"
-      : props.stack === 4
-      ? "250px"
-      : "200px"};
+    props.stack === 1 ? "250px" : props.stack === 4 ? "250px" : "200px"};
   width: 220px;
 
   list-style: none;
@@ -49,11 +48,7 @@ const Item = styled.li<StyledProps>`
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     height: ${props =>
-    props.stack === 1
-      ? "165px"
-      : props.stack === 4
-      ? "165px"
-      : "130px"};
+      props.stack === 1 ? "165px" : props.stack === 4 ? "165px" : "130px"};
 
     width: 100%;
 
@@ -64,20 +59,22 @@ const Item = styled.li<StyledProps>`
   }
 `
 
-const AltContainer = styled(Flex)`
+const AltContainer = styled(Flex)<{ active: boolean }>`
   position: absolute;
   bottom: 0;
-  height: 30px;
-  width: auto;
+  height: ${props => (props.active ? "auto" : "30px")};
+  width: ${props => (props.active ? "100%" : "auto")};
   padding: 0 12px;
   z-index: 5;
   background-color: #131112;
   justify-content: center;
   place-items: center;
-  opacity: 0.9;
+  opacity: 0.87;
+  transition: all 3500ms;
 
   p {
     font-size: 12px;
+    line-height: 25px;
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
@@ -94,12 +91,12 @@ const CustomImage = styled(Image)<{ blur: boolean }>`
   transition: filter 0.3s ease-in;
   height: 100%;
   width: 100%;
-
   background-color: inherit;
 `
 
 const ImageCarousel = ({ images }: { images: any }) => {
   const [isImageLoading, setImageLoading] = useState(false)
+  const [isShowingAlt, showAlt] = useState(false)
 
   return (
     <Container>
@@ -110,25 +107,32 @@ const ImageCarousel = ({ images }: { images: any }) => {
         <Masonry style={{ width: "100%" }} gutter=".5rem">
           {images.map((image, idx) => (
             <li style={{ width: "100%", listStyle: "none" }} key={idx}>
-              <Item key={idx} stack={idx + 1}>
-                <AltContainer>
-                  <Flex placeItems="center">
-                    <Text color="white">
-                      {" "}
-                      ALT{" "}
-                    </Text>
-                  </Flex>
+              <Item
+                onClick={() => showAlt(!isShowingAlt)}
+                key={idx}
+                stack={idx + 1}
+              >
+                {image?.context?.custom?.alt && (
+                  <AltContainer active={isShowingAlt}>
+                    <Flex placeItems="center">
+                      <Text color="white">
+                        {isShowingAlt ? image?.context?.custom?.alt : "ALT"}
+                      </Text>
+                    </Flex>
 
-                  <Flex justify="center">
-                    <LiaInfoSolid color="white" size={16} />
-                  </Flex>
-                </AltContainer>
+                    {!isShowingAlt && (
+                      <Flex justify="center">
+                        <LiaInfoSolid color="white" size={16} />
+                      </Flex>
+                    )}
+                  </AltContainer>
+                )}
 
                 <CustomImage
                   blur={isImageLoading}
                   loader={ImageLoader}
                   fill
-                  alt={"CRAZY ALT"}
+                  alt={image?.context?.custom?.alt}
                   onLoad={() => setImageLoading(true)}
                   src={image?.public_id}
                 />

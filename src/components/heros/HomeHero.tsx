@@ -257,7 +257,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                     loop: true,
                   }}
                 />
-                I&apos;m <span>Nwani</span> <br /> Victory
+                I&apos;m Nwani <br /> Victory
               </Heading>
               {/* </Flex> */}
 
