@@ -78,7 +78,7 @@ const AltContainer = styled(Flex)<{ active: boolean }>`
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
-    height: 20px;
+    height: ${props => (props.active ? "auto" : "20px")};
     padding: 0 4px;
 
     p {
