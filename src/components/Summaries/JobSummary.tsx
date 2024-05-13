@@ -193,9 +193,12 @@ const Summary = ({
               </ResponsiveText>
             </Flex>
 
-            <Icon color="#115e65" ml="10px">
+          <Flex placeItems="center" >
+          <Icon color="#115e65" ml="10px">
               {!isClamped ? <BsArrowUpSquare /> : <BsArrowDownSquare />}
             </Icon>
+          </Flex>
+            
           </IconContainer>
         </ResponsiveFlex>
       </Flex>

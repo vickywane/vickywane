@@ -13,7 +13,7 @@ import ProjectsSummary from "@/components/Summaries/ProjectsSummary"
 import TalkSummary from "@/components/Summaries/EngagementSummary"
 import Footer from "@/components/Footer"
 import { SanityClient } from "@/utils/Sanity"
-import { HOME_QUERY } from "@/data/gqols"
+import { HOME_QUERY, VACATION_PREVIEW_QUERY } from "@/data/gqols"
 import {
   Article,
   Engagement,
@@ -26,11 +26,12 @@ import Script from "next/script"
 
 interface HomeProps {
   pageData: Homepage
+  vacationPreviews: any
 }
 
 const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
 
-export default function Home({ pageData: data }: HomeProps) {
+export default function Home({ pageData: data, vacationPreviews }: HomeProps) {
   return (
     <main style={{ height: "100vh", overflow: "auto", width: "100%" }}>
       <Header />
@@ -49,7 +50,7 @@ export default function Home({ pageData: data }: HomeProps) {
       <PersonalBio human_text={data?.human_description} />
 
       <FeaturedTravelInsight
-        articles={(data?.articles as unknown) as Article[]}
+        previews={vacationPreviews}
       />
 
       <JobSummary
@@ -85,9 +86,12 @@ export default function Home({ pageData: data }: HomeProps) {
 export async function getStaticProps() {
   const pageData = await SanityClient().fetch(HOME_QUERY)
 
+  const vacationPreviews = await SanityClient().fetch(VACATION_PREVIEW_QUERY)
+
   return {
     props: {
       pageData,
+      vacationPreviews
     },
   }
 }

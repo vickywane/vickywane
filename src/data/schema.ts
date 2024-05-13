@@ -142,7 +142,11 @@ export interface Article extends SanityDocument {
    *
    *
    */
-  body?: Array<SanityKeyed<SanityBlock>>;
+  body?: Array<
+    | SanityKeyed<SanityBlock>
+    | SanityKeyed<CloudinaryAsset>
+    | SanityKeyed<Youtube>
+  >;
 
   /**
    * Recommended — `array`
@@ -339,7 +343,7 @@ export interface Company extends SanityDocument {
   /**
    * Name — `string`
    *
-   *
+   * Company Name
    */
   name?: string;
 
@@ -518,6 +522,46 @@ export interface CompaniesList extends SanityDocument {
   name?: string;
 }
 
+/**
+ * Vacation Preview
+ *
+ *
+ */
+export interface VacationPreview extends SanityDocument {
+  _type: "vacation_preview";
+
+  /**
+   * Vacation Name — `string`
+   *
+   * Name of the vacation trip
+   */
+  vacation_name?: string;
+
+  /**
+   * Images — `array`
+   *
+   * List of images to show in carousel
+   */
+  images?: Array<SanityKeyed<CloudinaryAsset>>;
+
+  /**
+   * Vacation Article — `reference`
+   *
+   * Article written for this vacation
+   */
+  article?: Article;
+}
+
+export type Youtube = {
+  _type: "youtube";
+  /**
+   * YouTube video URL — `url`
+   *
+   *
+   */
+  url?: string;
+};
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -538,7 +582,8 @@ export type Documents =
   | Company
   | WorkExperience
   | Review
-  | CompaniesList;
+  | CompaniesList
+  | VacationPreview;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

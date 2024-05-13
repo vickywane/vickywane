@@ -5,6 +5,9 @@ import styled, { keyframes } from "styled-components"
 import { Flex, Text } from "@/styles"
 import CustomButton from "@/components/Buttons"
 import HeroStats from "@/components/heros/HeroStats"
+import Typewriter from "typewriter-effect"
+import { GREETING_WORDS } from "../../data"
+
 // @ts-ignore
 import ArrowDown from "@/assets/svg/arrow-down.svg"
 import {
@@ -247,7 +250,14 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                 </Flex> */}
 
               <Heading>
-                Hello, <br /> I&apos;m <span>Nwani</span> <br /> Victory
+                <Typewriter
+                  options={{
+                    strings: GREETING_WORDS.map(word => `${word},`),
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+                I&apos;m Nwani <br /> Victory
               </Heading>
               {/* </Flex> */}
 

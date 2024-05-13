@@ -41,18 +41,23 @@ const BreadcrumbMenu = () => {
     <BreadcrumbContainer isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
       {navigation_links.map(({ name, to }, idx) => (
         <li key={idx}>
-          <Link href={to} >
+          <Link href={to}>
             <Text> {name} </Text>
           </Link>
         </li>
       ))}
 
       <li>
-        <CustomButton
-          icon={<AiOutlineFilePdf size={24} />}
-          text={"View Resume"}
-          clickAction={() => {}}
-        />
+        <a
+          target="_blank"
+          href="https://docs.google.com/document/d/1s_53gBc110F5yLT4yoQkBWtXgNdC6qnCz5rVBL589fc/edit?usp=sharing"
+        >
+          <CustomButton
+            icon={<AiOutlineFilePdf size={24} />}
+            text={"View Resume"}
+            clickAction={() => {}}
+          />
+        </a>
       </li>
     </BreadcrumbContainer>
   )

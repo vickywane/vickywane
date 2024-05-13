@@ -1,7 +1,7 @@
 export const navigation_links = [
   {
     name: "About",
-    to: "#personal-bio"
+    to: "/#travel-insight"
   },
   {
     name: "Work History",
