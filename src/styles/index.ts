@@ -227,9 +227,9 @@ export const Button = styled.button<StyledProps>`
   }
 
   :hover {
-    cursor: pointer;
-    filter: unset;
-    transform: translateY(0);
+    transform: ${props => props.disabled ? "": "translateY(0)"};
+    filter: ${props => props.disabled ? "": "unset"};
+    cursor: ${props => props.disabled ? "": "pointer"};
   }
 
   @media (max-width: 960px) {

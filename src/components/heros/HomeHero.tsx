@@ -274,7 +274,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
             </div>
 
             <div className={"buttons-ctn"}>
-              <CustomButton clickAction={() => {}} text={"Got A Project?"} />
+              <CustomButton disabled clickAction={() => {}} text={"Got A Project?"} />
 
               <CustomButton
                 clickAction={() => {}}

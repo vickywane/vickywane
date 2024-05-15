@@ -12,4 +12,5 @@ export interface StyledProps {
   placeItems?: string;
   items?: string;
   display?: string;
+  disabled?: boolean
 }

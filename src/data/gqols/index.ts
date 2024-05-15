@@ -93,6 +93,7 @@ export const ARTICLES_QUERY = ({ type, slug }: QueryTypeProps) => {
       is_travel_featured,
       slug, 
       summary, 
+      gallery,
       tags,
       title, 
       recommended[] -> {
