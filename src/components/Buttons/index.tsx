@@ -7,6 +7,7 @@ interface CustomButton {
   color?: string
   clickAction: () => void
   icon?: any
+  disabled?: boolean
 }
 
 const CustomButton = ({
@@ -14,9 +15,11 @@ const CustomButton = ({
   background,
   color,
   clickAction,
+  disabled,
   icon,
 }: CustomButton) => (
   <Button
+    disabled={disabled}
     display="flex"
     items="center"
     {...{ background, color }}

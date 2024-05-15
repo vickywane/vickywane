@@ -127,6 +127,8 @@ const ImageContainer = styled.div`
   height: 51px;
   width: 53px;
   position: relative;
+  border: 2px solid #333333;
+  border-radius: 50%;
 
   img {
     border-radius: 50%;
@@ -169,7 +171,7 @@ const Index = () => {
                   loader={ImageLoader}
                   fill
                   alt={"Victory Nwani"}
-                  src={"/personal-portfolio-app/my_picture.jpg"}
+                  src={"/personal-portfolio-app/icons/victory-picture.jpg"}
                 />
               </ImageContainer>
 
