@@ -274,14 +274,20 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
             </div>
 
             <div className={"buttons-ctn"}>
-              <CustomButton disabled clickAction={() => {}} text={"Got A Project?"} />
-
               <CustomButton
+                disabled
                 clickAction={() => {}}
-                text={"Let's Talk!!"}
-                color={"#131112"}
-                background={"#fff"}
+                text={"Got A Project?"}
               />
+
+              <a target="_blank" href="mailto:Vickywane@gmail.com?subject=Let's%20talk%20from%20your%20Personal%20Website">
+                <CustomButton
+                  clickAction={() => {}}
+                  text={"Let's Talk!!"}
+                  color={"#131112"}
+                  background={"#fff"}
+                />
+              </a>
             </div>
           </div>
 

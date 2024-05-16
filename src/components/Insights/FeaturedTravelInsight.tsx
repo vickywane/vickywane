@@ -1,7 +1,7 @@
 "use client"
 import styled from "styled-components"
 import { Flex, Text } from "@/styles"
-import React, {  useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import {
   MOBILE_BREAKPOINT,
   TABLET_BREAKPOINT,
@@ -21,12 +21,13 @@ import { VacationPreview } from "@/data/schema"
 // @ts-ignore
 import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
 import Link from "next/link"
+import DotIndicator from "../Carousels/DotIndicator"
 
 const Container = styled.div`
-  .image-ctn { 
+  .image-ctn {
     width: 450px;
     margin-right: 100px;
-    min-width: 450px; 
+    min-width: 450px;
   }
 
   .container {
@@ -49,7 +50,7 @@ const Container = styled.div`
     .image-ctn {
       width: 100%;
       min-width: 100%;
-      margin-bottom: 28px; 
+      margin-bottom: 28px;
       height: 100%;
     }
 
@@ -92,39 +93,7 @@ const Arrow = () => (
   <ArrowFlex justify="center" style={{}}>
     <InsightsArrow />
   </ArrowFlex>
-)
-
-const CarouselList = styled.ul`
-  margin-top: 64px;
-  display: flex;
-  justify-content: center;
-  list-style: none;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    margin-top: 32px;
-  }
-`
-
-const CarouselListItem = styled.li<{ active: boolean }>`
-  height: 15px;
-  border-radius: 100%;
-  width: 15px;
-  background: ${props => (props.active ? "#333333" : "#fff")};
-  margin: 0 8px;
-  border: 3px solid #333333;
-
-  &:hover {
-    cursor: pointer;
-    background: #333333;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 12px;
-    border-radius: 100%;
-    width: 12px;
-    border: 1px solid #333333;
-  }
-`
+) 
 
 const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
   const [activeInsight, setActiveInsight] = useState(0)
@@ -225,21 +194,11 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
         ))}
       </Slider>
 
-      {/* <Flex direction="row" style={{ width: "100%" }}>
-       
-      </Flex> */}
-
-      <CarouselList>
-        {previews.map((_, idx) => (
-          <li key={idx}>
-            <CarouselListItem
-              // onClick={() => sliderRef?.slickGoTo()}
-              onClick={() => sliderRef?.slickGoTo(idx)}
-              active={idx === activeInsight}
-            />
-          </li>
-        ))}
-      </CarouselList>
+      <DotIndicator
+        count={previews.length}
+        clickAction={(item) => sliderRef?.slickGoTo(item)}
+        activeItem={activeInsight}
+      />
     </Layout>
   )
 }
