@@ -111,7 +111,7 @@ const HeaderList = styled.ul`
   }
 `
 
-const Anchor = styled.a`
+const Anchor = styled.div`
   color: #333333;
   font-family: "Space Grotesk", sans-serif;
 

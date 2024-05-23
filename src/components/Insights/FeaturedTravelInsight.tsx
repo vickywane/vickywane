@@ -1,7 +1,7 @@
 "use client"
 import styled from "styled-components"
 import { Flex, Text } from "@/styles"
-import React, {  useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import {
   MOBILE_BREAKPOINT,
   TABLET_BREAKPOINT,
@@ -23,13 +23,13 @@ import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
 import Link from "next/link"
 
 const Container = styled.div`
-  .image-ctn { 
+  .image-ctn {
     width: 450px;
     margin-right: 100px;
-    min-width: 450px; 
+    min-width: 450px;
   }
 
-  .container {
+  .items-container {
     position: relative;
     display: grid;
     grid-template-columns: 80% 10%;
@@ -49,7 +49,7 @@ const Container = styled.div`
     .image-ctn {
       width: 100%;
       min-width: 100%;
-      margin-bottom: 28px; 
+      margin-bottom: 28px;
       height: 100%;
     }
 
@@ -94,18 +94,21 @@ const Arrow = () => (
   </ArrowFlex>
 )
 
-const CarouselList = styled.ul`
+const CarouselList = styled.div`
   margin-top: 64px;
-  display: flex;
-  justify-content: center;
-  list-style: none;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     margin-top: 32px;
   }
 `
 
-const CarouselListItem = styled.li<{ active: boolean }>`
+const CarouselListItem = styled.div<{ active: boolean }>`
   height: 15px;
   border-radius: 100%;
   width: 15px;
@@ -165,10 +168,10 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
             style={{
               width: "100%",
               minWidth: "100%",
-              background: idx === 0 ? "red" : "",
+              background: idx === 0 ? "" : "",
             }}
           >
-            <div className={"container"}>
+            <div className={"items-container"}>
               <div className={"contents"}>
                 {items?.images && (
                   <Flex>
@@ -225,20 +228,18 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
         ))}
       </Slider>
 
-      {/* <Flex direction="row" style={{ width: "100%" }}>
-       
-      </Flex> */}
-
       <CarouselList>
-        {previews.map((_, idx) => (
-          <li key={idx}>
-            <CarouselListItem
-              // onClick={() => sliderRef?.slickGoTo()}
-              onClick={() => sliderRef?.slickGoTo(idx)}
-              active={idx === activeInsight}
-            />
-          </li>
-        ))}
+        <ul>
+          {previews.map((_, idx) => (
+            <li key={idx}>
+              <CarouselListItem
+                // onClick={() => sliderRef?.slickGoTo()}
+                onClick={() => sliderRef?.slickGoTo(idx)}
+                active={idx === activeInsight}
+              />
+            </li>
+          ))}
+        </ul>
       </CarouselList>
     </Layout>
   )
