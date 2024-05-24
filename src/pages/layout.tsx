@@ -10,11 +10,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ background: "green" }}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
-
-      {/* <GoogleTagManager gtmId={gtmId} /> */}
     </html>
   )
+}
+
+{
+  /* <GoogleTagManager gtmId={gtmId} /> */
 }

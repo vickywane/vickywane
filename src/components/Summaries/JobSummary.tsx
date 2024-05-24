@@ -1,4 +1,3 @@
-"use client"
 import { Flex, H2Heading, Icon, Text } from "@/styles"
 import styled from "styled-components"
 import Image from "next/image"
