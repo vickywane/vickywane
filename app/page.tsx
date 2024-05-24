@@ -1,4 +1,3 @@
-"use client"
 import React from "react"
 
 import Header from "@/components/headers"
@@ -49,13 +48,11 @@ const getData = async () => {
   /* <NextHeader name={"Nwani Victory | Overview"} /> */
 }
 
-export default async function Home() {
+export default async function Page() {
   const { pageData, vacationPreviews } = await getData()
 
   return (
     <div>
-      <button onClick={() => console.log("Hello World")}>CLICK ME</button>
-
       <Header />
 
       <HomeHeroNotification
@@ -65,17 +62,17 @@ export default async function Home() {
         }
       />
 
-       <HomeHero banner_description={pageData.banner_description || ""} /> 
+      <HomeHero banner_description={pageData.banner_description || ""} />
 
-       <PersonalBio human_text={pageData.human_description} /> 
+      <PersonalBio human_text={pageData.human_description} />
 
-     <FeaturedTravelInsight previews={vacationPreviews} /> 
+       <FeaturedTravelInsight previews={vacationPreviews} />
 
       <JobSummary
         experiences={(pageData.experiences as unknown) as WorkExperience[]}
-      />
-
-       <ProjectsSummary />
+      /> 
+ 
+      <ProjectsSummary />
 
       <TechnicalArticleSummary
         articles={(pageData.articles as unknown) as Article[]}
@@ -83,9 +80,9 @@ export default async function Home() {
 
       <TalkSummary
         engagements={(pageData.engagements as unknown) as Engagement[]}
-      /> 
+      />
 
-      <Footer />   
+      <Footer />
     </div>
   )
 }
@@ -105,7 +102,3 @@ export default async function Home() {
   `}
 </Script> */
 }
-
-// export async function getStaticProps() {
-
-// }

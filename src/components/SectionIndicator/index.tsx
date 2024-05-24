@@ -1,3 +1,4 @@
+"use client"
 import { Flex, Text } from "@/styles"
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import styled from "styled-components"
