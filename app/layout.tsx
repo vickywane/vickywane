@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import StyledComponentsRegistry from "../src/styles/StyledComponentsRegistry"
 import { Space_Grotesk } from "next/font/google"
 import { Provider } from "react-redux"
@@ -26,20 +27,22 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <PostHog>
-            <StoreProvider>
-              <div
-                style={{
-                  height: "100vh",
-                  overflow: "auto",
-                  width: "100%",
-                }}
-                className={font.className}
-              >
-                {children}
-              </div>
-            </StoreProvider>
-          </PostHog>
+          <Suspense fallback={<div>Loading...</div>}>
+            <PostHog>
+              <StoreProvider>
+                <div
+                  style={{
+                    height: "100vh",
+                    overflow: "auto",
+                    width: "100%",
+                  }}
+                  className={font.className}
+                >
+                  {children}
+                </div>
+              </StoreProvider>
+            </PostHog>
+          </Suspense>
         </StyledComponentsRegistry>
       </body>
     </html>
