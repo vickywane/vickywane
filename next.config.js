@@ -15,6 +15,9 @@ if (!process.env.SKIP_DOTENV) {
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  compiler: {
+    styledComponents: true
+  },
   typescript: {
     ignoreBuildErrors: true
   },

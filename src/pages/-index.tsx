@@ -23,6 +23,7 @@ import {
 } from "@/data/schema"
 import NextHeader from "@/components/headers/nextHead"
 import Script from "next/script"
+import Layout from "./layout"
 
 interface HomeProps {
   pageData: Homepage
@@ -33,7 +34,7 @@ const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
 
 export default function Home({ pageData: data, vacationPreviews }: HomeProps) {
   return (
-    <main style={{ height: "100vh", overflow: "auto", width: "100%" }}>
+    <div style={{ height: "100vh", overflow: "auto", width: "100%" }}>
       <Header />
 
       <NextHeader name={"Nwani Victory | Overview"} />
@@ -49,9 +50,7 @@ export default function Home({ pageData: data, vacationPreviews }: HomeProps) {
 
       <PersonalBio human_text={data?.human_description} />
 
-      <FeaturedTravelInsight
-        previews={vacationPreviews}
-      />
+      <FeaturedTravelInsight previews={vacationPreviews} />
 
       <JobSummary
         experiences={(data?.experiences as unknown) as WorkExperience[]}
@@ -66,11 +65,12 @@ export default function Home({ pageData: data, vacationPreviews }: HomeProps) {
       <TalkSummary
         engagements={(data?.engagements as unknown) as Engagement[]}
       />
+
       <Footer />
 
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${gtmId}`} />
 
-      <Script id="google-analytics">
+      {/* <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -78,8 +78,8 @@ export default function Home({ pageData: data, vacationPreviews }: HomeProps) {
  
           gtag('config', ${gtmId});
         `}
-      </Script>
-    </main>
+      </Script> */}
+    </div>
   )
 }
 
@@ -91,7 +91,7 @@ export async function getStaticProps() {
   return {
     props: {
       pageData,
-      vacationPreviews
+      vacationPreviews,
     },
   }
 }

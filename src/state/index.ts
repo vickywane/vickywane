@@ -1,7 +1,7 @@
 import { combineReducers, configureStore, createSlice, ThunkAction } from "@reduxjs/toolkit";
 import { Action } from "redux";
-import { createWrapper, HYDRATE } from "next-redux-wrapper";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+// import { createWrapper, HYDRATE } from "next-redux-wrapper";
+// import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import sanitySlice from "@/state/slices/sanity.slice";
 import AppSlice from "@/state/slices/app.slice";
 
@@ -10,10 +10,16 @@ const reducer = combineReducers({
   app: AppSlice.reducer
 });
 
-export const reduxStore = configureStore({
+export const reduxStore = () => configureStore({
   reducer,
   devTools: true
 });
+
+// export const makeStore = () => {
+//   return configureStore({
+//     reducer: {}
+//   })
+// }
 
 export type AppState = ReturnType<AppStore["getState"]>;
 

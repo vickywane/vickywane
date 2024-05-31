@@ -16,7 +16,7 @@ const font = Space_Grotesk({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <PostHog>
-      <Provider store={reduxStore}>
+      <Provider store={reduxStore()}>
         <div className={font.className}>
           <React.Fragment>
             {/*<GlobalStyle />*/}

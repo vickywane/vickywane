@@ -14,7 +14,7 @@ export const Anchor = styled.a`
   }
 `
 
-export const ULList = styled.ul`
+export const ULList = styled.li`
   list-style: square;
   margin-left: 26px;
 
