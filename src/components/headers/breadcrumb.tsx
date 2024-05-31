@@ -1,14 +1,14 @@
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
+import Link from "next/link"
 import React from "react"
 import { Flex, Text } from "@/styles"
-import Link from "next/link"
 
 const Breadcrumb = () => {
-  const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <Flex direction="row" mb="26px">
-      {router.asPath.split("/").map((item, idx) => {
+      {pathname?.split("/").map((item, idx) => {
         if (item === "") {
           return (
             <Flex key={idx} mr="10px">
@@ -24,7 +24,7 @@ const Breadcrumb = () => {
             <Link href={`/${item}`}>
               <Text style={{ textTransform: "capitalize" }}>
                 {item.split("-").join(" ")}{" "}
-                {idx + 1 < router.asPath.split("/").length && "/"}
+                {idx + 1 < pathname?.split("/").length && "/"}
               </Text>
             </Link>
           </Flex>

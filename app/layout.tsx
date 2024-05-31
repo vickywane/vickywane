@@ -21,6 +21,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+
   return {
     title: "Victory Nwani | Home",
   }
