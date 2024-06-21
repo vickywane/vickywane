@@ -29,6 +29,16 @@ export const HOME_QUERY = `
         url,
         title
       },
+      projects[] -> {
+        publish_date,
+        _id,
+        name,
+        description,
+        github_url, 
+        url,
+        project_tools,
+        cover
+      },
     engagements[] -> {
         _createdAt,
         _id,

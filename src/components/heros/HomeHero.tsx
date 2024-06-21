@@ -71,6 +71,7 @@ const Hero = styled.section`
   .container {
     max-width: 1224px;
     margin: 0 auto;
+    padding: 0 30px;
     display: grid;
     grid-template-columns: 60% 40%;
 
@@ -91,6 +92,10 @@ const Hero = styled.section`
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
+    .container {
+      padding: 0 15px;
+    }
+
     .hero-stats-section {
       height: 195px;
     }

@@ -19,10 +19,8 @@ import {
   Homepage,
   Notification,
   WorkExperience,
+  Projects
 } from "@/data/schema"
-import NextHeader from "@/components/headers/nextHead"
-import Script from "next/script"
-import Layout from "../src/pages/layout"
 
 interface HomeProps {
   pageData: Homepage
@@ -66,13 +64,13 @@ export default async function Page() {
 
       <PersonalBio human_text={pageData.human_description} />
 
-       <FeaturedTravelInsight previews={vacationPreviews} />
+      <FeaturedTravelInsight previews={vacationPreviews} />
 
       <JobSummary
         experiences={(pageData.experiences as unknown) as WorkExperience[]}
-      /> 
- 
-      <ProjectsSummary />
+      />
+
+      <ProjectsSummary projects={(pageData.projects as unknown) as Projects[]} />
 
       <TechnicalArticleSummary
         articles={(pageData.articles as unknown) as Article[]}
