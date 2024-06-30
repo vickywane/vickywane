@@ -165,7 +165,7 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
           }}
           {...SliderSettings}
         >
-          {previews.map((items, idx) => (
+          {previews?.map((items, idx) => (
             <Container
               key={items?._id}
               style={{
@@ -230,7 +230,7 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
 
       <CarouselList>
         <ul>
-          {previews.map((_, idx) => (
+          {previews?.map((_, idx) => (
             <li key={idx}>
               <CarouselListItem
                 // onClick={() => sliderRef?.slickGoTo()}
