@@ -94,6 +94,13 @@ export interface Homepage extends SanityDocument {
   experiences?: Array<SanityKeyedReference<WorkExperience>>;
 
   /**
+   * Projects — `array`
+   *
+   *
+   */
+  projects?: Array<SanityKeyedReference<Projects>>;
+
+  /**
    * Engagements — `array`
    *
    *
@@ -147,6 +154,13 @@ export interface Article extends SanityDocument {
     | SanityKeyed<CloudinaryAsset>
     | SanityKeyed<Youtube>
   >;
+
+  /**
+   * Gallery — `array`
+   *
+   * List of images to show
+   */
+  gallery?: Array<SanityKeyed<CloudinaryAsset>>;
 
   /**
    * Recommended — `array`
@@ -549,7 +563,65 @@ export interface VacationPreview extends SanityDocument {
    *
    * Article written for this vacation
    */
-  article?: Article;
+  article?: SanityReference<Article>;
+}
+
+/**
+ * Engineering Projects
+ *
+ *
+ */
+export interface Projects extends SanityDocument {
+  _type: "projects";
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Url — `string`
+   *
+   *
+   */
+  url?: string;
+
+  /**
+   * GitHub URL — `string`
+   *
+   *
+   */
+  github_url?: string;
+
+  /**
+   * Description — `array`
+   *
+   *
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Project Tools — `array`
+   *
+   * List of tools or technologies used to develop project
+   */
+  project_tools?: Array<SanityKeyed<string>>;
+
+  /**
+   * Cover — `cloudinary.asset`
+   *
+   * Project cover image on Cloudinary
+   */
+  cover?: CloudinaryAsset;
+
+  /**
+   * Publish Date — `datetime`
+   *
+   *
+   */
+  publish_date?: string;
 }
 
 export type Youtube = {
@@ -583,7 +655,8 @@ export type Documents =
   | WorkExperience
   | Review
   | CompaniesList
-  | VacationPreview;
+  | VacationPreview
+  | Projects;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

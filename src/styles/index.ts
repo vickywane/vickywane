@@ -226,7 +226,7 @@ export const Button = styled.button<StyledProps>`
     margin: 0 15px;
   }
 
-  :hover {
+  &:hover {
     transform: ${props => props.disabled ? "": "translateY(0)"};
     filter: ${props => props.disabled ? "": "unset"};
     cursor: ${props => props.disabled ? "": "pointer"};
@@ -241,7 +241,7 @@ export const Button = styled.button<StyledProps>`
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     height: 45px;
 
-    :hover {
+    &:hover {
       pointer-events: none;
     }
 
