@@ -12,8 +12,8 @@ const CategoriesCard = styled(Flex)`
   width: 410px;
   left: 150px;
   margin-top: 24px;
-  border-radius: 16px;
   padding: 15px;
+  border: .8px solid #000;
 `
 
 const LinkItem = styled(Flex)<{ active: boolean }>`

@@ -24,8 +24,13 @@ const ButtonContainer = styled.button`
   margin: 0 32px;
   padding: 0 16px;
   height: 45px;
-  max-width: 80px;
+  max-width: 100px;
   background: transparent;
+
+  p {
+    font-size: 14px;
+  }
+
   &:hover {
     cursor: pointer;
     background: #fff8f0;
@@ -36,21 +41,11 @@ const ButtonContainer = styled.button`
     height: 30px;
     padding: 0 8px;
     margin: 0;
+    max-width: 80px;
 
     p {
       font-size: 12px;
     }
-  }
-`
-
-const LinkItem = styled(Flex)<{ active: boolean }>`
-  padding: 6px 8px;
-  border-left: ${props => (props.active ? "7px solid #000" : "")};
-  background: ${props => (props.active ? "#fff8f0" : "")};
-  &:hover {
-    cursor: pointer;
-    background: #fff8f0;
-    border-left: 7px solid #000;
   }
 `
 
@@ -107,27 +102,29 @@ const ArticleListComponent = async ({
                     </ButtonContainer>
                   </CustomFlex>
 
-                  <Flex>
-                    <div>
-                      <ButtonContainer
-                        onClick={() => handleShiftButton("left")}
-                      >
-                        <Icon ml="10px" placeItems={"center"}>
-                          <BsArrowLeft color={"#131112"} />
-                        </Icon>
-                      </ButtonContainer>
-                    </div>
+                  {articles && articles?.length >= 2 && (
+                    <Flex>
+                      <div>
+                        <ButtonContainer
+                          onClick={() => handleShiftButton("left")}
+                        >
+                          <Icon ml="10px" placeItems={"center"}>
+                            <BsArrowLeft color={"#131112"} />
+                          </Icon>
+                        </ButtonContainer>
+                      </div>
 
-                    <div>
-                      <ButtonContainer
-                        onClick={() => handleShiftButton("right")}
-                      >
-                        <Icon ml="10px" placeItems={"center"}>
-                          <BsArrowRight color={"#131112"} />
-                        </Icon>
-                      </ButtonContainer>
-                    </div>
-                  </Flex>
+                      <div>
+                        <ButtonContainer
+                          onClick={() => handleShiftButton("right")}
+                        >
+                          <Icon ml="10px" placeItems={"center"}>
+                            <BsArrowRight color={"#131112"} />
+                          </Icon>
+                        </ButtonContainer>
+                      </div>
+                    </Flex>
+                  )}
                 </Flex>
 
                 <br />
