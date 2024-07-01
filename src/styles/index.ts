@@ -6,6 +6,33 @@ import {
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
 
+export const FlexArticleList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  list-style: none;
+
+  li {
+    width: 450px;
+    min-width: 450px;
+    margin: 0 32px 0 0;
+  }
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    li {
+      width: 300px;
+      min-width: 300px;
+      margin: 0 28px 0 0;
+
+      &:last-child {
+        width: 95%;
+        min-width: 95%;
+        margin: 0 0 0 0;
+      }
+    }
+  }
+`
+
 export const Anchor = styled.a`
   text-decoration: underline;
 
@@ -227,9 +254,9 @@ export const Button = styled.button<StyledProps>`
   }
 
   &:hover {
-    transform: ${props => props.disabled ? "": "translateY(0)"};
-    filter: ${props => props.disabled ? "": "unset"};
-    cursor: ${props => props.disabled ? "": "pointer"};
+    transform: ${props => (props.disabled ? "" : "translateY(0)")};
+    filter: ${props => (props.disabled ? "" : "unset")};
+    cursor: ${props => (props.disabled ? "" : "pointer")};
   }
 
   @media (max-width: 960px) {

@@ -71,6 +71,16 @@ export const VACATION_PREVIEW_QUERY = `
   }
 `
 
+export const COMPANIES_QUERY = `
+  *[_type == 'company']{ 
+    _id,
+    _createdAt,
+    name, 
+    thumbnail,
+    company_link
+  }
+`
+
 export const REVIEWS_QUERY = (type: string) => `
   *[_type == 'review' && review_type[0] == "${type}"]{ 
     _id,
@@ -158,7 +168,16 @@ export const GET_CATEGORY_QUERY = ({ slug }: QueryTypeProps) => {
   return `
   *[_type == 'blogCategory'] { 
       slug,
-      _createdAt
+       name, 
+      _createdAt,
+      articles[] -> {
+        _createdAt,
+        _id,
+        title, 
+        summary,
+        cover,
+        slug
+      }
   }
 `
 }

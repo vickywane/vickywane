@@ -1,42 +1,45 @@
 import React from "react"
 import Header from "@/components/headers"
-import Layout from "@/styles/Layout"
-// import { GetStaticProps, GetStaticPropsContext } from "next"
 import { SanityClient } from "@/utils/Sanity"
-import { ARTICLES_QUERY } from "@/data/gqols"
-import { Article } from "@/data/schema"
+import {
+  ARTICLES_QUERY,
+  COMPANIES_QUERY,
+  GET_CATEGORY_QUERY,
+} from "@/data/gqols"
+import { Article, Company, BlogCategory } from "@/data/schema"
 import ArticleListComponent from "@/components/lists/ArticleList"
+import ArticleListHero from "@/components/heros/ArticleListHero"
 
-const getData = async () => {
+interface PageProps {
+  articles: Article[]
+  companies: Company[]
+  blogCategories: BlogCategory[]
+}
+
+const getData = async (): Promise<PageProps> => {
   const AllBlogs = await SanityClient().fetch(ARTICLES_QUERY({ type: "all" }))
+  const Companies = await SanityClient().fetch(COMPANIES_QUERY)
+  const AllBlogCategories = await SanityClient().fetch(GET_CATEGORY_QUERY({}))
 
   return {
     articles: AllBlogs,
+    companies: Companies,
+    blogCategories: AllBlogCategories,
   }
 }
 
 const Page = async () => {
-  const { articles }: { articles: Article[] } = await getData()
+  const { articles, companies, blogCategories }: PageProps = await getData()
 
   return (
     <div>
       <Header />
 
-      <Layout bg="#FFF8F0">
-        {/* <H2Heading>All Stories</H2Heading> */}
-        {/* <hr /> */}
+      <ArticleListHero blogCategories={blogCategories} />
 
-
-        <ArticleListComponent articles={articles} />
-      </Layout>
+      <ArticleListComponent {...{ articles, companies, blogCategories }} />
     </div>
   )
 }
-
-// export const getStaticProps: GetStaticProps<any> = async (
-//   context: GetStaticPropsContext
-// ) => {
-
-// }
 
 export default Page
