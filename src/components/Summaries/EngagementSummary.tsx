@@ -40,7 +40,7 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => {
         Life As A Part Of <span> Developer Communities </span>{" "}
       </H2Heading>
       <Text align={"center"} style={{maxWidth: "750px", margin: "0 auto"}} >
-         Over the past three years, I have spoken and volunteered at software engineering conferences and meetups in my environment.
+         Over the past three years, I have spoken and volunteered at various software engineering conferences and meetups.
       </Text>
       <br />
       <br />

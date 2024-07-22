@@ -142,7 +142,7 @@ const Summary = ({
       )}
 
       <Flex direction={"column"}>
-         <a target={"_blank"} href={url}>
+        <a target={"_blank"} href={url}>
           <Flex>
             <Title> {name} </Title>
 
@@ -178,12 +178,12 @@ const Summary = ({
           </Text>
         </Flex>
 
-        <div style={{color: "black"}} className={"jobs-list"}>
+        <div style={{ color: "black" }} className={"jobs-list"}>
           <RichTextComponent
             richText={(description as unknown) as TypedObject}
             isClamped={isClamped}
           />
-        </div> 
+        </div>
 
         <ResponsiveFlex display="flex">
           <IconContainer onClick={() => setClamper(!isClamped)} display="flex">
@@ -199,7 +199,7 @@ const Summary = ({
               </Icon>
             </Flex>
           </IconContainer>
-        </ResponsiveFlex>  
+        </ResponsiveFlex>
       </Flex>
     </SummaryContainer>
   )
@@ -217,10 +217,10 @@ const JobSummary = ({ experiences }: JobSummaryProp) => {
         Life As A <span> Software Engineer </span>{" "}
       </H2Heading>
       <Text>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-        ever since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book
+        Daily at work, I get to work mainly with various technologies within the
+        vast JavaScript ecosystem. From creating or updating existing React
+        components in a Next.js application to debugging a failing E2E test
+        suite within a GitHub CI/CD pipeline.
       </Text>
       <br />
       <br />
