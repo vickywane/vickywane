@@ -1,4 +1,4 @@
-import { Button, Flex, Icon, Text } from "@/styles"
+import { Button, Flex, H3Heading, Text } from "@/styles"
 import styled from "styled-components"
 // @ts-ignore
 import Image from "next/image"
@@ -9,18 +9,19 @@ import {
 } from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import { ImageLoader } from "@/utils/Cloudinary"
-import { BsCameraVideo } from "react-icons/bs"
+import { GrTag } from "react-icons/gr"
 
 const PodcastContainer = styled(Flex)`
-  background: #c1edcc;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
+  background: white;
+  width: 650px;
+  height: 850px;
+  margin: "0 32px";
   position: relative;
-  border-radius: 8px;
   border: 1px solid #131112;
   text-overflow: ellipsis;
   overflow: hidden;
+  filter: drop-shadow(14px 14px 0 #0d5c63);
+  transition: all 300ms;
 
   .summary-ctn {
     overflow: hidden;
@@ -28,37 +29,34 @@ const PodcastContainer = styled(Flex)`
     margin: 20px 0;
   }
 
-  .overlay-ctn {
-    position: absolute;
-    bottom: -82px;
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  &:hover {
+    filter: drop-shadow(0 0 0 #0d5c63);
+    cursor: pointer;
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
-    width: 100%;
-    //height: 254px;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    padding: 10px;
-    flex-direction: column;
-    //height: 254px;
+    filter: drop-shadow(0 0 0 #0d5c63);
   }
 `
 
 const ThumbnailContainer = styled.div<{ type: string }>`
-  min-width: 350px;
-  margin-right: 20px;
+  width: 100%;
 
   .img-ctn {
-    height: 100%;
-    background: grey;
+    height: 350px;
     position: relative;
   }
 
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    width: ${({ type }) => (type === "podcasts" ? "100px" : "100%")};
-    min-width: ${({ type }) => (type === "podcasts" ? "100px" : "100%")};
-    height: 250px;
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    .img-ctn {
+      height: 300px;
+      position: relative;
+    }
   }
 `
 
@@ -66,54 +64,60 @@ interface TalkCardProps {
   engagement: Engagement
 }
 
-const Title = styled(Text)`
-  font-size: 34px;
+const RootContainer = styled(Flex)`
+  margin: 0 32px;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    font-size: 22px;
-    margin-top: 15px;
+    margin: 0 8px;
   }
 `
 
 const TalkCard = ({ engagement }: TalkCardProps) => {
-
   return (
-    <PodcastContainer>
-      {engagement?.thumbnail && (
-        <ThumbnailContainer type={(engagement?.type as unknown) as string}>
-          <div className={"img-ctn"}>
-            <Image
-              loader={ImageLoader}
-              src={engagement?.thumbnail?.public_id}
-              alt={engagement?.name || ""}
-              style={{ objectFit: "cover" }}
-              fill
-            />
+    <RootContainer direction="column">
+      <PodcastContainer direction="column">
+        {engagement?.thumbnail && (
+          <ThumbnailContainer type={(engagement?.type as unknown) as string}>
+            <div className={"img-ctn"}>
+              <Image
+                loader={ImageLoader}
+                src={engagement?.thumbnail?.public_id}
+                alt={engagement?.name || ""}
+                style={{ objectFit: "cover" }}
+                fill
+              />
+            </div>
+          </ThumbnailContainer>
+        )}
+
+        <br />
+
+        <Flex direction={"column"} ml="20px" mr="20px">
+          <Flex direction="column">
+            <H3Heading mb="4px" fontWeight={500}>
+              {engagement.name}
+            </H3Heading>
+
+            <Flex>
+              <Flex mr="8px" placeItems="center">
+                <GrTag color="#131112" size={20} />
+              </Flex>
+
+              <Flex mt="2px" placeItems="center">
+                <Text color="#131112"> {engagement.event_name} </Text>
+              </Flex>
+            </Flex>
+
+            <br />
+            <hr />
+          </Flex>
+
+          <div className={"summary-ctn"}>
+            <RichTextComponent richText={engagement.summary} />
           </div>
-        </ThumbnailContainer>
-      )}
-
-      <Flex direction={"column"}>
-        <Title mb={"15px"} fontWeight={500}>
-          {engagement.name}
-        </Title>
-        <hr />
-
-        <div className={"summary-ctn"}>
-          <RichTextComponent richText={engagement.summary} />
-        </div>
-
-        <Flex mt="20px">
-          <Button display="flex" items="center">
-            <p> Watch Recording </p>
-
-            <Icon color="#fff">
-              <BsCameraVideo />
-            </Icon>
-          </Button>
         </Flex>
-      </Flex>
-    </PodcastContainer>
+      </PodcastContainer>
+    </RootContainer>
   )
 }
 

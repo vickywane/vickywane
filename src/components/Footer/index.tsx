@@ -50,9 +50,9 @@ const Footer = () => (
       <br />
 
       <ListContainer>
-        {navigation_links.map(({ name }, idx) => (
+        {navigation_links.map(({ name, to }, idx) => (
           <li key={idx}>
-            <a href={"/"}>
+            <a href={to}>
               <Text align={"center"} color={"#fff"}> {name} </Text>
             </a>
           </li>

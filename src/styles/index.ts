@@ -101,7 +101,7 @@ export const H3Heading = styled.h3<StyledProps>`
   line-height: 35px;
   color: ${props => props.color || "#115e65"};
   text-align: ${props => props.align};
-  margin-bottom: 30px;
+  margin-bottom: ${props => props.mb ? props.mb : "30px"};
 
   span {
     text-decoration: underline;
@@ -112,7 +112,7 @@ export const H3Heading = styled.h3<StyledProps>`
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     font-size: 22px;
-    margin-bottom: 15px;
+    margin-bottom: ${props => props.mb ? props.mb : "15px"};
 
     span {
       text-decoration-thickness: 4px;
@@ -121,7 +121,6 @@ export const H3Heading = styled.h3<StyledProps>`
   }
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     font-size: 20px;
-    margin-bottom: 15px;
 
     span {
       text-decoration-thickness: 3px;
@@ -229,7 +228,7 @@ export const Icon = styled(Flex)`
 `
 
 export const Button = styled.button<StyledProps>`
-  width: auto;
+  width: ${props => props.width ? props.width : "auto"};
   padding: 0 26px;
   height: 52px;
   display: ${props => props.display || ""};
