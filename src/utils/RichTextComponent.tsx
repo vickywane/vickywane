@@ -9,7 +9,7 @@ import Image from "next/image"
 import { truncateText } from "./helpers"
 import { ImageLoader } from "./Cloudinary"
 import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player"
 
 interface RichTextComponentProps {
   richText: any
@@ -83,7 +83,7 @@ const RichTextComponent = ({
           temp += toPlainText(value)
 
           if (index + 1 < richTextParagraphs) {
-            return <> </>
+            return <p> </p>
           }
 
           return <Text> {truncateText(temp, maxTextLength)} </Text>
@@ -93,12 +93,16 @@ const RichTextComponent = ({
       },
     },
     list: {
-      bullet: ({ children }) => (
+      bullet: ({ children }) => {
+        return <ul>{children?.slice(0, isClamped ? listLength : 1000)}</ul>
+      },
+    },
+    listItem: ({ children }) => {
+      return (
         <ULList>
-          {/* @ts-ignore */}
-          <Text>{children.slice(0, isClamped ? listLength : 1000)}</Text>
+          <Text> {children} </Text>
         </ULList>
-      ),
+      )
     },
   })
 

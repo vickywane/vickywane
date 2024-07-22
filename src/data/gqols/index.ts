@@ -29,6 +29,16 @@ export const HOME_QUERY = `
         url,
         title
       },
+      projects[] -> {
+        publish_date,
+        _id,
+        name,
+        description,
+        github_url, 
+        url,
+        project_tools,
+        cover
+      },
     engagements[] -> {
         _createdAt,
         _id,
@@ -48,6 +58,29 @@ export const HOME_QUERY = `
     }
 `
 
+export const VACATION_PREVIEW_QUERY = `
+*[_type == 'vacation_preview']{ 
+    _id,
+    vacation_name, 
+    images, 
+    article -> {
+      summary,
+      title,
+      slug
+    }
+  }
+`
+
+export const COMPANIES_QUERY = `
+  *[_type == 'company']{ 
+    _id,
+    _createdAt,
+    name, 
+    thumbnail,
+    company_link
+  }
+`
+
 export const REVIEWS_QUERY = (type: string) => `
   *[_type == 'review' && review_type[0] == "${type}"]{ 
     _id,
@@ -61,7 +94,7 @@ export const REVIEWS_QUERY = (type: string) => `
        reviewer_link,
        company,
        work_duration
-}
+  }
 `
 
 interface QueryTypeProps {
@@ -80,6 +113,7 @@ export const ARTICLES_QUERY = ({ type, slug }: QueryTypeProps) => {
       is_travel_featured,
       slug, 
       summary, 
+      gallery,
       tags,
       title, 
       recommended[] -> {
@@ -134,7 +168,16 @@ export const GET_CATEGORY_QUERY = ({ slug }: QueryTypeProps) => {
   return `
   *[_type == 'blogCategory'] { 
       slug,
-      _createdAt
+       name, 
+      _createdAt,
+      articles[] -> {
+        _createdAt,
+        _id,
+        title, 
+        summary,
+        cover,
+        slug
+      }
   }
 `
 }

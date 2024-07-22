@@ -111,7 +111,7 @@ const HeaderList = styled.ul`
   }
 `
 
-const Anchor = styled.a`
+const Anchor = styled.div`
   color: #333333;
   font-family: "Space Grotesk", sans-serif;
 
@@ -127,6 +127,8 @@ const ImageContainer = styled.div`
   height: 51px;
   width: 53px;
   position: relative;
+  border: 2px solid #333333;
+  border-radius: 50%;
 
   img {
     border-radius: 50%;
@@ -169,7 +171,7 @@ const Index = () => {
                   loader={ImageLoader}
                   fill
                   alt={"Victory Nwani"}
-                  src={"/personal-portfolio-app/my_picture.jpg"}
+                  src={"/personal-portfolio-app/icons/victory-picture.jpg"}
                 />
               </ImageContainer>
 
@@ -184,17 +186,22 @@ const Index = () => {
               {navigation_links.map(({ name, to }, idx) => (
                 <li key={idx}>
                   <Anchor href={"#"}>
-                    <Link href={to} >{name}</Link>
+                    <Link href={to}>{name}</Link>
                   </Anchor>
                 </li>
               ))}
 
               <li style={{ listStyle: "none" }}>
-                <CustomButton
-                  icon={<AiOutlineFilePdf size={24} />}
-                  clickAction={() => {}}
-                  text={"View Resume"}
-                />
+                <a
+                  target="_blank"
+                  href="https://docs.google.com/document/d/1s_53gBc110F5yLT4yoQkBWtXgNdC6qnCz5rVBL589fc/edit?usp=sharing"
+                >
+                  <CustomButton
+                    icon={<AiOutlineFilePdf size={24} />}
+                    text={"View Resume"}
+                    clickAction={() => {}}
+                  />
+                </a>
               </li>
             </HeaderList>
           </div>

@@ -9,7 +9,6 @@ const ImageContainer = styled.div<{ isFullScreen: boolean }>`
   margin: 26px 0;
   width: 100%;
   position: relative;
-
   &:hover {
     cursor: ${props => (props.isFullScreen ? "zoom-out" : "zoom-in")};
   }
@@ -48,5 +47,5 @@ const ImageComponent = ({ title, public_id }: ImageComponentProps) => {
     </FullScreen>
   )
 }
-
+ 
 export default ImageComponent

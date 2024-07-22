@@ -94,6 +94,13 @@ export interface Homepage extends SanityDocument {
   experiences?: Array<SanityKeyedReference<WorkExperience>>;
 
   /**
+   * Projects — `array`
+   *
+   *
+   */
+  projects?: Array<SanityKeyedReference<Projects>>;
+
+  /**
    * Engagements — `array`
    *
    *
@@ -142,7 +149,18 @@ export interface Article extends SanityDocument {
    *
    *
    */
-  body?: Array<SanityKeyed<SanityBlock>>;
+  body?: Array<
+    | SanityKeyed<SanityBlock>
+    | SanityKeyed<CloudinaryAsset>
+    | SanityKeyed<Youtube>
+  >;
+
+  /**
+   * Gallery — `array`
+   *
+   * List of images to show
+   */
+  gallery?: Array<SanityKeyed<CloudinaryAsset>>;
 
   /**
    * Recommended — `array`
@@ -339,7 +357,7 @@ export interface Company extends SanityDocument {
   /**
    * Name — `string`
    *
-   *
+   * Company Name
    */
   name?: string;
 
@@ -518,6 +536,104 @@ export interface CompaniesList extends SanityDocument {
   name?: string;
 }
 
+/**
+ * Vacation Preview
+ *
+ *
+ */
+export interface VacationPreview extends SanityDocument {
+  _type: "vacation_preview";
+
+  /**
+   * Vacation Name — `string`
+   *
+   * Name of the vacation trip
+   */
+  vacation_name?: string;
+
+  /**
+   * Images — `array`
+   *
+   * List of images to show in carousel
+   */
+  images?: Array<SanityKeyed<CloudinaryAsset>>;
+
+  /**
+   * Vacation Article — `reference`
+   *
+   * Article written for this vacation
+   */
+  article?: SanityReference<Article>;
+}
+
+/**
+ * Engineering Projects
+ *
+ *
+ */
+export interface Projects extends SanityDocument {
+  _type: "projects";
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  name?: string;
+
+  /**
+   * Url — `string`
+   *
+   *
+   */
+  url?: string;
+
+  /**
+   * GitHub URL — `string`
+   *
+   *
+   */
+  github_url?: string;
+
+  /**
+   * Description — `array`
+   *
+   *
+   */
+  description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Project Tools — `array`
+   *
+   * List of tools or technologies used to develop project
+   */
+  project_tools?: Array<SanityKeyed<string>>;
+
+  /**
+   * Cover — `cloudinary.asset`
+   *
+   * Project cover image on Cloudinary
+   */
+  cover?: CloudinaryAsset;
+
+  /**
+   * Publish Date — `datetime`
+   *
+   *
+   */
+  publish_date?: string;
+}
+
+export type Youtube = {
+  _type: "youtube";
+  /**
+   * YouTube video URL — `url`
+   *
+   *
+   */
+  url?: string;
+};
+
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
@@ -538,7 +654,9 @@ export type Documents =
   | Company
   | WorkExperience
   | Review
-  | CompaniesList;
+  | CompaniesList
+  | VacationPreview
+  | Projects;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but
