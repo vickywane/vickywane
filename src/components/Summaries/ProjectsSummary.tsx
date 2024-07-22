@@ -24,7 +24,8 @@ const ProjectSummary = ({ projects }: { projects: Projects[] }) => {
           My <span> Engineering Projects </span>{" "}
         </H2Heading>
         <Text>
-          XXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX
+          Here are some of the public projects I have worked on and the technologies I
+          used to build them.
         </Text>
       </div>
 
