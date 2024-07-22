@@ -47,5 +47,5 @@ const ImageComponent = ({ title, public_id }: ImageComponentProps) => {
     </FullScreen>
   )
 }
-
+ 
 export default ImageComponent

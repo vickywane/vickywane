@@ -1,7 +1,6 @@
 import React from "react"
-import Image from "next/image"
 import { Text } from "@/styles"
-import { ImageLoader } from "@/utils/Cloudinary"
+import ImageComponent from "../image/ImageComponent"
 
 const extractNameFromUrl = (url: string): string => {
   const slashes = url.split("/")
@@ -36,22 +35,7 @@ const CloudinaryAssetRenderer = ({ value }: any) => {
     case "jpeg":
     case "jpg":
       return (
-        <div
-          style={{
-            height: `550px`,
-            margin: "26px 0",
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          <Image
-            fill
-            style={{ position: "absolute", objectFit: "contain" }}
-            loader={ImageLoader}
-            alt={value?.title}
-            src={value?.public_id}
-          />
-        </div>
+        <ImageComponent public_id={value?.public_id} title={value?.title} />
       )
 
     default:
