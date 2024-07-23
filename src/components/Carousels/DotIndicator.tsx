@@ -14,6 +14,7 @@ const CarouselList = styled.ul`
   display: flex;
   justify-content: center;
   list-style: none;
+
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     margin-top: 32px;
   }
@@ -26,10 +27,12 @@ const CarouselListItem = styled.li<{ active: boolean }>`
   background: ${props => (props.active ? "#333333" : "#fff")};
   margin: 0 8px;
   border: 3px solid #333333;
+
   &:hover {
     cursor: pointer;
     background: #333333;
   }
+
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     height: 12px;
     border-radius: 100%;

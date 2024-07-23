@@ -69,4 +69,5 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => {
     </Layout>
   )
 }
+
 export default EngagementSummary

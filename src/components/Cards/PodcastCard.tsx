@@ -18,7 +18,6 @@ const PodcastContainer = styled(Flex)`
   padding: 20px;
   border: 1px solid #131112;
   position: relative;
-  border-radius: 8px;
   text-overflow: ellipsis;
   overflow: hidden;
   flex-direction: row-reverse;
