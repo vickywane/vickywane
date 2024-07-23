@@ -13,4 +13,5 @@ export interface StyledProps {
   items?: string;
   display?: string;
   disabled?: boolean
+  width?: string
 }

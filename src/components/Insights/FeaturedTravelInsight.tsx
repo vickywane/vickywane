@@ -21,6 +21,7 @@ import { VacationPreview } from "@/data/schema"
 // @ts-ignore
 import InsightsArrow from "@/assets/svg/stretch-arrow.svg"
 import Link from "next/link"
+import DotIndicator from "../Carousels/DotIndicator"
 
 const Container = styled.div`
   .image-ctn {
@@ -94,41 +95,6 @@ const Arrow = () => (
     <InsightsArrow />
   </ArrowFlex>
 )
-
-const CarouselList = styled.div`
-  margin-top: 64px;
-
-  ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    margin-top: 32px;
-  }
-`
-
-const CarouselListItem = styled.div<{ active: boolean }>`
-  height: 15px;
-  border-radius: 100%;
-  width: 15px;
-  background: ${props => (props.active ? "#333333" : "#fff")};
-  margin: 0 8px;
-  border: 3px solid #333333;
-
-  &:hover {
-    cursor: pointer;
-    background: #333333;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 12px;
-    border-radius: 100%;
-    width: 12px;
-    border: 1px solid #333333;
-  }
-`
 
 const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
   const [activeInsight, setActiveInsight] = useState(0)
@@ -227,20 +193,12 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
           <Arrow />
         </CTAContainer>
       </div>
-
-      <CarouselList>
-        <ul>
-          {previews?.map((_, idx) => (
-            <li key={idx}>
-              <CarouselListItem
-                // onClick={() => sliderRef?.slickGoTo()}
-                onClick={() => sliderRef?.slickGoTo(idx)}
-                active={idx === activeInsight}
-              />
-            </li>
-          ))}
-        </ul>
-      </CarouselList>
+       
+      <DotIndicator
+        count={previews.length}
+        clickAction={(item) => sliderRef?.slickGoTo(item)}
+        activeItem={activeInsight}
+      />
     </Layout>
   )
 }

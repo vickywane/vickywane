@@ -229,7 +229,7 @@ export const Icon = styled(Flex)`
 `
 
 export const Button = styled.button<StyledProps>`
-  width: auto;
+  width: ${props => props.width ? props.width : "auto"};
   padding: 0 26px;
   height: 52px;
   display: ${props => props.display || ""};
@@ -241,6 +241,7 @@ export const Button = styled.button<StyledProps>`
   filter: drop-shadow(7px 7px 0px #0d5c63);
   transition: all 300ms;
   transform: translateY(-10px);
+  justify-content: ${props => props.justify ? props.justify : ""};
   align-items: ${props => props.items || ""};
   p {
     font-style: normal;
