@@ -21,7 +21,7 @@ export interface StyledProps {
   top: any
 }
 
-const Item = styled.li<StyledProps>`
+const Item = styled.div<StyledProps>`
   height: ${props =>
     props.stack === 1 ? "250px" : props.stack === 4 ? "250px" : "200px"};
   width: 220px;

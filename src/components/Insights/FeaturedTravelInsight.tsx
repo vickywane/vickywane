@@ -30,17 +30,10 @@ const Container = styled.div`
     min-width: 450px;
   }
 
-  .container {
+  .items-container {
     position: relative;
     display: grid;
     grid-template-columns: 80% 10%;
-  }
-
-  .cta-container {
-    display: flex;
-    position: absolute;
-    writing-mode: vertical-rl;
-    right: 0;
   }
 
   .contents {
@@ -68,6 +61,14 @@ const Container = styled.div`
   }
 `
 
+const CTAContainer = styled(Flex)`
+  position: relative;
+  writing-mode: vertical-rl;
+  right: 0;
+
+  background-color: green;
+`
+
 interface FeaturedTravelInsightProps {
   previews: Array<VacationPreview>
 }
@@ -84,8 +85,8 @@ const ArrowFlex = styled(Flex)`
   position: absolute;
   bottom: 0;
 
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    right: -20px;
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+     display: none;
   }
 `
 
@@ -93,7 +94,7 @@ const Arrow = () => (
   <ArrowFlex justify="center" style={{}}>
     <InsightsArrow />
   </ArrowFlex>
-) 
+)
 
 const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
   const [activeInsight, setActiveInsight] = useState(0)
@@ -107,6 +108,7 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
     slidesToScroll: 1,
     swipeToSlide: false,
     draggable: false,
+    rtl: true,
     afterChange: slideNumber => setActiveInsight(slideNumber),
   }
 
@@ -122,78 +124,76 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
       <br />
       <br />
 
-      <Slider
-        ref={slider => {
-          sliderRef = slider
-        }}
-        {...SliderSettings}
-      >
-        {previews.map((items, idx) => (
-          <Container
-            key={items?._id}
+      <div style={{ display: "grid", gridTemplateColumns: "100% auto" }}>
+        <Slider
+          ref={slider => {
+            sliderRef = slider
+          }}
+          {...SliderSettings}
+        >
+          {previews?.map((items, idx) => (
+            <Container
+              key={items?._id}
+              style={{
+                width: "100%",
+                minWidth: "100%",
+              }}
+            >
+              <div className={"items-container"}>
+                <div className={"contents"}>
+                  {items?.images && (
+                    <Flex>
+                      <div className={"image-ctn"}>
+                        <ImageCarousel images={items?.images} />
+                      </div>
+                    </Flex>
+                  )}
+
+                  <Flex direction={"column"}>
+                    <CTAText fontWeight={600}>
+                      {" "}
+                      {items?.article?.title}{" "}
+                    </CTAText>
+
+                    <br />
+                    <RichTextComponent
+                      richText={items?.article?.summary}
+                      maxTextLength={35}
+                    />
+
+                    <Flex mt="40px">
+                      <Link href={`/blog/${items?.article?.slug?.current}`}>
+                        <CustomButton
+                          clickAction={() => {}}
+                          icon={<BsArrowRight size={24} />}
+                          text="Read The Travel Insight"
+                        />
+                      </Link>
+                    </Flex>
+                  </Flex>
+                </div>
+              </div>
+            </Container>
+          ))}
+        </Slider>
+
+        <CTAContainer>
+          <Flex
             style={{
-              width: "100%",
-              minWidth: "100%",
-              background: idx === 0 ? "red" : "",
+              zIndex: 2,
+              position: "absolute",
+              backgroundColor: "#fff8f0",
             }}
           >
-            <div className={"container"}>
-              <div className={"contents"}>
-                {items?.images && (
-                  <Flex>
-                    <div className={"image-ctn"}>
-                      <ImageCarousel images={items?.images} />
-                    </div>
-                  </Flex>
-                )}
+            <CTAText color={"#333333"}>
+              What do you think of <br /> <span> Travelling? </span>
+            </CTAText>
+          </Flex>
 
-                <Flex direction={"column"}>
-                  <CTAText fontWeight={600}> {items?.article?.title} </CTAText>
-
-                  <br />
-                  <RichTextComponent
-                    richText={items?.article?.summary}
-                    maxTextLength={35}
-                  />
-
-                  <Flex mt="40px">
-                    <Link href={`/blog/${items?.article?.slug?.current}`}>
-                      <CustomButton
-                        clickAction={() => {}}
-                        icon={<BsArrowRight size={24} />}
-                        text="Read The Travel Insight"
-                      />
-                    </Link>
-                  </Flex>
-                </Flex>
-              </div>
-
-              <div
-                style={{ height: "100%", position: "relative" }}
-                className={"cta-container"}
-              >
-                <Flex
-                  justify={"center"}
-                  style={{
-                    zIndex: 2,
-                    position: "absolute",
-                    right: "-40px",
-                    background: "#fff8f0",
-                  }}
-                  placeItems={"center"}
-                >
-                  <CTAText color={"#333333"}>
-                    What do you think of <br /> <span> Travelling? </span>
-                  </CTAText>
-                </Flex>
-
-                <Arrow />
-              </div>
-            </div>
-          </Container>
-        ))}
-      </Slider>
-
+          <Arrow />
+        </CTAContainer>
+      </div>
+       
       <DotIndicator
         count={previews.length}
         clickAction={(item) => sliderRef?.slickGoTo(item)}

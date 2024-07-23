@@ -20,11 +20,6 @@ const Hero = styled.section`
   background: #fff8f0;
   position: relative;
 
-  .hero-stats-section {
-    overflow: hidden;
-    height: 218px;
-  }
-
   .hero-details-section {
     height: 854px;
     display: flex;
@@ -71,6 +66,7 @@ const Hero = styled.section`
   .container {
     max-width: 1224px;
     margin: 0 auto;
+    padding: 0 30px;
     display: grid;
     grid-template-columns: 60% 40%;
 
@@ -91,8 +87,12 @@ const Hero = styled.section`
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
+    .container {
+      padding: 0 15px;
+    }
+
     .hero-stats-section {
-      height: 195px;
+      height: 295px;
     }
 
     span {
@@ -109,10 +109,6 @@ const Hero = styled.section`
           text-decoration-thickness: 10px;
         }
       }
-    }
-
-    .hero-details-section {
-      height: 650px;
     }
 
     .hero-stats-bottom {
@@ -214,21 +210,6 @@ const BannerText = styled(Text)`
   }
 `
 
-const HeroStar = ({ size = 82 }: { size?: number }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox={`0 0 82 82`}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M42.6006 0.0598232L56.243 26.3592L81.0217 42.6006L54.7224 56.243L38.4809 81.0217L24.8385 54.7224L0.0598066 38.481L26.3591 24.8386L42.6006 0.0598232Z"
-      fill="#D0DB97"
-    />
-  </svg>
-)
-
 const HomeHero = ({ banner_description }: HomeHeroProps) => (
   <>
     <Hero>
@@ -236,19 +217,6 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
         <div className={"container"}>
           <div>
             <div className={"details"}>
-              {/* <Flex style={{ position: "relative" }}> */}
-              {/* <Flex style={{ position: "absolute", right: 150 }}>
-                  <HeroStar />
-                </Flex>
-
-                <Flex style={{ position: "absolute", left: 150, top: 120 }}>
-                  <HeroStar size={52} />
-                </Flex>
-
-                <Flex style={{ position: "absolute", right: 120, bottom: 20 }}>
-                  <HeroStar size={62} />
-                </Flex> */}
-
               <Heading>
                 <Typewriter
                   options={{
@@ -264,13 +232,6 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
               <BannerText style={{ zIndex: 999 }} color={"#131112"}>
                 {banner_description}
               </BannerText>
-
-              {/* <Image
-                fill
-                loader={ImageLoader}
-                alt={"floating stars"}
-                src={"/personal-portfolio-app/float-stars.png"}
-              /> */}
             </div>
 
             <div className={"buttons-ctn"}>

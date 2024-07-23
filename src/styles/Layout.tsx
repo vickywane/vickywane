@@ -1,3 +1,4 @@
+"use client"
 import { ContentLayout } from "@/styles/index";
 
 interface LayoutProps {

@@ -21,8 +21,12 @@ interface ArticleProps {
 
 const ArticleComponent = styled.div`
   background: #fff;
-  max-width: 600px;
+  /* max-width: 600px; */
   padding: 21px;
+  height: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: auto;
   transition: all 300ms;
   filter: drop-shadow(7px 7px 0px #0d5c63);
@@ -37,6 +41,15 @@ const ArticleComponent = styled.div`
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     max-width: 100%;
     width: 100%;
+    height: 350px;
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    max-width: 100%;
+    width: 100%;
+    height: 300px;
+
+    filter: drop-shadow(4px 4px 0px #0d5c63);
   }
 `
 
@@ -77,10 +90,6 @@ const ArticleCard = ({ articles }: ArticleProps) => {
         )}
 
         <Flex placeItems={"center"}>
-          <Icon mr="8px" placeItems={"center"}>
-            <BsCalendar4Event color={"#131112"} size={"20px"} />
-          </Icon>
-
           <SubTitle color={"#666666"}>
             {new Date(articles._createdAt).toLocaleDateString("en-us", {
               year: "numeric",
@@ -91,8 +100,8 @@ const ArticleCard = ({ articles }: ArticleProps) => {
         </Flex>
       </CardHeader>
       <br />
-          
-      <RichTextComponent richText={articles.summary} maxTextLength={30} />
+
+      <RichTextComponent richText={articles.summary} maxTextLength={25} />
 
       <br />
 

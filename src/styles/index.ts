@@ -6,6 +6,33 @@ import {
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
 
+export const FlexArticleList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  list-style: none;
+
+  li {
+    width: 450px;
+    min-width: 450px;
+    margin: 0 32px 0 0;
+  }
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    li {
+      width: 300px;
+      min-width: 300px;
+      margin: 0 28px 0 0;
+
+      &:last-child {
+        width: 95%;
+        min-width: 95%;
+        margin: 0 0 0 0;
+      }
+    }
+  }
+`
+
 export const Anchor = styled.a`
   text-decoration: underline;
 
@@ -14,7 +41,7 @@ export const Anchor = styled.a`
   }
 `
 
-export const ULList = styled.ul`
+export const ULList = styled.li`
   list-style: square;
   margin-left: 26px;
 
@@ -148,7 +175,7 @@ export const ContentLayout = styled.div<LayoutProps>`
 
   .content-elements {
     margin: 0 auto;
-    max-width: 1224px;
+    max-width: 1404px;
     padding: 100px 26px;
   }
 
@@ -227,10 +254,10 @@ export const Button = styled.button<StyledProps>`
     margin: 0 15px;
   }
 
-  :hover {
-    transform: ${props => props.disabled ? "": "translateY(0)"};
-    filter: ${props => props.disabled ? "": "unset"};
-    cursor: ${props => props.disabled ? "": "pointer"};
+  &:hover {
+    transform: ${props => (props.disabled ? "" : "translateY(0)")};
+    filter: ${props => (props.disabled ? "" : "unset")};
+    cursor: ${props => (props.disabled ? "" : "pointer")};
   }
 
   @media (max-width: 960px) {
@@ -242,7 +269,7 @@ export const Button = styled.button<StyledProps>`
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     height: 45px;
 
-    :hover {
+    &:hover {
       pointer-events: none;
     }
 

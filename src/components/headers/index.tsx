@@ -35,7 +35,7 @@ const Head = styled.header<{ isBreadcrumbOpen: boolean }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1224px;
+    max-width: 1404px;
     margin: 0 auto;
 
     .container {
@@ -111,7 +111,7 @@ const HeaderList = styled.ul`
   }
 `
 
-const Anchor = styled.a`
+const Anchor = styled.div`
   color: #333333;
   font-family: "Space Grotesk", sans-serif;
 

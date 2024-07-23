@@ -25,14 +25,14 @@ const List = styled.ul`
     margin: 64px 0;
 
     &:nth-child(1) {
-        margin: 34px 0 34px;
+      margin: 34px 0 34px;
     }
   }
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     .work-list {
       &:nth-child(1) {
-          margin: 24px 0 24px;
+        margin: 24px 0 24px;
       }
     }
   }
@@ -142,7 +142,7 @@ const Summary = ({
       )}
 
       <Flex direction={"column"}>
-        <a target={"_blank"} href={url}>
+         <a target={"_blank"} href={url}>
           <Flex>
             <Title> {name} </Title>
 
@@ -178,12 +178,12 @@ const Summary = ({
           </Text>
         </Flex>
 
-        <div className={"jobs-list"}>
+        <div style={{color: "black"}} className={"jobs-list"}>
           <RichTextComponent
             richText={(description as unknown) as TypedObject}
             isClamped={isClamped}
           />
-        </div>
+        </div> 
 
         <ResponsiveFlex display="flex">
           <IconContainer onClick={() => setClamper(!isClamped)} display="flex">
@@ -193,14 +193,13 @@ const Summary = ({
               </ResponsiveText>
             </Flex>
 
-          <Flex placeItems="center" >
-          <Icon color="#115e65" ml="10px">
-              {!isClamped ? <BsArrowUpSquare /> : <BsArrowDownSquare />}
-            </Icon>
-          </Flex>
-            
+            <Flex placeItems="center">
+              <Icon color="#115e65" ml="10px">
+                {!isClamped ? <BsArrowUpSquare /> : <BsArrowDownSquare />}
+              </Icon>
+            </Flex>
           </IconContainer>
-        </ResponsiveFlex>
+        </ResponsiveFlex>  
       </Flex>
     </SummaryContainer>
   )
