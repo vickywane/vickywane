@@ -89,6 +89,10 @@ body {
   overflow-x: hidden;
 }
 
+.slider-item {
+  gap: 30px;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   /*background: linear-gradient(*/

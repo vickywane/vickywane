@@ -23,7 +23,7 @@ const ArticleComponent = styled.div`
   background: #fff;
   /* max-width: 600px; */
   padding: 21px;
-  height: 430px;
+  height: 370px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

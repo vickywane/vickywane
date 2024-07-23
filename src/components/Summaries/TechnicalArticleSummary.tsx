@@ -65,10 +65,10 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
         </H2Heading>
 
         <Text>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book
+          Outside my working hours, I write technical articles focused on using
+          services from public cloud and CMS platforms for developer focused
+          organizations such as for LogRocket, Okta, DigitalOcean, and the AWS Developer
+          Community.
         </Text>
 
         <Reviews type="technical_writing_review" />

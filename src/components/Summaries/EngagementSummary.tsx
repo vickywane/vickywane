@@ -39,9 +39,8 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => {
       <H2Heading id="engagements" align={"center"}>
         Life As A Part Of <span> Developer Communities </span>{" "}
       </H2Heading>
-      <Text align={"center"}>
-        As an educational establishment located in Nigeria, Africa. Patfin High
-        School.
+      <Text align={"center"} style={{maxWidth: "750px", margin: "0 auto"}} >
+         Over the past three years, I have spoken and volunteered at various software engineering conferences and meetups.
       </Text>
       <br />
       <br />
@@ -70,4 +69,5 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => {
     </Layout>
   )
 }
+
 export default EngagementSummary

@@ -9,13 +9,12 @@ import {
 } from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import { ImageLoader } from "@/utils/Cloudinary"
-import { BsCameraVideo } from "react-icons/bs"
 import { GrTag } from "react-icons/gr"
 
 const PodcastContainer = styled(Flex)`
   background: white;
   width: 650px;
-  height: min-content;
+  height: 850px;
   margin: "0 32px";
   position: relative;
   border: 1px solid #131112;
@@ -49,7 +48,7 @@ const ThumbnailContainer = styled.div<{ type: string }>`
   width: 100%;
 
   .img-ctn {
-    height: 410px;
+    height: 350px;
     position: relative;
   }
 
@@ -95,13 +94,13 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
 
         <Flex direction={"column"} ml="20px" mr="20px">
           <Flex direction="column">
-            <H3Heading mb={"15px"} fontWeight={500}>
+            <H3Heading mb="4px" fontWeight={500}>
               {engagement.name}
             </H3Heading>
 
             <Flex>
               <Flex mr="8px" placeItems="center">
-                <GrTag color="#131112" size={22} />
+                <GrTag color="#131112" size={20} />
               </Flex>
 
               <Flex mt="2px" placeItems="center">
