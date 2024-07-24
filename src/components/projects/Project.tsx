@@ -6,13 +6,17 @@ import CustomButton from "../Buttons"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
 import { IoLogoGithub } from "react-icons/io"
-import { GoArrowUpRight } from "react-icons/go";
+import { GoArrowUpRight } from "react-icons/go"
 import styled from "styled-components"
 import { TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import { Projects } from "@/data/schema"
 
-interface ProjectProps extends Pick<Projects, "name" | "cover" | "github_url" | "project_tools" | "description"> {
+interface ProjectProps
+  extends Pick<
+    Projects,
+    "name" | "cover" | "github_url" | "project_tools" | "description"
+  > {
   order: number
 }
 
@@ -27,6 +31,15 @@ const ContainerGrid = styled.div`
     gap: 32px 0;
   }
 `
+const ImageContainer = styled.div`
+  position: relative;
+  height: 800px;
+  width: 100%;
+
+  @media (max-width: ${TABLET_BREAKPOINT}px) {
+    height: 450px;
+  }
+`
 
 const Project = ({
   name,
@@ -34,17 +47,17 @@ const Project = ({
   order,
   project_tools,
   cover,
-  github_url
+  github_url,
 }: ProjectProps) => {
   return (
     <ContainerGrid>
-      <Flex placeItems="center" >
+      <Flex placeItems="center">
         <div>
           <Flex direction="row">
             <H3Heading fontWeight={600}>{name}</H3Heading>
 
-            <Flex mt="6px" ml="6px" >
-                <GoArrowUpRight fontSize={26} color="#115e65" />
+            <Flex mt="6px" ml="6px">
+              <GoArrowUpRight fontSize={26} color="#115e65" />
             </Flex>
           </Flex>
 
@@ -87,7 +100,7 @@ const Project = ({
       </Flex>
 
       <Flex placeItems="center" style={{ gridRow: order === 0 ? 1 : "" }}>
-        <div style={{ position: "relative", height: "800px", width: "100%" }}>
+        <ImageContainer>
           <Image
             loader={ImageLoader}
             fill
@@ -95,7 +108,7 @@ const Project = ({
             alt="Event-Driven Currency Predictor"
             src={cover?.public_id}
           />
-        </div>
+        </ImageContainer>
       </Flex>
     </ContainerGrid>
   )

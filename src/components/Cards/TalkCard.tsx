@@ -10,8 +10,12 @@ import {
 import RichTextComponent from "@/utils/RichTextComponent"
 import { ImageLoader } from "@/utils/Cloudinary"
 import { GrTag } from "react-icons/gr"
+import { MdPodcasts } from "react-icons/md"
+import { GiHumanPyramid } from "react-icons/gi"
 
-const PodcastContainer = styled(Flex)`
+import { BsArrowRight } from "react-icons/bs"
+
+const Container = styled(Flex)`
   background: white;
   width: 650px;
   height: 850px;
@@ -26,12 +30,13 @@ const PodcastContainer = styled(Flex)`
   .summary-ctn {
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 20px 0;
+    margin: 10px 0 20px 0;
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     width: 100%;
     flex-direction: column;
+    filter: drop-shadow(0 0 0 #0d5c63);
   }
 
   &:hover {
@@ -39,8 +44,8 @@ const PodcastContainer = styled(Flex)`
     cursor: pointer;
   }
 
-  @media (max-width: ${TABLET_BREAKPOINT}px) {
-    filter: drop-shadow(0 0 0 #0d5c63);
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 650px;
   }
 `
 
@@ -72,10 +77,54 @@ const RootContainer = styled(Flex)`
   }
 `
 
+const MediaButton = styled(Button)`
+  filter: drop-shadow(7px 7px 0px transparent);
+`
+
+const LabelContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    position: absolute;
+    z-index: 5;
+    background: #115e65;
+    height: 40px;
+    width: 120px;
+    flex-direction: row;
+    /* opacity: .7; */
+
+    p {
+      margin-left: 8px;
+      color: white;
+      text-transform: capitalize;
+    }
+  }
+`
+
+const Label = ({ type }: { type: string }) => (
+  <LabelContainer>
+    <div className="content">
+      {type === "talks" ? (
+        <GiHumanPyramid color="white" size={20} />
+      ) : (
+        <MdPodcasts color="white" size={20} />
+      )}
+
+      <Text> {type} </Text>
+    </div>
+  </LabelContainer>
+)
+
 const TalkCard = ({ engagement }: TalkCardProps) => {
   return (
     <RootContainer direction="column">
-      <PodcastContainer direction="column">
+      <Container direction="column">
         {engagement?.thumbnail && (
           <ThumbnailContainer type={(engagement?.type as unknown) as string}>
             <div className={"img-ctn"}>
@@ -86,16 +135,18 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
                 style={{ objectFit: "cover" }}
                 fill
               />
+
+              <Label type={engagement.type} />
             </div>
           </ThumbnailContainer>
         )}
 
         <br />
 
-        <Flex direction={"column"} ml="20px" mr="20px">
+        <Flex direction={"column"} justify="space-between" style={{height: "100%"}} ml="20px" mr="20px">
           <Flex direction="column">
             <H3Heading mb="4px" fontWeight={500}>
-              {engagement.name}
+              <a href={engagement.event_link}>{engagement.name}</a>
             </H3Heading>
 
             <Flex>
@@ -113,10 +164,19 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
           </Flex>
 
           <div className={"summary-ctn"}>
-            <RichTextComponent richText={engagement.summary} />
+            <RichTextComponent
+              richText={engagement.summary}
+              maxTextLength={45}
+            />
           </div>
+
+          <a href={engagement.event_link}>
+            <Flex justify="flex-end">
+              <MediaButton>Watch Event Recording</MediaButton>
+            </Flex>
+          </a>
         </Flex>
-      </PodcastContainer>
+      </Container>
     </RootContainer>
   )
 }

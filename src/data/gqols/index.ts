@@ -47,7 +47,8 @@ export const HOME_QUERY = `
         type,
         name,
         event_name,
-        event_link
+        event_link,
+        session_link
      }, 
      notifications[] -> {
         _createdAt,
