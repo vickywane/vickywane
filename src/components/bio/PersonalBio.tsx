@@ -23,12 +23,26 @@ interface PersonalBioProps {
 
 const ImageContainer = styled.div`
   position: relative;
-  height: 400px;
-  width: 400px;
+  height: 450px;
+  width: 450px;
+
+  img {
+    filter: grayscale(1);
+    transition: all 100ms ease-in-out;
+  }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     margin-top: 48px;
+    height: 550px;
     width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      filter: grayscale(0);
+    }
   }
 `
 
@@ -48,9 +62,13 @@ const PersonalBio = ({ human_text }: PersonalBioProps) => {
 
           <ImageContainer>
             <Image
-              src="/v1719747245/personal-portfolio-app/axih6ri1t5zsul540a7r.jpg"
+              src="/v1721832258/personal-portfolio-app/my-picture.jpg"
               alt="Victory Nwani"
-              style={{ objectFit: "cover", objectPosition: "top", position: "absolute" }}
+              style={{
+                objectFit: "cover",
+                objectPosition: "top",
+                position: "absolute",
+              }}
               loader={ImageLoader}
               fill
             />
