@@ -21,11 +21,11 @@ const DashContainer = styled(Flex)`
   .dash {
     margin: 0;
     height: 3px;
-    width: 80px;
+    width: 75px;
     background: #0d5c63;
 
     @media (max-width: ${MOBILE_BREAKPOINT}px) {
-      width: 50px;
+      width: 40px;
     }
   }
 `
@@ -33,12 +33,12 @@ const DashContainer = styled(Flex)`
 const IconContainer = styled.div`
   color: #000;
   font-size: 54px;
+  margin-top: 8px;
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     font-size: 34px;
   }
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    margin-top: 8px;
     font-size: 40px;
   }
 `
