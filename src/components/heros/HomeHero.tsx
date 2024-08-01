@@ -21,12 +21,20 @@ const DashContainer = styled(Flex)`
   .dash {
     margin: 0;
     height: 3px;
-    width: 75px;
+    width: 70px;
     background: #0d5c63;
 
     @media (max-width: ${MOBILE_BREAKPOINT}px) {
       width: 40px;
     }
+  }
+`
+
+const CTAFlexContainer = styled(Flex)`
+  justify-content: flex-start;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    justify-content: center;
   }
 `
 
@@ -39,7 +47,7 @@ const IconContainer = styled.div`
     font-size: 34px;
   }
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    font-size: 40px;
+    font-size: 36px;
   }
 `
 
@@ -260,8 +268,8 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
               </BannerText>
             </div>
 
-            <Flex>
-              <Flex mt="12px">
+            <CTAFlexContainer mt="0">
+              <Flex mt="12px" justify="center" > 
                 <a
                   target="_blank"
                   href="mailto:Vickywane@gmail.com?subject=Let's%20talk%20from%20your%20Personal%20Website"
@@ -271,7 +279,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                     background={"#fff"}
                     style={{ border: "1.5px solid #131112" }}
                   >
-                    <Text fontSize="18px"> Leave A Message </Text>
+                    <Text fontSize="18px"> Contact Me </Text>
                   </Button>
                 </a>
               </Flex>
@@ -295,7 +303,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
 
                 <div
                   style={{
-                    margin: "0 14px",
+                    margin: "0 8px",
                     height: "8px",
                     width: "8px",
                     background: "#0d5c63",
@@ -314,7 +322,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                   </a>
                 </Flex>
               </Flex>
-            </Flex>
+            </CTAFlexContainer>
           </div>
 
           <div className={"right-section"}>
