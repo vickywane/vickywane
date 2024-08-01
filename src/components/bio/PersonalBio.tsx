@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { H2Heading, Flex } from "@/styles"
 import { Homepage } from "@/data/schema"
 import Layout from "@/styles/Layout"
-import { TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
@@ -34,6 +34,12 @@ const ImageContainer = styled.div`
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     margin-top: 48px;
     height: 550px;
+    width: 100%;
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    margin-top: 48px;
+    height: 350px;
     width: 100%;
   }
 

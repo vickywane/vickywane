@@ -60,7 +60,12 @@ const ThumbnailContainer = styled.div<{ type: string }>`
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     .img-ctn {
       height: 300px;
-      position: relative;
+    }
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    .img-ctn {
+      height: 250px;
     }
   }
 `
@@ -104,6 +109,11 @@ const LabelContainer = styled.div`
       color: white;
       text-transform: capitalize;
     }
+
+    @media (max-width: ${MOBILE_BREAKPOINT}px) {
+      height: 35px;
+      width: 90px;
+    }
   }
 `
 
@@ -141,9 +151,15 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
           </ThumbnailContainer>
         )}
 
-        <br />
 
-        <Flex direction={"column"} justify="space-between" style={{height: "100%"}} ml="20px" mr="20px">
+        <Flex
+          direction={"column"}
+          justify="space-between"
+          style={{ height: "100%" }}
+          mt="8px"
+          ml="15px"
+          mr="15px"
+        >
           <Flex direction="column">
             <H3Heading mb="4px" fontWeight={500}>
               <a href={engagement.event_link}>{engagement.name}</a>
@@ -166,7 +182,7 @@ const TalkCard = ({ engagement }: TalkCardProps) => {
           <div className={"summary-ctn"}>
             <RichTextComponent
               richText={engagement.summary}
-              maxTextLength={45}
+              maxTextLength={40}
             />
           </div>
 

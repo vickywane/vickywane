@@ -20,7 +20,7 @@ const NotificationComponent = styled.div<{ isBreadcrumbOpen: boolean }>`
   justify-content: center;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    padding: 5px 20px;
+    padding: 5px 8px;
   }
 `
 

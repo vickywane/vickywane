@@ -8,7 +8,7 @@ import { ImageLoader } from "@/utils/Cloudinary"
 import { IoLogoGithub } from "react-icons/io"
 import { GoArrowUpRight } from "react-icons/go"
 import styled from "styled-components"
-import { TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import { Projects } from "@/data/schema"
 
@@ -37,7 +37,10 @@ const ImageContainer = styled.div`
   width: 100%;
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
-    height: 450px;
+    height: 400px;
+  }
+  @media (max-width: ${MOBILE_BREAKPOINT}px) {
+    height: 350px;
   }
 `
 
