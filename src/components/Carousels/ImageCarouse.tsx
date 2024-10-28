@@ -91,7 +91,7 @@ const CustomImage = styled(Image)<{ blur: boolean }>`
   transition: filter 0.3s ease-in;
   height: 100%;
   width: 100%;
-  background-color: inherit;
+  background-color: inherit; 
 `
 
 const ImageCarousel = ({ images }: { images: any }) => {
