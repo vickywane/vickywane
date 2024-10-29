@@ -1,5 +1,5 @@
 "use client"
-import { Flex, H2Heading, Text } from "@/styles"
+import { H2Heading, Text } from "@/styles"
 import React, { useRef, useState } from "react"
 import TalkCard from "@/components/Cards/TalkCard"
 import Layout from "@/styles/Layout"
@@ -9,6 +9,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import DotIndicator from "../Carousels/DotIndicator"
 import { MOBILE_BREAKPOINT, useMediaQuery } from "@/styles/useStyleWidthQuery"
+import useIntersectionObserver from "@/hooks/useIntersectionObserver"
+import { useNavigationStore } from "@/state/zustand/navigation"
 
 interface EngagementSummaryProps {
   engagements: Engagement[]
@@ -34,13 +36,23 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => {
     afterChange: slideNumber => setActiveItem(slideNumber),
   }
 
+  const { setNavigationLinkItem } = useNavigationStore()
+
+  const { ref } = useIntersectionObserver({
+    threshold: 0.5,
+    rootMargin: "0px",
+    id: "engagements",
+    callback: key => setNavigationLinkItem(key),
+  })
+
   return (
     <Layout bg={"#fff8f0"}>
-      <H2Heading id="engagements" align={"center"}>
+      <H2Heading ref={ref} id="engagements" align={"center"}>
         Life As A Part Of <span> Developer Communities </span>{" "}
       </H2Heading>
-      <Text align={"center"} style={{maxWidth: "750px", margin: "0 auto"}} >
-         Over the past three years, I have spoken and volunteered at various software engineering conferences and meetups.
+      <Text align={"center"} style={{ maxWidth: "750px", margin: "0 auto" }}>
+        Over the past three years, I have spoken and volunteered at various
+        software engineering conferences and meetups.
       </Text>
       <br />
       <br />

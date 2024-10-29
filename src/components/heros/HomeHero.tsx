@@ -245,7 +245,9 @@ const BannerText = styled(Text)`
   }
 `
 
-const HomeHero = ({ banner_description }: HomeHeroProps) => (
+const HomeHero = ({ banner_description }: HomeHeroProps) => {
+
+  return (
   <>
     <Hero>
       <div className={"hero-details-section"}>
@@ -268,7 +270,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
               </BannerText>
             </div>
 
-            <CTAFlexContainer mt="0">
+            {/* <CTAFlexContainer mt="0">
               <Flex mt="12px" justify="center" > 
                 <a
                   target="_blank"
@@ -322,7 +324,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
                   </a>
                 </Flex>
               </Flex>
-            </CTAFlexContainer>
+            </CTAFlexContainer> */}
           </div>
 
           <div className={"right-section"}>
@@ -347,5 +349,6 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => (
     </Flex>
   </>
 )
+}
 
 export default HomeHero

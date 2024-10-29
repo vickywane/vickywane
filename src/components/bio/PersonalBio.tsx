@@ -3,10 +3,15 @@ import styled from "styled-components"
 import { H2Heading, Flex } from "@/styles"
 import { Homepage } from "@/data/schema"
 import Layout from "@/styles/Layout"
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import {
+  MOBILE_BREAKPOINT,
+  TABLET_BREAKPOINT,
+} from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
+import useIntersectionObserver from "@/hooks/useIntersectionObserver"
+import { useNavigationStore } from "@/state/zustand/navigation"
 
 const Container = styled.div`
   display: grid;
@@ -53,10 +58,19 @@ const ImageContainer = styled.div`
 `
 
 const PersonalBio = ({ human_text }: PersonalBioProps) => {
+  const { setNavigationLinkItem } = useNavigationStore()
+
+  const { ref } = useIntersectionObserver({
+    threshold: 0.5,
+    rootMargin: "0px",
+    id: "about",
+    callback: key => setNavigationLinkItem(key),
+  })
+
   return (
     <Layout>
       <Container>
-        <div>
+        <div ref={ref}>
           <H2Heading id="personal-bio">
             Life As A <span>Human</span>
           </H2Heading>

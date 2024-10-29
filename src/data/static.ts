@@ -1,18 +1,22 @@
 export const navigation_links = [
   {
+    id: "about",
     name: "About",
-    to: "/#travel-insight"
+    to: "/#travel-insight",
   },
   {
-    name: "Work History",
-    to: "#work-reviews"
+    id: "work",
+    name: "Work",
+    to: "#work-reviews",
   },
   {
-    name: "Engagements",
-    to: "#engagements"
-  },
-  {
+    id: "technical-articles",
     name: "Technical Articles",
-    to: "/blog"
-  }
-];
+    to: "/blog",
+  },
+  {
+    id: "engagements",
+    name: "Engagements",
+    to: "#engagements",
+  },
+]

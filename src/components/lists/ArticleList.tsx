@@ -79,9 +79,6 @@ const ArticleListComponent = async ({
   }
 
   return (
-    <div>
-      {/* <CompaniesTickerList companies={companies} /> */}
-
       <div>
         <QuickCategoriesCard blogCategories={blogCategories} />
 
@@ -143,7 +140,6 @@ const ArticleListComponent = async ({
           </Flex>
         </Layout>
       </div>
-    </div>
   )
 }
 

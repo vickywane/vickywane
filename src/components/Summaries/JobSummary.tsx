@@ -17,6 +17,8 @@ import {
   BsArrowDownSquare,
 } from "react-icons/bs"
 import SectionIndicator from "../SectionIndicator"
+import useIntersectionObserver from "@/hooks/useIntersectionObserver"
+import { useNavigationStore } from "@/state/zustand/navigation"
 
 const List = styled.ul`
   list-style: none;
@@ -210,9 +212,18 @@ interface JobSummaryProp {
 }
 
 const JobSummary = ({ experiences }: JobSummaryProp) => {
+  const { setNavigationLinkItem } = useNavigationStore()
+
+  const { ref } = useIntersectionObserver({
+    threshold: 0.5,
+    rootMargin: "0px",
+    id: "work",
+    callback: key => setNavigationLinkItem(key),
+  })
+
   return (
     <Layout>
-      <H2Heading>
+      <H2Heading ref={ref}>
         {" "}
         Life As A <span> Software Engineer </span>{" "}
       </H2Heading>
