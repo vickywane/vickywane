@@ -34,13 +34,11 @@ export const generateStaticParams = async () => {
     ARTICLES_QUERY({ type: "all" })
   )
 
-  const filteredItems = allArticles.filter(
-    item => !item.slug && !item.is_external
-  )
+  const filteredItems = allArticles.filter(item => !item.is_external)
 
   const paths = filteredItems.map(article => {
     return {
-      slug: article?.slug?.current,
+      slug: [article?.slug?.current],
     }
   })
 
