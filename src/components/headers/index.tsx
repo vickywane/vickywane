@@ -106,21 +106,26 @@ const HeaderList = styled.ul`
   list-style: square;
   display: flex;
   place-items: center;
-
-  li {
-    margin: 0 25px;
-  }
 `
 
-const Anchor = styled.p<{ active: boolean }>`
-  color: ${props => (props.active ? "#115e65" : "#CCCCCC")};
-  font-family: "Space Grotesk", sans-serif;
+const Anchor = styled.li<{ active: boolean }>`
+  margin: 0 25px;
 
-  &:hover {
-    color: #115e65;
+  &::marker {
+    color: ${props => (props.active ? "#115e65" : "#CCCCCC")};
+  }
 
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
+  p {
+    color: ${props => (props.active ? "#115e65" : "#CCCCCC")};
+    text-decoration: ${props => (props.active ? "underline" : "inherit")};
+    font-family: "Space Grotesk", sans-serif;
+
+    &:hover {
+      color: #115e65;
+
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+    }
   }
 `
 
@@ -173,11 +178,11 @@ const Index = () => {
           <div className={"header-lg-items"}>
             <HeaderList>
               {navigation_links.map(({ name, to, id }, idx) => (
-                <li key={idx}>
+                <Anchor active={activeLinkItem?.id === id} key={idx}>
                   <Link href={to}>
-                    <Anchor active={activeLinkItem?.id === id}>{name}</Anchor>
+                    <p>{name}</p>
                   </Link>
-                </li>
+                </Anchor>
               ))}
 
               <li style={{ listStyle: "none" }}>

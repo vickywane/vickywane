@@ -6,6 +6,7 @@ import StoreProvider from "@/state/StoreProvider"
 import "@/styles/globals.css"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata, ResolvingMetadata } from "next"
+import LazyLoader from "@/framer/LazyLoader"
 
 const font = Space_Grotesk({
   subsets: ["latin", "vietnamese"],
@@ -21,7 +22,6 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-
   return {
     title: "Victory Nwani | Home",
   }
@@ -40,18 +40,20 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <Suspense fallback={<div>Loading...</div>}>
             <PostHog>
-              <StoreProvider>
-                <div
-                  style={{
-                    height: "100vh",
-                    overflow: "auto",
-                    width: "100%",
-                  }}
-                  className={font.className}
-                >
-                  {children}
-                </div>
-              </StoreProvider>
+              <LazyLoader>
+                <StoreProvider>
+                  <div
+                    style={{
+                      height: "100vh",
+                      overflow: "auto",
+                      width: "100%",
+                    }}
+                    className={font.className}
+                  >
+                    {children}
+                  </div>
+                </StoreProvider>
+              </LazyLoader>
             </PostHog>
           </Suspense>
         </StyledComponentsRegistry>

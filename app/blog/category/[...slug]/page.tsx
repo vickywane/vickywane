@@ -37,8 +37,6 @@ export const generateStaticParams = async () => {
     }
   })
 
-  console.log(paths)
-
   return paths
 }
 

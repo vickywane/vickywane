@@ -2,12 +2,10 @@
 
 import React from "react"
 import styled, { keyframes } from "styled-components"
-import { Flex, Text, Button } from "@/styles"
+import { Flex, Text } from "@/styles"
 import HeroStats from "@/components/heros/HeroStats"
 import Typewriter from "typewriter-effect"
 import { GREETING_WORDS } from "../../data"
-import { IoLogoLinkedin } from "react-icons/io5"
-import { FaGithub } from "react-icons/fa"
 
 // @ts-ignore
 import ArrowDown from "@/assets/svg/arrow-down.svg"
@@ -99,9 +97,8 @@ const Hero = styled.section`
   }
 
   .container {
-    max-width: 1224px;
+    max-width: 1404px;
     margin: 0 auto;
-    padding: 0 30px;
     display: grid;
     grid-template-columns: 60% 40%;
 
@@ -246,31 +243,30 @@ const BannerText = styled(Text)`
 `
 
 const HomeHero = ({ banner_description }: HomeHeroProps) => {
-
   return (
-  <>
-    <Hero>
-      <div className={"hero-details-section"}>
-        <div className={"container"}>
-          <div>
-            <div className={"details"}>
-              <Heading>
-                <Typewriter
-                  options={{
-                    strings: GREETING_WORDS.map(word => `${word},`),
-                    autoStart: true,
-                    loop: true,
-                  }}
-                />
-                I&apos;m Nwani <br /> Victory
-              </Heading>
+    <>
+      <Hero>
+        <div className={"hero-details-section"}>
+          <div className={"container"}>
+            <div>
+              <div className={"details"}>
+                <Heading>
+                  <Typewriter
+                    options={{
+                      strings: GREETING_WORDS.map(word => `${word},`),
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                  I&apos;m Nwani <br /> Victory
+                </Heading>
 
-              <BannerText style={{ zIndex: 999 }} color={"#131112"}>
-                {banner_description}
-              </BannerText>
-            </div>
+                <BannerText style={{ zIndex: 999 }} color={"#131112"}>
+                  {banner_description}
+                </BannerText>
+              </div>
 
-            {/* <CTAFlexContainer mt="0">
+              {/* <CTAFlexContainer mt="0">
               <Flex mt="12px" justify="center" > 
                 <a
                   target="_blank"
@@ -325,30 +321,30 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
                 </Flex>
               </Flex>
             </CTAFlexContainer> */}
-          </div>
+            </div>
 
-          <div className={"right-section"}>
-            <p> .</p>
+            <div className={"right-section"}>
+              <p> .</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {posthog.__loaded && posthog.isFeatureEnabled("home-hero-stats") && (
-        <div className={"hero-stats-section"}>
-          <div className={"hero-stats-bottom"} />
+        {posthog.__loaded && posthog.isFeatureEnabled("home-hero-stats") && (
+          <div className={"hero-stats-section"}>
+            <div className={"hero-stats-bottom"} />
 
-          <HeroStats />
-        </div>
-      )}
-    </Hero>
+            <HeroStats />
+          </div>
+        )}
+      </Hero>
 
-    <Flex justify={"center"}>
-      <ArrowContainer>
-        <ArrowDown />
-      </ArrowContainer>
-    </Flex>
-  </>
-)
+      <Flex justify={"center"}>
+        <ArrowContainer>
+          <ArrowDown />
+        </ArrowContainer>
+      </Flex>
+    </>
+  )
 }
 
 export default HomeHero
