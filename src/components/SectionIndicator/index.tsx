@@ -3,7 +3,6 @@ import { Flex, Text } from "@/styles"
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import styled from "styled-components"
 import { IoIosLink } from "react-icons/io"
-import { useSchema } from "sanity"
 import { useState } from "react"
 
 interface SectionIndicatorProps {
@@ -40,10 +39,7 @@ const SectionIndicator = ({ text, id }: SectionIndicatorProps) => {
       onMouseLeave={() => setOnHover(false)}
       onMouseEnter={() => {
         setOnHover(true)
-
-        console.log("ENTERED!!");
-        
-    }}
+      }}
       placeItems="center"
     >
       <Flex>

@@ -16,18 +16,10 @@ import { HOME_QUERY, VACATION_PREVIEW_QUERY } from "@/data/gqols"
 import {
   Article,
   Engagement,
-  Homepage,
   Notification,
   WorkExperience,
   Projects
 } from "@/data/schema"
-
-interface HomeProps {
-  pageData: Homepage
-  vacationPreviews: any
-}
-
-const gtmId = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER
 
 const getData = async () => {
   const pageData = await SanityClient().fetch(HOME_QUERY)
@@ -35,15 +27,9 @@ const getData = async () => {
   const vacationPreviews = await SanityClient().fetch(VACATION_PREVIEW_QUERY)
 
   return {
-    // props: {
     pageData,
     vacationPreviews,
-    // },
   }
-}
-
-{
-  /* <NextHeader name={"Nwani Victory | Overview"} /> */
 }
 
 export default async function Page() {
@@ -83,20 +69,4 @@ export default async function Page() {
       <Footer />
     </div>
   )
-}
-
-{
-  /* <Script src={`https://www.googletagmanager.com/gtag/js?id=${gtmId}`} /> */
-}
-
-{
-  /* <Script id="google-analytics">
-  {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', ${gtmId});
-  `}
-</Script> */
 }

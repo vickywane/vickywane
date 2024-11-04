@@ -86,7 +86,7 @@ const ArrowFlex = styled(Flex)`
   bottom: 0;
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
-     display: none;
+    display: none;
   }
 `
 
@@ -109,17 +109,16 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
     swipeToSlide: false,
     draggable: false,
     rtl: true,
+    arrows: false,
     afterChange: slideNumber => setActiveInsight(slideNumber),
   }
 
   return (
     <Layout bg={"#fff8f0"}>
-      <Flex>
-        <SectionIndicator
-          text="Vacation Jornals Around Earth"
-          id="travel-insight"
-        />
-      </Flex>
+      <SectionIndicator
+        text="Vacation Jornals Around Earth"
+        id="travel-insight"
+      />
 
       <br />
       <br />
@@ -137,6 +136,7 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
               style={{
                 width: "100%",
                 minWidth: "100%",
+                right: 0,
               }}
             >
               <div className={"items-container"}>
@@ -193,10 +193,10 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
           <Arrow />
         </CTAContainer>
       </div>
-       
+
       <DotIndicator
         count={previews.length}
-        clickAction={(item) => sliderRef?.slickGoTo(item)}
+        clickAction={item => sliderRef?.slickGoTo(item)}
         activeItem={activeInsight}
       />
     </Layout>

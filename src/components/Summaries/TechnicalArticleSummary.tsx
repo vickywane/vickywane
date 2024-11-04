@@ -15,6 +15,8 @@ import { BsArrowRight } from "react-icons/bs"
 import CustomButton from "../Buttons"
 import SectionIndicator from "../SectionIndicator"
 import Link from "next/link"
+import useIntersectionObserver from "@/hooks/useIntersectionObserver"
+import { useNavigationStore } from "@/state/zustand/navigation"
 
 const ListContainer = styled.ul`
   list-style: none;
@@ -56,10 +58,18 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
 
   const isMobile = useMediaQuery(MOBILE_BREAKPOINT)
 
+  const { setNavigationLinkItem } = useNavigationStore()
+  const { ref } = useIntersectionObserver({
+    threshold: 0.5,
+    rootMargin: "0px",
+    id: "technical-articles",
+    callback: key => setNavigationLinkItem(key),
+  })
+
   return (
     <Layout bg={"#c1edcc"}>
       <div className={"container"}>
-        <H2Heading>
+        <H2Heading ref={ref}>
           {" "}
           Life As A <span> Technical Writer </span>{" "}
         </H2Heading>
@@ -67,8 +77,8 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
         <Text>
           Outside my working hours, I write technical articles focused on using
           services from public cloud and CMS platforms for developer focused
-          organizations such as for LogRocket, Okta, DigitalOcean, and the AWS Developer
-          Community.
+          organizations such as for LogRocket, Okta, DigitalOcean, and the AWS
+          Developer Community.
         </Text>
 
         <Reviews type="technical_writing_review" />

@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import Image from "next/image"
 import CustomButton from "@/components/Buttons"
 import styled from "styled-components"
@@ -18,6 +18,7 @@ import { RootState } from "@/state"
 import { handleBreadcrumbVisibility } from "@/state/slices/app.slice"
 import { AiOutlineFilePdf } from "react-icons/ai"
 import BreadcrumbMenu from "./BreadcrumbMenu"
+import { useNavigationStore } from "@/state/zustand/navigation"
 
 const Head = styled.header<{ isBreadcrumbOpen: boolean }>`
   height: 90px;
@@ -105,21 +106,26 @@ const HeaderList = styled.ul`
   list-style: square;
   display: flex;
   place-items: center;
-
-  li {
-    margin: 0 25px;
-  }
 `
 
-const Anchor = styled.div`
-  color: #333333;
-  font-family: "Space Grotesk", sans-serif;
+const Anchor = styled.li<{ active: boolean }>`
+  margin: 0 25px;
 
-  :hover {
-    color: #115e65;
+  &::marker {
+    color: ${props => (props.active ? "#115e65" : "#CCCCCC")};
+  }
 
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
+  p {
+    color: ${props => (props.active ? "#115e65" : "#CCCCCC")};
+    text-decoration: ${props => (props.active ? "underline" : "inherit")};
+    font-family: "Space Grotesk", sans-serif;
+
+    &:hover {
+      color: #115e65;
+
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+    }
   }
 `
 
@@ -146,19 +152,7 @@ const Index = () => {
   const { breadcrumb_visibility } = useSelector((state: RootState) => state.app)
   const headerRef = useRef<HTMLUListElement>(null)
 
-  //TODO: FIGURE OUT EVENT LISTENER BUG
-  // const closeEventListener = (event: MouseEvent) => {
-  //   // @ts-ignore
-  //   if (!headerRef.current?.contains(event.target)) {
-  //     dispatch(handleBreadcrumbVisibility("CLOSE"))
-  //   }
-  // }
-
-  // useLayoutEffect(() => {
-  //   document.addEventListener("click", closeEventListener)
-
-  //   return () => document.removeEventListener("click", closeEventListener)
-  // })
+  const { activeLinkItem } = useNavigationStore()
 
   return (
     <Head ref={headerRef} isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
@@ -183,12 +177,12 @@ const Index = () => {
 
           <div className={"header-lg-items"}>
             <HeaderList>
-              {navigation_links.map(({ name, to }, idx) => (
-                <li key={idx}>
-                  <Anchor href={"#"}>
-                    <Link href={to}>{name}</Link>
-                  </Anchor>
-                </li>
+              {navigation_links.map(({ name, to, id }, idx) => (
+                <Anchor active={activeLinkItem?.id === id} key={idx}>
+                  <Link href={to}>
+                    <p>{name}</p>
+                  </Link>
+                </Anchor>
               ))}
 
               <li style={{ listStyle: "none" }}>

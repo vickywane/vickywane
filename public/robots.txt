@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://victory-nwani.dev
+
+# Sitemaps
+Sitemap: https://victory-nwani.dev/sitemap.xml

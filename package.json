@@ -16,11 +16,13 @@
     "@types/react-slick": "^0.23.13",
     "babel-plugin-styled-components": "^1.11.1",
     "dotenv": "^16.0.3",
+    "framer-motion": "^11.11.10",
     "imagemin-pngquant": "^9.0.2",
     "lodash.debounce": "^4.0.8",
     "next-optimized-images": "^2.6.2",
     "next-redux-wrapper": "^8.1.0",
     "next-sanity": "4.1.5",
+    "next-sitemap": "^4.2.3",
     "posthog-js": "^1.57.2",
     "prop-types": "^15.7.2",
     "react-full-screen": "^1.1.1",
@@ -38,7 +40,8 @@
     "styled-components": "^6.1.11",
     "styled-media-query": "^2.1.2",
     "stylis": "^4.0.0",
-    "typewriter-effect": "^2.21.0"
+    "typewriter-effect": "^2.21.0",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
@@ -87,6 +90,7 @@
     "test": "jest",
     "dev": "CUSTOM_ENV=${CUSTOM_ENV:=local} next dev",
     "build": "CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint",
     "prepare": "husky install"
@@ -118,5 +122,6 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
       }
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
