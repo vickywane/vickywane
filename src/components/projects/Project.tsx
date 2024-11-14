@@ -22,8 +22,8 @@ interface ProjectProps
 
 const ContainerGrid = styled.div`
   display: grid;
-  grid-gap: 0 62px;
-  grid-template-columns: 50% 50%;
+  grid-gap: 0 55px;
+  grid-template-columns: 48% 48%;
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     display: flex;

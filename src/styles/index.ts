@@ -215,7 +215,7 @@ export const Flex = styled.div<StyledProps>`
 `
 
 export const Icon = styled(Flex)`
-  font-size: 24px;
+  font-size: 22px;
   color: ${props => props.color || "#000"};
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {

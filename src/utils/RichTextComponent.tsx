@@ -110,7 +110,7 @@ const RichTextComponent = ({
     <PortableText
       value={richText}
       components={RichTextConfiguration({
-        listLength: 2,
+        listLength: 3,
         isClamped,
         maxTextLength,
       })}
