@@ -11,6 +11,7 @@ export const HOME_QUERY = `
          summary,
          description,
          start_date,
+         end_date,
          thumbnail,
          url
        },
