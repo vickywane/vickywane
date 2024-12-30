@@ -17,6 +17,7 @@
     "babel-plugin-styled-components": "^1.11.1",
     "dotenv": "^16.0.3",
     "framer-motion": "^11.11.10",
+    "grapheme-splitter": "^1.0.4",
     "imagemin-pngquant": "^9.0.2",
     "lodash.debounce": "^4.0.8",
     "next-optimized-images": "^2.6.2",

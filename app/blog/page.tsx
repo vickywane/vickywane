@@ -24,7 +24,7 @@ const getData = async (): Promise<PageProps> => {
   return {
     articles: AllBlogs,
     companies: Companies,
-    blogCategories: AllBlogCategories,
+    blogCategories: AllBlogCategories.reverse(),
   }
 }
 

@@ -12,10 +12,17 @@ export const FlexArticleList = styled.ul`
   overflow: auto;
   list-style: none;
 
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;
+
   li {
     width: 450px;
     min-width: 450px;
     margin: 0 32px 0 0;
+  }
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
@@ -101,7 +108,7 @@ export const H3Heading = styled.h3<StyledProps>`
   line-height: 35px;
   color: ${props => props.color || "#115e65"};
   text-align: ${props => props.align};
-  margin-bottom: ${props => props.mb ? props.mb : "30px"};
+  margin-bottom: ${props => (props.mb ? props.mb : "30px")};
 
   span {
     text-decoration: underline;
@@ -112,7 +119,7 @@ export const H3Heading = styled.h3<StyledProps>`
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {
     font-size: 22px;
-    margin-bottom: ${props => props.mb ? props.mb : "15px"};
+    margin-bottom: ${props => (props.mb ? props.mb : "15px")};
 
     span {
       text-decoration-thickness: 4px;
@@ -228,7 +235,7 @@ export const Icon = styled(Flex)`
 `
 
 export const Button = styled.button<StyledProps>`
-  width: ${props => props.width ? props.width : "auto"};
+  width: ${props => (props.width ? props.width : "auto")};
   padding: 0 26px;
   height: 52px;
   display: ${props => props.display || ""};
@@ -240,7 +247,7 @@ export const Button = styled.button<StyledProps>`
   filter: drop-shadow(7px 7px 0px #0d5c63);
   transition: all 300ms;
   transform: translateY(-10px);
-  justify-content: ${props => props.justify ? props.justify : ""};
+  justify-content: ${props => (props.justify ? props.justify : "")};
   align-items: ${props => props.items || ""};
   p {
     font-style: normal;

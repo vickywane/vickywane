@@ -69,6 +69,8 @@ const ArticleListComponent = async ({
   const cardsTabListRef = useRef<HTMLUListElement>(null)
 
   const handleShiftButton = (type: "right" | "left") => {
+    console.log("cardsTabListRef", type);
+    
     if (!cardsTabListRef.current) return
 
     if (type === "left") {
