@@ -56,21 +56,19 @@ const CustomFlex = styled(Flex)`
 `
 
 interface ArticleListComponentProps {
-  articles: Article[]
-  companies: Company[]
+  // articles: Article[]
+  // companies: Company[]
   blogCategories: BlogCategory[]
 }
 
 const ArticleListComponent = async ({
-  articles,
-  companies,
   blogCategories,
 }: ArticleListComponentProps) => {
   const cardsTabListRef = useRef<HTMLUListElement>(null)
 
   const handleShiftButton = (type: "right" | "left") => {
-    console.log("cardsTabListRef", type);
-    
+    console.log("cardsTabListRef", type)
+
     if (!cardsTabListRef.current) return
 
     if (type === "left") {
@@ -81,67 +79,71 @@ const ArticleListComponent = async ({
   }
 
   return (
-      <div>
-        <QuickCategoriesCard blogCategories={blogCategories} />
+    <div>
+      <QuickCategoriesCard blogCategories={blogCategories} />
 
-        <Layout bg="#f9fafe">
-          <Flex direction="column" style={{ position: "relative" }}>
-            {blogCategories.map(({ name, slug, articles }, idx) => (
-              <div key={idx} style={{ marginBottom: 72 }}>
-                <Flex justify="space-between">
-                  <CustomFlex>
-                    <Flex justify="center">
-                      <H3Heading id={slug?.current}>{name}</H3Heading>
-                    </Flex>
+      <Layout bg="#f9fafe">
+        <Flex direction="column" style={{ position: "relative" }}>
+          {blogCategories.map(({ name, slug, articles }, idx) => (
+            <div key={idx} style={{ marginBottom: 72 }}>
+              <Flex justify="space-between">
+                <CustomFlex>
+                  <Flex justify="center">
+                    <H3Heading id={slug?.current}>{name}</H3Heading>
+                  </Flex>
 
-                    <ButtonContainer>
-                      <Link href={`blog/category/${slug?.current}`}>
-                        <Text> View All </Text>
-                      </Link>
-                    </ButtonContainer>
-                  </CustomFlex>
+                  <ButtonContainer>
+                    <Link href={`blog/category/${slug?.current}`}>
+                      <Text> View All </Text>
+                    </Link>
+                  </ButtonContainer>
+                </CustomFlex>
 
-                  {articles && articles?.length >= 2 && (
-                    <Flex>
-                      <div>
-                        <ButtonContainer
-                          onClick={() => handleShiftButton("left")}
-                        >
-                          <Icon ml="10px" placeItems={"center"}>
-                            <BsArrowLeft color={"#131112"} />
-                          </Icon>
-                        </ButtonContainer>
-                      </div>
+                {articles && articles?.length >= 2 && (
+                  <Flex>
+                    <div>
+                      <ButtonContainer
+                        onClick={() => handleShiftButton("left")}
+                      >
+                        <Icon ml="10px" placeItems={"center"}>
+                          <BsArrowLeft color={"#131112"} />
+                        </Icon>
+                      </ButtonContainer>
+                    </div>
 
-                      <div>
-                        <ButtonContainer
-                          onClick={() => handleShiftButton("right")}
-                        >
-                          <Icon ml="10px" placeItems={"center"}>
-                            <BsArrowRight color={"#131112"} />
-                          </Icon>
-                        </ButtonContainer>
-                      </div>
-                    </Flex>
-                  )}
-                </Flex>
+                    <div>
+                      <ButtonContainer
+                        onClick={() => handleShiftButton("right")}
+                      >
+                        <Icon ml="10px" placeItems={"center"}>
+                          <BsArrowRight color={"#131112"} />
+                        </Icon>
+                      </ButtonContainer>
+                    </div>
+                  </Flex>
+                )}
+              </Flex>
 
-                <br />
-                <hr />
-                <br />
-                <br />
-                <FlexArticleList ref={cardsTabListRef}>
-                  {articles?.map((article, idx) => (
+              <br />
+              <hr />
+              <br />
+              <br />
+              <FlexArticleList ref={cardsTabListRef}>
+                {articles?.map((article, idx) => {
+                  console.log("ARTICLES", article)
+
+                  return (
                     <li key={idx}>
                       <ArticleCard articles={article} />{" "}
                     </li>
-                  ))}
-                </FlexArticleList>
-              </div>
-            ))}
-          </Flex>
-        </Layout>
-      </div>
+                  )
+                })}
+              </FlexArticleList>
+            </div>
+          ))}
+        </Flex>
+      </Layout>
+    </div>
   )
 }
 

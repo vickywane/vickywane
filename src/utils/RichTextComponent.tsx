@@ -10,6 +10,7 @@ import { truncateText } from "./helpers"
 import { ImageLoader } from "./Cloudinary"
 import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
 import ReactPlayer from "react-player"
+import CodeBlock from "@/components/CodeBlock"
 
 interface RichTextComponentProps {
   richText: any
@@ -45,6 +46,9 @@ const RichTextComponent = ({
     maxTextLength,
   }: RichTextOpts): PortableTextComponents => ({
     types: {
+      codeField: ({ value }) => {
+        return <CodeBlock value={value} />
+      },
       "cloudinary.asset": ({ value }) => (
         <CloudinaryAssetRenderer value={value} />
       ),
@@ -97,6 +101,7 @@ const RichTextComponent = ({
         return <ul>{children?.slice(0, isClamped ? listLength : 1000)}</ul>
       },
     },
+    // hardBreak: false,
     listItem: ({ children }) => {
       return (
         <ULList>
@@ -114,6 +119,10 @@ const RichTextComponent = ({
         isClamped,
         maxTextLength,
       })}
+      onMissingComponent={type => {
+        console.warn(`Component for type "${type}" not found`)
+        return null
+      }}
     />
   )
 }
