@@ -120,17 +120,19 @@ const ArticleCard = ({ articles }: ArticleProps) => {
           </Icon>
         </Flex>
       ) : (
-        <Flex>
-          <Flex placeItems="center">
-            <Text color={"#131112"} fontSize={"15px"}>
-              Read Blog Article
-            </Text>
-          </Flex>
+        <Link href={getBlogUrl(articles?.slug)}>
+          <Flex>
+            <Flex placeItems="center">
+              <Text color={"#131112"} fontSize={"15px"}>
+                Read Blog Article
+              </Text>
+            </Flex>
 
-          <Icon ml="10px" placeItems={"center"}>
-            <BsArrowRight color={"#131112"} />
-          </Icon>
-        </Flex>
+            <Icon ml="10px" placeItems={"center"}>
+              <BsArrowRight color={"#131112"} />
+            </Icon>
+          </Flex>
+        </Link>
       )}
     </ArticleComponent>
   )

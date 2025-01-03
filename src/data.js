@@ -2,28 +2,52 @@ import React from "react"
 import styled from "styled-components"
 import media from "styled-media-query"
 
+// export const GREETING_WORDS = [
+//   "Hello", 
+//   "Kedu",
+//   "Bawo ni",
+//   "Sannu",
+//   "Hola",
+//   "Salut",
+//   "Ciao",
+//   "Hallo",
+//   "Merhaba",
+//   "Maakye",
+//   "Dia dhuit",
+//   "Tere",
+//   "Olá",
+//   "Jambo", 
+//   "Hallo",
+//   "Hej",
+//   "Mbote",
+//   "Sawubona",
+//   "Wábo ó",
+//   "Obóyó"
+// ]
+
+
 export const GREETING_WORDS = [
-  "Hello", 
-  "Kedu",
-  "Bawo ni",
-  "Sannu",
-  "Hola",
-  "Salut",
-  "Ciao",
-  "Hallo",
-  "Merhaba",
-  "Maakye",
-  "Dia dhuit",
-  "Tere",
-  "Olá",
-  "Jambo", 
-  "Hallo",
-  "Hej",
-  "Mbote",
-  "Sawubona",
-  "Wábo ó",
-  "Obóyó"
-]
+  { greeting: "Hello", country: "United States", flag: "🇺🇸" },
+  { greeting: "Kedu", country: "Nigeria", flag: "🇳🇬" },
+  { greeting: "Bawo ni", country: "Nigeria", flag: "🇳🇬" },
+  { greeting: "Sannu", country: "Nigeria", flag: "🇳🇬" },
+  { greeting: "Hola", country: "Spain", flag: "🇪🇸" },
+  { greeting: "Salut", country: "France", flag: "🇫🇷" },
+  { greeting: "Ciao", country: "Italy", flag: "🇮🇹" },
+  { greeting: "Hallo", country: "Germany", flag: "🇩🇪" },
+  { greeting: "Merhaba", country: "Turkey", flag: "🇹🇷" },
+  { greeting: "Maakye", country: "Ghana", flag: "🇬🇭" },
+  { greeting: "Dia dhuit", country: "Ireland", flag: "🇮🇪" },
+  { greeting: "Tere", country: "Estonia", flag: "🇪🇪" },
+  { greeting: "Olá", country: "Portugal", flag: "🇵🇹" },
+  { greeting: "Jambo", country: "Kenya", flag: "🇰🇪" },
+  { greeting: "Hallo", country: "Netherlands", flag: "🇳🇱" },
+  { greeting: "Hej", country: "Sweden", flag: "🇸🇪" },
+  { greeting: "Mbote", country: "Congo", flag: "🇨🇩" },
+  { greeting: "Sawubona", country: "South Africa", flag: "🇿🇦" },
+  { greeting: "Wábo ó", country: "Benin", flag: "🇧🇯" },
+  { greeting: "Obóyó", country: "Equatorial Guinea", flag: "🇬🇶" },
+];
 
 const ResponsiveEmoji = styled.div`
   span {

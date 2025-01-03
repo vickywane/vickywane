@@ -99,6 +99,7 @@ const BlogPageWrapper = async ({ article }) => {
 
       <Layout>
         {/* @ts-ignore */}
+        
         <RichTextComponent richText={article.body} />
 
         <Flex mt="70px">

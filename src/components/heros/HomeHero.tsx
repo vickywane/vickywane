@@ -6,6 +6,7 @@ import { Flex, Text } from "@/styles"
 import HeroStats from "@/components/heros/HeroStats"
 import Typewriter from "typewriter-effect"
 import { GREETING_WORDS } from "../../data"
+import GraphemeSplitter from "grapheme-splitter";
 
 // @ts-ignore
 import ArrowDown from "@/assets/svg/arrow-down.svg"
@@ -208,7 +209,7 @@ const ArrowContainer = styled.div`
 const Heading = styled.h1`
   font-style: normal;
   font-weight: 700;
-  font-size: 128px;
+  font-size: 116px;
   line-height: 130px;
   z-index: 5;
   position: relative;
@@ -242,6 +243,12 @@ const BannerText = styled(Text)`
   }
 `
 
+const stringSplitter = (value: string) : string => {
+  const splitter = new GraphemeSplitter();
+
+  return splitter.splitGraphemes(value);
+};
+
 const HomeHero = ({ banner_description }: HomeHeroProps) => {
   return (
     <>
@@ -253,9 +260,12 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
                 <Heading>
                   <Typewriter
                     options={{
-                      strings: GREETING_WORDS.map(word => `${word},`),
+                      strings: GREETING_WORDS.map(word => `${word.greeting} ${word.flag},`),
                       autoStart: true,
                       loop: true,
+                      deleteSpeed: 50, 
+                      stringSplitter,
+
                     }}
                   />
                   I&apos;m Nwani <br /> Victory

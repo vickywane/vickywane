@@ -28,7 +28,8 @@ export const HOME_QUERY = `
         summary,
         tags,
         url,
-        title
+        title,
+        slug
       },
       projects[] -> {
         publish_date,
@@ -116,6 +117,7 @@ export const ARTICLES_QUERY = ({ type, slug }: QueryTypeProps) => {
       slug, 
       summary, 
       gallery,
+      seo_summary,
       tags,
       title, 
       recommended[] -> {
@@ -138,6 +140,7 @@ export const ARTICLES_QUERY = ({ type, slug }: QueryTypeProps) => {
       cover, 
       is_external,
       is_travel_featured,
+      seo_summary,
       slug, 
       summary, 
       tags,
@@ -160,7 +163,8 @@ export const GET_CATEGORY_QUERY = ({ slug }: QueryTypeProps) => {
           title, 
           summary,
           cover,
-          slug
+          slug,
+          is_external
         },
         _createdAt
     }
@@ -178,6 +182,7 @@ export const GET_CATEGORY_QUERY = ({ slug }: QueryTypeProps) => {
         title, 
         summary,
         cover,
+        is_external,
         slug
       }
   }
