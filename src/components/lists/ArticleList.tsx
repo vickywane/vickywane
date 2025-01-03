@@ -130,8 +130,6 @@ const ArticleListComponent = async ({
               <br />
               <FlexArticleList ref={cardsTabListRef}>
                 {articles?.map((article, idx) => {
-                  console.log("ARTICLES", article)
-
                   return (
                     <li key={idx}>
                       <ArticleCard articles={article} />{" "}
