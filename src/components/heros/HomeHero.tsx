@@ -1,12 +1,12 @@
 "use client"
-
-import React from "react"
+import Link from "next/link"
+import React, { useState } from "react"
 import styled, { keyframes } from "styled-components"
 import { Flex, Text } from "@/styles"
 import HeroStats from "@/components/heros/HeroStats"
 import Typewriter from "typewriter-effect"
 import { GREETING_WORDS } from "../../data"
-import GraphemeSplitter from "grapheme-splitter";
+import GraphemeSplitter from "grapheme-splitter"
 
 // @ts-ignore
 import ArrowDown from "@/assets/svg/arrow-down.svg"
@@ -67,6 +67,12 @@ const Hero = styled.section`
     }
   }
 
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .hero-stats-bottom {
     background: #131112;
     height: 118px;
@@ -99,9 +105,12 @@ const Hero = styled.section`
 
   .container {
     max-width: 1404px;
+    width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 60% 40%;
+
+    /* background: red; */
 
     .buttons-ctn {
       display: flex;
@@ -227,6 +236,16 @@ const Heading = styled.h1`
   }
 `
 
+const SectionContainer = styled.div`
+  border: 1px solid #115e65;
+  margin: 25px 0;
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`
+
 interface HomeHeroProps {
   banner_description: string
 }
@@ -236,6 +255,9 @@ const BannerText = styled(Text)`
   margin-bottom: 60px;
   z-index: 5;
   position: relative;
+
+  max-width: 600px;
+
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     margin-top: 15px;
     margin-bottom: 30px;
@@ -243,13 +265,45 @@ const BannerText = styled(Text)`
   }
 `
 
-const stringSplitter = (value: string) : string => {
-  const splitter = new GraphemeSplitter();
+const stringSplitter = (value: string): string => {
+  const splitter = new GraphemeSplitter()
 
-  return splitter.splitGraphemes(value);
-};
+  return splitter.splitGraphemes(value)
+}
+
+interface HeroSectionProps {
+  title: string
+  text: string
+  active: boolean
+}
+
+const HeroInfoSection = ({ title, text, active }: HeroSectionProps) => {
+  return (
+    <SectionContainer>
+      <Text fontSize="18px">{title}</Text>
+
+      {active && <Text fontSize="15px">{text}</Text>}
+    </SectionContainer>
+  )
+}
 
 const HomeHero = ({ banner_description }: HomeHeroProps) => {
+  const [activeSection, setActiveSection] = useState(1)
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSection(prev => {
+        if (prev === 3) {
+          return 1
+        }
+
+        return prev + 1
+      })
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <>
       <Hero>
@@ -260,12 +314,13 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
                 <Heading>
                   <Typewriter
                     options={{
-                      strings: GREETING_WORDS.map(word => `${word.greeting} ${word.flag},`),
+                      strings: GREETING_WORDS.map(
+                        word => `${word.greeting} ${word.flag},`
+                      ),
                       autoStart: true,
                       loop: true,
-                      deleteSpeed: 50, 
+                      deleteSpeed: 50,
                       stringSplitter,
-
                     }}
                   />
                   I&apos;m Nwani <br /> Victory
@@ -334,7 +389,37 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
             </div>
 
             <div className={"right-section"}>
-              <p> .</p>
+              <ul>
+                <li>
+                  <HeroInfoSection
+                    title="Life As A Human"
+                    text="My frontend career started in the early days of dynamic
+                      SPAs when Class-Based components were the norm. Six years
+                      past, I have worked on engineering teams across Africa."
+                    active={activeSection === 1}
+                  />
+                </li>
+
+                <li style={{ marginLeft: "84px" }}>
+                  <HeroInfoSection
+                    title="Life As A Software Engineer"
+                    text="My frontend career started in the early days of dynamic
+                      SPAs when Class-Based components were the norm. Six years
+                      past, I have worked on engineering teams across Africa."
+                    active={activeSection === 2}
+                  />
+                </li>
+
+                <li>
+                  <HeroInfoSection
+                    title="Life As A Technical Writer"
+                    text="My frontend career started in the early days of dynamic
+                      SPAs when Class-Based components were the norm. Six years
+                      past, I have worked on engineering teams across Africa."
+                    active={activeSection === 3}
+                  />
+                </li>
+              </ul>
             </div>
           </div>
         </div>
