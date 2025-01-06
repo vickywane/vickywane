@@ -204,7 +204,7 @@ export const Text = styled.p<StyledProps>`
   text-align: ${props => props.align};
   margin: ${props =>
     `${props.mt || 0} ${props.mr || 0} ${props.mb || 0} ${props.ml || 0}`};
-  font-size: ${props => props.fontSize || "20px"};
+  font-size: ${props => props.fontSize || "17px"};
   font-weight: ${props => props.fontWeight};
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
