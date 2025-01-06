@@ -18,6 +18,8 @@ import Link from "next/link"
 import useIntersectionObserver from "@/hooks/useIntersectionObserver"
 import { useNavigationStore } from "@/state/zustand/navigation"
 
+import { Element } from "react-scroll"
+
 const ListContainer = styled.ul`
   list-style: none;
   display: grid;
@@ -67,55 +69,59 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
   })
 
   return (
-    <Layout bg={"#c1edcc"}>
-      <div className={"container"}>
-        <H2Heading ref={ref}>
-          {" "}
-          Life As A <span> Technical Writer </span>{" "}
-        </H2Heading>
+    <Element name="life-as-a-writer">
+      <Layout bg={"#c1edcc"}>
+        <div className={"container"}>
+          <H2Heading ref={ref}>
+            {" "}
+            Life As A <span> Technical Writer </span>{" "}
+          </H2Heading>
 
-        <Text>
-          Outside my working hours, I write technical articles focused on using
-          services from public cloud and CMS platforms for developer focused
-          organizations such as for LogRocket, Okta, DigitalOcean, and the AWS
-          Developer Community.
-        </Text>
+          <Text>
+            Outside my working hours, I write technical articles focused on
+            using services from public cloud and CMS platforms for developer
+            focused organizations such as for LogRocket, Okta, DigitalOcean, and
+            the AWS Developer Community.
+          </Text>
 
-        <Reviews type="technical_writing_review" />
-        <br />
+          <Reviews type="technical_writing_review" />
+          <br />
 
-        <SectionIndicator
-          text="Latest Published Articles"
-          id="featured-articles"
-        />
+          <SectionIndicator
+            text="Latest Published Articles"
+            id="featured-articles"
+          />
 
-        <br />
-        <Text align="left">
-          {" "}
-          My latest articles hot off the press for your comsumption!{" "}
-        </Text>
+          <br />
+          <Text align="left">
+            {" "}
+            My latest articles hot off the press for your comsumption!{" "}
+          </Text>
 
-        <br />
+          <br />
 
-        <ListContainer>
-          {technicalArticles.slice(0, isMobile ? 3 : 4).map((article, idx) => (
-            <li key={idx}>
-              <ArticleCard articles={article} />
-            </li>
-          ))}
-        </ListContainer>
+          <ListContainer>
+            {technicalArticles
+              .slice(0, isMobile ? 3 : 4)
+              .map((article, idx) => (
+                <li key={idx}>
+                  <ArticleCard articles={article} />
+                </li>
+              ))}
+          </ListContainer>
 
-        <ResponsiveButton mt="20px">
-          <Link href={"/blog"}>
-            <CustomButton
-              clickAction={() => {}}
-              icon={<BsArrowRight size={24} />}
-              text="View All Articles Within Blog"
-            />
-          </Link>
-        </ResponsiveButton>
-      </div>
-    </Layout>
+          <ResponsiveButton mt="20px">
+            <Link href={"/blog"}>
+              <CustomButton
+                clickAction={() => {}}
+                icon={<BsArrowRight size={24} />}
+                text="View All Articles Within Blog"
+              />
+            </Link>
+          </ResponsiveButton>
+        </div>
+      </Layout>
+    </Element>
   )
 }
 

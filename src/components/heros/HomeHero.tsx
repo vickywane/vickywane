@@ -1,5 +1,14 @@
 "use client"
-import Link from "next/link"
+// import Link from "next/link"
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+} from "react-scroll"
+
 import React, { useState } from "react"
 import styled, { keyframes } from "styled-components"
 import { Flex, Text } from "@/styles"
@@ -218,7 +227,7 @@ const ArrowContainer = styled.div`
 const Heading = styled.h1`
   font-style: normal;
   font-weight: 700;
-  font-size: 116px;
+  font-size: 94px;
   line-height: 130px;
   z-index: 5;
   position: relative;
@@ -274,16 +283,33 @@ const stringSplitter = (value: string): string => {
 interface HeroSectionProps {
   title: string
   text: string
+  scrollTo: string
   active: boolean
 }
 
-const HeroInfoSection = ({ title, text, active }: HeroSectionProps) => {
+const HeroInfoSection = ({
+  title,
+  text,
+  active,
+  scrollTo,
+}: HeroSectionProps) => {
   return (
-    <SectionContainer>
-      <Text fontSize="18px">{title}</Text>
+    <div>
+      <Link
+        activeClass="active"
+        to={scrollTo}
+        spy={true}
+        smooth={true}
+        offset={50}
+        duration={500}
+      >
+        <SectionContainer>
+          <Text fontSize="18px">{title}</Text>
 
-      {active && <Text fontSize="15px">{text}</Text>}
-    </SectionContainer>
+          {active && <Text fontSize="15px">{text}</Text>}
+        </SectionContainer>
+      </Link>
+    </div>
   )
 }
 
@@ -393,6 +419,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
                 <li>
                   <HeroInfoSection
                     title="Life As A Human"
+                    scrollTo="life-as-a-human"
                     text="My frontend career started in the early days of dynamic
                       SPAs when Class-Based components were the norm. Six years
                       past, I have worked on engineering teams across Africa."
@@ -407,12 +434,14 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
                       SPAs when Class-Based components were the norm. Six years
                       past, I have worked on engineering teams across Africa."
                     active={activeSection === 2}
+                    scrollTo="life-as-an-engineer"
                   />
                 </li>
 
                 <li>
                   <HeroInfoSection
                     title="Life As A Technical Writer"
+                    scrollTo="life-as-a-writer"
                     text="My frontend career started in the early days of dynamic
                       SPAs when Class-Based components were the norm. Six years
                       past, I have worked on engineering teams across Africa."
@@ -434,7 +463,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
       </Hero>
 
       <Flex justify={"center"}>
-        <ArrowContainer>
+        <ArrowContainer onClick={() => scroll.scrollTo(100)}>
           <ArrowDown />
         </ArrowContainer>
       </Flex>

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
 import React from "react"
 import { WorkExperience } from "@/data/schema"
+import { Element } from "react-scroll"
 
 import { TypedObject } from "@sanity/types"
 import Layout from "@/styles/Layout"
@@ -222,35 +223,37 @@ const JobSummary = ({ experiences }: JobSummaryProp) => {
   })
 
   return (
-    <Layout>
-      <H2Heading ref={ref}>
-        {" "}
-        Life As A <span> Software Engineer </span>{" "}
-      </H2Heading>
-      <Text>
-        Daily at work, I get to work mainly with various technologies within the
-        vast JavaScript ecosystem. From creating or updating existing React
-        components in a Next.js application to debugging a failing E2E test
-        suite within a GitHub CI/CD pipeline.
-      </Text>
-      <br />
-      <br />
+    <Element name="life-as-an-engineer" className="lifeAsAnEngineer">
+      <Layout>
+        <H2Heading ref={ref}>
+          {" "}
+          Life As A <span> Software Engineer </span>{" "}
+        </H2Heading>
+        <Text>
+          Daily at work, I get to work mainly with various technologies within
+          the vast JavaScript ecosystem. From creating or updating existing
+          React components in a Next.js application to debugging a failing E2E
+          test suite within a GitHub CI/CD pipeline.
+        </Text>
+        <br />
+        <br />
 
-      <SectionIndicator text="Reviews From Colleagues" id="work-reviews" />
+        <SectionIndicator text="Reviews From Colleagues" id="work-reviews" />
 
-      <Reviews type="work_review" />
-      <br />
-      <br />
+        <Reviews type="work_review" />
+        <br />
+        <br />
 
-      <SectionIndicator text="Professional Work History" id="work-history" />
-      <List>
-        {experiences.map((item, idx) => (
-          <li className="work-list" key={idx}>
-            <Summary {...item} />
-          </li>
-        ))}
-      </List>
-    </Layout>
+        <SectionIndicator text="Professional Work History" id="work-history" />
+        <List>
+          {experiences.map((item, idx) => (
+            <li className="work-list" key={idx}>
+              <Summary {...item} />
+            </li>
+          ))}
+        </List>
+      </Layout>
+    </Element>
   )
 }
 

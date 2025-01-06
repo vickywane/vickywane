@@ -44,7 +44,7 @@ export default function RootLayout({
                 <StoreProvider>
                   <div
                     style={{
-                      height: "100vh",
+                      // height: "100vh",
                       overflow: "auto",
                       width: "100%",
                     }}
