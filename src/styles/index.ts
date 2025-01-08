@@ -198,7 +198,7 @@ export const ContentLayout = styled.div<LayoutProps>`
 `
 
 export const Text = styled.p<StyledProps>`
-  color: ${props => props.color || "#115e65"};
+  color: ${props => props.color || "#666666"};
   line-height: 38px;
   white-space: pre-line;
   text-align: ${props => props.align};

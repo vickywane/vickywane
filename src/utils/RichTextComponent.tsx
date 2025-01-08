@@ -16,6 +16,7 @@ interface RichTextComponentProps {
   richText: any
   isClamped?: boolean
   maxTextLength?: number
+  overrideStyle?: any
 }
 
 interface RichTextOpts extends Omit<RichTextComponentProps, "richText"> {
@@ -26,6 +27,7 @@ const RichTextComponent = ({
   richText,
   isClamped,
   maxTextLength,
+  overrideStyle,
 }: RichTextComponentProps) => {
   let temp = ""
 
@@ -44,6 +46,7 @@ const RichTextComponent = ({
     listLength,
     isClamped,
     maxTextLength,
+    overrideStyle,
   }: RichTextOpts): PortableTextComponents => ({
     types: {
       codeField: ({ value }) => {
@@ -90,10 +93,14 @@ const RichTextComponent = ({
             return <p> </p>
           }
 
-          return <Text> {truncateText(temp, maxTextLength)} </Text>
+          return (
+            <Text style={overrideStyle}>
+              {truncateText(temp, maxTextLength)}
+            </Text>
+          )
         }
 
-        return <Text> {children} </Text>
+        return <Text style={overrideStyle}> {children} </Text>
       },
     },
     list: {
@@ -118,6 +125,7 @@ const RichTextComponent = ({
         listLength: 3,
         isClamped,
         maxTextLength,
+        overrideStyle,
       })}
       onMissingComponent={type => {
         console.warn(`Component for type "${type}" not found`)

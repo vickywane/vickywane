@@ -74,7 +74,12 @@ const PersonalBio = ({ human_text }: PersonalBioProps) => {
           <H2Heading id="personal-bio">
             Life As A <span>Human</span>
           </H2Heading>
-          <RichTextComponent richText={human_text} />
+          <RichTextComponent
+            overrideStyle={{
+              color: "#666666",
+            }}
+            richText={human_text}
+          />
         </div>
 
         <Flex placeItems="center" justify="center" style={{}}>
