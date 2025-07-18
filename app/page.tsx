@@ -1,4 +1,5 @@
 import React from "react"
+import { PiBugDroid } from "react-icons/pi"
 
 import Header from "@/components/headers"
 import HomeHeroNotification from "@/notifications/HomeHeroNotification"
@@ -18,8 +19,9 @@ import {
   Engagement,
   Notification,
   WorkExperience,
-  Projects
+  Projects,
 } from "@/data/schema"
+import ChatBot from "@/components/ChatBot/"
 
 const getData = async () => {
   const pageData = await SanityClient().fetch(HOME_QUERY)
@@ -36,9 +38,10 @@ export default async function Page() {
   const { pageData, vacationPreviews } = await getData()
 
   return (
-    <div>
+    <div style={{ position: "relative", height: "100vh" }}>
       <Header />
-
+      <ChatBot />
+      
       <HomeHeroNotification
         notification={
           (pageData.notifications &&
@@ -56,7 +59,9 @@ export default async function Page() {
         experiences={(pageData.experiences as unknown) as WorkExperience[]}
       />
 
-      <ProjectsSummary projects={(pageData.projects as unknown) as Projects[]} />
+      <ProjectsSummary
+        projects={(pageData.projects as unknown) as Projects[]}
+      />
 
       <TechnicalArticleSummary
         articles={(pageData.articles as unknown) as Article[]}
