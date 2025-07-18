@@ -29,7 +29,12 @@ const ArticleComponent = styled.div`
   justify-content: space-between;
   overflow: auto;
   transition: all 300ms;
-  filter: drop-shadow(7px 7px 0px #0d5c63);
+  /* filter: drop-shadow(7px 7px 0px #0d5c63); */
+
+  /* -webkit-box-shadow: 13px 13px 0px -3px #0d5c63;
+  -moz-box-shadow: 13px 13px 0px -3px #0d5c63; */
+  /* box-shadow: 13px 24px 0px -2px #0d5c63; */
+
   transform: translateY(-10px);
 
   :hover {
@@ -101,7 +106,13 @@ const ArticleCard = ({ articles }: ArticleProps) => {
       </CardHeader>
       <br />
 
-      <RichTextComponent richText={articles.summary} maxTextLength={25} />
+      <RichTextComponent
+        overrideStyle={{
+          color: "#666666",
+        }}
+        richText={articles.summary}
+        maxTextLength={25}
+      />
 
       <br />
 

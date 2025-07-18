@@ -159,6 +159,9 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
                     <RichTextComponent
                       richText={items?.article?.summary}
                       maxTextLength={35}
+                      overrideStyle={{
+                        color: "#666666",
+                      }}
                     />
 
                     <Flex mt="40px">

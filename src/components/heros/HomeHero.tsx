@@ -114,7 +114,6 @@ const Hero = styled.section`
         object-fit: contain;
         top: 0;
         position: absolute;
-        z-index: 0;
       }
     }
   }
@@ -211,7 +210,6 @@ const Heading = styled.h1`
   font-weight: 700;
   font-size: 116px;
   line-height: 130px;
-  z-index: 5;
   position: relative;
   color: ${props => props.color || "#115e65"};
   text-align: ${(props: any) => props.align};
@@ -234,7 +232,6 @@ interface HomeHeroProps {
 const BannerText = styled(Text)`
   margin-top: 30px;
   margin-bottom: 60px;
-  z-index: 5;
   position: relative;
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     margin-top: 15px;
@@ -271,7 +268,7 @@ const HomeHero = ({ banner_description }: HomeHeroProps) => {
                   I&apos;m Nwani <br /> Victory
                 </Heading>
 
-                <BannerText style={{ zIndex: 999 }} color={"#131112"}>
+                <BannerText color={"#131112"}>
                   {banner_description}
                 </BannerText>
               </div>

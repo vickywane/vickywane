@@ -227,7 +227,7 @@ const JobSummary = ({ experiences }: JobSummaryProp) => {
         {" "}
         Life As A <span> Software Engineer </span>{" "}
       </H2Heading>
-      <Text>
+      <Text color="#666666">
         Daily at work, I get to work mainly with various technologies within the
         vast JavaScript ecosystem. From creating or updating existing React
         components in a Next.js application to debugging a failing E2E test
