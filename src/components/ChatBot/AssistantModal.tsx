@@ -4,8 +4,9 @@ import { FiX } from "react-icons/fi"
 import Modal, { Styles } from "react-modal"
 import styled from "styled-components"
 import { Flex, Text } from "@/styles"
-import { MdReplay } from "react-icons/md"
+import { MdRestartAlt } from "react-icons/md"
 import { VscSend } from "react-icons/vsc"
+import { ImMagicWand } from "react-icons/im"
 
 const customStyles: Styles = {
   overlay: {
@@ -21,24 +22,18 @@ type AssistantModal = {
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 65px;
-  padding: 0 12px;
+  height: 55px;
+  padding: 0 24px;
   position: sticky;
   place-items: center;
-`
-
-const Seperator = styled.div`
-  height: 0.5px;
-  background-color: #3a3a40;
-  width: 100%;
 `
 
 type Role = "assistant" | "user"
 
 const Card = styled.div<{ role: Role }>`
   border-radius: ${props =>
-    props.role === "assistant" ? "0 12px 12px 0" : "12px 0 0 12px"};
-  padding: 12px;
+    props.role === "assistant" ? "0 36px 36px 0" : "36px 0 0 36px"};
+  padding: 8px 16px;
   width: fit-content;
 
   background: #f9f9fa;
@@ -161,32 +156,28 @@ export default function AssistantModal({
     >
       <div style={{ height: "100%" }}>
         <Header>
-          <Flex
-            style={{
-              placeItems: "center",
-              gap: "8px",
-            }}
-          >
-            <Text fontSize="18px"> {"Victory's Assistant"} </Text>
+          <div className="flex gap-2 items-center">
+            <ImMagicWand className="text-base" />
 
-            <Flex
+            <p className="text-base"> Assistant </p>
+          </div>
+
+          <div className="flex gap-3">
+            <div
               onClick={resetConversation}
-              style={{
-                placeItems: "center",
-                gap: "4px",
-              }}
+              className="flex items-center gap-1 hover:cursor-pointer "
             >
-              <Text fontSize="12px"> Start Again </Text>
-              <MdReplay size={"12px"} />
-            </Flex>
-          </Flex>
+              <p className="text-sm"> Restart </p>
+              <MdRestartAlt className="text-base" />
+            </div>
 
-          <Flex onClick={handleClose}>
-            <FiX fontSize="18px" />
-          </Flex>
+            <div className="hover:cursor-pointer" onClick={handleClose}>
+              <FiX fontSize="18px" />
+            </div>
+          </div>
         </Header>
 
-        <Seperator />
+        <div className="border-b" />
 
         <Container>
           <ULContainer>
