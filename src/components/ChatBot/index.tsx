@@ -37,7 +37,7 @@ const FAB = styled.div`
 `
 
 export default function Index() {
-  const [modalIsOpen, setIsOpen] = useState(true)
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   function closeModal() {
     setIsOpen(false)
