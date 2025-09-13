@@ -23,7 +23,6 @@
     "next-optimized-images": "^2.6.2",
     "next-redux-wrapper": "^8.1.0",
     "next-sanity": "4.1.5",
-    "next-sitemap": "^4.2.3",
     "openai": "^5.8.3",
     "pdfreader": "^3.0.7",
     "posthog-js": "^1.57.2",
@@ -101,7 +100,6 @@
     "check-types": "tsc --noEmit",
     "dev": "CUSTOM_ENV=${CUSTOM_ENV:=local} next dev",
     "build": "ls . && CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
-    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint",
     "prepare": "cd ../.. && husky install"
