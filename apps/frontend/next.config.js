@@ -1,17 +1,18 @@
 const withOptimizedImage = require("next-optimized-images");
+require("dotenv").config()
 
-if (!process.env.SKIP_DOTENV) {
-  const dotEnvResult = require("dotenv").config({
-    path: `.env.${process.env.CUSTOM_ENV}`
-  });
+// if (!process.env.SKIP_DOTENV) {
+//   const dotEnvResult = require("dotenv").config({
+//     path: `.env.${process.env.CUSTOM_ENV}`
+//   });
 
-  if (dotEnvResult.error) {
-    throw dotEnvResult.error;
-  }
+//   if (dotEnvResult.error) {
+//     throw dotEnvResult.error;
+//   }
 
-} else {
-  console.warn("Skipping loading .env file");
-}
+// } else {
+//   console.warn("Skipping loading .env file");
+// }
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
