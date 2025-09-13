@@ -9,7 +9,8 @@
     "sanity"
   ],
   "scripts": {
-    "build": "turbo run build",
+    "build:frontend": "turbo build --filter=./apps/frontend",
+    "build:sanity": "turbo build --filter=./apps/sanity",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
