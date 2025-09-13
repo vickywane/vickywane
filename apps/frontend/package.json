@@ -100,7 +100,7 @@
     "test": "jest",
     "check-types": "tsc --noEmit",
     "dev": "CUSTOM_ENV=${CUSTOM_ENV:=local} next dev",
-    "build": "CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
+    "build": "ls ../.. && CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint",
