@@ -104,7 +104,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint",
-    "prepare": "husky install"
+    "prepare": "cd ../.. && husky install"
   },
   "repository": {
     "type": "git"
