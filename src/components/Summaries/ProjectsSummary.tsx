@@ -21,11 +21,11 @@ const ProjectSummary = ({ projects }: { projects: Projects[] }) => {
     <Layout bg={"#fff8f0"}>
       <div>
         <H2Heading>
-          My <span> Engineering Projects </span>{" "}
+          Life As An <span> Indie Hacker </span>{" "}
         </H2Heading>
         <Text>
-          Here are some of the public projects I have worked on and the technologies I
-          used to build them.
+          Here are some of the public projects I have worked on and the
+          technologies I used to build them.
         </Text>
       </div>
 

@@ -31,7 +31,7 @@ export const HOME_QUERY = `
         title,
         slug
       },
-      projects[] -> {
+      "projects": projects[] -> {
         publish_date,
         _id,
         name,

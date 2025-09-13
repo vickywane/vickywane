@@ -41,7 +41,7 @@ export default async function Page() {
     <div style={{ position: "relative", height: "100vh" }}>
       <Header />
       <ChatBot />
-      
+
       <HomeHeroNotification
         notification={
           (pageData.notifications &&
@@ -51,13 +51,17 @@ export default async function Page() {
 
       <HomeHero banner_description={pageData.banner_description || ""} />
 
-      <PersonalBio human_text={pageData.human_description} />
-
-      <FeaturedTravelInsight previews={vacationPreviews} />
-
       <JobSummary
         experiences={(pageData.experiences as unknown) as WorkExperience[]}
       />
+
+      {/* <PersonalBio human_text={pageData.human_description} /> */}
+
+      {/* <FeaturedTravelInsight previews={vacationPreviews} /> */}
+
+      {/* <JobSummary
+        experiences={(pageData.experiences as unknown) as WorkExperience[]}
+      /> */}
 
       <ProjectsSummary
         projects={(pageData.projects as unknown) as Projects[]}

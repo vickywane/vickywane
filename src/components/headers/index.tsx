@@ -156,7 +156,7 @@ const Index = () => {
 
   return (
     <Head ref={headerRef} isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
-      <nav>
+      <nav id="victory-header" >
         <div className="container">
           <a href={"/"}>
             <Flex placeItems={"center"}>
@@ -177,13 +177,13 @@ const Index = () => {
 
           <div className={"header-lg-items"}>
             <HeaderList>
-              {navigation_links.map(({ name, to, id }, idx) => (
+              {/* {navigation_links.map(({ name, to, id }, idx) => (
                 <Anchor active={activeLinkItem?.id === id} key={idx}>
                   <Link href={to}>
                     <p>{name}</p>
                   </Link>
                 </Anchor>
-              ))}
+              ))} */}
 
               <li style={{ listStyle: "none" }}>
                 <a

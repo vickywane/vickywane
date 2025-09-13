@@ -242,14 +242,14 @@ const JobSummary = ({ experiences }: JobSummaryProp) => {
       <br />
       <br />
 
-      <SectionIndicator text="Professional Work History" id="work-history" />
+      {/* <SectionIndicator text="Professional Work History" id="work-history" />
       <List>
         {experiences.map((item, idx) => (
           <li className="work-list" key={idx}>
             <Summary {...item} />
           </li>
         ))}
-      </List>
+      </List> */}
     </Layout>
   )
 }

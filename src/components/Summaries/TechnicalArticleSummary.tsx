@@ -82,16 +82,13 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
         </Text>
 
         <Reviews type="technical_writing_review" />
-        <br />
 
         <SectionIndicator
           text="Latest Published Articles"
           id="featured-articles"
         />
 
-        <br />
         <Text align="left">
-          {" "}
           My latest articles hot off the press for your comsumption!{" "}
         </Text>
 
