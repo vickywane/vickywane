@@ -19,8 +19,6 @@ const CardList = styled.ul`
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  //align-content: center;
-  //place-content: center;
   grid-gap: 3rem 2rem;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
@@ -49,9 +47,9 @@ const Reviews = ({ type }: ReviewsProp) => {
         <ResponsiveMasonry  columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
           <Masonry gutter="1.5rem" >
             {work_review.map((review, idx) => (
-              <li key={idx}>
+              <div key={idx}>
                 <ReviewCard review={review} />
-              </li>
+              </div>
             ))}
           </Masonry>
         </ResponsiveMasonry>
@@ -71,18 +69,6 @@ const Reviews = ({ type }: ReviewsProp) => {
         ))}
       </CardList>
     )
-
-    // return (
-    //   <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-    //     <Masonry>
-    //       {technical_writing_review.map((review, idx) => (
-    //         <li key={idx}>
-    //           <ReviewCard review={review} />
-    //         </li>
-    //       ))}
-    //     </Masonry>
-    //   </ResponsiveMasonry>
-    // )
   }
 
   return <></>

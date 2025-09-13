@@ -76,7 +76,7 @@ const Project = ({
           <br />
 
           <Flex direction="row" justify="space-betweeasn">
-            <H4Heading fontWeight={600}>Project Components</H4Heading>
+            <H4Heading fontWeight={600}>Technologies</H4Heading>
           </Flex>
 
           <ul style={{ color: "#115e65", marginLeft: "26px" }}>

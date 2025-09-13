@@ -120,9 +120,6 @@ const FeaturedTravelInsight = ({ previews }: FeaturedTravelInsightProps) => {
         id="travel-insight"
       />
 
-      <br />
-      <br />
-
       <div style={{ display: "grid", gridTemplateColumns: "100% auto" }}>
         <Slider
           ref={slider => {

@@ -16,10 +16,12 @@ export const SectionBoxIndicator = styled(Flex)`
   width: fit-content;
   padding: 0 45px;
   border-radius: 0 60px 0 0;
+  margin: 42px 0;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     height: 40px;
     padding: 0 30px;
+    margin: 26px 0;
   }
 `
 

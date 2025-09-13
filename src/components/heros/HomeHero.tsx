@@ -1,54 +1,16 @@
 "use client"
 
 import React from "react"
-import styled, { keyframes } from "styled-components"
-import { Flex, Text } from "@/styles"
-import HeroStats from "@/components/heros/HeroStats"
+import styled from "styled-components"
+import { Text } from "@/styles"
 import Typewriter from "typewriter-effect"
 import { GREETING_WORDS } from "../../data"
-import GraphemeSplitter from "grapheme-splitter";
+import GraphemeSplitter from "grapheme-splitter"
 
-// @ts-ignore
-import ArrowDown from "@/assets/svg/arrow-down.svg"
 import {
   MOBILE_BREAKPOINT,
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
-import { posthog } from "posthog-js"
-
-const DashContainer = styled(Flex)`
-  .dash {
-    margin: 0;
-    height: 3px;
-    width: 70px;
-    background: #0d5c63;
-
-    @media (max-width: ${MOBILE_BREAKPOINT}px) {
-      width: 40px;
-    }
-  }
-`
-
-const CTAFlexContainer = styled(Flex)`
-  justify-content: flex-start;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    justify-content: center;
-  }
-`
-
-const IconContainer = styled.div`
-  color: #000;
-  font-size: 54px;
-  margin-top: 8px;
-
-  @media (max-width: ${TABLET_BREAKPOINT}px) {
-    font-size: 34px;
-  }
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    font-size: 36px;
-  }
-`
 
 const Hero = styled.section`
   background: #fff8f0;
@@ -173,38 +135,6 @@ const Hero = styled.section`
   }
 `
 
-const moveArrow = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(50px);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-`
-
-const ArrowContainer = styled.div`
-  margin-top: 4rem;
-  animation: ${moveArrow} 1500ms;
-  animation-iteration-count: infinite;
-
-  @media (max-width: ${TABLET_BREAKPOINT}px) {
-    margin-top: 1rem;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    margin-top: 1rem;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-`
-
 const Heading = styled.h1`
   font-style: normal;
   font-weight: 700;
@@ -240,118 +170,43 @@ const BannerText = styled(Text)`
   }
 `
 
-const stringSplitter = (value: string) : string => {
-  const splitter = new GraphemeSplitter();
+const stringSplitter = (value: string): string => {
+  const splitter = new GraphemeSplitter()
 
-  return splitter.splitGraphemes(value);
-};
+  return splitter.splitGraphemes(value)
+}
 
-const HomeHero = ({ banner_description }: HomeHeroProps) => {
-  return (
-    <>
-      <Hero>
-        <div className={"hero-details-section"}>
-          <div className={"container"}>
-            <div>
-              <div className={"details"}>
-                <Heading>
-                  <Typewriter
-                    options={{
-                      strings: GREETING_WORDS.map(word => `${word.greeting} ${word.flag},`),
-                      autoStart: true,
-                      loop: true,
-                      deleteSpeed: 50, 
-                      stringSplitter,
+const HomeHero = ({ banner_description }: HomeHeroProps) => (
+  <Hero>
+    <div className={"hero-details-section"}>
+      <div className={"container"}>
+        <div>
+          <div className={"details"}>
+            <Heading>
+              <Typewriter
+                options={{
+                  strings: GREETING_WORDS.map(
+                    word => `${word.greeting} ${word.flag},`
+                  ),
+                  autoStart: true,
+                  loop: true,
+                  deleteSpeed: 50,
+                  stringSplitter,
+                }}
+              />
+              I&apos;m Nwani <br /> Victory
+            </Heading>
 
-                    }}
-                  />
-                  I&apos;m Nwani <br /> Victory
-                </Heading>
-
-                <BannerText color={"#131112"}>
-                  {banner_description}
-                </BannerText>
-              </div>
-
-              {/* <CTAFlexContainer mt="0">
-              <Flex mt="12px" justify="center" > 
-                <a
-                  target="_blank"
-                  href="mailto:Vickywane@gmail.com?subject=Let's%20talk%20from%20your%20Personal%20Website"
-                >
-                  <Button
-                    color={"#131112"}
-                    background={"#fff"}
-                    style={{ border: "1.5px solid #131112" }}
-                  >
-                    <Text fontSize="18px"> Contact Me </Text>
-                  </Button>
-                </a>
-              </Flex>
-
-              <DashContainer placeItems="center">
-                <div className="dash" />
-              </DashContainer>
-
-              <Flex placeItems="center">
-                <Flex>
-                  <a
-                    target="_blank"
-                    rel="no-opener"
-                    href="https://www.linkedin.com/in/victory-nwani/"
-                  >
-                    <IconContainer>
-                      <IoLogoLinkedin />
-                    </IconContainer>
-                  </a>
-                </Flex>
-
-                <div
-                  style={{
-                    margin: "0 8px",
-                    height: "8px",
-                    width: "8px",
-                    background: "#0d5c63",
-                  }}
-                />
-
-                <Flex>
-                  <a
-                    href="https://github.com/vickywane"
-                    target="_blank"
-                    rel="no-opener"
-                  >
-                    <IconContainer>
-                      <FaGithub />
-                    </IconContainer>
-                  </a>
-                </Flex>
-              </Flex>
-            </CTAFlexContainer> */}
-            </div>
-
-            <div className={"right-section"}>
-              <p> .</p>
-            </div>
+            <BannerText color={"#131112"}>{banner_description}</BannerText>
           </div>
         </div>
 
-        {posthog.__loaded && posthog.isFeatureEnabled("home-hero-stats") && (
-          <div className={"hero-stats-section"}>
-            <div className={"hero-stats-bottom"} />
-
-            <HeroStats />
-          </div>
-        )}
-      </Hero>
-
-      <Flex justify={"center"}>
-        <ArrowContainer>
-          <ArrowDown />
-        </ArrowContainer>
-      </Flex>
-    </>
-  )
-}
+        <div className={"right-section"}>
+          <p> .</p>
+        </div>
+      </div>
+    </div>
+  </Hero>
+)
 
 export default HomeHero
