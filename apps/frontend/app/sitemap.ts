@@ -11,26 +11,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const articles = await SanityClient().fetch(SITEMAP_QUERY)
 
-  const articleUrls = articles.map((item: any) => {
-    if (item?.articles) {
-      return {
-        url: `${SITE_URL}/blog/category/${item.slug.current}`,
-        lastModified: new Date(item.publish_date),
-        priority: 1,
-      }
-    }
-
-    return {
-      url: `${SITE_URL}/blog/${item.slug.current}`,
-      lastModified: new Date(item.publish_date),
-      priority: 1,
-    }
-  })
+  const articleUrls = articles.map((item: any) => ({
+    url: item?.articles
+      ? `${SITE_URL}/blog/category/${item.slug.current?.replace("&", "&amp;")}`
+      : `${SITE_URL}/blog/${item.slug.current?.replace("&", "&amp;")}`,
+    lastModified: new Date(item.publish_date),
+    priority: 1,
+  }))
 
   return [
     {
       url: SITE_URL,
-      lastModified: new Date().toISOString(),
+      lastModified: new Date(),
       priority: 1,
     },
     ...articleUrls,

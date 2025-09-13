@@ -5,7 +5,6 @@ import Header from "@/components/headers"
 import HomeHeroNotification from "@/notifications/HomeHeroNotification"
 import HomeHero from "@/components/heros/HomeHero"
 import PersonalBio from "@/components/bio/PersonalBio"
-// import HomeMasonry from "@/components/Gallery/HomeMasonry";
 import FeaturedTravelInsight from "@/components/Insights/FeaturedTravelInsight"
 import JobSummary from "@/components/Summaries/JobSummary"
 import TechnicalArticleSummary from "@/components/Summaries/TechnicalArticleSummary"
