@@ -103,7 +103,8 @@
     "build": "CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint"
+    "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint",
+    "prepare": "cd ../.. && husky install"
   },
   "repository": {
     "type": "git"
