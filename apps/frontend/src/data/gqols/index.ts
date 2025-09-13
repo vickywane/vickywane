@@ -1,3 +1,16 @@
+export const SITEMAP_QUERY = `
+  *[_type == 'article' || _type == 'blogCategory']{ 
+    _id,
+    slug, 
+    publish_date,
+
+    articles[] -> {
+        _id,
+        slug
+      }
+  }
+`
+
 export const HOME_QUERY = `
     *[_type == 'homepage'][0]{ 
       _id,
