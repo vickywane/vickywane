@@ -82,9 +82,7 @@ const PersonalBio = ({ human_text }: PersonalBioProps) => {
           />
         </div>
 
-        <Flex placeItems="center" justify="center" style={{}}>
-          {/* HUMAN IMAGE TO THE LEFT LATER....   */}
-
+        <Flex placeItems="center" justify="center" >
           <ImageContainer>
             <Image
               src="/v1721832258/personal-portfolio-app/my-picture.jpg"
