@@ -12,6 +12,7 @@
     "build:frontend": "turbo build --filter=./apps/frontend",
     "build:sanity": "turbo build --filter=./apps/sanity",
     "dev:frontend": "turbo run dev --filter=./apps/frontend",
+    "test": "turbo run test --filter=./apps/frontend",
     "dev:sanity": "turbo run dev --filter=./apps/sanity",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
