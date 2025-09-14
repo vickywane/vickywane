@@ -11,7 +11,7 @@ import { ImageLoader } from "./Cloudinary"
 import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
 import ReactPlayer from "react-player"
 import CodeBlock from "@/components/CodeBlock"
-import { Typography } from "@/components/ui/Typography"
+import { Typography } from "__tests__/ui/Typography.test"
 
 interface RichTextComponentProps {
   richText: any

@@ -6,7 +6,7 @@ import React from "react"
 
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import { Review } from "@/data/schema"
-import { Typography } from "../ui/Typography"
+import { Typography } from "../../../__tests__/ui/Typography.test"
 import { GoArrowUpRight } from "react-icons/go"
 import RichTextComponent from "@/utils/RichTextComponent"
 import classNames from "classnames"

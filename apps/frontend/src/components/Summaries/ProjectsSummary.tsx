@@ -4,7 +4,7 @@ import Layout from "@/styles/Layout"
 import PostHog from "posthog-js"
 import Project from "../projects/Project"
 import { Projects } from "@/data/schema"
-import { Typography } from "../ui/Typography"
+import { Typography } from "../../../__tests__/ui/Typography.test"
 
 const ProjectSummary = ({ projects }: { projects: Projects[] }) => {
   if (

@@ -1,4 +1,4 @@
-import { cva } from "class-variance-authority"
+import { cva, VariantProps } from "class-variance-authority"
 import cn from "classnames"
 
 const style = {

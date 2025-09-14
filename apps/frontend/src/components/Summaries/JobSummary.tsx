@@ -7,7 +7,7 @@ import Reviews from "../Reviews/Reviews"
 import SectionIndicator from "../SectionIndicator"
 import useIntersectionObserver from "@/hooks/useIntersectionObserver"
 import { useNavigationStore } from "@/state/zustand/navigation"
-import { Typography } from "../ui/Typography"
+import { Typography } from "../../../__tests__/ui/Typography.test"
 
 interface JobSummaryProp {
   experiences: Array<WorkExperience>
