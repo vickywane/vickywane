@@ -15,11 +15,14 @@
     "@svgr/webpack": "^6.5.1",
     "@types/react-slick": "^0.23.13",
     "babel-plugin-styled-components": "^1.11.1",
+    "class-variance-authority": "^0.7.1",
+    "classnames": "^2.5.1",
     "dotenv": "^16.0.3",
     "framer-motion": "^11.11.10",
     "grapheme-splitter": "^1.0.4",
     "imagemin-pngquant": "^9.0.2",
     "lodash.debounce": "^4.0.8",
+    "media-chrome": "^4.13.1",
     "next-optimized-images": "^2.6.2",
     "next-redux-wrapper": "^8.1.0",
     "next-sanity": "4.1.5",
@@ -31,7 +34,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
     "react-modal": "^3.16.3",
-    "react-player": "^2.16.0",
+    "react-player": "^3.3.1",
     "react-redux": "^9.1.2",
     "react-responsive-masonry": "^2.2.0",
     "react-slick": "^0.30.2",
@@ -59,7 +62,7 @@
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.3",
     "@semantic-release/release-notes-generator": "^9.0.3",
-    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.13",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "18.14.1",
     "@types/react": "^18",
@@ -86,7 +89,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "semantic-release": "^17.4.4",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^4.1.13",
     "typescript": "5.3.3"
   },
   "keywords": [
@@ -132,5 +135,5 @@
       }
     ]
   },
-   "packageManager": "pnpm@10.0.0"
+  "packageManager": "pnpm@10.0.0"
 }

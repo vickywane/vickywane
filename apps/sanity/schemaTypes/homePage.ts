@@ -13,7 +13,8 @@ export default defineType({
     defineField({
       name: 'banner_description',
       title: 'Banner Description',
-      type: 'string',
+      type: 'array',
+      of: [{type: 'block'}],
     }),
     defineField({
       name: 'banner_image',

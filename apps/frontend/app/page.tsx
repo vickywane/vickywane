@@ -39,7 +39,7 @@ export default async function Page() {
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Header />
-      <ChatBot />
+      {/* <ChatBot /> */}
 
       <HomeHeroNotification
         notification={

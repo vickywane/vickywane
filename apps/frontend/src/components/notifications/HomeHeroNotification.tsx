@@ -63,8 +63,8 @@ const HomeHeroNotification = ({ notification }: HomeHeroNotificationProps) => {
 
   return (
     <NotificationComponent isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
-      <Flex>
-        <Flex placeItems="center" mr="10px">
+      <Flex className="gap-1" >
+        <Flex placeItems="center">
           <Alert />
         </Flex>
 
