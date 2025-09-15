@@ -1,4 +1,4 @@
-name: Portfolio Application C.I Build
+name: Portfolio Frontend Application C.I Build
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
         run: pnpm install
 
       - name: Run Frontend Application Tests
-        run: ls && cd ./apps/frontend && pnpm run test
+        run: cd ./apps/frontend && pnpm run test
 
       - name: Wait for Netlify preview deployment
         if: ${{ github.event_name == 'pull_request' }}
@@ -36,12 +36,12 @@ jobs:
           site_name: "nwani"
           max_timeout: 180
 
-      - name: Generate Code Coverage Report
+      - name: Generate Frontend Code Coverage Report
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage/coverage-final.json
+          file: ./apps/frontend/coverage/coverage-final.json
           fail_ci_if_error: true
-          path_to_write_report: ./jest-coverage/codecov_report.txt
+          path_to_write_report: ./apps/frontend/jest-coverage/codecov_report.txt
         
       - name: Run the semantic-release
         run: npx semantic-release
