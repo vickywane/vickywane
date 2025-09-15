@@ -109,7 +109,7 @@
     "test:watch": "jest --watch",
     "check-types": "tsc --noEmit",
     "dev": "CUSTOM_ENV=${CUSTOM_ENV:=local} next dev",
-    "build": "ls . && CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
+    "build": "CUSTOM_ENV=${CUSTOM_ENV:=prod} next build",
     "start": "next start",
     "lint": "CUSTOM_ENV=${CUSTOM_ENV:=local} next lint",
     "prepare": "cd ../.. && husky install"

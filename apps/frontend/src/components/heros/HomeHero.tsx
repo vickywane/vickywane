@@ -13,7 +13,7 @@ import {
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
 import RichTextComponent from "@/utils/RichTextComponent"
-import { Typography } from "../../../__tests__/ui/Typography.test"
+import { Typography } from "@/components/ui/Typography"
 import Layout from "@/styles/Layout"
 
 const Container = styled.div`

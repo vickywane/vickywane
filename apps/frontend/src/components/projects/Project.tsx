@@ -15,7 +15,7 @@ import {
 import RichTextComponent from "@/utils/RichTextComponent"
 import { Projects } from "@/data/schema"
 import { Video } from "../Video/index"
-import { Typography } from "../../../__tests__/ui/Typography.test"
+import { Typography } from "@/components/ui/Typography"
 
 interface ProjectProps
   extends Pick<

@@ -4,7 +4,7 @@ import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import styled from "styled-components"
 import { IoIosLink } from "react-icons/io"
 import { useState } from "react"
-import { Typography } from "../../../__tests__/ui/Typography.test"
+import { Typography } from "@/components/ui/Typography"
 
 interface SectionIndicatorProps {
   text: string
