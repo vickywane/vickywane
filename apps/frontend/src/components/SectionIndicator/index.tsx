@@ -4,6 +4,7 @@ import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import styled from "styled-components"
 import { IoIosLink } from "react-icons/io"
 import { useState } from "react"
+import { Typography } from "@/components/ui/Typography"
 
 interface SectionIndicatorProps {
   text: string
@@ -11,7 +12,7 @@ interface SectionIndicatorProps {
 }
 
 export const SectionBoxIndicator = styled(Flex)`
-  height: 50px;
+  height: 40px;
   background: #131112;
   width: fit-content;
   padding: 0 45px;
@@ -19,8 +20,8 @@ export const SectionBoxIndicator = styled(Flex)`
   margin: 42px 0;
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 40px;
-    padding: 0 30px;
+    height: 35px;
+    padding: 0 15px;
     margin: 26px 0;
   }
 `
@@ -45,17 +46,11 @@ const SectionIndicator = ({ text, id }: SectionIndicatorProps) => {
       placeItems="center"
     >
       <Flex>
-        {isHovering && (
-          <Flex mr="8px" justify="center" placeItems="center">
-            <IoIosLink size={22} color="white" />
-          </Flex>
-        )}
-
-        <Text>
+        <Typography as="p" styleAs="body">
           <Anchor id={id} href={`#${id}`}>
             {text}
           </Anchor>
-        </Text>
+        </Typography>
       </Flex>
     </SectionBoxIndicator>
   )

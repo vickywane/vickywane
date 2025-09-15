@@ -1,4 +1,4 @@
-name: Portfolio Application C.I Build
+name: Portfolio Frontend Application C.I Build
 
 on:
   push:
@@ -13,24 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v4
+        name: Install PNPM
 
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '14'
-
-      - name: Install npm
-        run: |
-          npm version
-          npm ci
-        env:
-          CI: true
+          node-version: '20'
+          cache: 'pnpm'
 
       - name: Install application dependencies
-        run: npm install
+        run: pnpm install
 
-      - name: Run Application Tests
-        run: npm run test
+      - name: Run Frontend Application Tests
+        run: cd ./apps/frontend && pnpm run test
 
       - name: Wait for Netlify preview deployment
         if: ${{ github.event_name == 'pull_request' }}
@@ -40,14 +36,14 @@ jobs:
           site_name: "nwani"
           max_timeout: 180
 
-      - name: Generate Code Coverage Report
+      - name: Generate Frontend Code Coverage Report
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage/coverage-final.json
-          fail_ci_if_error: true
-          path_to_write_report: ./jest-coverage/codecov_report.txt
+          file: ./apps/frontend/coverage/coverage-final.json
+          fail_ci_if_error: false
+          path_to_write_report: ./apps/frontend/jest-coverage/codecov_report.txt
         
-      - name: Run the semantic-release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      # - name: Run the semantic-release
+      #   run: npx semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

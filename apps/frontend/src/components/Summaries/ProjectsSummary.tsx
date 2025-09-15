@@ -1,10 +1,10 @@
 "use client"
-import { H2Heading, Text } from "@/styles"
 import React from "react"
 import Layout from "@/styles/Layout"
 import PostHog from "posthog-js"
 import Project from "../projects/Project"
 import { Projects } from "@/data/schema"
+import { Typography } from "@/components/ui/Typography"
 
 const ProjectSummary = ({ projects }: { projects: Projects[] }) => {
   if (
@@ -18,26 +18,20 @@ const ProjectSummary = ({ projects }: { projects: Projects[] }) => {
   }
 
   return (
-    <Layout bg={"#fff8f0"}>
-      <div>
-        <H2Heading>
-          Life As An <span> Indie Hacker </span>{" "}
-        </H2Heading>
-        <Text>
+    <Layout classNames="grid gap-8" bg={"#fff8f0"}>
+      <div className="grid gap-2">
+        <Typography as="h2" styleAs="heading_2" className="[&:span]">
+          Life As An <span> Indie Hacker </span>
+        </Typography>
+        <Typography as="p" styleAs="body">
           Here are some of the public projects I have worked on and the
           technologies I used to build them.
-        </Text>
+        </Typography>
       </div>
 
-      <div>
-        <br />
-        <br />
-        <br />
-      </div>
-
-      <div>
+      <div className="grid gap-28">
         {projects.map((project, idx) => (
-          <div style={{ marginBottom: "128px" }} key={idx}>
+          <div key={idx}>
             <Project
               order={idx}
               name={project.name}

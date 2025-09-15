@@ -1,29 +1,28 @@
 "use client"
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import Image from "next/image"
 import CustomButton from "@/components/Buttons"
 import styled from "styled-components"
 import { ImageLoader } from "@/utils/Cloudinary"
 import { Flex, Text } from "@/styles"
 import { FiMenu, FiX } from "react-icons/fi"
-import { navigation_links } from "@/data/static"
 import {
   MOBILE_BREAKPOINT,
   TABLET_BREAKPOINT,
 } from "@/styles/useStyleWidthQuery"
 import { useDispatch, useSelector } from "react-redux"
-import Link from "next/link"
 
 import { RootState } from "@/state"
 import { handleBreadcrumbVisibility } from "@/state/slices/app.slice"
 import { AiOutlineFilePdf } from "react-icons/ai"
 import BreadcrumbMenu from "./BreadcrumbMenu"
 import { useNavigationStore } from "@/state/zustand/navigation"
+import Link from "next/link"
 
 const Head = styled.header<{ isBreadcrumbOpen: boolean }>`
   height: 90px;
   width: 100%;
-  background: #fff;
+  background-color: #fff;
   color: #115e65;
   z-index: 99999;
   display: flex;
@@ -36,15 +35,6 @@ const Head = styled.header<{ isBreadcrumbOpen: boolean }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1404px;
-    margin: 0 auto;
-
-    .container {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      place-items: center;
-    }
   }
 
   .header-small-items {
@@ -156,9 +146,15 @@ const Index = () => {
 
   return (
     <Head ref={headerRef} isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
-      <nav id="victory-header" >
-        <div className="container">
-          <a href={"/"}>
+      <nav>
+        <div
+          style={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+          }}
+          className="w-full flex items-center justify-between"
+        >
+          <Link href={"/"}>
             <Flex placeItems={"center"}>
               <ImageContainer>
                 <Image
@@ -173,7 +169,7 @@ const Index = () => {
                 <HeaderTitle> Victory Nwani </HeaderTitle>
               </Flex>
             </Flex>
-          </a>
+          </Link>
 
           <div className={"header-lg-items"}>
             <HeaderList>

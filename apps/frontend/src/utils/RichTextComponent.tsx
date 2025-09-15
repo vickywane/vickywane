@@ -11,12 +11,13 @@ import { ImageLoader } from "./Cloudinary"
 import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
 import ReactPlayer from "react-player"
 import CodeBlock from "@/components/CodeBlock"
+import { Typography } from "@/components/ui/Typography"
 
 interface RichTextComponentProps {
   richText: any
   isClamped?: boolean
   maxTextLength?: number
-  overrideStyle?: any
+  className?: string
 }
 
 interface RichTextOpts extends Omit<RichTextComponentProps, "richText"> {
@@ -27,7 +28,7 @@ const RichTextComponent = ({
   richText,
   isClamped,
   maxTextLength,
-  overrideStyle,
+  className,
 }: RichTextComponentProps) => {
   let temp = ""
 
@@ -46,7 +47,7 @@ const RichTextComponent = ({
     listLength,
     isClamped,
     maxTextLength,
-    overrideStyle,
+    className,
   }: RichTextOpts): PortableTextComponents => ({
     types: {
       codeField: ({ value }) => {
@@ -94,13 +95,17 @@ const RichTextComponent = ({
           }
 
           return (
-            <Text style={overrideStyle}>
+            <Typography as="p" styleAs="body" className={className}>
               {truncateText(temp, maxTextLength)}
-            </Text>
+            </Typography>
           )
         }
 
-        return <Text style={overrideStyle}> {children} </Text>
+        return (
+          <Typography as="p" styleAs="body" className={className}>
+            {children}
+          </Typography>
+        )
       },
     },
     list: {
@@ -125,7 +130,7 @@ const RichTextComponent = ({
         listLength: 3,
         isClamped,
         maxTextLength,
-        overrideStyle,
+        className,
       })}
       onMissingComponent={type => {
         console.warn(`Component for type "${type}" not found`)

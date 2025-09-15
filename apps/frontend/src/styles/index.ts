@@ -113,7 +113,7 @@ export const H3Heading = styled.h3<StyledProps>`
   span {
     text-decoration: underline;
     text-decoration-color: #d0db97;
-    text-decoration-thickness: 7px;
+    text-decoration-thickness: 5px;
     font-weight: 700;
   }
 
@@ -181,7 +181,7 @@ export const ContentLayout = styled.div<LayoutProps>`
 
   .content-elements {
     margin: 0 auto;
-    max-width: 1404px;
+    max-width: 1400px;
     padding: 200px 26px;
   }
 

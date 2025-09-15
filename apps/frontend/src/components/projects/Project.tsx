@@ -8,9 +8,14 @@ import { ImageLoader } from "@/utils/Cloudinary"
 import { IoLogoGithub } from "react-icons/io"
 import { GoArrowUpRight } from "react-icons/go"
 import styled from "styled-components"
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "@/styles/useStyleWidthQuery"
+import {
+  MOBILE_BREAKPOINT,
+  TABLET_BREAKPOINT,
+} from "@/styles/useStyleWidthQuery"
 import RichTextComponent from "@/utils/RichTextComponent"
 import { Projects } from "@/data/schema"
+import { Video } from "../Video/index"
+import { Typography } from "@/components/ui/Typography"
 
 interface ProjectProps
   extends Pick<
@@ -56,46 +61,44 @@ const Project = ({
     <ContainerGrid>
       <Flex placeItems="center">
         <div>
-          <Flex direction="row">
-            <H3Heading fontWeight={600}>{name}</H3Heading>
+          <a target="_blank" href={github_url}>
+            <Flex className="items-center" direction="row">
+              <div>
+                <Typography as="h3" styleAs="heading_3">
+                  {name}
+                </Typography>
+              </div>
 
-            <Flex mt="6px" ml="6px">
-              <GoArrowUpRight fontSize={26} color="#115e65" />
+              <Flex ml="6px">
+                <GoArrowUpRight fontSize={26} color="#115e65" />
+              </Flex>
             </Flex>
-          </Flex>
+          </a>
 
           <RichTextComponent richText={description} />
 
-          <div>
-            <br />
-            <br />
-            <br />
-          </div>
+          <hr className="text-semi-transparent-grey" style={{ margin: "32px 0" }} />
 
-          <hr />
-          <br />
-
-          <Flex direction="row" justify="space-betweeasn">
-            <H4Heading fontWeight={600}>Technologies</H4Heading>
-          </Flex>
+          <Typography as="p" styleAs="heading_4">
+            Technologies
+          </Typography>
 
           <ul style={{ color: "#115e65", marginLeft: "26px" }}>
             {project_tools?.map((item, idx) => (
               <li style={{ listStyle: "square" }} key={idx}>
-                <Text>{item}</Text>
+                <Typography as="p" styleAs="body">
+                  {item}
+                </Typography>
               </li>
             ))}
           </ul>
-
-          <br />
-          <hr />
 
           <Flex mt="40px">
             <a target="_blank" href={github_url}>
               <CustomButton
                 clickAction={() => {}}
                 icon={<IoLogoGithub size={24} />}
-                text="View GitHub Repository"
+                text="GitHub Repository"
               />
             </a>
           </Flex>
@@ -103,15 +106,19 @@ const Project = ({
       </Flex>
 
       <Flex placeItems="center" style={{ gridRow: order === 0 ? 1 : "" }}>
-        <ImageContainer>
-          <Image
-            loader={ImageLoader}
-            fill
-            style={{ objectFit: "cover", position: "absolute" }}
-            alt="Event-Driven Currency Predictor"
-            src={cover?.public_id}
-          />
-        </ImageContainer>
+        {cover?.resource_type === "image" ? (
+          <ImageContainer className="rounded-3xl">
+            <Image
+              loader={ImageLoader}
+              fill
+              className="rounded-3xl object-cover absolute"
+              alt="Event-Driven Currency Predictor"
+              src={cover?.public_id}
+            />
+          </ImageContainer>
+        ) : (
+          <Video source={cover?.secure_url} />
+        )}
       </Flex>
     </ContainerGrid>
   )

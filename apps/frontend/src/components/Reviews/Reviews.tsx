@@ -41,11 +41,11 @@ const Reviews = ({ type }: ReviewsProp) => {
 
   if (type === "work_review") {
     if (!work_review) return null
-    
+
     return (
       <div>
-        <ResponsiveMasonry  columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
-          <Masonry gutter="1.5rem" >
+        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
+          <Masonry gutter="2.5rem">
             {work_review.map((review, idx) => (
               <div key={idx}>
                 <ReviewCard review={review} />
@@ -64,7 +64,7 @@ const Reviews = ({ type }: ReviewsProp) => {
       <CardList>
         {technical_writing_review.map((review, idx) => (
           <li key={idx}>
-            <ReviewCard review={review} />
+            <ReviewCard {...{ type, review }} />
           </li>
         ))}
       </CardList>

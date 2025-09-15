@@ -3,119 +3,101 @@ import styled from "styled-components"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
 import React from "react"
-import { BsArrowUpRightSquare } from "react-icons/bs"
 
-// @ts-ignore
 import { MOBILE_BREAKPOINT } from "@/styles/useStyleWidthQuery"
 import { Review } from "@/data/schema"
-import { PortableText } from "@portabletext/react"
-import { PortableTextComponents } from "@portabletext/react/src"
+import { Typography } from "@/components/ui/Typography"
+import { GoArrowUpRight } from "react-icons/go"
+import RichTextComponent from "@/utils/RichTextComponent"
+import classNames from "classnames"
 
-const Container = styled.div`
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 30px;
-  max-width: 750px;
+const ImageContainer = styled.div`
+  height: 65px;
+  width: 65px;
+  min-width: 65px;
+  border-radius: 50%;
+  border: 2px solid #000;
+  position: relative;
+  margin-right: 20px;
 
-  .image-ctn {
-    height: 80px;
-    width: 80px;
-    min-width: 80px;
-    border-radius: 50%;
-    border: 2px solid #000;
-    position: relative;
-    margin-right: 20px;
-
-    img {
-      border: 3px solid #fff8f0;
-      border-radius: inherit;
-    }
+  img {
+    border: 2px solid #fff8f0;
+    border-radius: inherit;
   }
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px;
+    height: 55px;
+    width: 55px;
+    min-width: 55px;
+    border-radius: 50%;
+    border: 1.5px solid #000;
+    margin-right: 10px;
 
-    .image-ctn {
-      height: 70px;
-      width: 70px;
-      min-width: 70px;
-      border-radius: 50%;
-      border: 1.5px solid #000;
-      margin-right: 10px;
-  
-      img {
-        border: 2px solid #fff8f0;
-        border-radius: inherit;
-      }
+    img {
+      border: 1px solid #fff8f0;
+      border-radius: inherit;
     }
   }
 `
 
-const richComponent: PortableTextComponents = {
-  block: {
-    normal: ({ children }) => (
-      <Text mb={"20px"} mt={"20px"}>
-        {children}
-      </Text>
-    ),
-  },
-}
-
 interface ReviewCardProps {
   review: Review
-  isActive?: boolean
+  type: "work_review" | "technical_writing_review"
 }
 
-const ReviewCard = ({ review, isActive }: ReviewCardProps) => {
+const ReviewCard = ({ review, type }: ReviewCardProps) => {
   return (
-    <Container style={{ background: isActive ? "pink" : "inherit" }}>
-      <Flex direction={"column"}>
-        <Flex direction={"row"}>
-          <div className={"image-ctn"}>
-            <Image
-              loader={ImageLoader}
-              fill
-              alt={"maureen"}
-              src={review.thumbnail?.public_id}
-            />
-          </div>
+    <div
+      style={{ padding: "20px" }}
+      className={classNames(
+        "bg-white rounded-2xl p-6 border border-semi-transparent-grey",
+        type === "technical_writing_review" && "border-0"
+      )}
+    >
+      <div className="grid gap-6">
+        <a className="w-fit" href={review.reviewer_link} target={"_blank"}>
+          <Flex direction={"row"}>
+            <ImageContainer>
+              <Image
+                loader={ImageLoader}
+                fill
+                alt={review.name ?? "review img"}
+                src={review.thumbnail?.public_id}
+              />
+            </ImageContainer>
 
-          <Flex direction={"column"} justify={"center"}>
-            <Text fontWeight={600}>
-              <a href={review.reviewer_link} target={"_blank"}>
+            <Flex direction={"column"} justify={"center"}>
+              <Typography styleAs="heading_4" className="text-[14px]" as="p">
                 {review.name}
-              </a>
-            </Text>
+              </Typography>
 
-            <Text color={"#333333"}>{review.reviewer_role}</Text>
+              <Typography as="p" styleAs="body">
+                {review.reviewer_role}
+              </Typography>
 
-            <Flex mt={"6px"}>
-              <Text color={"#333333"}>
-                <a href={review.company_link} target={"_blank"}>
+              <div className="flex flex-row items-center">
+                <Typography as="p" styleAs="body">
                   {review.company}
-                </a>
-              </Text>
+                </Typography>
 
-              <Icon ml={"10px"} placeItems={"center"}>
-                <BsArrowUpRightSquare />
-              </Icon>
+                <Flex ml="6px">
+                  <GoArrowUpRight className="text-md" />
+                </Flex>
+              </div>
             </Flex>
           </Flex>
-        </Flex>
+        </a>
 
-        {/* @ts-ignore */}
-        <PortableText value={review.review_text} components={richComponent} />
+        <RichTextComponent richText={review.review_text} />
 
-        {review.work_duration && (
-          <Text style={{ fontSize: "13px" }}>
+        {/* {review.work_duration && (
+          <Typography as="p" styleAs="body" className="text-xs">
             * We worked at <b> {review.company} </b> from{" "}
             <b> {review.work_duration} </b>
-          </Text>
-        )}
-      </Flex>
-    </Container>
+          </Typography>
+        )} */}
+      </div>
+    </div>
   )
 }
 
