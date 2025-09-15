@@ -43,7 +43,7 @@ jobs:
           fail_ci_if_error: false
           path_to_write_report: ./apps/frontend/jest-coverage/codecov_report.txt
         
-      - name: Run the semantic-release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      # - name: Run the semantic-release
+      #   run: npx semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
