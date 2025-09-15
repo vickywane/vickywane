@@ -13,17 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v4
+        name: Install PNPM
 
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '20'
-
-      - name: Install PNPM
-        run: |
-          pnpm version
-        env:
-          CI: true
+          cache: 'pnpm'
 
       - name: Install application dependencies
         run: pnpm install
