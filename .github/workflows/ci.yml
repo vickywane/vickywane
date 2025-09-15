@@ -25,8 +25,8 @@ jobs:
       - name: Install application dependencies
         run: pnpm install
 
-      - name: Run Application Tests
-        run: pnpm run test
+      - name: Run Frontend Application Tests
+        run: ls && cd ./apps/frontend && pnpm run test
 
       - name: Wait for Netlify preview deployment
         if: ${{ github.event_name == 'pull_request' }}
