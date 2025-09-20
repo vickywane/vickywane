@@ -14,6 +14,7 @@ import Link from "next/link"
 import { Article } from "@/data/schema"
 import RichTextComponent from "@/utils/RichTextComponent"
 import { getBlogUrl } from "@/utils/linkTransforms"
+import { Typography } from "@/components/ui/Typography"
 
 interface ArticleProps {
   articles: Article
@@ -81,40 +82,36 @@ const SubTitle = styled(Text)`
 const ArticleCard = ({ articles }: ArticleProps) => {
   return (
     <ArticleComponent>
-      <CardHeader justify={"space-between"}>
-        {articles.is_external ? (
-          <Title mb="10px">
+      <div className="flex flex-col">
+        <Typography as="p" styleAs="heading_2" className="text-base md:text-xl">
+          {articles.is_external ? (
             <a target={"_blank"} rel="noopener" href={articles.url}>
               {articles.title}{" "}
             </a>
-          </Title>
-        ) : (
-          <Link href={getBlogUrl(articles?.slug)}>
-            <Title mb="10px">{articles.title} </Title>
-          </Link>
-        )}
+          ) : (
+            <Link href={getBlogUrl(articles?.slug)}>{articles.title}</Link>
+          )}
+        </Typography>
 
         <Flex placeItems={"center"}>
-          <SubTitle color={"#666666"}>
+          <Typography
+            as="p"
+            styleAs="span"
+            className="text-neutral-gray text-xs md:text-base"
+          >
             {new Date(articles._createdAt).toLocaleDateString("en-us", {
               year: "numeric",
               day: "2-digit",
               month: "long",
             })}
-          </SubTitle>
+          </Typography>
         </Flex>
-      </CardHeader>
-      <br />
+      </div>
 
       <RichTextComponent
-        overrideStyle={{
-          color: "#666666",
-        }}
         richText={articles.summary}
-        maxTextLength={25}
+        maxTextLength={35}
       />
-
-      <br />
 
       {articles.is_external ? (
         <Flex>

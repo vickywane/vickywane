@@ -1,4 +1,4 @@
-import { Flex, Icon, Text } from "@/styles/"
+import { Flex } from "@/styles/"
 import styled from "styled-components"
 import Image from "next/image"
 import { ImageLoader } from "@/utils/Cloudinary"
@@ -12,13 +12,9 @@ import RichTextComponent from "@/utils/RichTextComponent"
 import classNames from "classnames"
 
 const ImageContainer = styled.div`
-  height: 65px;
-  width: 65px;
-  min-width: 65px;
   border-radius: 50%;
   border: 2px solid #000;
   position: relative;
-  margin-right: 20px;
 
   img {
     border: 2px solid #fff8f0;
@@ -26,12 +22,8 @@ const ImageContainer = styled.div`
   }
 
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 55px;
-    width: 55px;
-    min-width: 55px;
     border-radius: 50%;
     border: 1.5px solid #000;
-    margin-right: 10px;
 
     img {
       border: 1px solid #fff8f0;
@@ -48,16 +40,15 @@ interface ReviewCardProps {
 const ReviewCard = ({ review, type }: ReviewCardProps) => {
   return (
     <div
-      style={{ padding: "20px" }}
       className={classNames(
-        "bg-white rounded-2xl p-6 border border-semi-transparent-grey",
+        "bg-white rounded-2xl p-4 md:p-6 border border-semi-transparent-grey",
         type === "technical_writing_review" && "border-0"
       )}
     >
-      <div className="grid gap-6">
+      <div className="grid gap-3 md:gap-6">
         <a className="w-fit" href={review.reviewer_link} target={"_blank"}>
-          <Flex direction={"row"}>
-            <ImageContainer>
+          <Flex className="gap-2" direction={"row"}>
+            <ImageContainer className="h-14 w-14 md:h-18 md:w-18">
               <Image
                 loader={ImageLoader}
                 fill
@@ -80,8 +71,8 @@ const ReviewCard = ({ review, type }: ReviewCardProps) => {
                   {review.company}
                 </Typography>
 
-                <Flex ml="6px">
-                  <GoArrowUpRight className="text-md" />
+                <Flex ml="4px">
+                  <GoArrowUpRight className="text-xs md:text-md" />
                 </Flex>
               </div>
             </Flex>
@@ -89,13 +80,6 @@ const ReviewCard = ({ review, type }: ReviewCardProps) => {
         </a>
 
         <RichTextComponent richText={review.review_text} />
-
-        {/* {review.work_duration && (
-          <Typography as="p" styleAs="body" className="text-xs">
-            * We worked at <b> {review.company} </b> from{" "}
-            <b> {review.work_duration} </b>
-          </Typography>
-        )} */}
       </div>
     </div>
   )

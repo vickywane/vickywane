@@ -17,6 +17,7 @@ import SectionIndicator from "../SectionIndicator"
 import Link from "next/link"
 import useIntersectionObserver from "@/hooks/useIntersectionObserver"
 import { useNavigationStore } from "@/state/zustand/navigation"
+import { Typography } from "../ui/Typography"
 
 const ListContainer = styled.ul`
   list-style: none;
@@ -69,17 +70,16 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
   return (
     <Layout bg={"#c1edcc"}>
       <div className={"container"}>
-        <H2Heading ref={ref}>
-          {" "}
-          Life As A <span> Technical Writer </span>{" "}
-        </H2Heading>
+        <Typography as="h2" styleAs="heading_2" ref={ref}>
+          Life As A <span> Technical Writer </span>
+        </Typography>
 
-        <Text>
+        <Typography as="p" styleAs="body">
           Outside my working hours, I write technical articles focused on using
           services from public cloud and CMS platforms for developer focused
           organizations such as for LogRocket, Okta, DigitalOcean, and the AWS
           Developer Community.
-        </Text>
+        </Typography>
 
         <Reviews type="technical_writing_review" />
 
@@ -91,8 +91,6 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
         <Text align="left">
           My latest articles hot off the press for your comsumption!{" "}
         </Text>
-
-        <br />
 
         <ListContainer>
           {technicalArticles.slice(0, isMobile ? 3 : 4).map((article, idx) => (

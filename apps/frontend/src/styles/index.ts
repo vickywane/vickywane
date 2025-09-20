@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import type {} from "styled-components/cssprop"
 import { StyledProps } from "@/types/StyledProps"
 import {
   MOBILE_BREAKPOINT,
@@ -182,7 +181,7 @@ export const ContentLayout = styled.div<LayoutProps>`
   .content-elements {
     margin: 0 auto;
     max-width: 1400px;
-    padding: 200px 26px;
+    padding: 160px 26px;
   }
 
   @media (max-width: ${TABLET_BREAKPOINT}px) {

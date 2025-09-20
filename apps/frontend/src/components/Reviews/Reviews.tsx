@@ -14,7 +14,7 @@ interface ReviewsProp {
 }
 
 const CardList = styled.ul`
-  margin: 3rem 0;
+  margin: 2rem 0;
   list-style: none;
 
   display: grid;
@@ -24,6 +24,7 @@ const CardList = styled.ul`
   @media (max-width: ${MOBILE_BREAKPOINT}px) {
     display: flex;
     flex-direction: column;
+    grid-gap: 2rem 0;
   }
 `
 
@@ -43,17 +44,15 @@ const Reviews = ({ type }: ReviewsProp) => {
     if (!work_review) return null
 
     return (
-      <div>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
-          <Masonry gutter="2.5rem">
-            {work_review.map((review, idx) => (
-              <div key={idx}>
-                <ReviewCard review={review} />
-              </div>
-            ))}
-          </Masonry>
-        </ResponsiveMasonry>
-      </div>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2 }}>
+        <Masonry gutter="1.5rem">
+          {work_review.map(review => (
+            <div key={review?._id}>
+              <ReviewCard type={type} review={review} />
+            </div>
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     )
   }
 
