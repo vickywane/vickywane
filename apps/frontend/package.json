@@ -28,7 +28,7 @@
     "next-sanity": "4.1.5",
     "openai": "^5.8.3",
     "pdfreader": "^3.0.7",
-    "posthog-js": "^1.57.2",
+    "posthog-js": "^1.265.1",
     "prop-types": "^15.7.2",
     "react-full-screen": "^1.1.1",
     "react-helmet": "^6.1.0",
