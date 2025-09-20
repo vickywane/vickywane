@@ -37,19 +37,12 @@ const AlertAnimation = keyframes`
 `
 
 const Alert = styled.div`
-  height: 35px;
-  width: 35px;
   background: #115e65;
   border: 1px solid #115e65;
   border-radius: 50%;
 
   animation: ${AlertAnimation} 1400ms;
   animation-iteration-count: infinite;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 25px;
-    width: 25px;
-  }
 `
 
 interface HomeHeroNotificationProps {
@@ -65,11 +58,11 @@ const HomeHeroNotification = ({ notification }: HomeHeroNotificationProps) => {
     <NotificationComponent isBreadcrumbOpen={breadcrumb_visibility === "OPEN"}>
       <Flex className="gap-1" >
         <Flex placeItems="center">
-          <Alert />
+          <Alert className="h-4 w-4 md:h-9 md:w-9" />
         </Flex>
 
         <Flex placeItems="center">
-          <RichTextComponent richText={notification?.notification_text} />
+          <RichTextComponent className="text-xs" richText={notification?.notification_text} />
         </Flex>
       </Flex>
     </NotificationComponent>

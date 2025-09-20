@@ -18,6 +18,7 @@ import { AiOutlineFilePdf } from "react-icons/ai"
 import BreadcrumbMenu from "./BreadcrumbMenu"
 import { useNavigationStore } from "@/state/zustand/navigation"
 import Link from "next/link"
+import { Typography } from "@/components/ui/Typography"
 
 const Head = styled.header<{ isBreadcrumbOpen: boolean }>`
   height: 90px;
@@ -77,21 +78,6 @@ const Head = styled.header<{ isBreadcrumbOpen: boolean }>`
   }
 `
 
-const HeaderTitle = styled(Text)`
-  font-weight: 700;
-  font-size: 22.8131px;
-  margin-left: 10px;
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-  :hover {
-    color: #333333;
-  }
-`
-
 const HeaderList = styled.ul`
   list-style: square;
   display: flex;
@@ -119,24 +105,6 @@ const Anchor = styled.li<{ active: boolean }>`
   }
 `
 
-const ImageContainer = styled.div`
-  height: 51px;
-  width: 53px;
-  position: relative;
-  border: 2px solid #333333;
-  border-radius: 50%;
-
-  img {
-    border-radius: 50%;
-    object-fit: cover;
-  }
-
-  @media (max-width: ${MOBILE_BREAKPOINT}px) {
-    height: 45px;
-    width: 45px;
-  }
-`
-
 const Index = () => {
   const dispatch = useDispatch()
   const { breadcrumb_visibility } = useSelector((state: RootState) => state.app)
@@ -150,24 +118,30 @@ const Index = () => {
         <div
           style={{
             maxWidth: "1400px",
-            margin: "0 auto",
           }}
-          className="w-full flex items-center justify-between"
+          className="w-full md:px-4 m-auto flex items-center justify-between"
         >
           <Link href={"/"}>
             <Flex placeItems={"center"}>
-              <ImageContainer>
+              <div className="h-9 w-9 relative rounded-full md:h-14 md:w-14 border border-1 md:border-2">
                 <Image
                   loader={ImageLoader}
                   fill
+                  className="object-cover rounded-full"
                   alt={"Victory Nwani"}
                   src={"/personal-portfolio-app/icons/victory-picture.jpg"}
                 />
-              </ImageContainer>
+              </div>
 
-              <Flex placeItems={"center"}>
-                <HeaderTitle> Victory Nwani </HeaderTitle>
-              </Flex>
+              <div className="flex items-center ml-2 md:ml-3">
+                <Typography
+                  as="p"
+                  styleAs="span"
+                  className="text-base md:text-xl"
+                >
+                  Victory Nwani
+                </Typography>
+              </div>
             </Flex>
           </Link>
 
