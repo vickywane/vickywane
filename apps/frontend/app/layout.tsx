@@ -8,6 +8,7 @@ import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata, ResolvingMetadata } from "next"
 import LazyLoader from "@/framer/LazyLoader"
 import PostHogProvider from "@/providers/PostHog"
+import * as Sentry from "@sentry/nextjs"
 
 const font = Space_Grotesk({
   subsets: ["latin", "vietnamese"],
@@ -25,6 +26,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   return {
     title: "Victory Nwani | Home",
+    other: {
+      ...Sentry.getTraceData(),
+    },
   }
 }
 

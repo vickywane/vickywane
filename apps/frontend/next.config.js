@@ -1,42 +1,30 @@
-const withOptimizedImage = require("next-optimized-images");
+const withOptimizedImage = require("next-optimized-images")
 require("dotenv").config()
-
-// if (!process.env.SKIP_DOTENV) {
-//   const dotEnvResult = require("dotenv").config({
-//     path: `.env.${process.env.CUSTOM_ENV}`
-//   });
-
-//   if (dotEnvResult.error) {
-//     throw dotEnvResult.error;
-//   }
-
-// } else {
-//   console.warn("Skipping loading .env file");
-// }
+const { withSentryConfig } = require("@sentry/nextjs")
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   compiler: {
-    styledComponents: true
+    styledComponents: true,
   },
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true,
   },
+  org: "victory-engineering",
+  project: "portfolio",
+  authToken: process.env.SENTRY_AUTH_TOKEN,
   images: {
     disableStaticImages: true,
     loader: "cloudinary",
     domains: ["res.cloudinary.com", "cdn.sanity.io"],
     formats: ["image/webp", "image/avif"],
-    path: "https://res.cloudinary.com/dkfptto8m/image/upload"
+    path: "https://res.cloudinary.com/dkfptto8m/image/upload",
   },
-  // experimental: {
-  //   appDir: true,
-  // },
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
+      use: ["@svgr/webpack"],
+    })
 
     config.module.rules.push({
       test: /\.(png|jpe?g|gif|mp4)$/i,
@@ -45,14 +33,18 @@ const nextConfig = {
           loader: "file-loader",
           options: {
             publicPath: "/_next",
-            name: "static/media/[name].[hash].[ext]"
-          }
-        }
-      ]
-    });
-    return config;
+            name: "static/media/[name].[hash].[ext]",
+          },
+        },
+      ],
+    })
+    return config
   },
-  handleImages: ["jpeg", "png", "webp"]
-};
+  handleImages: ["jpeg", "png", "webp"],
+}
 
-module.exports = withOptimizedImage(nextConfig);
+module.exports = withSentryConfig(withOptimizedImage(nextConfig), {
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+})
