@@ -7,6 +7,7 @@ import "@/styles/globals.css"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata, ResolvingMetadata } from "next"
 import LazyLoader from "@/framer/LazyLoader"
+import PostHogProvider from "@/providers/PostHog"
 
 const font = Space_Grotesk({
   subsets: ["latin", "vietnamese"],
@@ -42,16 +43,18 @@ export default function RootLayout({
             <PostHog>
               <LazyLoader>
                 <StoreProvider>
-                  <div
-                    style={{
-                      height: "100vh",
-                      overflow: "auto",
-                      width: "100%",
-                    }}
-                    className={font.className}
-                  >
-                    {children}
-                  </div>
+                  <PostHogProvider>
+                    <div
+                      style={{
+                        height: "100vh",
+                        overflow: "auto",
+                        width: "100%",
+                      }}
+                      className={font.className}
+                    >
+                      {children}
+                    </div>
+                  </PostHogProvider>
                 </StoreProvider>
               </LazyLoader>
             </PostHog>

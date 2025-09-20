@@ -1,45 +1,24 @@
 "use client"
 
 import posthog from "posthog-js"
-import { PostHogProvider } from "posthog-js/react"
-import { usePathname, useSearchParams } from "next/navigation"
-import { useRouter } from "next/navigation"
+import { PostHogProvider as PHProvider } from "posthog-js/react"
 import { useEffect } from "react"
 import { apiConfig } from "@/config/envApi"
 
-// if (typeof window !== "undefined") {
-//   posthog.init(apiConfig.posthog_key, {
-//     api_host: apiConfig.posthog_host,
-//     // Enable debug mode in development
-//     // loaded: posthog => {
-//     //   if (process.env.NODE_ENV === "development") posthog.debug()
-//     // },
-//   })
-// }
+if (typeof window !== "undefined") {
+  posthog.init(apiConfig.posthog_key, {
+    api_host: apiConfig.posthog_host,
+  })
+}
 
-export default function PostHog({ children }: { children: React.ReactNode }) {
-  // const pathname = usePathname()
-  // const searchParams = useSearchParams()
-  // const router = useRouter()
+export default function PostHogProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY as string, {
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+      person_profiles: "always", // or 'always' to create profiles for anonymous users as well
+      defaults: "2025-05-24",
+    })
+  }, [])
 
-  // useEffect(() => {
-  //   let url = window.origin + pathname
-  //   if (searchParams?.toString()) {
-  //     // Track page views
-  //     // const handleRouteChange = () =>
-  //     posthog?.capture("$pageview", {
-  //       $current_url: url,
-  //     })
-
-  //     // router.events.on("routeChangeComplete", handleRouteChange)
-
-  //     //   return () => {
-  //     //     router.events.off("routeChangeComplete", handleRouteChange)
-  //     //   }
-  //   }
-  // }, [pathname])
-
-  // return <PostHogProvider client={posthog}>{children}</PostHogProvider>
-
-  return <div> {children} </div>
+  return <PHProvider client={posthog}>{children}</PHProvider>
 }

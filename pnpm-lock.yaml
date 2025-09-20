@@ -84,7 +84,7 @@ importers:
         specifier: ^3.0.7
         version: 3.0.7
       posthog-js:
-        specifier: ^1.57.2
+        specifier: ^1.265.1
         version: 1.265.1
       prop-types:
         specifier: ^15.7.2
