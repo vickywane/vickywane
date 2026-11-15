@@ -1,0 +1,64 @@
+{
+  "findings": [
+    {
+      "id": "H-001",
+      "case": "CP-03",
+      "severity": "warn",
+      "basis": "seen",
+      "title": "Recent items change copy, labels and colour coding between desktop and the deck",
+      "where": [
+        "/hero · 1440 list vs 768/375 deck"
+      ],
+      "measured": null,
+      "expected": "One item reads the same at every width",
+      "evidence": [
+        "opendesigner/review/shots/hero-1440.png",
+        "opendesigner/review/shots/hero-768.png",
+        "opendesigner/review/shots/hero-375.png"
+      ],
+      "fix": "Desktop: LATEST PROJECT, a long description, a meta line, every label teal, no arrow. Deck: PROJECT, a different one-liner, no meta, only PROJECT teal, an arrow. Pick one label set, one description and one colour rule, and give desktop rows the arrow",
+      "standard": null,
+      "status": "confirmed",
+      "at": "2026-11-15T10:32:18"
+    },
+    {
+      "id": "H-002",
+      "case": "IN-04",
+      "severity": "warn",
+      "basis": "inferred",
+      "title": "The swipe deck needs a non-drag way to move, and the icon-only links need names",
+      "where": [
+        "/hero · 375, 768 · Deck; Socials"
+      ],
+      "measured": null,
+      "expected": "WCAG 2.5.7 single-pointer alternative to dragging, 2.1.1 keyboard scroll, 4.1.2 names for GitHub and LinkedIn",
+      "evidence": [
+        "opendesigner/review/shots/hero-375.png",
+        "opendesigner/review/shots/hero-768.png"
+      ],
+      "fix": "Make the 01 / 03 arrow real previous/next buttons, keep the deck a focusable scroll region, name each icon link. Unverified: confirm on the built page",
+      "standard": null,
+      "status": "unverified",
+      "at": "2026-11-15T10:32:18"
+    },
+    {
+      "id": "H-003",
+      "case": "CP-01",
+      "severity": "info",
+      "basis": "seen",
+      "title": "Sibling titles mix Title Case and sentence case",
+      "where": [
+        "/hero · recent items"
+      ],
+      "measured": null,
+      "expected": "One case rule for item titles",
+      "evidence": [
+        "opendesigner/review/shots/hero-1440.png"
+      ],
+      "fix": "Figma Tickets Plugin is a product name; keep the others in sentence case and write the rule down",
+      "standard": null,
+      "status": "confirmed",
+      "at": "2026-11-15T10:32:18"
+    }
+  ]
+}

@@ -17,6 +17,15 @@ export default defineType({
       of: [{type: 'block'}],
     }),
     defineField({
+      name: 'hero_pitch',
+      title: 'Hero Pitch',
+      type: 'text',
+      rows: 3,
+      description:
+        'Short pitch under your name in the home hero. Falls back to the first paragraph of Banner Description.',
+      validation: Rule => Rule.max(160).warning('Keep the pitch under 160 characters'),
+    }),
+    defineField({
       name: 'banner_image',
       title: 'Banner Image',
       type: 'cloudinary.asset',
@@ -24,6 +33,14 @@ export default defineType({
       options: {
         hotspot: true,
       },
+    }),
+    defineField({
+      name: 'banner_image_alt',
+      title: 'Banner Image Alt Text',
+      type: 'string',
+      description:
+        'Describes the portrait for screen readers. Also shown in the hero\'s "ALT" popover.',
+      validation: Rule => Rule.required(),
     }),
     defineField({
       title: 'Human Description',

@@ -50,7 +50,9 @@ export default async function Page() {
 
       <HomeHero
         banner_description={pageData.banner_description}
+        hero_pitch={pageData.hero_pitch}
         banner_image={pageData.banner_image}
+        banner_image_alt={pageData.banner_image_alt}
         projects={(pageData.projects as unknown) as Projects[]}
         articles={(pageData.articles as unknown) as Article[]}
         engagements={(pageData.engagements as unknown) as Engagement[]}

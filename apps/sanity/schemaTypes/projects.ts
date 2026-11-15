@@ -44,6 +44,14 @@ export default defineType({
       of: [{type: 'block'}],
     }),
     defineField({
+      name: 'teaser',
+      title: 'Teaser',
+      type: 'string',
+      description:
+        'One-line summary shown in the home hero\'s "Recent" list. Falls back to the first sentence of Description.',
+      validation: Rule => Rule.max(100).warning('Keep the teaser under 100 characters'),
+    }),
+    defineField({
       name: 'project_tools',
       type: 'array',
       title: 'Project Tools',

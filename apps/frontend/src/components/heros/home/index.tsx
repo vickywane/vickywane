@@ -8,12 +8,14 @@ import RecentFeed from "./RecentFeed"
 import { getRecentItems, plainText } from "./recentItems"
 
 const DEFAULT_PORTRAIT = "/v1721832258/personal-portfolio-app/my-picture.jpg"
-const PORTRAIT_ALT =
-  "Portrait of Victory Nwani, a software engineer, in a purple crew-neck T-shirt, looking straight at the camera against a deep red background."
+// Used until "Banner Image Alt Text" is filled in on the Sanity homepage.
+const PORTRAIT_ALT = "Portrait of Victory Nwani, a software engineer."
 
 interface HomeHeroProps {
   banner_description?: Homepage["banner_description"] | unknown[]
+  hero_pitch?: Homepage["hero_pitch"]
   banner_image?: { public_id?: string; format?: string } | null
+  banner_image_alt?: Homepage["banner_image_alt"]
   projects?: Projects[]
   articles?: Article[]
   engagements?: Engagement[]
@@ -36,12 +38,15 @@ const getPortraitSrc = (image: HomeHeroProps["banner_image"]) =>
 
 const HomeHero = ({
   banner_description,
+  hero_pitch,
   banner_image,
+  banner_image_alt,
   projects,
   articles,
   engagements,
 }: HomeHeroProps) => {
-  const pitch = getPitch(banner_description)
+  const pitch = hero_pitch?.trim() || getPitch(banner_description)
+  const portraitAlt = banner_image_alt?.trim() || PORTRAIT_ALT
   const recentItems = getRecentItems({ projects, articles, engagements })
 
   return (
@@ -52,7 +57,7 @@ const HomeHero = ({
     >
       <div className="mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pt-8 pb-20 md:grid md:grid-cols-2 md:gap-x-12 md:px-12 md:py-20 xl:grid-cols-[560px_minmax(0,1fr)] lg:gap-x-16 lg:gap-y-6 lg:px-16 lg:py-24 xl:gap-x-24 xl:p-[120px]">
         <div className="flex flex-col gap-7 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:gap-6">
-          <HeroPortrait src={getPortraitSrc(banner_image)} alt={PORTRAIT_ALT} />
+          <HeroPortrait src={getPortraitSrc(banner_image)} alt={portraitAlt} />
 
           <div className="flex flex-col gap-2 lg:gap-6">
             <h1 className="type-display text-dark-teal">Victory Nwani</h1>

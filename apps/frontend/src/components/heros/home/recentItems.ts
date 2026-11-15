@@ -37,7 +37,11 @@ export const firstSentence = (value: RichTextOrString): string => {
   return (match ? match[0] : text).trim()
 }
 
-const byNewest = <T>(getDate: (item: T) => string | undefined) => (a: T, b: T) =>
+/** A hand-written teaser from Sanity, else the first sentence of the long copy. */
+const teaserOr = (teaser: string | undefined, fallback: RichTextOrString) =>
+  teaser?.replace(/\s+/g, " ").trim() || firstSentence(fallback)
+
+const byNewest =<T>(getDate: (item: T) => string | undefined) => (a: T, b: T) =>
   new Date(getDate(b) || 0).getTime() - new Date(getDate(a) || 0).getTime()
 
 const formatMonth = (date?: string) =>
@@ -81,7 +85,7 @@ export const getRecentItems = ({
     items.push({
       type: "project",
       title: tidy(project.name),
-      description: firstSentence(project.description),
+      description: teaserOr(project.teaser, project.description),
       meta: joinMeta(...(project.project_tools || []).slice(0, 3)),
       href,
       isExternal: true,
@@ -98,7 +102,7 @@ export const getRecentItems = ({
     items.push({
       type: "article",
       title: tidy(article.title),
-      description: firstSentence(article.summary),
+      description: teaserOr(article.seo_summary, article.summary),
       meta: joinMeta(
         formatMonth((article as any).publish_date),
         article.tags?.[0]
@@ -110,13 +114,14 @@ export const getRecentItems = ({
 
   const talk = [...engagements]
     .filter(e => e.type?.includes("talk"))
-    .sort(byNewest<Engagement>(e => e._createdAt))[0]
+    // Talks without an event date fall back to when the document was created.
+    .sort(byNewest<Engagement>(e => e.event_date || e._createdAt))[0]
 
   if (talk) {
     items.push({
       type: "talk",
       title: tidy(talk.name),
-      description: firstSentence(talk.summary),
+      description: teaserOr(talk.teaser, talk.summary),
       meta: tidy(talk.event_name),
       href: (talk as any).session_link || talk.event_link || "#engagements",
       isExternal: Boolean((talk as any).session_link || talk.event_link),

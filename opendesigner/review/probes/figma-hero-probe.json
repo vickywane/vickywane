@@ -1,0 +1,41 @@
+{
+  "source": "Figma file BKeWGnCzhpo2q3os5yTh9y, node 2256:1340 (B · Text-only hero). Measured from layers via the Figma Plugin API on 2026-11-15; this is a design file, not a running page, so probe.js could not run.",
+  "method": "Text colours resolved through bound variables in each frame's explicit modes; backgrounds composited from the first solid parent fills; contrast per WCAG 2.x relative luminance; lines = height / line-height; cpl = characters / lines.",
+  "frames": {
+    "1440": {
+      "node": "2256:1343", "size": "1440x926",
+      "type_sizes": [72, 28, 22, 17, 16, 13, 12],
+      "families": ["Space Grotesk (Bold, Medium)", "Roboto Flex Regular", "Roboto Mono (Regular, Bold)"],
+      "min_contrast": { "value": 7.47, "pair": "#115e65 on #ffffff (H1, EXPERIENCE, LATEST labels)" },
+      "body": { "pitch": { "size": 17, "line_height": 27, "ratio": 1.59, "lines": 3, "cpl": 36, "width": 420 } },
+      "button_label": { "text": "GET IN TOUCH", "font": "Roboto Mono Bold", "size": 13 },
+      "small_labels": [{ "text": "LATEST PROJECT / ARTICLE / TALK, meta lines", "size": 12 }],
+      "targets_min": { "name": "nav rows", "h": 40 },
+      "portrait": { "size": 96, "rotation_deg": 1.19 },
+      "button_bar_joints": [{ "between": "Get in touch | GitHub", "rule_px": 2 }, { "between": "GitHub | LinkedIn", "rule_px": 4 }],
+      "overflow": []
+    },
+    "768": {
+      "node": "2270:1293", "size": "768x1272",
+      "type_sizes": [72, 28, 22, 17, 16, 15, 13, 11],
+      "min_contrast": { "value": 7.47, "pair": "#115e65 on #ffffff" },
+      "body": { "pitch": { "size": 17, "lines": 2, "cpl": 54, "width": 560 } },
+      "small_labels": [{ "text": "RECENT, 01 / 03, PROJECT / ARTICLE / TALK", "size": 11 }],
+      "targets_min": { "name": "nav rows", "h": 46 },
+      "portrait": { "size": 104, "rotation_deg": 0 },
+      "button_bar_joints": [{ "between": "Get in touch | GitHub", "rule_px": 2 }, { "between": "GitHub | LinkedIn", "rule_px": 4 }],
+      "overflow": ["Card · TALK runs past the right edge (intended: horizontal deck)"]
+    },
+    "375": {
+      "node": "2267:1353", "size": "375x1135",
+      "type_sizes": [40, 22, 18, 16, 14, 13, 11],
+      "min_contrast": { "value": 7.47, "pair": "#115e65 on #ffffff" },
+      "body": { "pitch": { "size": 16, "line_height": 26, "lines": 3, "cpl": 36, "width": 327 } },
+      "small_labels": [{ "text": "RECENT, 01 / 03, PROJECT / ARTICLE / TALK", "size": 11 }],
+      "targets_min": { "name": "nav rows", "h": 46 },
+      "portrait": { "size": 64, "rotation_deg": 0 },
+      "button_bar_joints": [{ "between": "Get in touch | GitHub", "rule_px": 2 }, { "between": "GitHub | LinkedIn", "rule_px": 4 }],
+      "overflow": ["Card · ARTICLE and Card · TALK run past the right edge (intended: horizontal deck)"]
+    }
+  }
+}

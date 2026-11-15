@@ -1,0 +1,113 @@
+{
+  "cells": {
+    "/hero|375x1135|light": {
+      "status": "done",
+      "evidence": [
+        "opendesigner/review/probes/figma-hero-probe.json",
+        "opendesigner/review/shots/hero-375.png"
+      ],
+      "why": "",
+      "at": "2026-11-15T10:32:16"
+    },
+    "/hero|768x1272|light": {
+      "status": "done",
+      "evidence": [
+        "opendesigner/review/probes/figma-hero-probe.json",
+        "opendesigner/review/shots/hero-768.png"
+      ],
+      "why": "",
+      "at": "2026-11-15T10:32:16"
+    },
+    "/hero|1440x926|light": {
+      "status": "done",
+      "evidence": [
+        "opendesigner/review/probes/figma-hero-probe.json",
+        "opendesigner/review/shots/hero-1440.png"
+      ],
+      "why": "",
+      "at": "2026-11-15T10:32:16"
+    },
+    "task:/hero|scroll-walk": {
+      "status": "done",
+      "evidence": [
+        "opendesigner/review/shots/hero-1440.png",
+        "opendesigner/review/shots/hero-375.png",
+        "opendesigner/review/shots/hero-768.png"
+      ],
+      "why": "Each Figma frame is the full hero; exported whole at 1x, under 1440x1272",
+      "at": "2026-11-15T10:32:16"
+    },
+    "task:/hero|focus-walk": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:16"
+    },
+    "task:/hero|hover-and-press": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:16"
+    },
+    "task:/hero|states-and-data": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Only one content state is designed; empty, long-title and missing-cover states are not drawn",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|motion": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:16"
+    },
+    "task:/hero|stress-text": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|reduced-motion": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|forced-colors": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|console-and-network": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|letter-reveals": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|text-pixels": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|floating-bars": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    },
+    "task:/hero|toggles": {
+      "status": "skipped",
+      "evidence": [],
+      "why": "Design file: no running page to operate (no browser states, CSS or scripts to exercise). Re-run on the built page.",
+      "at": "2026-11-15T10:32:17"
+    }
+  }
+}

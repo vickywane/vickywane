@@ -95,6 +95,34 @@ describe("getRecentItems", () => {
     })
   })
 
+  it("prefers hand-written teasers and event dates from Sanity", () => {
+    const [project, article, talk] = getRecentItems({
+      projects: [
+        {
+          name: "P",
+          teaser: "  Short   project line. ",
+          description: block("Long description. More."),
+        },
+      ] as any,
+      articles: [
+        {
+          title: "A",
+          slug: { current: "a" },
+          seo_summary: "SEO line.",
+          summary: block("Summary sentence. More."),
+        },
+      ] as any,
+      engagements: [
+        { name: "Newer doc", type: ["talk"], _createdAt: "2025-06-01", event_date: "2022-01-01" },
+        { name: "Later talk", type: ["talk"], _createdAt: "2021-01-01", event_date: "2024-03-01", teaser: "Talk line." },
+      ] as any,
+    })
+
+    expect(project.description).toBe("Short project line.")
+    expect(article.description).toBe("SEO line.")
+    expect(talk).toMatchObject({ title: "Later talk", description: "Talk line." })
+  })
+
   it("skips empty collections", () => {
     expect(getRecentItems({})).toEqual([])
   })
