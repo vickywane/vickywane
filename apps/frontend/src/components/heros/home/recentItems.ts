@@ -75,12 +75,14 @@ export const getRecentItems = ({
 }: RecentItemsInput): RecentItem[] => {
   const items: RecentItem[] = []
 
-  const project = [...projects].sort(
-    byNewest<Projects>(p => (p as any).publish_date)
-  )[0]
+  // A project with no live or GitHub link has nowhere to send the reader
+  // (href="" would just reopen the home page), so the newest *linked* one wins.
+  const project = projects
+    .filter(p => p.url || p.github_url)
+    .sort(byNewest<Projects>(p => p.publish_date))[0]
 
   if (project) {
-    const href = project.url || project.github_url || ""
+    const href = (project.url || project.github_url) as string
 
     items.push({
       type: "project",

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState, useSyncExternalStore } from "react"
 import cn from "classnames"
 import { hero_section_links } from "@/data/static"
 
@@ -13,19 +13,44 @@ interface HeroSectionNavProps {
 const ABOUT_TARGET = "about"
 const ABOUT_SCROLL_TOLERANCE = 48
 
+/*
+  Some sections are feature-flagged on the client (Projects hides itself once
+  PostHog loads), so which links to show is read from the DOM and kept in sync
+  as sections appear or disappear. The server can't know the flag, so it
+  renders every link.
+*/
+const ALL_TARGETS = hero_section_links.map(link => link.target).join(",")
+
+const getAvailableTargets = () =>
+  hero_section_links
+    .filter(link => document.getElementById(link.target))
+    .map(link => link.target)
+    .join(",")
+
+const subscribeToSections = (onChange: () => void) => {
+  const observer = new MutationObserver(onChange)
+  observer.observe(document.body, { childList: true, subtree: true })
+
+  return () => observer.disconnect()
+}
+
 /** In-page links to the home page sections; highlights the section in view. */
 const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
-  const [links, setLinks] = useState(hero_section_links)
+  const availableTargets = useSyncExternalStore(
+    subscribeToSections,
+    getAvailableTargets,
+    () => ALL_TARGETS
+  )
+  const links = useMemo(() => {
+    const available = availableTargets.split(",")
+    return hero_section_links.filter(link => available.includes(link.target))
+  }, [availableTargets])
+
   const [sectionTarget, setSectionTarget] = useState<string | null>(null)
   const [isAboutActive, setIsAboutActive] = useState(true)
 
+  // Highlight the section crossing the middle of the viewport.
   useEffect(() => {
-    // Some sections are feature-flagged (e.g. projects) - drop links with no target.
-    const available = hero_section_links.filter(link =>
-      document.getElementById(link.target)
-    )
-    setLinks(available)
-
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
@@ -39,12 +64,17 @@ const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
       { rootMargin: "-45% 0px -45% 0px" }
     )
 
-    available.forEach(link => {
-      if (link.target === ABOUT_TARGET) return
-      const section = document.getElementById(link.target)
+    availableTargets.split(",").forEach(target => {
+      if (target === ABOUT_TARGET) return
+      const section = document.getElementById(target)
       if (section) observer.observe(section)
     })
 
+    return () => observer.disconnect()
+  }, [availableTargets])
+
+  // Track whether the hero (About) is still at the top of the viewport.
+  useEffect(() => {
     const hero = document.getElementById(ABOUT_TARGET)
     let frame = 0
     const syncAbout = () => {
@@ -64,7 +94,6 @@ const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
     window.addEventListener("resize", syncAbout)
 
     return () => {
-      observer.disconnect()
       window.cancelAnimationFrame(frame)
       window.removeEventListener("scroll", syncAbout, { capture: true })
       window.removeEventListener("resize", syncAbout)

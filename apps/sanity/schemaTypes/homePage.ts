@@ -39,8 +39,10 @@ export default defineType({
       title: 'Banner Image Alt Text',
       type: 'string',
       description:
-        'Describes the portrait for screen readers. Also shown in the hero\'s "ALT" popover.',
-      validation: Rule => Rule.required(),
+        'Describes the portrait for screen readers. Also shown in the hero\'s "ALT" popover. The site uses a generic description until this is filled in.',
+      // A warning, not an error: the frontend has a fallback, so a missing alt text
+      // shouldn't block publishing other homepage edits.
+      validation: Rule => Rule.required().warning('Add alt text for the portrait'),
     }),
     defineField({
       title: 'Human Description',
