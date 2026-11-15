@@ -1,7 +1,8 @@
 name: Claude PR Review
 
 # Request a review on any PR by either:
-#   • commenting   @claude review   (optionally followed by extra focus, e.g. "@claude review focus on the GROQ changes")
+#   • commenting   @claude   with any wording, e.g. "@claude review", "@claude /review",
+#     "@claude /code-review", or "@claude review focus on the GROQ changes" (the comment is passed as extra focus)
 #   • adding the   claude-review    label
 #   • Actions tab → "Claude PR Review" → Run workflow → enter the PR number
 #
@@ -35,7 +36,8 @@ jobs:
           (github.event_name == 'issue_comment' && github.event.issue.pull_request) ||
           github.event_name == 'pull_request_review_comment'
         ) &&
-        contains(github.event.comment.body, '@claude review') &&
+        contains(github.event.comment.body, '@claude') &&
+        github.event.comment.user.type != 'Bot' &&
         contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
       )
     runs-on: ubuntu-latest
