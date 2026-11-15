@@ -4,7 +4,7 @@ import loadFeatures from "./load-features";
 
 type Props = {
   className?: string;
-  children?: string | JSX.Element | Array<JSX.Element>;
+  children?: React.ReactNode;
   enableLazyMotion?: boolean;
 };
 

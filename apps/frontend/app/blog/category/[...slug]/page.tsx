@@ -16,9 +16,9 @@ const getData = async (slug: string) => {
 }
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string[]
-  }
+  }>
 }
 
 function capitalizeFirstLetter(value: string) {
@@ -29,18 +29,18 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  console.log("params", params)
-  const categoryName = capitalizeFirstLetter(
-    params?.slug[0].split("-").join(" ")
-  )
+  const { slug } = await params
+  console.log("params", { slug })
+  const categoryName = capitalizeFirstLetter(slug[0].split("-").join(" "))
 
   return {
     title: `${categoryName} | Victory Nwani`,
   }
 }
 
-const Page = async ({ params }) => {
-  const { category } = await getData(params?.slug[0])
+const Page = async ({ params }: Props) => {
+  const { slug } = await params
+  const { category } = await getData(slug[0])
 
   return (
     <div>

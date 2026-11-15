@@ -61,7 +61,7 @@ interface ArticleListComponentProps {
   blogCategories: BlogCategory[]
 }
 
-const ArticleListComponent = async ({
+const ArticleListComponent = ({
   blogCategories,
 }: ArticleListComponentProps) => {
   const cardsTabListRef = useRef<HTMLUListElement>(null)

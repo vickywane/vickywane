@@ -10,8 +10,12 @@ import { truncateText } from "./helpers"
 import { ImageLoader } from "./Cloudinary"
 import CloudinaryAssetRenderer from "@/components/Cloudinary/AssetRender"
 import ReactPlayer from "react-player"
-import CodeBlock from "@/components/CodeBlock"
 import { Typography } from "@/components/ui/Typography"
+import dynamic from "next/dynamic"
+
+// The syntax highlighter (highlight.js with every language) is ~900 kB of JS.
+// Load it on demand so only articles that contain a code block download it.
+const CodeBlock = dynamic(() => import("@/components/CodeBlock"))
 
 interface RichTextComponentProps {
   richText: any
@@ -66,7 +70,7 @@ const RichTextComponent = ({
       youtube: ({ value }) => {
         return (
           <div style={{ margin: "20px 0" }}>
-            <ReactPlayer width="100%" height="700px" url={value?.url} />
+            <ReactPlayer width="100%" height="700px" src={value?.url} />
           </div>
         )
       },

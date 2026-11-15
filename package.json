@@ -20,7 +20,7 @@
     "clean": "turbo run clean"
   },
   "devDependencies": {
-    "turbo": "^2.3.0"
+    "turbo": "^2.11.11"
   },
   "keywords": [
     "nextjs",

@@ -17,7 +17,7 @@ const font = Space_Grotesk({
 })
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export async function generateMetadata(

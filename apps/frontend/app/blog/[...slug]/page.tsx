@@ -19,7 +19,7 @@ const getData = async ({ slug }: { slug: string }) => {
 }
 
 type Props = {
-  params: { slug: string[] }
+  params: Promise<{ slug: string[] }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
@@ -27,7 +27,8 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const data = await getData({ slug: params?.slug[0] })
+  const { slug } = await params
+  const data = await getData({ slug: slug[0] })
 
   if (data) {
     return {
@@ -44,8 +45,9 @@ export async function generateMetadata(
   }
 }
 
-const Page = async ({ params }: { params: { slug: string[] } }) => {
-  const article = await getData({ slug: params?.slug[0] })
+const Page = async ({ params }: Pick<Props, "params">) => {
+  const { slug } = await params
+  const article = await getData({ slug: slug[0] })
 
   return (
     <div>
