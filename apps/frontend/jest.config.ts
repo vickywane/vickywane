@@ -11,6 +11,11 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "jsdom",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  // next/jest maps .svg to an image stub; the app imports them as components.
+  moduleNameMapper: {
+    "^.+\\.(svg)$": "<rootDir>/__mocks__/svgComponent.tsx",
+  },
 }
 
 // @ts-ignore

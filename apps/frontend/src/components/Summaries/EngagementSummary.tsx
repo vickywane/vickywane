@@ -46,8 +46,8 @@ const EngagementSummary = ({ engagements }: EngagementSummaryProps) => {
   })
 
   return (
-    <Layout bg={"#fff8f0"}>
-      <H2Heading ref={ref} id="engagements" align={"center"}>
+    <Layout bg={"#fff8f0"} id="engagements">
+      <H2Heading ref={ref} align={"center"}>
         Life As A Part Of <span> Developer Communities </span>{" "}
       </H2Heading>
       <Text align={"center"} style={{ maxWidth: "750px", margin: "0 auto" }}>

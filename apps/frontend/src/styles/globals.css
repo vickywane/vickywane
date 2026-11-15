@@ -19,6 +19,148 @@
   --color-semi-transparent-grey: rgba(0, 0, 0, 0.3);
 
    --font-roboto-flex: "Roboto Flex", sans-serif;
+
+  /* v2 design tokens (Figma "Portfolio" file) */
+  --color-ink: #131112;
+  --color-cream: #fff8f0;
+  --color-body: #4d4d4d;
+  --color-hairline: rgba(19, 17, 18, 0.14);
+
+  /* Font families are loaded with next/font in app/layout.tsx */
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-body: var(--font-roboto-flex-loaded), "Roboto Flex", sans-serif;
+  --font-code: var(--font-roboto-mono), "Roboto Mono", ui-monospace, monospace;
+
+  --ease-out-snappy: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/*
+  v2 type styles. Sizes step down on small screens to match the mobile frames.
+*/
+@utility type-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 42px;
+  letter-spacing: -0.02em;
+
+  @variant md {
+    font-size: 56px;
+    line-height: 60px;
+  }
+
+  @variant xl {
+    font-size: 72px;
+    line-height: 76px;
+  }
+}
+
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.005em;
+
+  @variant md {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}
+
+@utility type-h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+
+  @variant md {
+    font-size: 22px;
+    line-height: 29px;
+  }
+}
+
+@utility type-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+
+  @variant md {
+    font-size: 17px;
+    line-height: 27px;
+  }
+}
+
+@utility type-small {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.01em;
+}
+
+@utility type-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+@utility type-mono {
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  @variant md {
+    font-size: 15px;
+  }
+}
+
+/*
+  "Peek" styles for the hero's Recent list: a step below the hero headings so the
+  list reads as a sneak peek and doesn't compete with the left column.
+*/
+@utility type-peek-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  @variant md {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+/* Mobile Recent card description. */
+@utility type-peek-small {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 0.01em;
+}
+
+@utility type-peek-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+@utility type-mono-caption {
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 :root {
@@ -107,10 +249,13 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Resets are layered so Tailwind utilities (in `utilities`) can override them */
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 html,
@@ -129,9 +274,11 @@ body {
   /*  rgb(var(--background-start-rgb));*/
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .react__modal_content {

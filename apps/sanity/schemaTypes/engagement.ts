@@ -18,6 +18,20 @@ export default defineType({
       of: [{type: 'block'}],
     }),
     defineField({
+      name: 'teaser',
+      title: 'Teaser',
+      type: 'string',
+      description:
+        'One-line summary shown in the home hero\'s "Recent" list. Falls back to the first sentence of Summary.',
+      validation: Rule => Rule.max(100).warning('Keep the teaser under 100 characters'),
+    }),
+    defineField({
+      name: 'event_date',
+      title: 'Event Date',
+      type: 'date',
+      description: 'When the talk or podcast happened. Used to pick the latest talk for the home hero.',
+    }),
+    defineField({
       name: 'event_name',
       title: 'Event Name',
       description: "Event Name",

@@ -67,7 +67,7 @@ const TechnicalWriterSummary = ({ articles }: TechnicalArticlesProps) => {
   })
 
   return (
-    <Layout bg={"#c1edcc"}>
+    <Layout bg={"#c1edcc"} id="writing">
       <div className={"container"}>
         <H2Heading ref={ref}>
           {" "}

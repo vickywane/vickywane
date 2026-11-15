@@ -18,7 +18,7 @@ const ProjectSummary = ({ projects }: { projects: Projects[] }) => {
   }
 
   return (
-    <Layout classNames="grid gap-8" bg={"#fff8f0"}>
+    <Layout classNames="grid gap-8" bg={"#fff8f0"} id="projects">
       <div className="grid gap-2">
         <Typography as="h2" styleAs="heading_2" className="[&:span]">
           Life As An <span> Indie Hacker </span>

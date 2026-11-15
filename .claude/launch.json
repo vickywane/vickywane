@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH exec pnpm --dir apps/frontend exec next dev -p 3100"],
+      "port": 3100
+    },
+    {
+      "name": "sanity",
+      "runtimeExecutable": "/bin/sh",
+      "runtimeArgs": ["-c", "PATH=$HOME/.nvm/versions/node/v22.18.0/bin:$PATH exec pnpm --dir apps/sanity exec sanity dev --port 3333"],
+      "port": 3333
+    }
+  ]
+}

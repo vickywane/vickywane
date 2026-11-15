@@ -59,11 +59,25 @@ export interface Homepage extends SanityDocument {
   banner_description?: string;
 
   /**
+   * Hero Pitch — `text`
+   *
+   * Short pitch under your name in the home hero. Falls back to the first paragraph of Banner Description.
+   */
+  hero_pitch?: string;
+
+  /**
    * Banner Image — `cloudinary.asset`
    *
    * Banner Image
    */
   banner_image?: CloudinaryAsset;
+
+  /**
+   * Banner Image Alt Text — `string`
+   *
+   * Describes the portrait for screen readers. Also shown in the hero's "ALT" popover.
+   */
+  banner_image_alt?: string;
 
   /**
    * Human Description — `array`
@@ -143,6 +157,13 @@ export interface Article extends SanityDocument {
    *
    */
   summary?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Seo Summary — `string`
+   *
+   *
+   */
+  seo_summary?: string;
 
   /**
    * Body — `array`
@@ -293,6 +314,20 @@ export interface Engagement extends SanityDocument {
    * Event Name
    */
   event_name?: string;
+
+  /**
+   * Teaser — `string`
+   *
+   * One-line summary shown in the home hero's "Recent" list. Falls back to the first sentence of Summary.
+   */
+  teaser?: string;
+
+  /**
+   * Event Date — `date`
+   *
+   * When the talk or podcast happened. Used to pick the latest talk for the home hero.
+   */
+  event_date?: string;
 
   /**
    * Event Link — `string`
@@ -601,6 +636,13 @@ export interface Projects extends SanityDocument {
    *
    */
   description?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Teaser — `string`
+   *
+   * One-line summary shown in the home hero's "Recent" list. Falls back to the first sentence of Description.
+   */
+  teaser?: string;
 
   /**
    * Project Tools — `array`

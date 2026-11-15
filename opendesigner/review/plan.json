@@ -1,0 +1,55 @@
+{
+  "url": "figma://BKeWGnCzhpo2q3os5yTh9y/2256-1340",
+  "routes": [
+    "/hero"
+  ],
+  "viewports": [
+    "375x1135",
+    "768x1272",
+    "1440x926"
+  ],
+  "themes": [
+    "light"
+  ],
+  "tasks": [
+    "scroll-walk",
+    "focus-walk",
+    "hover-and-press",
+    "states-and-data",
+    "motion",
+    "stress-text",
+    "reduced-motion",
+    "forced-colors",
+    "console-and-network",
+    "letter-reveals",
+    "text-pixels",
+    "floating-bars",
+    "toggles"
+  ],
+  "system": null,
+  "made": "2026-11-15",
+  "cells": [
+    "/hero|375x1135|light",
+    "/hero|768x1272|light",
+    "/hero|1440x926|light"
+  ],
+  "task_cells": [
+    "task:/hero|scroll-walk",
+    "task:/hero|focus-walk",
+    "task:/hero|hover-and-press",
+    "task:/hero|states-and-data",
+    "task:/hero|motion",
+    "task:/hero|stress-text",
+    "task:/hero|reduced-motion",
+    "task:/hero|forced-colors",
+    "task:/hero|console-and-network",
+    "task:/hero|letter-reveals",
+    "task:/hero|text-pixels",
+    "task:/hero|floating-bars",
+    "task:/hero|toggles"
+  ],
+  "notes": [
+    "cells: run probe.js, then screenshot the top and every scroll step; tasks: things a static capture cannot show",
+    "skip a cell only with a reason (mark ... skipped --why); the report lists every skip"
+  ]
+}
