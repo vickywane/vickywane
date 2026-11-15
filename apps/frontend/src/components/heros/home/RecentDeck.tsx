@@ -245,15 +245,27 @@ const RecentDeck = ({ items, className }: RecentDeckProps) => {
         </ul>
       </div>
 
-      <div aria-hidden="true" className="flex gap-1.5">
+      {/* Padding enlarges the click area; the negative margin keeps the bars where they were. */}
+      <div className="-mx-[3px] -my-2 flex">
         {items.map((item, idx) => (
-          <span
+          <button
             key={item.type}
-            className={cn(
-              "h-[3px] transition-[width,background-color] duration-200",
-              idx === activeIndex ? "w-6 bg-ink" : "w-2 bg-hairline"
-            )}
-          />
+            type="button"
+            aria-label={`Go to card ${idx + 1}: ${item.title}`}
+            aria-current={idx === activeIndex ? "true" : undefined}
+            onClick={() => goTo(idx)}
+            className="group cursor-pointer px-[3px] py-2 outline-none focus-visible:outline-2 focus-visible:outline-dark-teal"
+          >
+            <span
+              aria-hidden="true"
+              className={cn(
+                "block h-[3px] transition-[width,background-color] duration-200",
+                idx === activeIndex
+                  ? "w-6 bg-ink"
+                  : "w-2 bg-hairline group-hover:bg-body"
+              )}
+            />
+          </button>
         ))}
       </div>
     </section>

@@ -100,6 +100,7 @@ describe("getRecentItems", () => {
       projects: [
         {
           name: "P",
+          url: "https://p.dev",
           teaser: "  Short   project line. ",
           description: block("Long description. More."),
         },
@@ -121,6 +122,94 @@ describe("getRecentItems", () => {
     expect(project.description).toBe("Short project line.")
     expect(article.description).toBe("SEO line.")
     expect(talk).toMatchObject({ title: "Later talk", description: "Talk line." })
+  })
+
+  it("falls back to the long copy when a teaser is blank", () => {
+    const [project] = getRecentItems({
+      projects: [
+        { name: "P", url: "https://p.dev", teaser: "   ", description: block("First line! Second.") },
+      ] as any,
+    })
+
+    expect(project.description).toBe("First line!")
+  })
+
+  it("skips a newer project that has no link to open", () => {
+    const [project] = getRecentItems({
+      projects: [
+        { name: "Unlinked", publish_date: "2026-01-01" },
+        { name: "Repo only", publish_date: "2024-01-01", github_url: "https://github.com/x" },
+      ] as any,
+    })
+
+    expect(project).toMatchObject({
+      title: "Repo only",
+      href: "https://github.com/x",
+      isExternal: true,
+    })
+  })
+
+  it("leaves the project slot out when no project has a link", () => {
+    const items = getRecentItems({
+      projects: [{ name: "Unlinked", url: "", github_url: "" }] as any,
+    })
+
+    expect(items).toEqual([])
+  })
+
+  it("never puts a travel-featured article in the hero, even if newest", () => {
+    const [article] = getRecentItems({
+      articles: [
+        {
+          title: "Trip",
+          is_travel_featured: true,
+          publish_date: "2026-01-01",
+          slug: { current: "trip" },
+        },
+        { title: "Tech", publish_date: "2020-01-01", slug: { current: "tech" } },
+      ] as any,
+    })
+
+    expect(article.title).toBe("Tech")
+  })
+
+  it("ranks undated items below dated ones", () => {
+    const [project] = getRecentItems({
+      projects: [
+        { name: "Undated", url: "https://a.dev" },
+        { name: "Dated", publish_date: "2019-01-01", url: "https://b.dev" },
+      ] as any,
+    })
+
+    expect(project.title).toBe("Dated")
+  })
+
+  it("links a talk to its session, then its event, then the talks section", () => {
+    const talkHref = (talk: object) =>
+      getRecentItems({
+        engagements: [{ name: "T", type: ["talk"], ...talk }] as any,
+      })[0]
+
+    expect(
+      talkHref({ session_link: "https://s.dev", event_link: "https://e.dev" })
+    ).toMatchObject({ href: "https://s.dev", isExternal: true })
+    expect(talkHref({ event_link: "https://e.dev" })).toMatchObject({
+      href: "https://e.dev",
+      isExternal: true,
+    })
+    expect(talkHref({})).toMatchObject({
+      href: "#engagements",
+      isExternal: false,
+    })
+  })
+
+  it("counts an engagement tagged as both podcast and talk as a talk", () => {
+    const items = getRecentItems({
+      engagements: [{ name: "Both", type: ["podcast", "talk"] }] as any,
+    })
+
+    expect(items).toHaveLength(1)
+    expect(items[0].type).toBe("talk")
   })
 
   it("skips empty collections", () => {
