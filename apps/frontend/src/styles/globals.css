@@ -122,6 +122,47 @@
   }
 }
 
+/*
+  "Peek" styles for the hero's Recent list: a step below the hero headings so the
+  list reads as a sneak peek and doesn't compete with the left column.
+*/
+@utility type-peek-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+
+  @variant md {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+/* Mobile Recent card description. */
+@utility type-peek-small {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 19px;
+  letter-spacing: 0.01em;
+}
+
+@utility type-peek-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+@utility type-mono-caption {
+  font-family: var(--font-code);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;

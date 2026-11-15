@@ -25,7 +25,7 @@ const HeroSocialBar = ({ className }: HeroSocialBarProps) => (
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group flex h-14 shrink-0 items-center gap-3 whitespace-nowrap bg-ink px-[22px] text-white transition-colors hover:bg-dark-teal",
+        "group flex h-14 shrink-0 items-center gap-3 whitespace-nowrap bg-ink px-[22px] text-white",
         focusRing
       )}
     >

@@ -147,25 +147,25 @@ const RecentDeck = ({ items, className }: RecentDeckProps) => {
           >
             <RecentLink
               item={item}
-              className="group flex h-[319px] flex-col gap-3 border border-hairline px-[22px] pt-5 pb-[22px] outline-none transition-colors hover:border-ink focus-visible:border-ink focus-visible:outline-2 focus-visible:outline-dark-teal"
+              className="flex h-full flex-col gap-2.5 border border-hairline px-[18px] pt-[18px] pb-5 outline-none transition-colors hover:border-ink focus-visible:border-ink focus-visible:outline-2 focus-visible:outline-dark-teal"
             >
               <span aria-hidden="true" className="h-1 w-full bg-ink" />
-              <p className="type-mono font-bold text-dark-teal">{item.type}</p>
-              <h3 className="type-h4 line-clamp-2 text-ink">{item.title}</h3>
+              <p className="type-mono-caption font-bold text-dark-teal">
+                {item.type}
+              </p>
+              <h3 className="type-peek-title line-clamp-2 text-ink">
+                {item.title}
+              </h3>
               {item.description && (
-                <p className="type-small line-clamp-3 text-body">
+                <p className="type-peek-small line-clamp-3 text-body">
                   {item.description}
                 </p>
               )}
               {item.meta && (
-                <p className="type-mono line-clamp-2 text-body">{item.meta}</p>
+                <p className="type-mono-caption line-clamp-2 text-body">
+                  {item.meta}
+                </p>
               )}
-              <span className="mt-auto flex justify-end text-ink">
-                <ArrowRight
-                  aria-hidden="true"
-                  className="transition-transform group-hover:translate-x-1"
-                />
-              </span>
             </RecentLink>
           </li>
         ))}
