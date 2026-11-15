@@ -53,6 +53,30 @@ jobs:
     env:
       PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}
     steps:
+      # Runs first, before checkout and install (which take a minute or two), so the
+      # person who asked sees straight away that a review is under way.
+      - name: Acknowledge the review request
+        id: status
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          EVENT_NAME: ${{ github.event_name }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # 👀 on the comment that asked for the review.
+          if [ "$EVENT_NAME" = "issue_comment" ]; then
+            gh api "repos/$REPO/issues/comments/$COMMENT_ID/reactions" -f content=eyes --silent || true
+          elif [ "$EVENT_NAME" = "pull_request_review_comment" ]; then
+            gh api "repos/$REPO/pulls/comments/$COMMENT_ID/reactions" -f content=eyes --silent || true
+          fi
+
+          # A status comment, updated by the last step when the review ends. Comments made
+          # with GITHUB_TOKEN don't trigger workflows, so this can't start another review.
+          body="🔍 **Claude is reviewing this PR.** This usually takes a few minutes; inline comments and a summary will follow. [Follow the run]($RUN_URL)"
+          id=$(gh api "repos/$REPO/issues/$PR_NUMBER/comments" -f body="$body" --jq .id) || true
+          echo "comment_id=$id" >> "$GITHUB_OUTPUT"
+
       - name: Checkout PR head
         uses: actions/checkout@v5
         with:
@@ -74,6 +98,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Claude review
+        id: review
         uses: anthropics/claude-code-action@v1
         with:
           # Use ONE of these. API key: console.anthropic.com.
@@ -95,3 +120,23 @@ jobs:
             --model claude-opus-5-5
             --max-turns 60
             --allowedTools "Skill,Read,Grep,Glob,Write,Edit,mcp__github_inline_comment__create_inline_comment,Bash(gh pr view:*),Bash(gh pr diff:*),Bash(gh pr comment:*),Bash(gh api:*),Bash(git diff:*),Bash(git log:*),Bash(git show:*),Bash(git merge-base:*),Bash(grep:*),Bash(pnpm --filter victory-nwani exec tsc:*),Bash(pnpm --filter victory-nwani exec eslint:*),Bash(pnpm --filter victory-nwani exec jest:*),Bash(pnpm --filter oldlace-penguin exec tsc:*)"
+
+      # Runs even if the review failed or was replaced by a newer request.
+      - name: Update the status comment
+        if: always() && steps.status.outputs.comment_id != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          STATUS_COMMENT_ID: ${{ steps.status.outputs.comment_id }}
+          REVIEW_OUTCOME: ${{ steps.review.outcome }}
+          JOB_STATUS: ${{ job.status }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ "$JOB_STATUS" = "cancelled" ] || [ "$REVIEW_OUTCOME" = "cancelled" ]; then
+            body="⏹️ **Claude's review was cancelled**, usually because a newer review request replaced it. [Run]($RUN_URL)"
+          elif [ "$REVIEW_OUTCOME" = "success" ]; then
+            body="✅ **Claude's review is done.** See the inline comments and the summary comment. [Run]($RUN_URL)"
+          else
+            body="❌ **Claude's review didn't finish.** Check the run for the error, then comment \`@claude review\` to try again. [Run]($RUN_URL)"
+          fi
+          gh api -X PATCH "repos/$REPO/issues/comments/$STATUS_COMMENT_ID" -f body="$body" --silent
