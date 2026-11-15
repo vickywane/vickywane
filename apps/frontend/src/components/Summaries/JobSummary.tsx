@@ -24,7 +24,7 @@ const JobSummary = ({ experiences }: JobSummaryProp) => {
   })
 
   return (
-    <Layout bg="#fcfcfc">
+    <Layout bg="#fcfcfc" id="experience">
       <Typography as="h2" styleAs="heading_2" ref={ref}>
         Life As A <span> Software Engineer </span>{" "}
       </Typography>

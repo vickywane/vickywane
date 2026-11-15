@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 import StyledComponentsRegistry from "../src/styles/StyledComponentsRegistry"
-import { Space_Grotesk } from "next/font/google"
+import { Roboto_Flex, Roboto_Mono, Space_Grotesk } from "next/font/google"
 import PostHog from "@/providers/PostHog"
 import StoreProvider from "@/state/StoreProvider"
 import "@/styles/globals.css"
@@ -12,8 +12,22 @@ import * as Sentry from "@sentry/nextjs"
 
 const font = Space_Grotesk({
   subsets: ["latin", "vietnamese"],
-  weight: ["400", "400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal"],
+  variable: "--font-space-grotesk",
+})
+
+// Used by the v2 `type-body` / `type-mono` utilities (see globals.css).
+// Exposed as variables only, so existing text keeps its current font.
+const robotoFlex = Roboto_Flex({
+  subsets: ["latin"],
+  variable: "--font-roboto-flex-loaded",
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-roboto-mono",
 })
 
 type Props = {
@@ -40,7 +54,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${font.variable} ${robotoFlex.variable} ${robotoMono.variable}`}
+    >
       <body>
         <StyledComponentsRegistry>
           <Suspense fallback={<div>Loading...</div>}>

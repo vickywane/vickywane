@@ -3,7 +3,7 @@ import { PiBugDroid } from "react-icons/pi"
 
 import Header from "@/components/headers"
 import HomeHeroNotification from "@/notifications/HomeHeroNotification"
-import HomeHero from "@/components/heros/HomeHero"
+import HomeHero from "@/components/heros/home"
 import PersonalBio from "@/components/bio/PersonalBio"
 import FeaturedTravelInsight from "@/components/Insights/FeaturedTravelInsight"
 import JobSummary from "@/components/Summaries/JobSummary"
@@ -48,7 +48,13 @@ export default async function Page() {
         }
       />
 
-      <HomeHero banner_description={pageData.banner_description || ""} />
+      <HomeHero
+        banner_description={pageData.banner_description}
+        banner_image={pageData.banner_image}
+        projects={(pageData.projects as unknown) as Projects[]}
+        articles={(pageData.articles as unknown) as Article[]}
+        engagements={(pageData.engagements as unknown) as Engagement[]}
+      />
 
       <JobSummary
         experiences={(pageData.experiences as unknown) as WorkExperience[]}

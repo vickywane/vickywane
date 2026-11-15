@@ -17,6 +17,7 @@ export const HOME_QUERY = `
        _createdAt,
        banner_text,
        banner_description,
+       banner_image,
        human_description,
        experiences[] -> {
          name,
