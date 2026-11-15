@@ -45,7 +45,11 @@ const HomeHero = ({
   const recentItems = getRecentItems({ projects, articles, engagements })
 
   return (
-    <section aria-label="Introduction" className="bg-cream">
+    <section
+      id="about"
+      aria-label="Introduction"
+      className="scroll-mt-[90px] bg-cream"
+    >
       <div className="mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pt-8 pb-20 md:grid md:grid-cols-2 md:gap-x-12 md:px-12 md:py-20 xl:grid-cols-[560px_minmax(0,1fr)] lg:gap-x-16 lg:gap-y-6 lg:px-16 lg:py-24 xl:gap-x-24 xl:p-[120px]">
         <div className="flex flex-col gap-7 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:gap-6">
           <HeroPortrait src={getPortraitSrc(banner_image)} alt={PORTRAIT_ALT} />

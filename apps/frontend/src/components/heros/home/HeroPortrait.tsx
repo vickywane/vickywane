@@ -26,7 +26,7 @@ const MOBILE_MAX = 767
 const chipLabelClass = "font-code font-bold uppercase leading-[1.4] text-white"
 
 /**
- * Hero portrait: greyscale thumbnail that grows to 288px in colour on click.
+ * Hero portrait: greyscale thumbnail that grows to 288px on click.
  * The ALT chip is a separate button that shows the image's alt text in a popover.
  */
 const HeroPortrait = ({ src, alt, className }: HeroPortraitProps) => {
@@ -171,23 +171,8 @@ const HeroPortrait = ({ src, alt, className }: HeroPortraitProps) => {
           fill
           priority
           sizes="288px"
-          className={cn(
-            "object-cover object-top transition-[filter] duration-[240ms] ease-out-snappy motion-reduce:transition-none",
-            isEnlarged ? "grayscale-0" : "grayscale group-hover:grayscale-0 group-focus-visible:grayscale-0"
-          )}
+          className="object-cover object-top grayscale"
         />
-
-        {isEnlarged && (
-          <span
-            aria-hidden="true"
-            className={cn(
-              chipLabelClass,
-              "absolute bottom-[7px] left-[7px] bg-ink/45 px-1.5 py-[3px] text-[10px] tracking-[0.1em] backdrop-blur-[4px]"
-            )}
-          >
-            Click to reduce
-          </span>
-        )}
       </button>
 
       <button
@@ -200,7 +185,7 @@ const HeroPortrait = ({ src, alt, className }: HeroPortraitProps) => {
         onClick={() => (isAltOpen ? closeAlt() : setIsAltOpen(true))}
         className={cn(
           chipLabelClass,
-          "absolute border border-white/35 bg-ink/45 outline-none",
+          "absolute cursor-pointer border border-white/35 bg-ink/45 outline-none",
           "before:absolute before:-inset-2 before:content-['']",
           "transition-colors hover:bg-ink focus-visible:bg-ink focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white",
           isEnlarged
@@ -232,7 +217,7 @@ const HeroPortrait = ({ src, alt, className }: HeroPortraitProps) => {
               type="button"
               aria-label="Close"
               onClick={() => closeAlt()}
-              className="flex size-6 items-center justify-center border border-ink font-code text-sm font-bold leading-none text-ink outline-none transition-colors hover:bg-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dark-teal"
+              className="flex size-6 cursor-pointer items-center justify-center border border-ink font-code text-sm font-bold leading-none text-ink outline-none transition-colors hover:bg-ink hover:text-white focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dark-teal"
             >
               ×
             </button>

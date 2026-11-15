@@ -30,6 +30,7 @@ export const social_links = {
 
 // Home hero in-page navigation. `target` is the id of the section on the home page.
 export const hero_section_links = [
+  { label: "About", target: "about" },
   { label: "Experience", target: "experience" },
   { label: "Projects", target: "projects" },
   { label: "Writing", target: "writing" },

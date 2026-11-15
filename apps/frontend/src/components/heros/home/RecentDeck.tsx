@@ -89,10 +89,71 @@ const RecentDeck = ({ items, className }: RecentDeckProps) => {
     })
   }
 
+  // Mouse drag-to-scroll. Touch and pens already swipe natively.
+  const dragRef = useRef<{
+    pointerId: number
+    startX: number
+    startScroll: number
+    moved: boolean
+  } | null>(null)
+  const suppressClickRef = useRef(false)
+  const [isDragging, setIsDragging] = useState(false)
+
+  const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    const scroller = scrollerRef.current
+    if (event.pointerType !== "mouse" || event.button !== 0 || !scroller) return
+
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startScroll: scroller.scrollLeft,
+      moved: false,
+    }
+  }
+
+  const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current
+    const scroller = scrollerRef.current
+    if (!drag || !scroller || drag.pointerId !== event.pointerId) return
+
+    const delta = event.clientX - drag.startX
+    if (!drag.moved) {
+      if (Math.abs(delta) < 5) return
+      drag.moved = true
+      setIsDragging(true)
+      scroller.setPointerCapture(event.pointerId)
+    }
+
+    scroller.scrollLeft = drag.startScroll - delta
+  }
+
+  const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current
+    if (!drag || drag.pointerId !== event.pointerId) return
+
+    dragRef.current = null
+    if (!drag.moved) return
+
+    // The click that follows a drag must not open the card under the cursor.
+    suppressClickRef.current = true
+    setIsDragging(false)
+
+    const step = getStep()
+    if (step) goTo(Math.round((scrollerRef.current?.scrollLeft ?? 0) / step))
+  }
+
+  const onClickCapture = (event: React.MouseEvent) => {
+    if (!suppressClickRef.current) return
+
+    suppressClickRef.current = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
   if (!items.length) return null
 
   const controlClass =
-    "flex size-11 items-center justify-center text-ink transition-opacity disabled:opacity-35 outline-none focus-visible:outline-2 focus-visible:outline-dark-teal"
+    "flex size-11 cursor-pointer items-center justify-center text-ink transition-opacity disabled:cursor-default disabled:opacity-35 outline-none focus-visible:outline-2 focus-visible:outline-dark-teal"
 
   return (
     <section
@@ -137,7 +198,19 @@ const RecentDeck = ({ items, className }: RecentDeckProps) => {
         tabIndex={0}
         role="region"
         aria-label="Recent work"
-        className="-mr-6 snap-x snap-mandatory overflow-x-auto outline-none [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-dark-teal [&::-webkit-scrollbar]:hidden"
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onClickCapture={onClickCapture}
+        onDragStart={event => event.preventDefault()}
+        className={cn(
+          "-mr-6 overflow-x-auto outline-none [&_a]:cursor-[inherit] [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-dark-teal [&::-webkit-scrollbar]:hidden",
+          // Snapping fights a manual scrollLeft, so it is paused mid-drag.
+          isDragging
+            ? "cursor-grabbing select-none"
+            : "cursor-grab snap-x snap-mandatory"
+        )}
       >
         <ul className="flex w-max gap-4 pr-6">
         {items.map(item => (
