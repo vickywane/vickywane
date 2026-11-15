@@ -21,10 +21,6 @@ on:
         description: "PR number to review"
         required: true
 
-concurrency:
-  group: claude-review-${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}
-  cancel-in-progress: true
-
 jobs:
   review:
     # Only run for PRs, and only when someone with write access asks.
@@ -40,6 +36,12 @@ jobs:
         github.event.comment.user.type != 'Bot' &&
         contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
       )
+    # Job-level (not workflow-level) so runs whose job is skipped, such as the ones
+    # triggered by Claude's own inline comments, never join the group. At workflow level
+    # every bot comment cancelled the review that posted it.
+    concurrency:
+      group: claude-review-${{ github.event.pull_request.number || github.event.issue.number || inputs.pr_number }}
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
