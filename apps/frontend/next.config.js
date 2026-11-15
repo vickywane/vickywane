@@ -1,6 +1,5 @@
-const withOptimizedImage = require("next-optimized-images")
-require("dotenv").config()
-const { withSentryConfig } = require("@sentry/nextjs")
+require("dotenv").config({ quiet: true })
+const { withSentryConfig } = require("@sentry/nextjs/config")
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -10,40 +9,41 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  org: "victory-engineering",
-  project: "portfolio",
-  authToken: process.env.SENTRY_AUTH_TOKEN,
   images: {
     disableStaticImages: true,
     loader: "cloudinary",
-    domains: ["res.cloudinary.com", "cdn.sanity.io"],
+    remotePatterns: [
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "cdn.sanity.io" },
+    ],
     formats: ["image/webp", "image/avif"],
     path: "https://res.cloudinary.com/dkfptto8m/image/upload",
   },
+  // Next 16 builds with Turbopack by default: import .svg files as React components
+  turbopack: {
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
+  // Same rule for `next dev --webpack` / `next build --webpack`
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     })
 
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|mp4)$/i,
-      use: [
-        {
-          loader: "file-loader",
-          options: {
-            publicPath: "/_next",
-            name: "static/media/[name].[hash].[ext]",
-          },
-        },
-      ],
-    })
     return config
   },
-  handleImages: ["jpeg", "png", "webp"],
 }
 
-module.exports = withSentryConfig(withOptimizedImage(nextConfig), {
+module.exports = withSentryConfig(nextConfig, {
+  org: "victory-engineering",
+  project: "portfolio",
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  silent: !process.env.CI,
   reactComponentAnnotation: {
     enabled: true,
   },

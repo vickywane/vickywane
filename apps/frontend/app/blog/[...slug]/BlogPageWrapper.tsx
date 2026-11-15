@@ -46,7 +46,7 @@ const CoverContainer = styled.div`
   }
 `
 
-const BlogPageWrapper = async ({ article }) => {
+const BlogPageWrapper = ({ article }) => {
   return (
     <div>
       <Layout bg="#FFF8F0">
