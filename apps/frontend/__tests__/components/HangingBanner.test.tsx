@@ -38,14 +38,14 @@ const drag = (dx: number, dy: number, release = true) => {
 }
 
 describe("HangingBanner", () => {
-  it("makes the whole bar the link, with the NEW tag and Read it label", () => {
+  it("makes the whole bar the link, with the NEW tag and Read article label", () => {
     render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
 
     const link = screen.getByRole("link")
     expect(link).toHaveAttribute("href", "/blog/medusa-smtp")
     expect(link).toHaveTextContent("New")
     expect(link).toHaveTextContent(MESSAGE)
-    expect(link).toHaveTextContent("Read it →")
+    expect(link).toHaveTextContent("Read article →")
     expect(link).toHaveAttribute("draggable", "false")
   })
 
@@ -57,11 +57,11 @@ describe("HangingBanner", () => {
     expect(link).toHaveAttribute("rel", "noopener noreferrer")
   })
 
-  it("drops the link and the Read it button when there is no href", () => {
+  it("drops the link and the Read article button when there is no href", () => {
     render(<HangingBanner message={MESSAGE} />)
 
     expect(screen.queryByRole("link")).not.toBeInTheDocument()
-    expect(screen.queryByText("Read it →")).not.toBeInTheDocument()
+    expect(screen.queryByText("Read article →")).not.toBeInTheDocument()
     expect(screen.getByText(MESSAGE)).toBeInTheDocument()
   })
 

@@ -37,7 +37,8 @@ const NAIL_RADIUS = 4
 const NAIL_Y = 2
 const MAX_TILT = 7
 
-const BOUNCY = { type: "spring", stiffness: 260, damping: 9 } as const
+// Loose enough to bob a few times on release, firm enough to settle quickly.
+const BOUNCY = { type: "spring", stiffness: 120, damping: 9 } as const
 const CALM = { type: "spring", stiffness: 320, damping: 32 } as const
 
 const PHASE_MESSAGE: Record<Phase, string> = {
@@ -72,11 +73,17 @@ const rubberBand = (distance: number, limit: number) => {
 const clamp = (value: number, min: number, max: number) =>
   Math.min(max, Math.max(min, value))
 
+/** Length of each rope segment once the string starts to strain. */
+const STRAIN_DASH = 5
+/** Widest gap between segments when the string is pulled tight. */
+const MAX_STRAIN_GAP = 2.5
+
 /**
  * One string: from its nail on the header border to its knot on the bar.
- * It sags into a curve when the bar is pushed up and the string goes slack.
+ * It sags into a curve when the bar is pushed up and the string goes slack,
+ * and splits into short segments, like rope fibres straining, when stretched.
  */
-const useStringPath = (
+const useString = (
   side: -1 | 1,
   x: MotionValue<number>,
   y: MotionValue<number>,
@@ -84,24 +91,42 @@ const useStringPath = (
   width: MotionValue<number>,
   inset: MotionValue<number>,
   rest: MotionValue<number>
-) =>
-  useTransform([x, y, rotate, width, inset, rest], (values: number[]) => {
-    const [dx, dy, deg, w, ins, len] = values
-    if (!w) return ""
+) => {
+  const geometry = useTransform(
+    [x, y, rotate, width, inset, rest],
+    (values: number[]) => {
+      const [dx, dy, deg, w, ins, len] = values
+      if (!w) return { d: "", strain: 0 }
 
-    const nailX = side < 0 ? ins : w - ins
-    const reach = nailX - w / 2
-    const rad = (deg * Math.PI) / 180
-    const knotX = w / 2 + dx + reach * Math.cos(rad)
-    const knotY = len + dy + reach * Math.sin(rad)
+      const nailX = side < 0 ? ins : w - ins
+      const reach = nailX - w / 2
+      const rad = (deg * Math.PI) / 180
+      const knotX = w / 2 + dx + reach * Math.cos(rad)
+      const knotY = len + dy + reach * Math.sin(rad)
 
-    const span = Math.hypot(knotX - nailX, knotY - NAIL_Y)
-    const slack = Math.max(0, len - NAIL_Y - span)
-    const ctrlX = (nailX + knotX) / 2
-    const ctrlY = (NAIL_Y + knotY) / 2 + slack * 0.9
+      const restLength = Math.max(1, len - NAIL_Y)
+      const span = Math.hypot(knotX - nailX, knotY - NAIL_Y)
+      const slack = Math.max(0, restLength - span)
+      const ctrlX = (nailX + knotX) / 2
+      const ctrlY = (NAIL_Y + knotY) / 2 + slack * 0.9
 
-    return `M ${nailX} ${NAIL_Y} Q ${ctrlX} ${ctrlY} ${knotX} ${knotY}`
+      return {
+        d: `M ${nailX} ${NAIL_Y} Q ${ctrlX} ${ctrlY} ${knotX} ${knotY}`,
+        strain: Math.max(0, span / restLength - 1),
+      }
+    }
+  )
+
+  const d = useTransform(geometry, g => g.d)
+  const dash = useTransform(geometry, ({ strain }) => {
+    // A little give before the fibres start to show.
+    const gap = clamp((strain - 0.15) * 1.2, 0, MAX_STRAIN_GAP)
+
+    return gap < 0.3 ? "none" : `${STRAIN_DASH} ${gap.toFixed(2)}`
   })
+
+  return { d, dash }
+}
 
 /**
  * Announcement bar hung from the header on two strings. It swings once on
@@ -111,7 +136,7 @@ const useStringPath = (
 const HangingBanner = ({
   message,
   href,
-  linkLabel = "Read it →",
+  linkLabel = "Read article →",
   className,
 }: HangingBannerProps) => {
   const router = useRouter()
@@ -128,12 +153,11 @@ const HangingBanner = ({
   const inset = useMotionValue(0)
   const rest = useMotionValue(0)
 
-  const leftPath = useStringPath(-1, x, y, rotate, width, inset, rest)
-  const rightPath = useStringPath(1, x, y, rotate, width, inset, rest)
-  const leftNailX = useTransform(() => inset.get())
-  const rightNailX = useTransform(() => width.get() - inset.get())
+  const leftString = useString(-1, x, y, rotate, width, inset, rest)
+  const rightString = useString(1, x, y, rotate, width, inset, rest)
 
-  const [measured, setMeasured] = useState(false)
+  // Nails never move, so they are plain state: rendered straight from layout.
+  const [nails, setNails] = useState<[number, number] | null>(null)
   const [phase, setPhase] = useState<Phase>("idle")
 
   const pointerRef = useRef<{ id: number; x: number; y: number } | null>(null)
@@ -159,11 +183,14 @@ const HangingBanner = ({
 
     const measure = () => {
       const isWide = window.matchMedia("(min-width: 768px)").matches
-      width.set(bar.offsetWidth)
-      rest.set(bar.offsetTop)
       // Nail centres sit 48px in from the bar's ends on desktop, 24px on mobile.
-      inset.set(isWide ? 48 : 24)
-      setMeasured(true)
+      const nailInset = isWide ? 48 : 24
+      const barWidth = bar.offsetWidth
+
+      width.set(barWidth)
+      rest.set(bar.offsetTop)
+      inset.set(nailInset)
+      setNails([nailInset, barWidth - nailInset])
     }
 
     measure()
@@ -184,14 +211,14 @@ const HangingBanner = ({
         animate(x, 0, {
           type: "spring",
           velocity: 280,
-          stiffness: 120,
-          damping: 5,
+          stiffness: 100,
+          damping: 4.5,
         }),
         animate(y, 0, {
           type: "spring",
           velocity: 90,
-          stiffness: 220,
-          damping: 7,
+          stiffness: 160,
+          damping: 6,
         }),
       ]
     }, 700)
@@ -268,9 +295,9 @@ const HangingBanner = ({
     }
     if (!draggedRef.current) return
 
-    x.set(rubberBand(dx, 180))
+    x.set(rubberBand(dx, 220))
     // Easy to pull down, stiff to push up: the strings only go slack.
-    y.set(dy >= 0 ? rubberBand(dy, 320) : rubberBand(dy, 50))
+    y.set(dy >= 0 ? rubberBand(dy, 360) : rubberBand(dy, 50))
   }
 
   const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -349,28 +376,38 @@ const HangingBanner = ({
           className
         )}
       >
-        <div ref={frameRef} className="relative pt-4 md:pt-5">
+        <div ref={frameRef} className="relative pt-7 md:pt-9">
           <svg
             aria-hidden="true"
             className={cn(
               "pointer-events-none absolute inset-0 size-full overflow-visible text-ink transition-opacity",
-              measured ? "opacity-100" : "opacity-0"
+              nails ? "opacity-100" : "opacity-0"
             )}
           >
             <m.path
-              d={leftPath}
+              d={leftString.d}
+              strokeDasharray={leftString.dash}
               fill="none"
               stroke="currentColor"
-              strokeLinecap="round"
+              strokeLinecap="butt"
             />
             <m.path
-              d={rightPath}
+              d={rightString.d}
+              strokeDasharray={rightString.dash}
               fill="none"
               stroke="currentColor"
-              strokeLinecap="round"
+              strokeLinecap="butt"
             />
-            <m.circle cx={leftNailX} cy={NAIL_Y} r={NAIL_RADIUS} fill="currentColor" />
-            <m.circle cx={rightNailX} cy={NAIL_Y} r={NAIL_RADIUS} fill="currentColor" />
+            {nails?.map((cx, index) => (
+              <circle
+                key={index}
+                data-testid="hanging-banner-nail"
+                cx={cx}
+                cy={NAIL_Y}
+                r={NAIL_RADIUS}
+                fill="currentColor"
+              />
+            ))}
           </svg>
 
           <m.div
