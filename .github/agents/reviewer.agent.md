@@ -26,6 +26,7 @@ When reviewing, keep the following principles in mind:
 - Consider edge cases, error handling, and test coverage gaps.
 - Flag any missing or inadequate tests for the changed code.
 - Note any documentation that should be updated alongside the changes.
+- Figma is the design source of truth (design → code, see `AGENTS.md`). For any visual UI change, check that the PR links the Figma frame or component it implements, and flag visual changes with no Figma link or ones that contradict the design without explanation.
 
 * Use markdown for each suggestion, like
 

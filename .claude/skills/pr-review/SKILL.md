@@ -59,6 +59,8 @@ Go through the ones the diff touches. Each item is a known way this codebase bre
 
 **Images and media.** New remote image hosts must be added to `images.remotePatterns`. The Cloudinary loader rewrites `src`. Check that a non-Cloudinary URL passed to `next/image` still renders. SVGs are imported as React components through `@svgr/webpack`. Both the `turbopack.rules` and `webpack` configs must keep working.
 
+**Figma is the design source of truth (design → code).** See `AGENTS.md`. When the diff changes what users see (layout, spacing, colour, type, copy treatment or a new UI element), the PR must link the Figma frame or component it implements, and Figma's *Live Site* pages must match the shipped result. Flag a visual change that has no Figma link, or that contradicts the linked design without saying why. Flag a component whose Figma description now misstates its behaviour (motion, what a link opens). If you have Figma access, compare against `get_design_context` for the linked node. Without access, flag the missing link and don't guess at pixels. Pure refactors, copy pulled from Sanity, and changes with no visual effect are exempt.
+
 **SEO surfaces.** Changes to `sitemap.ts`, `generateMetadata`, `src/utils/generateMetadata.ts` or `components/headers/nextHead.tsx` affect indexing. Check `openGraph.images` gets a real URL, not `[undefined]`, and that slugs and canonical URLs still match the routes.
 
 **Observability.** Sentry and PostHog init must not run twice or in tests. Errors must still reach `global-error.tsx`/Sentry, not get swallowed by a new `try/catch` that only `console.log`s. Flag PostHog capturing personal data or chatbot message content.
