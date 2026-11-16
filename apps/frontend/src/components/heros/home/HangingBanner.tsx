@@ -27,8 +27,15 @@ import {
   type Rig,
 } from "./hangingRope"
 
+/** A run of announcement text; runs with an href render as inline links. */
+export interface MessagePart {
+  text: string
+  href?: string
+}
+
 interface HangingBannerProps {
-  message: string
+  message: string | MessagePart[]
+  /** Where the Read article button (and a long pull down) goes. */
   href?: string
   linkLabel?: string
   className?: string
@@ -51,6 +58,33 @@ const PHASE_MESSAGE: Record<Phase, string> = {
   opening: "Opening…",
   opened: "Opened in a new tab",
 }
+
+/** Internal links stay in-app; external ones open in a new tab. */
+const BannerLink = ({
+  href,
+  className,
+  children,
+  ...rest
+}: {
+  href: string
+  className?: string
+  children: React.ReactNode
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>) =>
+  /^https?:\/\//i.test(href) ? (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      {...rest}
+    >
+      {children}
+    </a>
+  ) : (
+    <Link href={href} className={className} {...rest}>
+      {children}
+    </Link>
+  )
 
 const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
@@ -248,6 +282,8 @@ const HangingBanner = ({
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     if (lockedRef.current) return
     if (event.pointerType === "mouse" && event.button !== 0) return
+    // Links are for clicking: only the rest of the bar is a drag handle.
+    if ((event.target as Element).closest("a")) return
 
     stopAnimations()
     pointerRef.current = {
@@ -256,11 +292,6 @@ const HangingBanner = ({
       y: event.clientY - y.get(),
     }
     draggedRef.current = false
-    try {
-      event.currentTarget.setPointerCapture(event.pointerId)
-    } catch {
-      // Pointer already gone (or synthetic): drag still tracks over the bar.
-    }
   }
 
   const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -273,6 +304,12 @@ const HangingBanner = ({
     if (!draggedRef.current && Math.hypot(dx, dy) > DRAG_SLOP) {
       draggedRef.current = true
       setBodyCursor("grabbing")
+      // Capture only once it is a real drag, so taps keep their normal target.
+      try {
+        event.currentTarget.setPointerCapture(event.pointerId)
+      } catch {
+        // Pointer already gone (or synthetic): drag still tracks over the bar.
+      }
     }
     if (!draggedRef.current) return
 
@@ -309,20 +346,19 @@ const HangingBanner = ({
     springBack()
   }
 
-  // A drag ends in a click on the link; swallow it so only a real click navigates.
-  const onClickCapture = (event: React.MouseEvent) => {
-    if (draggedRef.current || lockedRef.current) {
-      event.preventDefault()
-      event.stopPropagation()
-      draggedRef.current = false
-    }
-  }
+  const hint = PHASE_MESSAGE[phase]
+  const hintId = useId()
 
   const barClass = cn(
-    "flex w-full cursor-grab select-none flex-col items-start gap-2.5 border border-ink bg-white p-2.5 text-ink outline-none [-webkit-touch-callout:none] [-webkit-user-drag:none]",
-    "md:flex-row md:items-center md:justify-between md:gap-6 md:py-1.5 md:pr-1.5 md:pl-2.5",
-    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-teal"
+    "flex w-full cursor-grab select-none flex-col items-start gap-2.5 border border-ink bg-white p-2.5 text-ink [-webkit-touch-callout:none]",
+    "md:flex-row md:items-center md:justify-between md:gap-6 md:py-1.5 md:pr-1.5 md:pl-2.5"
   )
+
+  const focusRing =
+    "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-teal"
+
+  const parts: MessagePart[] =
+    typeof message === "string" ? [{ text: message }] : message
 
   const content = (
     <>
@@ -331,27 +367,41 @@ const HangingBanner = ({
           New
         </span>
         <span className="min-w-0 flex-1 font-display text-sm font-medium leading-[18px] tracking-[0.01em] md:truncate md:text-base md:leading-5">
-          {message}
+          {parts.map((part, index) =>
+            part.href ? (
+              <BannerLink
+                key={index}
+                href={part.href}
+                draggable={false}
+                className={cn(
+                  "cursor-pointer underline decoration-1 underline-offset-2 hover:text-dark-teal",
+                  focusRing
+                )}
+              >
+                {part.text}
+              </BannerLink>
+            ) : (
+              <React.Fragment key={index}>{part.text}</React.Fragment>
+            )
+          )}
         </span>
       </span>
       {href && (
-        <span className="flex w-full shrink-0 justify-center bg-ink px-3.5 py-2 font-code text-[13px] font-bold uppercase leading-[1.4] tracking-[0.06em] whitespace-nowrap text-white md:w-auto">
+        <BannerLink
+          href={href}
+          draggable={false}
+          aria-describedby={hintId}
+          className={cn(
+            "flex w-full shrink-0 cursor-pointer justify-center bg-ink px-3.5 py-2 font-code text-[13px] font-bold uppercase leading-[1.4] tracking-[0.06em] whitespace-nowrap text-white transition-colors hover:bg-dark-teal md:w-auto",
+            focusRing
+          )}
+        >
           {linkLabel}
-        </span>
+        </BannerLink>
       )}
     </>
   )
 
-  const hint = PHASE_MESSAGE[phase]
-  const hintId = useId()
-
-  const external = href ? /^https?:\/\//i.test(href) : false
-  const linkProps = {
-    className: barClass,
-    draggable: false,
-    onDragStart: (event: React.DragEvent) => event.preventDefault(),
-    "aria-describedby": hintId,
-  }
 
   return (
     <LazyMotion strict features={loadFeatures}>
@@ -408,26 +458,8 @@ const HangingBanner = ({
             onPointerMove={onPointerMove}
             onPointerUp={endDrag}
             onPointerCancel={endDrag}
-            onClickCapture={onClickCapture}
           >
-            {href ? (
-              external ? (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  {...linkProps}
-                >
-                  {content}
-                </a>
-              ) : (
-                <Link href={href} {...linkProps}>
-                  {content}
-                </Link>
-              )
-            ) : (
-              <div className={barClass}>{content}</div>
-            )}
+            <div className={barClass}>{content}</div>
 
             <span
               aria-live="polite"
@@ -442,7 +474,7 @@ const HangingBanner = ({
 
           <span id={hintId} className="sr-only">
             {href
-              ? "You can also drag this banner; pull it down and let go to open the post."
+              ? "You can also drag the banner; pull it down and let go to open the article."
               : "You can drag this banner around."}
           </span>
         </div>

@@ -120,7 +120,7 @@ const slackPush = (distance: number) =>
   MAX_PUSH_UP * (1 - 1 / (1 + (distance * 0.55) / MAX_PUSH_UP))
 
 const INK = [19, 17, 18]
-const STRAINED = [196, 54, 38]
+const STRAINED = [150, 148, 149]
 
 export interface RopeStyle {
   dash: string
@@ -131,7 +131,7 @@ export interface RopeStyle {
 /**
  * How a string looks under strain (0–1): its fibres separate into segments
  * whose gaps widen the harder it is pulled, it thins, and it shifts from
- * ink towards red.
+ * ink towards a light grey.
  */
 export const ropeStyle = (strain: number): RopeStyle => {
   const s = clamp(strain, 0, 1)

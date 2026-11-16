@@ -65,13 +65,18 @@ describe("rope style under strain", () => {
     })
   })
 
-  it("opens wider gaps, thins and reddens the harder it is pulled", () => {
+  it("opens wider gaps, thins and fades to grey the harder it is pulled", () => {
     const styles = [0.2, 0.5, 0.8, 1].map(ropeStyle)
     const gaps = styles.map(style => Number(style.dash.split(" ")[1]))
-    const reds = styles.map(style => Number(style.color.match(/\d+/)![0]))
+    const channels = styles.map(style => style.color.match(/\d+/g)!.map(Number))
 
     gaps.slice(1).forEach((gap, i) => expect(gap).toBeGreaterThan(gaps[i]))
-    reds.slice(1).forEach((red, i) => expect(red).toBeGreaterThan(reds[i]))
+    // Lighter with strain, and stays neutral (no colour cast).
+    channels.slice(1).forEach(([r], i) => expect(r).toBeGreaterThan(channels[i][0]))
+    channels.forEach(([r, g, b]) => {
+      expect(Math.abs(r - g)).toBeLessThanOrEqual(4)
+      expect(Math.abs(r - b)).toBeLessThanOrEqual(4)
+    })
     styles
       .slice(1)
       .forEach((style, i) => expect(style.width).toBeLessThan(styles[i].width))

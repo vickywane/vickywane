@@ -1,7 +1,9 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import HangingBanner from "@/components/heros/home/HangingBanner"
 import HomeHeroNotification, {
+  getMessageParts,
   getNotificationHref,
+  toSiteHref,
 } from "@/components/notifications/HomeHeroNotification"
 
 const push = jest.fn()
@@ -38,15 +40,51 @@ const drag = (dx: number, dy: number, release = true) => {
 }
 
 describe("HangingBanner", () => {
-  it("makes the whole bar the link, with the NEW tag and Read article label", () => {
+  it("shows the NEW tag and message, with Read article as the link", () => {
     render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
 
     const link = screen.getByRole("link")
+    expect(link).toHaveAccessibleName("Read article →")
     expect(link).toHaveAttribute("href", "/blog/medusa-smtp")
-    expect(link).toHaveTextContent("New")
-    expect(link).toHaveTextContent(MESSAGE)
-    expect(link).toHaveTextContent("Read article →")
     expect(link).toHaveAttribute("draggable", "false")
+    expect(getBar()).toHaveTextContent("New")
+    expect(getBar()).toHaveTextContent(MESSAGE)
+  })
+
+  it("keeps links inside the announcement clickable", () => {
+    render(
+      <HangingBanner
+        message={[
+          { text: "Read my " },
+          { text: "lab notes", href: "/blog/lab-notes" },
+          { text: " from London" },
+        ]}
+        href="/blog/lab-notes"
+      />
+    )
+
+    const inline = screen.getByRole("link", { name: "lab notes" })
+    expect(inline).toHaveAttribute("href", "/blog/lab-notes")
+    expect(getBar()).toHaveTextContent("Read my lab notes from London")
+  })
+
+  it("lets a press on a link click through instead of starting a drag", () => {
+    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
+    const button = screen.getByRole("link", { name: "Read article →" })
+    const capture = jest.spyOn(Element.prototype, "setPointerCapture")
+
+    fireEvent.pointerDown(button, { pointerId: 1, clientX: 10, clientY: 10 })
+    fireEvent.pointerMove(getBar(), { pointerId: 1, clientX: 10, clientY: 300 })
+    fireEvent.pointerUp(getBar(), { pointerId: 1, clientX: 10, clientY: 300 })
+
+    expect(capture).not.toHaveBeenCalled()
+    expect(getBar().style.transform).not.toContain("translateY")
+    expect(push).not.toHaveBeenCalled()
+    const click = new MouseEvent("click", { bubbles: true, cancelable: true })
+    button.dispatchEvent(click)
+    // Only Next's Link handler may cancel it (to route client-side).
+    expect(screen.queryByText("Opening…")).not.toBeInTheDocument()
+    capture.mockRestore()
   })
 
   it("opens external links in a new tab", () => {
@@ -105,9 +143,7 @@ describe("HangingBanner", () => {
     drag(160, 40)
 
     expect(push).not.toHaveBeenCalled()
-    // The click that ends a drag must not follow the link.
-    const followed = fireEvent.click(screen.getByRole("link"))
-    expect(followed).toBe(false)
+    expect(screen.queryByText("Opening…")).not.toBeInTheDocument()
   })
 
   it("still follows the link on a plain click", () => {
@@ -145,6 +181,60 @@ describe("HomeHeroNotification", () => {
     expect(getNotificationHref(undefined)).toBeUndefined()
   })
 
+  it("points the button at the first link in reading order", () => {
+    // Sanity lists markDefs in the order they were added, not text order.
+    const text = [
+      {
+        _key: "b1",
+        _type: "block",
+        markDefs: [
+          { _key: "uni", _type: "link", href: "https://www.mdx.ac.uk" },
+          {
+            _key: "post",
+            _type: "link",
+            href: "https://victory-nwani.dev/blog/category/mdx",
+          },
+        ],
+        children: [
+          { _key: "s1", _type: "span", marks: ["post"], text: "Read" },
+          { _key: "s2", _type: "span", marks: [], text: " my notes from " },
+          { _key: "s3", _type: "span", marks: ["uni"], text: "Middlesex" },
+        ],
+      },
+    ]
+
+    expect(getNotificationHref(text as any)).toBe("/blog/category/mdx")
+  })
+
+  it("keeps links to this site in-app and leaves others alone", () => {
+    expect(toSiteHref("https://www.victory-nwani.dev/blog/a?x=1#h")).toBe(
+      "/blog/a?x=1#h"
+    )
+    expect(toSiteHref("https://www.mdx.ac.uk")).toBe("https://www.mdx.ac.uk")
+    expect(toSiteHref("/blog/a")).toBe("/blog/a")
+  })
+
+  it("keeps the notification's links as clickable runs", () => {
+    const text = [
+      {
+        _key: "b1",
+        _type: "block",
+        markDefs: [{ _key: "l1", _type: "link", href: "/blog/lab" }],
+        children: [
+          { _key: "s1", _type: "span", marks: [], text: "Read my " },
+          { _key: "s2", _type: "span", marks: ["l1"], text: "lab notes" },
+          { _key: "s3", _type: "span", marks: [], text: " now!  " },
+        ],
+      },
+    ]
+
+    expect(getMessageParts(text as any)).toEqual([
+      { text: "Read my " },
+      { text: "lab notes", href: "/blog/lab" },
+      { text: " now!" },
+    ])
+  })
+
   it("renders the notification text as the banner message", () => {
     render(
       <HomeHeroNotification
@@ -152,7 +242,13 @@ describe("HomeHeroNotification", () => {
       />
     )
 
-    expect(screen.getByRole("link")).toHaveAttribute("href", "/blog/m")
+    expect(
+      screen.getByRole("link", { name: "Read article →" })
+    ).toHaveAttribute("href", "/blog/m")
+    expect(screen.getByRole("link", { name: MESSAGE })).toHaveAttribute(
+      "href",
+      "/blog/m"
+    )
     expect(screen.getByText(MESSAGE)).toBeInTheDocument()
   })
 
