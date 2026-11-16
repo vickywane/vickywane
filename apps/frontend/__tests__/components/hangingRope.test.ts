@@ -88,3 +88,41 @@ describe("rope style under strain", () => {
     )
   })
 })
+
+describe("rope edge cases", () => {
+  it("still moves (with no hard stop) before the bar has been measured", () => {
+    const unmeasured = { width: 0, inset: 0, rest: 0 }
+    const { x, y } = pullFromPointer(0, 300, unmeasured)
+
+    expect(Number.isFinite(x) && Number.isFinite(y)).toBe(true)
+    expect(y).toBeGreaterThan(0)
+  })
+
+  it("does not move without pointer travel", () => {
+    expect(pullFromPointer(0, 0, rig)).toEqual({ x: 0, y: 0 })
+  })
+
+  it("pulls left and right symmetrically", () => {
+    const left = pullFromPointer(-200, 50, rig)
+    const right = pullFromPointer(200, 50, rig)
+
+    expect(left.x).toBeCloseTo(-right.x)
+    expect(left.y).toBeCloseTo(right.y)
+  })
+
+  it("clamps strain outside 0–1 when styling the rope", () => {
+    expect(ropeStyle(-1)).toEqual(ropeStyle(0))
+    expect(ropeStyle(5)).toEqual(ropeStyle(1))
+  })
+
+  it("keeps the release spring finite and bouncy at any strain", () => {
+    for (const strain of [-1, 0, 0.5, 1, 3]) {
+      const { stiffness, damping } = releaseSpring(strain)
+      const dampingRatio = damping / (2 * Math.sqrt(stiffness))
+
+      expect(stiffness).toBeGreaterThan(0)
+      expect(dampingRatio).toBeGreaterThan(0.3)
+      expect(dampingRatio).toBeLessThan(0.6)
+    }
+  })
+})

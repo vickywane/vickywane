@@ -1,10 +1,8 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import HangingBanner from "@/components/heros/home/HangingBanner"
-import HomeHeroNotification, {
-  getMessageParts,
-  getNotificationHref,
-  toSiteHref,
-} from "@/components/notifications/HomeHeroNotification"
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react"
+import HangingBanner, {
+  OPEN_THRESHOLD,
+  type MessagePart,
+} from "@/components/heros/home/HangingBanner"
 
 const push = jest.fn()
 
@@ -13,248 +11,427 @@ jest.mock("next/navigation", () => ({
 }))
 
 const MESSAGE = "Sending emails in Medusa with medusa-plugin-smtp"
+const LABEL = "Read article →"
+const PARTS: MessagePart[] = [
+  { text: "Read", href: "/blog/category/mdx" },
+  { text: " my lab notes from " },
+  { text: "Middlesex University, London", href: "https://www.mdx.ac.uk" },
+  { text: "!" },
+]
 
 const getBar = () => screen.getByTestId("hanging-banner-bar")
+const getButton = () => screen.getByRole("link", { name: LABEL })
+const getHint = () => getBar().querySelector("[aria-live]") as HTMLElement
 
-/** Presses the bar, drags it by (dx, dy) in steps, and optionally lets go. */
-const drag = (dx: number, dy: number, release = true) => {
-  const bar = getBar()
-  const start = { clientX: 400, clientY: 100 }
-  const pointer = { pointerId: 1, pointerType: "mouse", button: 0 }
+const mouse = { pointerId: 1, pointerType: "mouse", button: 0 }
+const START = { clientX: 400, clientY: 100 }
 
-  fireEvent.pointerDown(bar, { ...pointer, ...start })
+/** Presses the bar's body, drags it by (dx, dy) in steps, then optionally lets go. */
+const drag = (
+  dx: number,
+  dy: number,
+  { release = true, target }: { release?: boolean; target?: Element } = {}
+) => {
+  fireEvent.pointerDown(target ?? getBar(), { ...mouse, ...START })
   for (let step = 1; step <= 5; step++) {
-    fireEvent.pointerMove(bar, {
-      ...pointer,
-      clientX: start.clientX + (dx * step) / 5,
-      clientY: start.clientY + (dy * step) / 5,
+    fireEvent.pointerMove(getBar(), {
+      ...mouse,
+      clientX: START.clientX + (dx * step) / 5,
+      clientY: START.clientY + (dy * step) / 5,
     })
   }
   if (release) {
-    fireEvent.pointerUp(bar, {
-      ...pointer,
-      clientX: start.clientX + dx,
-      clientY: start.clientY + dy,
+    fireEvent.pointerUp(getBar(), {
+      ...mouse,
+      clientX: START.clientX + dx,
+      clientY: START.clientY + dy,
     })
   }
 }
 
-describe("HangingBanner", () => {
-  it("shows the NEW tag and message, with Read article as the link", () => {
-    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
+/** Dispatches a real click and reports whether anything cancelled it. */
+const clickFollows = (link: Element) => {
+  const click = new MouseEvent("click", { bubbles: true, cancelable: true })
+  link.dispatchEvent(click)
 
-    const link = screen.getByRole("link")
-    expect(link).toHaveAccessibleName("Read article →")
-    expect(link).toHaveAttribute("href", "/blog/medusa-smtp")
-    expect(link).toHaveAttribute("draggable", "false")
-    expect(getBar()).toHaveTextContent("New")
-    expect(getBar()).toHaveTextContent(MESSAGE)
-  })
+  return !click.defaultPrevented
+}
 
-  it("keeps links inside the announcement clickable", () => {
-    render(
-      <HangingBanner
-        message={[
-          { text: "Read my " },
-          { text: "lab notes", href: "/blog/lab-notes" },
-          { text: " from London" },
-        ]}
-        href="/blog/lab-notes"
-      />
-    )
+/**
+ * Whether the bar has moved off its resting position. framer-motion writes
+ * the transform on its own frame loop, so give it time to render first.
+ */
+/** LazyMotion loads its features asynchronously; until then nothing can move. */
+const ready = () => act(() => new Promise(resolve => setTimeout(resolve, 50)))
 
-    const inline = screen.getByRole("link", { name: "lab notes" })
-    expect(inline).toHaveAttribute("href", "/blog/lab-notes")
-    expect(getBar()).toHaveTextContent("Read my lab notes from London")
-  })
+const isDisplaced = async () => {
+  await act(() => new Promise(resolve => setTimeout(resolve, 100)))
 
-  it("lets a press on a link click through instead of starting a drag", () => {
-    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
-    const button = screen.getByRole("link", { name: "Read article →" })
-    const capture = jest.spyOn(Element.prototype, "setPointerCapture")
+  return /translate/.test(getBar().style.transform)
+}
 
-    fireEvent.pointerDown(button, { pointerId: 1, clientX: 10, clientY: 10 })
-    fireEvent.pointerMove(getBar(), { pointerId: 1, clientX: 10, clientY: 300 })
-    fireEvent.pointerUp(getBar(), { pointerId: 1, clientX: 10, clientY: 300 })
-
-    expect(capture).not.toHaveBeenCalled()
-    expect(getBar().style.transform).not.toContain("translateY")
-    expect(push).not.toHaveBeenCalled()
-    const click = new MouseEvent("click", { bubbles: true, cancelable: true })
-    button.dispatchEvent(click)
-    // Only Next's Link handler may cancel it (to route client-side).
-    expect(screen.queryByText("Opening…")).not.toBeInTheDocument()
-    capture.mockRestore()
-  })
-
-  it("opens external links in a new tab", () => {
-    render(<HangingBanner message={MESSAGE} href="https://example.com/post" />)
-
-    const link = screen.getByRole("link")
-    expect(link).toHaveAttribute("target", "_blank")
-    expect(link).toHaveAttribute("rel", "noopener noreferrer")
-  })
-
-  it("drops the link and the Read article button when there is no href", () => {
-    render(<HangingBanner message={MESSAGE} />)
-
-    expect(screen.queryByRole("link")).not.toBeInTheDocument()
-    expect(screen.queryByText("Read article →")).not.toBeInTheDocument()
-    expect(screen.getByText(MESSAGE)).toBeInTheDocument()
-  })
-
-  it("explains the pull while dragging down, then the release", () => {
-    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
-
-    drag(0, 120, false)
-    expect(screen.getByText("Keep pulling to open it ↓")).toBeInTheDocument()
-
-    fireEvent.pointerMove(getBar(), { pointerId: 1, clientX: 400, clientY: 520 })
-    expect(screen.getByText("Let go to read it")).toBeInTheDocument()
-  })
-
-  it("navigates to the post on a long pull down", async () => {
-    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
-
-    drag(0, 420)
-
-    expect(screen.getByText("Opening…")).toBeInTheDocument()
-    await waitFor(() => expect(push).toHaveBeenCalledWith("/blog/medusa-smtp"))
-  })
-
-  it("opens external posts in a new tab on a long pull down", () => {
-    const open = jest.spyOn(window, "open").mockReturnValue(null)
-    render(<HangingBanner message={MESSAGE} href="https://example.com/post" />)
-
-    drag(0, 420)
-
-    expect(open).toHaveBeenCalledWith(
-      "https://example.com/post",
-      "_blank",
-      "noopener,noreferrer"
-    )
-    expect(screen.getByText("Opened in a new tab")).toBeInTheDocument()
-    open.mockRestore()
-  })
-
-  it("springs back without navigating on a short or sideways drag", () => {
-    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
-
-    drag(160, 40)
-
-    expect(push).not.toHaveBeenCalled()
-    expect(screen.queryByText("Opening…")).not.toBeInTheDocument()
-  })
-
-  it("still follows the link on a plain click", () => {
-    render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
-
-    fireEvent.pointerDown(getBar(), { pointerId: 1, clientX: 10, clientY: 10 })
-    fireEvent.pointerUp(getBar(), { pointerId: 1, clientX: 11, clientY: 10 })
-
-    const link = screen.getByRole("link")
-    const click = new MouseEvent("click", { bubbles: true, cancelable: true })
-    link.dispatchEvent(click)
-    expect(click.defaultPrevented).toBe(false)
-  })
+afterEach(() => {
+  document.body.style.cursor = ""
 })
 
-describe("HomeHeroNotification", () => {
-  const block = (text: string, href?: string) => ({
-    _key: text,
-    _type: "block",
-    style: "normal",
-    markDefs: href ? [{ _key: "l1", _type: "link", href }] : [],
-    children: [
-      { _key: `${text}-s`, _type: "span", marks: href ? ["l1"] : [], text },
-    ],
+describe("HangingBanner", () => {
+  describe("content and labels", () => {
+    it("shows the NEW tag, the message and the Read article button", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
+
+      expect(within(getBar()).getByText("New")).toBeVisible()
+      expect(within(getBar()).getByText(MESSAGE)).toBeVisible()
+      expect(getButton()).toBeVisible()
+    })
+
+    it("uses a custom button label when given one", () => {
+      render(
+        <HangingBanner message={MESSAGE} href="/blog/a" linkLabel="Watch talk →" />
+      )
+
+      expect(screen.getByRole("link", { name: "Watch talk →" })).toBeVisible()
+      expect(screen.queryByRole("link", { name: LABEL })).not.toBeInTheDocument()
+    })
+
+    it("renders message parts in order, as one sentence", () => {
+      render(<HangingBanner message={PARTS} href="/blog/category/mdx" />)
+
+      expect(getBar()).toHaveTextContent(
+        "Read my lab notes from Middlesex University, London!"
+      )
+    })
+
+    it("tells screen readers the button's banner can also be dragged", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      const describedBy = getButton().getAttribute("aria-describedby")
+      expect(describedBy).toBeTruthy()
+      expect(document.getElementById(describedBy!)).toHaveTextContent(
+        "pull it down and let go to open the article"
+      )
+    })
+
+    it("announces drag hints through a polite live region that starts empty", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      expect(getHint()).toHaveAttribute("aria-live", "polite")
+      expect(getHint()).toBeEmptyDOMElement()
+    })
+
+    it("drops the button but keeps the message without an href", () => {
+      render(<HangingBanner message={MESSAGE} />)
+
+      expect(screen.queryByRole("link")).not.toBeInTheDocument()
+      expect(screen.queryByText(LABEL)).not.toBeInTheDocument()
+      expect(screen.getByText(MESSAGE)).toBeVisible()
+      expect(screen.getByText("You can drag this banner around.")).toBeInTheDocument()
+    })
   })
 
-  it("takes the href from the first link in the notification text", () => {
-    expect(
-      getNotificationHref([
-        block("Intro"),
-        block("Read", "/blog/one"),
-        block("More", "/blog/two"),
-      ] as any)
-    ).toBe("/blog/one")
-    expect(getNotificationHref(undefined)).toBeUndefined()
+  describe("links", () => {
+    it("keeps internal links in the same tab", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
+
+      expect(getButton()).toHaveAttribute("href", "/blog/medusa-smtp")
+      expect(getButton()).not.toHaveAttribute("target")
+    })
+
+    it("opens external links in a new tab without leaking the opener", () => {
+      render(<HangingBanner message={MESSAGE} href="https://example.com/post" />)
+
+      expect(getButton()).toHaveAttribute("href", "https://example.com/post")
+      expect(getButton()).toHaveAttribute("target", "_blank")
+      expect(getButton()).toHaveAttribute("rel", "noopener noreferrer")
+    })
+
+    it("renders every linked run in the message as its own link", () => {
+      render(<HangingBanner message={PARTS} href="/blog/category/mdx" />)
+
+      expect(screen.getByRole("link", { name: "Read" })).toHaveAttribute(
+        "href",
+        "/blog/category/mdx"
+      )
+      const external = screen.getByRole("link", {
+        name: "Middlesex University, London",
+      })
+      expect(external).toHaveAttribute("href", "https://www.mdx.ac.uk")
+      expect(external).toHaveAttribute("target", "_blank")
+      expect(screen.getAllByRole("link")).toHaveLength(3)
+    })
+
+    it("keeps message links clickable even when there is no button", () => {
+      render(<HangingBanner message={PARTS} />)
+
+      expect(screen.getAllByRole("link")).toHaveLength(2)
+      expect(clickFollows(screen.getByRole("link", { name: "Read" }))).toBe(true)
+    })
+
+    it("lets every link be clicked", () => {
+      render(<HangingBanner message={PARTS} href="https://example.com/post" />)
+
+      for (const link of screen.getAllByRole("link")) {
+        expect(clickFollows(link)).toBe(true)
+      }
+    })
+
+    it("puts the links in the tab order, message links first", () => {
+      render(<HangingBanner message={PARTS} href="/blog/category/mdx" />)
+
+      const links = screen.getAllByRole("link")
+      expect(links.map(link => link.textContent)).toEqual([
+        "Read",
+        "Middlesex University, London",
+        LABEL,
+      ])
+      for (const link of links) {
+        link.focus()
+        expect(link).toHaveFocus()
+      }
+    })
+
+    it("stops the browser's native link drag so it can't fight the bar", () => {
+      render(<HangingBanner message={PARTS} href="/blog/a" />)
+
+      for (const link of screen.getAllByRole("link")) {
+        expect(link).toHaveAttribute("draggable", "false")
+      }
+    })
+
+    it.each([
+      ["the button", () => getButton()],
+      ["a message link", () => screen.getByRole("link", { name: "Read" })],
+    ])("treats a press on %s as a click, never a drag", async (_, getLink) => {
+      render(<HangingBanner message={PARTS} href="/blog/category/mdx" />)
+      await ready()
+      const capture = jest.spyOn(Element.prototype, "setPointerCapture")
+
+      drag(0, 400, { target: getLink() })
+
+      expect(capture).not.toHaveBeenCalled()
+      expect(await isDisplaced()).toBe(false)
+      expect(push).not.toHaveBeenCalled()
+      expect(clickFollows(getLink())).toBe(true)
+      capture.mockRestore()
+    })
+
+    it("still lets the button be clicked right after dragging the bar", () => {
+      render(<HangingBanner message={MESSAGE} href="https://example.com/post" />)
+
+      drag(120, 30)
+
+      expect(clickFollows(getButton())).toBe(true)
+    })
   })
 
-  it("points the button at the first link in reading order", () => {
-    // Sanity lists markDefs in the order they were added, not text order.
-    const text = [
-      {
-        _key: "b1",
-        _type: "block",
-        markDefs: [
-          { _key: "uni", _type: "link", href: "https://www.mdx.ac.uk" },
-          {
-            _key: "post",
-            _type: "link",
-            href: "https://victory-nwani.dev/blog/category/mdx",
-          },
-        ],
-        children: [
-          { _key: "s1", _type: "span", marks: ["post"], text: "Read" },
-          { _key: "s2", _type: "span", marks: [], text: " my notes from " },
-          { _key: "s3", _type: "span", marks: ["uni"], text: "Middlesex" },
-        ],
-      },
-    ]
+  describe("dragging", () => {
+    it("moves the bar and shows the grabbing cursor while dragging", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
 
-    expect(getNotificationHref(text as any)).toBe("/blog/category/mdx")
+      drag(80, 60, { release: false })
+      expect(await isDisplaced()).toBe(true)
+      expect(document.body.style.cursor).toBe("grabbing")
+
+      fireEvent.pointerUp(getBar(), { ...mouse, clientX: 480, clientY: 160 })
+      expect(document.body.style.cursor).toBe("")
+    })
+
+    it("captures the pointer only once the press becomes a drag", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      const capture = jest.spyOn(Element.prototype, "setPointerCapture")
+
+      fireEvent.pointerDown(getBar(), { ...mouse, ...START })
+      expect(capture).not.toHaveBeenCalled()
+
+      fireEvent.pointerMove(getBar(), { ...mouse, clientX: 400, clientY: 140 })
+      expect(capture).toHaveBeenCalledTimes(1)
+      capture.mockRestore()
+    })
+
+    it("ignores jitter below the drag threshold", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+
+      fireEvent.pointerDown(getBar(), { ...mouse, ...START })
+      fireEvent.pointerMove(getBar(), { ...mouse, clientX: 402, clientY: 102 })
+
+      expect(await isDisplaced()).toBe(false)
+      expect(document.body.style.cursor).toBe("")
+    })
+
+    it("ignores right and middle mouse buttons", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+
+      for (const button of [1, 2]) {
+        fireEvent.pointerDown(getBar(), { ...mouse, button, ...START })
+        fireEvent.pointerMove(getBar(), { ...mouse, button, clientX: 400, clientY: 400 })
+      }
+
+      expect(await isDisplaced()).toBe(false)
+    })
+
+    it("follows only the pointer that started the drag", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+
+      fireEvent.pointerDown(getBar(), { ...mouse, ...START })
+      fireEvent.pointerMove(getBar(), { ...mouse, pointerId: 2, clientX: 400, clientY: 600 })
+      fireEvent.pointerUp(getBar(), { ...mouse, pointerId: 2, clientX: 400, clientY: 600 })
+
+      expect(await isDisplaced()).toBe(false)
+      expect(push).not.toHaveBeenCalled()
+    })
+
+    it("works with touch as well as a mouse", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      const touch = { pointerId: 9, pointerType: "touch" }
+
+      fireEvent.pointerDown(getBar(), { ...touch, ...START })
+      fireEvent.pointerMove(getBar(), { ...touch, clientX: 400, clientY: 300 })
+      fireEvent.pointerMove(getBar(), { ...touch, clientX: 400, clientY: 520 })
+      fireEvent.pointerUp(getBar(), { ...touch, clientX: 400, clientY: 520 })
+
+      await waitFor(() => expect(push).toHaveBeenCalledWith("/blog/a"))
+    })
+
+    it("explains the pull while dragging down, then the release", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      drag(0, 120, { release: false })
+      expect(getHint()).toHaveTextContent("Keep pulling to open it ↓")
+
+      fireEvent.pointerMove(getBar(), { ...mouse, clientX: 400, clientY: 520 })
+      expect(getHint()).toHaveTextContent("Let go to read it")
+
+      // Easing back up clears the hint again.
+      fireEvent.pointerMove(getBar(), { ...mouse, clientX: 400, clientY: 105 })
+      expect(getHint()).toBeEmptyDOMElement()
+    })
+
+    it("shows no pull hints when pushed up", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      drag(0, -300, { release: false })
+
+      expect(getHint()).toBeEmptyDOMElement()
+    })
+
+    it("shows no pull hints and opens nothing when there is no link", () => {
+      const open = jest.spyOn(window, "open").mockReturnValue(null)
+      render(<HangingBanner message={MESSAGE} />)
+
+      drag(0, 500, { release: false })
+      expect(getHint()).toBeEmptyDOMElement()
+
+      fireEvent.pointerUp(getBar(), { ...mouse, clientX: 400, clientY: 600 })
+      expect(push).not.toHaveBeenCalled()
+      expect(open).not.toHaveBeenCalled()
+      open.mockRestore()
+    })
+
+    it("springs back without navigating on a short or sideways drag", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      drag(160, 40)
+
+      expect(push).not.toHaveBeenCalled()
+      expect(getHint()).toBeEmptyDOMElement()
+    })
+
+    it("does not open when the drag is cancelled, however far it was pulled", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      drag(0, 500, { release: false })
+      fireEvent.pointerCancel(getBar(), { ...mouse, clientX: 400, clientY: 600 })
+
+      expect(push).not.toHaveBeenCalled()
+      expect(getHint()).toBeEmptyDOMElement()
+      expect(document.body.style.cursor).toBe("")
+    })
+
+    it("resets the cursor if it unmounts mid-drag", () => {
+      const { unmount } = render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+
+      drag(0, 80, { release: false })
+      expect(document.body.style.cursor).toBe("grabbing")
+
+      unmount()
+      expect(document.body.style.cursor).toBe("")
+    })
   })
 
-  it("keeps links to this site in-app and leaves others alone", () => {
-    expect(toSiteHref("https://www.victory-nwani.dev/blog/a?x=1#h")).toBe(
-      "/blog/a?x=1#h"
-    )
-    expect(toSiteHref("https://www.mdx.ac.uk")).toBe("https://www.mdx.ac.uk")
-    expect(toSiteHref("/blog/a")).toBe("/blog/a")
-  })
+  describe("pull down to open", () => {
+    it("exports a threshold that a long pull reaches", () => {
+      expect(OPEN_THRESHOLD).toBeGreaterThan(0)
+    })
 
-  it("keeps the notification's links as clickable runs", () => {
-    const text = [
-      {
-        _key: "b1",
-        _type: "block",
-        markDefs: [{ _key: "l1", _type: "link", href: "/blog/lab" }],
-        children: [
-          { _key: "s1", _type: "span", marks: [], text: "Read my " },
-          { _key: "s2", _type: "span", marks: ["l1"], text: "lab notes" },
-          { _key: "s3", _type: "span", marks: [], text: " now!  " },
-        ],
-      },
-    ]
+    it("opens an internal post once, in-app", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
 
-    expect(getMessageParts(text as any)).toEqual([
-      { text: "Read my " },
-      { text: "lab notes", href: "/blog/lab" },
-      { text: " now!" },
-    ])
-  })
+      drag(0, 420)
+      expect(getHint()).toHaveTextContent("Opening…")
 
-  it("renders the notification text as the banner message", () => {
-    render(
-      <HomeHeroNotification
-        notification={{ notification_text: [block(MESSAGE, "/blog/m")] } as any}
-      />
-    )
+      await waitFor(() => expect(push).toHaveBeenCalledWith("/blog/medusa-smtp"))
+      expect(push).toHaveBeenCalledTimes(1)
+    })
 
-    expect(
-      screen.getByRole("link", { name: "Read article →" })
-    ).toHaveAttribute("href", "/blog/m")
-    expect(screen.getByRole("link", { name: MESSAGE })).toHaveAttribute(
-      "href",
-      "/blog/m"
-    )
-    expect(screen.getByText(MESSAGE)).toBeInTheDocument()
-  })
+    it("ignores further drags while it is opening", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
 
-  it("renders nothing without notification text", () => {
-    const { container } = render(<HomeHeroNotification notification={null} />)
+      drag(0, 420)
+      drag(0, 420)
+      drag(0, 420)
 
-    expect(container).toBeEmptyDOMElement()
+      await waitFor(() => expect(push).toHaveBeenCalled())
+      expect(push).toHaveBeenCalledTimes(1)
+    })
+
+    it("opens an external post in a new tab, then springs back", async () => {
+      const open = jest.spyOn(window, "open").mockReturnValue(null)
+      render(<HangingBanner message={MESSAGE} href="https://example.com/post" />)
+
+      drag(0, 420)
+
+      expect(open).toHaveBeenCalledTimes(1)
+      expect(open).toHaveBeenCalledWith(
+        "https://example.com/post",
+        "_blank",
+        "noopener,noreferrer"
+      )
+      expect(push).not.toHaveBeenCalled()
+      expect(getHint()).toHaveTextContent("Opened in a new tab")
+
+      // The confirmation clears itself, and the bar can be used again.
+      await waitFor(() => expect(getHint()).toBeEmptyDOMElement(), { timeout: 3000 })
+      drag(0, 420)
+      expect(open).toHaveBeenCalledTimes(2)
+      open.mockRestore()
+    })
+
+    it("does not open on a long pull that started on a link", () => {
+      const open = jest.spyOn(window, "open").mockReturnValue(null)
+      render(<HangingBanner message={MESSAGE} href="https://example.com/post" />)
+
+      drag(0, 500, { target: getButton() })
+
+      expect(open).not.toHaveBeenCalled()
+      open.mockRestore()
+    })
+
+    it("clears its pending timers on unmount", async () => {
+      const open = jest.spyOn(window, "open").mockReturnValue(null)
+      const clear = jest.spyOn(window, "clearTimeout")
+      const { unmount } = render(
+        <HangingBanner message={MESSAGE} href="https://example.com/post" />
+      )
+
+      drag(0, 420)
+      act(() => unmount())
+
+      expect(clear).toHaveBeenCalled()
+      open.mockRestore()
+      clear.mockRestore()
+    })
   })
 })

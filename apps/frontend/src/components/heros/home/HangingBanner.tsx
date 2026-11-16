@@ -241,10 +241,22 @@ const HangingBanner = ({
     return () => window.clearTimeout(timer)
   }, [x, y])
 
-  useEffect(() => () => stopAnimations(), [])
+  const resetTimerRef = useRef<number | undefined>(undefined)
+
+  useEffect(
+    () => () => {
+      stopAnimations()
+      window.clearTimeout(resetTimerRef.current)
+      // Unmounted mid-drag (e.g. a navigation): don't leave the page grabbing.
+      if (pointerRef.current) document.body.style.cursor = ""
+    },
+    []
+  )
 
   useMotionValueEvent(y, "change", latest => {
     if (!pointerRef.current || lockedRef.current) return
+    // Without a link there is nothing to open, so no pull hints.
+    if (!href) return
     setPhase(
       latest >= OPEN_THRESHOLD ? "armed" : latest > 24 ? "pulling" : "idle"
     )
@@ -258,7 +270,8 @@ const HangingBanner = ({
       window.open(href, "_blank", "noopener,noreferrer")
       setPhase("opened")
       springBack()
-      window.setTimeout(() => setPhase("idle"), 1800)
+      window.clearTimeout(resetTimerRef.current)
+      resetTimerRef.current = window.setTimeout(() => setPhase("idle"), 1800)
       return
     }
 

@@ -27,6 +27,18 @@ export const toSiteHref = (href: string) => {
 }
 
 /**
+ * Only web, mail and phone links (or paths on this site) become clickable.
+ * Anything else, such as a `javascript:` URL typed into Sanity, renders as
+ * plain text.
+ */
+export const isSafeHref = (href: string) => {
+  const value = href.trim()
+  if (/^[/?#]/.test(value) && !value.startsWith("//")) return true
+
+  return /^(https?:|mailto:|tel:)/i.test(value)
+}
+
+/**
  * The notification as text runs, keeping its links so they stay clickable in
  * the banner. Blocks are joined into one line.
  */
@@ -34,6 +46,13 @@ export const getMessageParts = (
   text: Notification["notification_text"]
 ): MessagePart[] => {
   const parts: MessagePart[] = []
+
+  // Merge neighbouring runs that share a link (or have none).
+  const append = (text: string, href?: string) => {
+    const last = parts[parts.length - 1]
+    if (last && last.href === href) last.text += text
+    else parts.push(href ? { text, href } : { text })
+  }
 
   ;(text ?? []).forEach((value, blockIndex) => {
     const block = value as Block
@@ -43,19 +62,16 @@ export const getMessageParts = (
         .map(mark => [mark._key as string, mark.href as string])
     )
 
-    if (blockIndex > 0 && parts.length) parts.push({ text: " " })
+    if (blockIndex > 0 && parts.length) append(" ")
 
     for (const span of block.children ?? []) {
       const textRun = (span.text ?? "").replace(/\s+/g, " ")
       if (!textRun) continue
 
       const linked = span.marks?.map(key => links.get(key)).find(Boolean)
-      const href = linked ? toSiteHref(linked) : undefined
-      const last = parts[parts.length - 1]
-
-      // Merge neighbouring runs that share a link (or have none).
-      if (last && last.href === href) last.text += textRun
-      else parts.push(href ? { text: textRun, href } : { text: textRun })
+      const href =
+        linked && isSafeHref(linked) ? toSiteHref(linked.trim()) : undefined
+      append(textRun, href)
     }
   })
 
