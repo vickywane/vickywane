@@ -16,6 +16,11 @@ import {
 } from "framer-motion"
 import loadFeatures from "@/framer/load-features"
 import {
+  DEFAULT_LINK_LABEL,
+  cleanHref,
+  type MessagePart,
+} from "./announcement"
+import {
   MAX_STRETCH,
   NAIL_Y,
   pullFromPointer,
@@ -27,11 +32,8 @@ import {
   type Rig,
 } from "./hangingRope"
 
-/** A run of announcement text; runs with an href render as inline links. */
-export interface MessagePart {
-  text: string
-  href?: string
-}
+
+export { DEFAULT_LINK_LABEL, type MessagePart }
 
 interface HangingBannerProps {
   message: string | MessagePart[]
@@ -145,10 +147,13 @@ const useString = (
  */
 const HangingBanner = ({
   message,
-  href,
-  linkLabel = "Read article →",
+  href: rawHref,
+  linkLabel: rawLinkLabel,
   className,
 }: HangingBannerProps) => {
+  // Blank or unsafe links mean no button; a blank label falls back.
+  const href = cleanHref(rawHref)
+  const linkLabel = rawLinkLabel?.trim() || DEFAULT_LINK_LABEL
   const router = useRouter()
   const frameRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
@@ -372,8 +377,15 @@ const HangingBanner = ({
   const focusRing =
     "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-teal"
 
-  const parts: MessagePart[] =
+  const parts: MessagePart[] = (
     typeof message === "string" ? [{ text: message }] : message
+  )
+    .filter(part => part.text)
+    .map(part => {
+      const partHref = cleanHref(part.href)
+      return partHref ? { text: part.text, href: partHref } : { text: part.text }
+    })
+  const plainMessage = parts.map(part => part.text).join("").trim()
 
   const content = (
     <>
@@ -381,7 +393,11 @@ const HangingBanner = ({
         <span className="shrink-0 bg-ink px-[7px] py-[3px] font-code text-[11px] font-bold uppercase leading-[1.4] tracking-[0.1em] text-white">
           New
         </span>
-        <span className="w-full min-w-0 font-display text-[15px] font-medium leading-[22px] tracking-[0.01em] md:w-auto md:flex-1 md:truncate md:text-base md:leading-5">
+        <span
+          // Tablet+ truncates to one line; the tooltip keeps the full text.
+          title={plainMessage}
+          className="w-full min-w-0 font-display text-[15px] font-medium leading-[22px] tracking-[0.01em] [overflow-wrap:anywhere] md:w-auto md:flex-1 md:truncate md:text-base md:leading-5"
+        >
           {parts.map((part, index) =>
             part.href ? (
               <BannerLink
@@ -417,6 +433,9 @@ const HangingBanner = ({
     </>
   )
 
+
+  // Nothing to announce: render nothing rather than an empty bar.
+  if (!plainMessage) return null
 
   return (
     <LazyMotion strict features={loadFeatures}>

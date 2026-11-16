@@ -128,6 +128,78 @@ describe("HangingBanner", () => {
     })
   })
 
+  describe("missing or bad data", () => {
+    it.each([
+      ["an empty string", ""],
+      ["whitespace", "   \n "],
+      ["no parts", []],
+      ["only empty parts", [{ text: "" }, { text: "  " }]],
+    ])("renders nothing for %s, not an empty bar", (_, message) => {
+      const { container } = render(
+        <HangingBanner message={message as string | MessagePart[]} href="/blog/a" />
+      )
+
+      expect(container).toBeEmptyDOMElement()
+    })
+
+    it.each([
+      ["missing", undefined],
+      ["empty", ""],
+      ["whitespace", "   "],
+    ])("falls back to Read article when the label is %s", (_, linkLabel) => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" linkLabel={linkLabel} />)
+
+      expect(getButton()).toHaveTextContent(LABEL)
+    })
+
+    it("trims a padded label", () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" linkLabel="  Go →  " />)
+
+      expect(screen.getByRole("link", { name: "Go →" })).toBeVisible()
+    })
+
+    it.each([
+      ["blank", "   "],
+      ["a javascript: URL", "javascript:alert(1)"],
+      ["a data: URL", "data:text/html,hi"],
+    ])("shows no button and opens nothing when the href is %s", (_, href) => {
+      const open = jest.spyOn(window, "open").mockReturnValue(null)
+      render(<HangingBanner message={MESSAGE} href={href} />)
+
+      expect(screen.queryByRole("link")).not.toBeInTheDocument()
+      drag(0, 500)
+      expect(open).not.toHaveBeenCalled()
+      expect(push).not.toHaveBeenCalled()
+      open.mockRestore()
+    })
+
+    it("renders an unsafe link inside the message as plain text", () => {
+      render(
+        <HangingBanner
+          message={[{ text: "Click", href: "javascript:alert(1)" }, { text: " here" }]}
+        />
+      )
+
+      expect(screen.queryByRole("link")).not.toBeInTheDocument()
+      expect(getBar()).toHaveTextContent("Click here")
+    })
+
+    it("keeps the full message available when tablet+ truncates it", () => {
+      const long = `${"A very long announcement ".repeat(12)}end.`
+      render(<HangingBanner message={long} href="/blog/a" />)
+
+      expect(screen.getByTitle(long.trim())).toBeInTheDocument()
+    })
+
+    it("lets long unbroken words wrap instead of overflowing on mobile", () => {
+      render(<HangingBanner message={`see ${"x".repeat(200)}`} href="/blog/a" />)
+
+      expect(screen.getByTitle(/^see x+$/).className).toContain(
+        "[overflow-wrap:anywhere]"
+      )
+    })
+  })
+
   describe("links", () => {
     it("keeps internal links in the same tab", () => {
       render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)

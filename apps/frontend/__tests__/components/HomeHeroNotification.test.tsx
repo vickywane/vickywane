@@ -2,7 +2,9 @@ import { render, screen } from "@testing-library/react"
 import HomeHeroNotification, {
   getMessageParts,
   getNotificationHref,
+  hasAnnouncement,
   isSafeHref,
+  pickNotification,
   toSiteHref,
 } from "@/components/notifications/HomeHeroNotification"
 
@@ -180,6 +182,39 @@ describe("isSafeHref", () => {
     ["", false],
   ])("%j is %s", (href, safe) => {
     expect(isSafeHref(href)).toBe(safe)
+  })
+})
+
+describe("pickNotification", () => {
+  const live = { _id: "live", notification_text: LIVE } as any
+  const blank = { _id: "blank", notification_text: [block([["   "]])] } as any
+  const empty = { _id: "empty", notification_text: [] } as any
+
+  it("takes the first notification with visible text", () => {
+    expect(pickNotification([live])).toBe(live)
+    expect(pickNotification([blank, empty, live])).toBe(live)
+  })
+
+  it("skips references to deleted notifications (null)", () => {
+    expect(pickNotification([null, live])).toBe(live)
+  })
+
+  it("is null when there is nothing to show", () => {
+    expect(pickNotification(undefined)).toBeNull()
+    expect(pickNotification(null)).toBeNull()
+    expect(pickNotification([])).toBeNull()
+    expect(pickNotification([null, blank, empty])).toBeNull()
+    expect(pickNotification("not an array")).toBeNull()
+  })
+
+  it("agrees with the banner, so the hero only trims padding when it shows", () => {
+    for (const notification of [live, blank, empty, null]) {
+      const { container, unmount } = render(
+        <HomeHeroNotification notification={notification} />
+      )
+      expect(container.childElementCount === 0).toBe(!hasAnnouncement(notification))
+      unmount()
+    }
   })
 })
 

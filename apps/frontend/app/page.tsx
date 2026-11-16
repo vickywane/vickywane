@@ -2,7 +2,9 @@ import React from "react"
 import { PiBugDroid } from "react-icons/pi"
 
 import Header from "@/components/headers"
-import HomeHeroNotification from "@/notifications/HomeHeroNotification"
+import HomeHeroNotification, {
+  pickNotification,
+} from "@/notifications/HomeHeroNotification"
 import HomeHero from "@/components/heros/home"
 import PersonalBio from "@/components/bio/PersonalBio"
 import FeaturedTravelInsight from "@/components/Insights/FeaturedTravelInsight"
@@ -16,7 +18,6 @@ import { HOME_QUERY, VACATION_PREVIEW_QUERY } from "@/data/gqols"
 import {
   Article,
   Engagement,
-  Notification,
   WorkExperience,
   Projects,
 } from "@/data/schema"
@@ -35,7 +36,9 @@ const getData = async () => {
 
 export default async function Page() {
   const { pageData, vacationPreviews } = await getData()
-  const notification = (pageData.notifications?.[0] ?? null) as Notification | null
+  // Same check the banner uses, so the hero only trims its padding when the
+  // banner really renders.
+  const notification = pickNotification(pageData.notifications)
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
@@ -52,7 +55,7 @@ export default async function Page() {
         projects={(pageData.projects as unknown) as Projects[]}
         articles={(pageData.articles as unknown) as Article[]}
         engagements={(pageData.engagements as unknown) as Engagement[]}
-        compactTop={Boolean(notification?.notification_text?.length)}
+        compactTop={notification !== null}
       />
 
       <JobSummary

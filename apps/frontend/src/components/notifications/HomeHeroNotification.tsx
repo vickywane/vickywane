@@ -1,8 +1,12 @@
 import React from "react"
 import { Notification } from "@/data/schema"
-import HangingBanner, {
+import HangingBanner from "@/components/heros/home/HangingBanner"
+import {
+  isSafeHref,
   type MessagePart,
-} from "@/components/heros/home/HangingBanner"
+} from "@/components/heros/home/announcement"
+
+export { isSafeHref }
 
 interface HomeHeroNotificationProps {
   notification?: Notification | null
@@ -12,8 +16,21 @@ type LinkMark = { _key?: string; _type?: string; href?: string }
 type Span = { _type?: string; text?: string; marks?: string[] }
 type Block = { markDefs?: LinkMark[]; children?: Span[] }
 
-/** This site's own domain: links to it stay in-app instead of a new tab. */
-const SITE_HOST = "victory-nwani.dev"
+/**
+ * This site's own domain: links to it stay in-app instead of a new tab.
+ * Comes from NEXT_PUBLIC_DOMAIN (also used by the sitemap).
+ */
+const siteHost = (domain = process.env.NEXT_PUBLIC_DOMAIN) => {
+  try {
+    if (domain) return new URL(domain).hostname.replace(/^www\./, "")
+  } catch {
+    // Not a full URL: fall through to the default.
+  }
+
+  return "victory-nwani.dev"
+}
+
+const SITE_HOST = siteHost()
 
 export const toSiteHref = (href: string) => {
   try {
@@ -24,18 +41,6 @@ export const toSiteHref = (href: string) => {
   } catch {
     return href
   }
-}
-
-/**
- * Only web, mail and phone links (or paths on this site) become clickable.
- * Anything else, such as a `javascript:` URL typed into Sanity, renders as
- * plain text.
- */
-export const isSafeHref = (href: string) => {
-  const value = href.trim()
-  if (/^[/?#]/.test(value) && !value.startsWith("//")) return true
-
-  return /^(https?:|mailto:|tel:)/i.test(value)
 }
 
 /**
@@ -86,6 +91,19 @@ export const getMessageParts = (
 /** The Read article button goes to the first link, in reading order. */
 export const getNotificationHref = (text: Notification["notification_text"]) =>
   getMessageParts(text).find(part => part.href)?.href
+
+/** Whether a notification has any visible text to announce. */
+export const hasAnnouncement = (notification?: Notification | null) =>
+  getMessageParts(notification?.notification_text).some(part => part.text.trim())
+
+/**
+ * The first notification worth showing. References to deleted notifications
+ * come back as null, so skip those and any without visible text.
+ */
+export const pickNotification = (notifications?: unknown) =>
+  (Array.isArray(notifications)
+    ? (notifications as (Notification | null)[]).find(hasAnnouncement)
+    : undefined) ?? null
 
 const HomeHeroNotification = ({ notification }: HomeHeroNotificationProps) => {
   const text = notification?.notification_text
