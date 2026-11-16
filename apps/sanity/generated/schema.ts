@@ -285,6 +285,41 @@ export interface Notification extends SanityDocument {
    *
    */
   notification_text?: Array<SanityKeyed<SanityBlock>>;
+
+  /**
+   * Tag label — `string`
+   *
+   * Small label before the message. Leave empty for “New”.
+   */
+  tag_label?: string;
+
+  /**
+   * Button label — `string`
+   *
+   * Leave empty for “Read article →”.
+   */
+  cta_label?: string;
+
+  /**
+   * Button link — `url`
+   *
+   * Where the button (and pulling the banner down) goes. Site paths like /blog/… are fine. Leave empty to use the first link in the text; with no link at all there is no button.
+   */
+  cta_url?: string;
+
+  /**
+   * Show from — `datetime`
+   *
+   * Optional. Hidden before this time.
+   */
+  starts_at?: string;
+
+  /**
+   * Hide after — `datetime`
+   *
+   * Optional. Hidden from this time on.
+   */
+  ends_at?: string;
 }
 
 /**
