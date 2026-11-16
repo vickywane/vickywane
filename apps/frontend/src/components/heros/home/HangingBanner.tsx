@@ -15,6 +15,17 @@ import {
   type MotionValue,
 } from "framer-motion"
 import loadFeatures from "@/framer/load-features"
+import {
+  MAX_STRETCH,
+  NAIL_Y,
+  pullFromPointer,
+  releaseSpring,
+  ropeStyle,
+  stringGeometry,
+  strainAt,
+  tiltFor,
+  type Rig,
+} from "./hangingRope"
 
 interface HangingBannerProps {
   message: string
@@ -26,19 +37,11 @@ interface HangingBannerProps {
 type Phase = "idle" | "pulling" | "armed" | "opening" | "opened"
 
 /** How far (px) the bar must be pulled down before letting go opens the link. */
-export const OPEN_THRESHOLD = 90
+export const OPEN_THRESHOLD = 100
 /** Pointer travel (px) before a press counts as a drag instead of a click. */
 const DRAG_SLOP = 4
 const NAIL_RADIUS = 4
-/**
- * Nails sit on the header's bottom border. The sticky header paints above the
- * hero, so drop them 2px to keep most of the head visible below the line.
- */
-const NAIL_Y = 2
-const MAX_TILT = 7
 
-// Loose enough to bob a few times on release, firm enough to settle quickly.
-const BOUNCY = { type: "spring", stiffness: 120, damping: 9 } as const
 const CALM = { type: "spring", stiffness: 320, damping: 32 } as const
 
 const PHASE_MESSAGE: Record<Phase, string> = {
@@ -62,70 +65,43 @@ const isExternalHref = (href: string) => {
   }
 }
 
-/** Rubber-band resistance: the further you pull, the less it gives. */
-const rubberBand = (distance: number, limit: number) => {
-  const magnitude = Math.abs(distance)
-  const eased = (1 - 1 / ((magnitude * 0.55) / limit + 1)) * limit
-
-  return Math.sign(distance) * eased
-}
-
-const clamp = (value: number, min: number, max: number) =>
-  Math.min(max, Math.max(min, value))
-
-/** Length of each rope segment once the string starts to strain. */
-const STRAIN_DASH = 5
-/** Widest gap between segments when the string is pulled tight. */
-const MAX_STRAIN_GAP = 2.5
-
 /**
  * One string: from its nail on the header border to its knot on the bar.
- * It sags into a curve when the bar is pushed up and the string goes slack,
- * and splits into short segments, like rope fibres straining, when stretched.
+ * It sags into a curve when the bar is pushed up and the string goes slack;
+ * stretched, it strains (see ropeStyle).
  */
 const useString = (
   side: -1 | 1,
   x: MotionValue<number>,
   y: MotionValue<number>,
-  rotate: MotionValue<number>,
   width: MotionValue<number>,
   inset: MotionValue<number>,
   rest: MotionValue<number>
 ) => {
-  const geometry = useTransform(
-    [x, y, rotate, width, inset, rest],
-    (values: number[]) => {
-      const [dx, dy, deg, w, ins, len] = values
-      if (!w) return { d: "", strain: 0 }
+  const geometry = useTransform([x, y, width, inset, rest], (values: number[]) => {
+    const [dx, dy, w, ins, len] = values
+    if (!w) return { d: "", strain: 0 }
 
-      const nailX = side < 0 ? ins : w - ins
-      const reach = nailX - w / 2
-      const rad = (deg * Math.PI) / 180
-      const knotX = w / 2 + dx + reach * Math.cos(rad)
-      const knotY = len + dy + reach * Math.sin(rad)
+    const rig: Rig = { width: w, inset: ins, rest: len }
+    const { nailX, knotX, knotY, restLength, span, extension } =
+      stringGeometry(side, dx, dy, rig)
+    const slack = Math.max(0, restLength - span)
+    const ctrlX = (nailX + knotX) / 2
+    const ctrlY = (NAIL_Y + knotY) / 2 + slack * 0.9
 
-      const restLength = Math.max(1, len - NAIL_Y)
-      const span = Math.hypot(knotX - nailX, knotY - NAIL_Y)
-      const slack = Math.max(0, restLength - span)
-      const ctrlX = (nailX + knotX) / 2
-      const ctrlY = (NAIL_Y + knotY) / 2 + slack * 0.9
-
-      return {
-        d: `M ${nailX} ${NAIL_Y} Q ${ctrlX} ${ctrlY} ${knotX} ${knotY}`,
-        strain: Math.max(0, span / restLength - 1),
-      }
+    return {
+      d: `M ${nailX} ${NAIL_Y} Q ${ctrlX} ${ctrlY} ${knotX} ${knotY}`,
+      strain: extension / MAX_STRETCH,
     }
-  )
-
-  const d = useTransform(geometry, g => g.d)
-  const dash = useTransform(geometry, ({ strain }) => {
-    // A little give before the fibres start to show.
-    const gap = clamp((strain - 0.15) * 1.2, 0, MAX_STRAIN_GAP)
-
-    return gap < 0.3 ? "none" : `${STRAIN_DASH} ${gap.toFixed(2)}`
   })
 
-  return { d, dash }
+  const d = useTransform(geometry, g => g.d)
+  const style = useTransform(geometry, g => ropeStyle(g.strain))
+  const dash = useTransform(style, r => r.dash)
+  const stroke = useTransform(style, r => r.color)
+  const strokeWidth = useTransform(style, r => r.width)
+
+  return { d, dash, stroke, strokeWidth }
 }
 
 /**
@@ -146,15 +122,15 @@ const HangingBanner = ({
   const x = useMotionValue(0)
   const y = useMotionValue(0)
   const opacity = useMotionValue(1)
-  const rotate = useTransform(x, v => clamp(v * 0.045, -MAX_TILT, MAX_TILT))
+  const rotate = useTransform(x, tiltFor)
 
   // Geometry of the strings, measured from the laid-out (untransformed) bar.
   const width = useMotionValue(0)
   const inset = useMotionValue(0)
   const rest = useMotionValue(0)
 
-  const leftString = useString(-1, x, y, rotate, width, inset, rest)
-  const rightString = useString(1, x, y, rotate, width, inset, rest)
+  const leftString = useString(-1, x, y, width, inset, rest)
+  const rightString = useString(1, x, y, width, inset, rest)
 
   // Nails never move, so they are plain state: rendered straight from layout.
   const [nails, setNails] = useState<[number, number] | null>(null)
@@ -171,10 +147,15 @@ const HangingBanner = ({
   }
 
   const springBack = useCallback(() => {
-    const spring = prefersReducedMotion() ? CALM : BOUNCY
+    const strain = strainAt(x.get(), y.get(), {
+      width: width.get(),
+      inset: inset.get(),
+      rest: rest.get(),
+    })
+    const spring = prefersReducedMotion() ? CALM : releaseSpring(strain)
     stopAnimations()
     animsRef.current = [animate(x, 0, spring), animate(y, 0, spring)]
-  }, [x, y])
+  }, [x, y, width, inset, rest])
 
   useEffect(() => {
     const frame = frameRef.current
@@ -295,9 +276,13 @@ const HangingBanner = ({
     }
     if (!draggedRef.current) return
 
-    x.set(rubberBand(dx, 220))
-    // Easy to pull down, stiff to push up: the strings only go slack.
-    y.set(dy >= 0 ? rubberBand(dy, 360) : rubberBand(dy, 50))
+    const pulled = pullFromPointer(dx, dy, {
+      width: width.get(),
+      inset: inset.get(),
+      rest: rest.get(),
+    })
+    x.set(pulled.x)
+    y.set(pulled.y)
   }
 
   const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -385,17 +370,21 @@ const HangingBanner = ({
             )}
           >
             <m.path
+              data-testid="hanging-banner-string"
               d={leftString.d}
               strokeDasharray={leftString.dash}
+              stroke={leftString.stroke}
+              strokeWidth={leftString.strokeWidth}
               fill="none"
-              stroke="currentColor"
               strokeLinecap="butt"
             />
             <m.path
+              data-testid="hanging-banner-string"
               d={rightString.d}
               strokeDasharray={rightString.dash}
+              stroke={rightString.stroke}
+              strokeWidth={rightString.strokeWidth}
               fill="none"
-              stroke="currentColor"
               strokeLinecap="butt"
             />
             {nails?.map((cx, index) => (
