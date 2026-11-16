@@ -350,7 +350,9 @@ const HangingBanner = ({
   const hintId = useId()
 
   const barClass = cn(
-    "flex w-full cursor-grab select-none flex-col items-start gap-2.5 border border-ink bg-white p-2.5 text-ink [-webkit-touch-callout:none]",
+    // Mobile follows the "A · Roomy stack" exploration: tag on its own row,
+    // 15/22 copy, 16px padding and a 44px button.
+    "flex w-full cursor-grab select-none flex-col items-stretch gap-3.5 border border-ink bg-white p-4 text-ink [-webkit-touch-callout:none]",
     "md:flex-row md:items-center md:justify-between md:gap-6 md:py-1.5 md:pr-1.5 md:pl-2.5"
   )
 
@@ -362,11 +364,11 @@ const HangingBanner = ({
 
   const content = (
     <>
-      <span className="flex w-full min-w-0 items-center gap-2.5 md:w-auto md:gap-3">
+      <span className="flex w-full min-w-0 flex-col items-start gap-3.5 md:w-auto md:flex-row md:items-center md:gap-3">
         <span className="shrink-0 bg-ink px-[7px] py-[3px] font-code text-[11px] font-bold uppercase leading-[1.4] tracking-[0.1em] text-white">
           New
         </span>
-        <span className="min-w-0 flex-1 font-display text-sm font-medium leading-[18px] tracking-[0.01em] md:truncate md:text-base md:leading-5">
+        <span className="w-full min-w-0 font-display text-[15px] font-medium leading-[22px] tracking-[0.01em] md:w-auto md:flex-1 md:truncate md:text-base md:leading-5">
           {parts.map((part, index) =>
             part.href ? (
               <BannerLink
@@ -392,7 +394,7 @@ const HangingBanner = ({
           draggable={false}
           aria-describedby={hintId}
           className={cn(
-            "flex w-full shrink-0 cursor-pointer justify-center bg-ink px-3.5 py-2 font-code text-[13px] font-bold uppercase leading-[1.4] tracking-[0.06em] whitespace-nowrap text-white transition-colors hover:bg-dark-teal md:w-auto",
+            "flex h-11 w-full shrink-0 cursor-pointer items-center justify-center bg-ink px-3.5 font-code text-[13px] font-bold uppercase leading-[1.4] tracking-[0.06em] whitespace-nowrap text-white transition-colors hover:bg-dark-teal md:h-auto md:w-auto md:py-2",
             focusRing
           )}
         >
