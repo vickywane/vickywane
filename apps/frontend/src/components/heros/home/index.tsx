@@ -1,4 +1,5 @@
 import React from "react"
+import cn from "classnames"
 import { Article, Engagement, Homepage, Projects } from "@/data/schema"
 import HeroPortrait from "./HeroPortrait"
 import HeroSectionNav from "./HeroSectionNav"
@@ -19,6 +20,8 @@ interface HomeHeroProps {
   projects?: Projects[]
   articles?: Article[]
   engagements?: Engagement[]
+  /** A banner hangs above the hero: trim the top padding so the portrait stays put. */
+  compactTop?: boolean
 }
 
 const getPitch = (description: HomeHeroProps["banner_description"]) => {
@@ -44,6 +47,7 @@ const HomeHero = ({
   projects,
   articles,
   engagements,
+  compactTop = false,
 }: HomeHeroProps) => {
   const pitch = hero_pitch?.trim() || getPitch(banner_description)
   const portraitAlt = banner_image_alt?.trim() || PORTRAIT_ALT
@@ -55,7 +59,12 @@ const HomeHero = ({
       aria-label="Introduction"
       className="scroll-mt-[90px] bg-cream"
     >
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pt-8 pb-20 md:grid md:grid-cols-2 md:gap-x-12 md:px-12 md:py-20 xl:grid-cols-[560px_minmax(0,1fr)] lg:gap-x-16 lg:gap-y-6 lg:px-16 lg:py-24 xl:gap-x-24 xl:p-[120px]">
+      <div
+        className={cn(
+          "mx-auto flex max-w-[1440px] flex-col gap-14 px-6 pt-8 pb-20 md:grid md:grid-cols-2 md:gap-x-12 md:px-12 md:py-20 xl:grid-cols-[560px_minmax(0,1fr)] lg:gap-x-16 lg:gap-y-6 lg:px-16 lg:py-24 xl:gap-x-24 xl:p-[120px]",
+          compactTop && "pt-6 md:pt-8 lg:pt-10 xl:pt-[52px]"
+        )}
+      >
         <div className="flex flex-col gap-7 md:col-span-2 lg:col-span-1 lg:col-start-1 lg:gap-6">
           <HeroPortrait src={getPortraitSrc(banner_image)} alt={portraitAlt} />
 

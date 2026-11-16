@@ -35,18 +35,14 @@ const getData = async () => {
 
 export default async function Page() {
   const { pageData, vacationPreviews } = await getData()
+  const notification = (pageData.notifications?.[0] ?? null) as Notification | null
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Header />
       {/* <ChatBot /> */}
 
-      <HomeHeroNotification
-        notification={
-          (pageData.notifications &&
-            (pageData.notifications[0] as unknown)) as Notification
-        }
-      />
+      <HomeHeroNotification notification={notification} />
 
       <HomeHero
         banner_description={pageData.banner_description}
@@ -56,6 +52,7 @@ export default async function Page() {
         projects={(pageData.projects as unknown) as Projects[]}
         articles={(pageData.articles as unknown) as Article[]}
         engagements={(pageData.engagements as unknown) as Engagement[]}
+        compactTop={Boolean(notification?.notification_text?.length)}
       />
 
       <JobSummary
