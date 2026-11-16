@@ -54,6 +54,8 @@ export const OPEN_THRESHOLD = 100
 /** Pointer travel (px) before a press counts as a drag instead of a click. */
 const DRAG_SLOP = 4
 const NAIL_RADIUS = 4
+/** How long after navigating a still-mounted bar waits before reappearing. */
+const RECOVER_AFTER_MS = 1200
 
 const CALM = { type: "spring", stiffness: 320, damping: 32 } as const
 
@@ -294,7 +296,18 @@ const HangingBanner = ({
       animate(opacity, 0, {
         duration: 0.35,
         ease: "easeIn",
-        onComplete: () => router.push(href),
+        onComplete: () => {
+          router.push(href)
+          // Usually the page changes and the bar unmounts. If it doesn't (a
+          // link back to this page, e.g. /#about), bring the bar back.
+          window.clearTimeout(resetTimerRef.current)
+          resetTimerRef.current = window.setTimeout(() => {
+            lockedRef.current = false
+            setPhase("idle")
+            springBack() // stops running animations, so fade in after it
+            animsRef.current.push(animate(opacity, 1, { duration: 0.25 }))
+          }, RECOVER_AFTER_MS)
+        },
       }),
     ]
   }
@@ -321,6 +334,18 @@ const HangingBanner = ({
   const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     const start = pointerRef.current
     if (!start || start.id !== event.pointerId) return
+    if (event.buttons === 0) {
+      // The press ended off the bar before the pointer was captured, so its
+      // pointerup never reached us. Forget it instead of letting a plain
+      // hover pick the bar up.
+      pointerRef.current = null
+      setBodyCursor("")
+      if (draggedRef.current) {
+        setPhase("idle")
+        springBack()
+      }
+      return
+    }
 
     const dx = event.clientX - start.x
     const dy = event.clientY - start.y

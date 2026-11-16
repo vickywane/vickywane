@@ -23,7 +23,8 @@ const getBar = () => screen.getByTestId("hanging-banner-bar")
 const getButton = () => screen.getByRole("link", { name: LABEL })
 const getHint = () => getBar().querySelector("[aria-live]") as HTMLElement
 
-const mouse = { pointerId: 1, pointerType: "mouse", button: 0 }
+// `buttons: 1` = the primary button is held, as browsers report during a drag.
+const mouse = { pointerId: 1, pointerType: "mouse", button: 0, buttons: 1 }
 const START = { clientX: 400, clientY: 100 }
 
 /** Presses the bar's body, drags it by (dx, dy) in steps, then optionally lets go. */
@@ -357,7 +358,7 @@ describe("HangingBanner", () => {
 
     it("works with touch as well as a mouse", async () => {
       render(<HangingBanner message={MESSAGE} href="/blog/a" />)
-      const touch = { pointerId: 9, pointerType: "touch" }
+      const touch = { pointerId: 9, pointerType: "touch", buttons: 1 }
 
       fireEvent.pointerDown(getBar(), { ...touch, ...START })
       fireEvent.pointerMove(getBar(), { ...touch, clientX: 400, clientY: 300 })
@@ -422,6 +423,42 @@ describe("HangingBanner", () => {
       expect(document.body.style.cursor).toBe("")
     })
 
+    it("forgets a press released off the bar, so hovering doesn't pick it up", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+      const capture = jest.spyOn(Element.prototype, "setPointerCapture")
+
+      // Press, then release somewhere else before the drag slop is crossed.
+      fireEvent.pointerDown(getBar(), { ...mouse, ...START })
+      fireEvent.pointerUp(document.body, { ...mouse, buttons: 0 })
+      // Later the mouse just passes over the bar, then below it, no button held.
+      fireEvent.pointerMove(getBar(), { ...mouse, buttons: 0, clientX: 420, clientY: 160 })
+      fireEvent.pointerMove(getBar(), { ...mouse, buttons: 0, clientX: 420, clientY: 600 })
+      // ...and clicks: nothing should open.
+      fireEvent.pointerUp(getBar(), { ...mouse, buttons: 0, clientX: 420, clientY: 600 })
+
+      expect(capture).not.toHaveBeenCalled()
+      expect(document.body.style.cursor).toBe("")
+      expect(await isDisplaced()).toBe(false)
+      expect(push).not.toHaveBeenCalled()
+      capture.mockRestore()
+    })
+
+    it("drops a drag whose button was released without a pointerup", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+
+      drag(0, 300, { release: false })
+      expect(getHint()).not.toBeEmptyDOMElement()
+
+      fireEvent.pointerMove(getBar(), { ...mouse, buttons: 0, clientX: 400, clientY: 400 })
+
+      expect(document.body.style.cursor).toBe("")
+      expect(getHint()).toBeEmptyDOMElement()
+      fireEvent.pointerUp(getBar(), { ...mouse, buttons: 0, clientX: 400, clientY: 400 })
+      expect(push).not.toHaveBeenCalled()
+    })
+
     it("resets the cursor if it unmounts mid-drag", () => {
       const { unmount } = render(<HangingBanner message={MESSAGE} href="/blog/a" />)
 
@@ -446,6 +483,22 @@ describe("HangingBanner", () => {
 
       await waitFor(() => expect(push).toHaveBeenCalledWith("/blog/medusa-smtp"))
       expect(push).toHaveBeenCalledTimes(1)
+    })
+
+    it("comes back and works again if opening didn't leave the page", async () => {
+      // e.g. a link to a section of the home page: router.push keeps it mounted.
+      render(<HangingBanner message={MESSAGE} href="/#about" />)
+      await ready()
+
+      drag(0, 420)
+      await waitFor(() => expect(push).toHaveBeenCalledWith("/#about"))
+      expect(getBar().style.opacity).not.toBe("1")
+
+      await waitFor(() => expect(getBar().style.opacity).toBe("1"), { timeout: 3000 })
+      expect(getHint()).toBeEmptyDOMElement()
+
+      drag(0, 420)
+      await waitFor(() => expect(push).toHaveBeenCalledTimes(2))
     })
 
     it("ignores further drags while it is opening", async () => {
