@@ -17,6 +17,7 @@ import {
 import loadFeatures from "@/framer/load-features"
 import {
   DEFAULT_LINK_LABEL,
+  DEFAULT_TAG_LABEL,
   cleanHref,
   type MessagePart,
 } from "./announcement"
@@ -39,7 +40,10 @@ interface HangingBannerProps {
   message: string | MessagePart[]
   /** Where the Read article button (and a long pull down) goes. */
   href?: string
+  /** Button text; blank falls back to "Read article →". */
   linkLabel?: string
+  /** Tag before the message; blank falls back to "New". */
+  tagLabel?: string
   className?: string
 }
 
@@ -149,11 +153,13 @@ const HangingBanner = ({
   message,
   href: rawHref,
   linkLabel: rawLinkLabel,
+  tagLabel: rawTagLabel,
   className,
 }: HangingBannerProps) => {
   // Blank or unsafe links mean no button; a blank label falls back.
   const href = cleanHref(rawHref)
   const linkLabel = rawLinkLabel?.trim() || DEFAULT_LINK_LABEL
+  const tagLabel = rawTagLabel?.trim() || DEFAULT_TAG_LABEL
   const router = useRouter()
   const frameRef = useRef<HTMLDivElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
@@ -391,7 +397,7 @@ const HangingBanner = ({
     <>
       <span className="flex w-full min-w-0 flex-col items-start gap-3.5 md:w-auto md:flex-row md:items-center md:gap-3">
         <span className="shrink-0 bg-ink px-[7px] py-[3px] font-code text-[11px] font-bold uppercase leading-[1.4] tracking-[0.1em] text-white">
-          New
+          {tagLabel}
         </span>
         <span
           // Tablet+ truncates to one line; the tooltip keeps the full text.

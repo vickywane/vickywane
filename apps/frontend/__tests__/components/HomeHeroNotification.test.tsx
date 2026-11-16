@@ -1,9 +1,11 @@
 import { render, screen } from "@testing-library/react"
 import HomeHeroNotification, {
   getMessageParts,
+  getButtonHref,
   getNotificationHref,
   hasAnnouncement,
   isSafeHref,
+  isScheduledNow,
   pickNotification,
   toSiteHref,
 } from "@/components/notifications/HomeHeroNotification"
@@ -262,5 +264,126 @@ describe("HomeHeroNotification", () => {
         : renderNotification(text)
 
     expect(container).toBeEmptyDOMElement()
+  })
+})
+
+describe("Sanity announcement fields", () => {
+  const NOW = Date.parse("2026-11-16T12:00:00Z")
+  const note = (fields: Record<string, unknown>) =>
+    ({ notification_text: LIVE, ...fields }) as any
+
+  describe("schedule", () => {
+    it.each([
+      ["no dates", {}, true],
+      ["started earlier", { starts_at: "2026-11-01T00:00:00Z" }, true],
+      ["starting exactly now", { starts_at: "2026-11-16T12:00:00Z" }, true],
+      ["not started yet", { starts_at: "2026-12-01T00:00:00Z" }, false],
+      ["ending later", { ends_at: "2026-12-01T00:00:00Z" }, true],
+      ["ending exactly now", { ends_at: "2026-11-16T12:00:00Z" }, false],
+      ["already ended", { ends_at: "2026-11-01T00:00:00Z" }, false],
+      [
+        "inside its window",
+        { starts_at: "2026-11-01T00:00:00Z", ends_at: "2026-12-01T00:00:00Z" },
+        true,
+      ],
+      ["an unparseable date", { starts_at: "soon", ends_at: "" }, true],
+    ])("is shown with %s: %s", (_, fields, shown) => {
+      expect(isScheduledNow(note(fields), NOW)).toBe(shown)
+      expect(hasAnnouncement(note(fields), NOW)).toBe(shown)
+    })
+
+    it("skips expired and future notifications for the next live one", () => {
+      const expired = note({ ends_at: "2026-11-01T00:00:00Z" })
+      const future = note({ starts_at: "2027-01-01T00:00:00Z" })
+      const live = note({ starts_at: "2026-11-01T00:00:00Z" })
+
+      expect(pickNotification([expired, future, live], NOW)).toBe(live)
+      expect(pickNotification([expired, future], NOW)).toBeNull()
+    })
+
+    it("renders nothing outside the schedule", () => {
+      const { container } = render(
+        <HomeHeroNotification notification={note({ ends_at: "2000-01-01T00:00:00Z" })} />
+      )
+
+      expect(container).toBeEmptyDOMElement()
+    })
+
+    it("still needs visible text inside its window", () => {
+      expect(
+        hasAnnouncement({ notification_text: [], starts_at: "2026-11-01T00:00:00Z" } as any, NOW)
+      ).toBe(false)
+    })
+  })
+
+  describe("button link", () => {
+    it("uses the Button link field over the first link in the text", () => {
+      expect(getButtonHref(note({ cta_url: "https://example.com/talk" }))).toBe(
+        "https://example.com/talk"
+      )
+    })
+
+    it("keeps Button links to this site in-app", () => {
+      expect(
+        getButtonHref(note({ cta_url: "https://www.victory-nwani.dev/blog/a" }))
+      ).toBe("/blog/a")
+      expect(getButtonHref(note({ cta_url: " /blog/b " }))).toBe("/blog/b")
+    })
+
+    it.each([
+      ["missing", undefined],
+      ["blank", "   "],
+      ["unsafe", "javascript:alert(1)"],
+    ])("falls back to the first link in the text when it is %s", (_, cta_url) => {
+      expect(getButtonHref(note({ cta_url }))).toBe(
+        "/blog/category/middlesex-digital-media-engineering"
+      )
+    })
+
+    it("gives a text without links a button when Button link is set", () => {
+      render(
+        <HomeHeroNotification
+          notification={
+            {
+              notification_text: [block([["My talk is up."]])],
+              cta_url: "https://youtube.com/watch?v=1",
+              cta_label: "Watch talk →",
+            } as any
+          }
+        />
+      )
+
+      expect(screen.getByRole("link", { name: "Watch talk →" })).toHaveAttribute(
+        "href",
+        "https://youtube.com/watch?v=1"
+      )
+    })
+  })
+
+  describe("labels", () => {
+    it("shows the Button label and Tag label from Sanity", () => {
+      render(
+        <HomeHeroNotification
+          notification={note({ cta_label: "Watch talk →", tag_label: "Talk" })}
+        />
+      )
+
+      expect(screen.getByRole("link", { name: "Watch talk →" })).toBeVisible()
+      expect(screen.getByText("Talk")).toBeVisible()
+      expect(screen.queryByText("New")).not.toBeInTheDocument()
+    })
+
+    it.each([
+      ["missing", undefined],
+      ["empty", ""],
+      ["whitespace", "  "],
+    ])("falls back to the defaults when the labels are %s", (_, label) => {
+      render(
+        <HomeHeroNotification notification={note({ cta_label: label, tag_label: label })} />
+      )
+
+      expect(screen.getByRole("link", { name: "Read article →" })).toBeVisible()
+      expect(screen.getByText("New")).toBeVisible()
+    })
   })
 })

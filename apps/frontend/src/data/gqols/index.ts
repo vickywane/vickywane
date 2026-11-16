@@ -76,7 +76,12 @@ export const HOME_QUERY = `
         _createdAt,
         _id,
         used_by, 
-        notification_text
+        notification_text,
+        tag_label,
+        cta_label,
+        cta_url,
+        starts_at,
+        ends_at
      }, 
     }
 `

@@ -2,6 +2,7 @@ import React from "react"
 import { Notification } from "@/data/schema"
 import HangingBanner from "@/components/heros/home/HangingBanner"
 import {
+  cleanHref,
   isSafeHref,
   type MessagePart,
 } from "@/components/heros/home/announcement"
@@ -92,28 +93,72 @@ export const getMessageParts = (
 export const getNotificationHref = (text: Notification["notification_text"]) =>
   getMessageParts(text).find(part => part.href)?.href
 
-/** Whether a notification has any visible text to announce. */
-export const hasAnnouncement = (notification?: Notification | null) =>
+const toTime = (value?: string) => {
+  const time = value ? Date.parse(value) : NaN
+
+  return Number.isNaN(time) ? undefined : time
+}
+
+/**
+ * Whether the notification's schedule includes `now`. Missing or unparseable
+ * dates don't restrict it. Note the home page renders at build/request time,
+ * so a schedule takes effect on the next render, like any Sanity edit.
+ */
+export const isScheduledNow = (
+  notification?: Notification | null,
+  now: number = Date.now()
+) => {
+  const startsAt = toTime(notification?.starts_at)
+  const endsAt = toTime(notification?.ends_at)
+
+  return (startsAt === undefined || now >= startsAt) && (endsAt === undefined || now < endsAt)
+}
+
+/** Whether a notification is in its schedule and has visible text. */
+export const hasAnnouncement = (
+  notification?: Notification | null,
+  now: number = Date.now()
+) =>
+  isScheduledNow(notification, now) &&
   getMessageParts(notification?.notification_text).some(part => part.text.trim())
+
+/**
+ * The button's target: the "Button link" field when it is set and safe,
+ * otherwise the first link in the text.
+ */
+export const getButtonHref = (notification?: Notification | null) => {
+  const explicit = cleanHref(notification?.cta_url)
+
+  return explicit
+    ? toSiteHref(explicit)
+    : getNotificationHref(notification?.notification_text)
+}
 
 /**
  * The first notification worth showing. References to deleted notifications
  * come back as null, so skip those and any without visible text.
  */
-export const pickNotification = (notifications?: unknown) =>
+export const pickNotification = (
+  notifications?: unknown,
+  now: number = Date.now()
+) =>
   (Array.isArray(notifications)
-    ? (notifications as (Notification | null)[]).find(hasAnnouncement)
+    ? (notifications as (Notification | null)[]).find(notification =>
+        hasAnnouncement(notification, now)
+      )
     : undefined) ?? null
 
 const HomeHeroNotification = ({ notification }: HomeHeroNotificationProps) => {
-  const text = notification?.notification_text
-  const message = getMessageParts(text)
-
-  if (!message.length) return null
+  if (!notification || !hasAnnouncement(notification)) return null
 
   return (
     <div className="bg-cream">
-      <HangingBanner message={message} href={getNotificationHref(text)} />
+      <HangingBanner
+        message={getMessageParts(notification.notification_text)}
+        href={getButtonHref(notification)}
+        linkLabel={notification.cta_label}
+        tagLabel={notification.tag_label}
+      />
     </div>
   )
 }
