@@ -1,8 +1,11 @@
 import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react"
 import HangingBanner, {
   OPEN_THRESHOLD,
+  menuJolt,
   type MessagePart,
 } from "@/components/heros/home/HangingBanner"
+import { announceMenuToggle } from "@/components/headers/menuEvents"
+import { mockMatchMedia } from "../../test-utils/browserMocks"
 
 const push = jest.fn()
 
@@ -77,10 +80,10 @@ afterEach(() => {
 
 describe("HangingBanner", () => {
   describe("content and labels", () => {
-    it("shows the NEW tag, the message and the Read article button", () => {
+    it("shows the message and the Read article button, with no tag", () => {
       render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
 
-      expect(within(getBar()).getByText("New")).toBeVisible()
+      expect(within(getBar()).queryByText(/^new$/i)).not.toBeInTheDocument()
       expect(within(getBar()).getByText(MESSAGE)).toBeVisible()
       expect(getButton()).toBeVisible()
     })
@@ -557,6 +560,52 @@ describe("HangingBanner", () => {
       expect(clear).toHaveBeenCalled()
       open.mockRestore()
       clear.mockRestore()
+    })
+  })
+
+  describe("header menu jolt", () => {
+    afterEach(() => mockMatchMedia([]))
+
+    it("drops on open (bar lags above) and yanks up on close", () => {
+      expect(menuJolt(true).y.velocity).toBeLessThan(0)
+      expect(menuJolt(false).y.velocity).toBeGreaterThan(0)
+    })
+
+    it("swings sideways in either direction, by a varying amount", () => {
+      const left = menuJolt(true, () => 0.1).x.velocity
+      const right = menuJolt(true, () => 0.9).x.velocity
+
+      expect(left).toBeLessThan(0)
+      expect(right).toBeGreaterThan(0)
+      expect(Math.abs(left)).not.toBe(Math.abs(right))
+    })
+
+    it("shakes when the menu opens or closes", async () => {
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+      expect(await isDisplaced()).toBe(false)
+
+      act(() => announceMenuToggle(true))
+      expect(await isDisplaced()).toBe(true)
+    })
+
+    it("stays still with reduced motion", async () => {
+      mockMatchMedia(["(prefers-reduced-motion: reduce)"])
+      render(<HangingBanner message={MESSAGE} href="/blog/a" />)
+      await ready()
+
+      act(() => announceMenuToggle(false))
+      expect(await isDisplaced()).toBe(false)
+    })
+
+    it("stops listening once unmounted", async () => {
+      const { unmount } = render(
+        <HangingBanner message={MESSAGE} href="/blog/a" />
+      )
+      await ready()
+      unmount()
+
+      expect(() => announceMenuToggle(true)).not.toThrow()
     })
   })
 })

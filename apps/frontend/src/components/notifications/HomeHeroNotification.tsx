@@ -157,7 +157,8 @@ const HomeHeroNotification = ({ notification }: HomeHeroNotificationProps) => {
         message={getMessageParts(notification.notification_text)}
         href={getButtonHref(notification)}
         linkLabel={notification.cta_label}
-        tagLabel={notification.tag_label}
+        // No tag on the bar for now. Sanity's Tag label field is still
+        // fetched and typed, so it can come back without a schema change.
       />
     </div>
   )

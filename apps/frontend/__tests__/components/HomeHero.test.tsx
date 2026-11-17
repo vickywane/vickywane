@@ -32,6 +32,14 @@ const renderHero = (props: Partial<React.ComponentProps<typeof HomeHero>> = {}) 
   render(<HomeHero {...recentData} {...props} />)
 
 describe("HomeHero", () => {
+  it("has no contact links; they live in the header", () => {
+    renderHero()
+
+    expect(screen.queryByRole("link", { name: /get in touch/i })).toBeNull()
+    expect(screen.queryByRole("link", { name: "GitHub" })).toBeNull()
+    expect(screen.queryByRole("link", { name: "LinkedIn" })).toBeNull()
+  })
+
   it("is the About section the hero nav links to", () => {
     renderHero()
 

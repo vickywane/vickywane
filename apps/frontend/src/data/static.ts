@@ -24,7 +24,7 @@ export const navigation_links = [
 export const social_links = {
   github: "https://github.com/vickywane",
   linkedin: "https://www.linkedin.com/in/victory-nwani",
-  // "Get in touch" CTA in the home hero
+  // "Get in touch" button in the header
   contact: "https://www.linkedin.com/in/victory-nwani",
 }
 

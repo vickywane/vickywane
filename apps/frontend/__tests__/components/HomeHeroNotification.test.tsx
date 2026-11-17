@@ -235,7 +235,7 @@ describe("HomeHeroNotification", () => {
     expect(
       screen.getByRole("link", { name: "Middlesex University, London" })
     ).toHaveAttribute("target", "_blank")
-    expect(screen.getByText("New")).toBeVisible()
+    expect(screen.queryByText("New")).not.toBeInTheDocument()
   })
 
   it("shows the message without a button when nothing is linked", () => {
@@ -361,7 +361,7 @@ describe("Sanity announcement fields", () => {
   })
 
   describe("labels", () => {
-    it("shows the Button label and Tag label from Sanity", () => {
+    it("shows the Button label from Sanity but never a tag", () => {
       render(
         <HomeHeroNotification
           notification={note({ cta_label: "Watch talk →", tag_label: "Talk" })}
@@ -369,7 +369,7 @@ describe("Sanity announcement fields", () => {
       )
 
       expect(screen.getByRole("link", { name: "Watch talk →" })).toBeVisible()
-      expect(screen.getByText("Talk")).toBeVisible()
+      expect(screen.queryByText("Talk")).not.toBeInTheDocument()
       expect(screen.queryByText("New")).not.toBeInTheDocument()
     })
 
@@ -377,13 +377,13 @@ describe("Sanity announcement fields", () => {
       ["missing", undefined],
       ["empty", ""],
       ["whitespace", "  "],
-    ])("falls back to the defaults when the labels are %s", (_, label) => {
+    ])("falls back to the default button label when the labels are %s", (_, label) => {
       render(
         <HomeHeroNotification notification={note({ cta_label: label, tag_label: label })} />
       )
 
       expect(screen.getByRole("link", { name: "Read article →" })).toBeVisible()
-      expect(screen.getByText("New")).toBeVisible()
+      expect(screen.queryByText("New")).not.toBeInTheDocument()
     })
   })
 })

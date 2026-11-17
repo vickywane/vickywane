@@ -11,7 +11,6 @@ export interface MessagePart {
 }
 
 export const DEFAULT_LINK_LABEL = "Read article →"
-export const DEFAULT_TAG_LABEL = "New"
 
 /**
  * Only web, mail and phone links (or paths on this site) become clickable.
