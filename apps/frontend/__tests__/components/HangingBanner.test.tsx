@@ -80,10 +80,10 @@ afterEach(() => {
 
 describe("HangingBanner", () => {
   describe("content and labels", () => {
-    it("shows the NEW tag, the message and the Read article button", () => {
+    it("shows the message and the Read article button, with no tag", () => {
       render(<HangingBanner message={MESSAGE} href="/blog/medusa-smtp" />)
 
-      expect(within(getBar()).getByText("New")).toBeVisible()
+      expect(within(getBar()).queryByText(/^new$/i)).not.toBeInTheDocument()
       expect(within(getBar()).getByText(MESSAGE)).toBeVisible()
       expect(getButton()).toBeVisible()
     })
