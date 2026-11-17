@@ -15,6 +15,7 @@ import {
   type MotionValue,
 } from "framer-motion"
 import loadFeatures from "@/framer/load-features"
+import { onMenuToggle } from "@/components/headers/menuEvents"
 import {
   DEFAULT_LINK_LABEL,
   DEFAULT_TAG_LABEL,
@@ -58,6 +59,28 @@ const NAIL_RADIUS = 4
 const RECOVER_AFTER_MS = 1200
 
 const CALM = { type: "spring", stiffness: 320, damping: 32 } as const
+
+/**
+ * The header menu slides open (200ms), carrying the nails down with the page,
+ * so the bar lags a little behind them. Opening: it rises against slack
+ * strings, then settles back with a short bounce. Closing: the strings tug it
+ * up after the nails, and it bobs down again. The sideways swing is small and
+ * varies a little each time so it doesn't look canned. Noticeable but not
+ * showy: about 12px up and down, about 7px sideways, settled in about a second.
+ */
+export const menuJolt = (open: boolean, random = Math.random) => {
+  const sway = (random() < 0.5 ? -1 : 1) * (90 + random() * 50)
+
+  return {
+    x: { type: "spring" as const, velocity: sway, stiffness: 120, damping: 7 },
+    y: {
+      type: "spring" as const,
+      velocity: open ? -280 : 320,
+      stiffness: 220,
+      damping: 9,
+    },
+  }
+}
 
 const PHASE_MESSAGE: Record<Phase, string> = {
   idle: "",
@@ -253,6 +276,21 @@ const HangingBanner = ({
 
     return () => window.clearTimeout(timer)
   }, [x, y])
+
+  // The header's mobile menu moved the page (and the nails) under the bar.
+  useEffect(
+    () =>
+      onMenuToggle(open => {
+        // Leave it alone while held or opening, or if motion is reduced.
+        if (pointerRef.current || lockedRef.current) return
+        if (prefersReducedMotion()) return
+
+        const jolt = menuJolt(open)
+        stopAnimations()
+        animsRef.current = [animate(x, 0, jolt.x), animate(y, 0, jolt.y)]
+      }),
+    [x, y]
+  )
 
   const resetTimerRef = useRef<number | undefined>(undefined)
 

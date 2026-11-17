@@ -3,7 +3,6 @@ import cn from "classnames"
 import { Article, Engagement, Homepage, Projects } from "@/data/schema"
 import HeroPortrait from "./HeroPortrait"
 import HeroSectionNav from "./HeroSectionNav"
-import HeroSocialBar from "./HeroSocialBar"
 import RecentDeck from "./RecentDeck"
 import RecentFeed from "./RecentFeed"
 import { getRecentItems, plainText } from "./recentItems"
@@ -88,9 +87,8 @@ const HomeHero = ({
           </>
         )}
 
-        <HeroSectionNav className="lg:col-start-1" />
-
-        <HeroSocialBar className="md:self-end md:justify-self-end lg:col-start-1 lg:self-start lg:justify-self-start" />
+        {/* On mobile the section links live in the header menu instead. */}
+        <HeroSectionNav className="hidden md:block lg:col-start-1" />
       </div>
     </section>
   )

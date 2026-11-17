@@ -1,11 +1,22 @@
 "use client"
 
-import React, { useEffect, useMemo, useState, useSyncExternalStore } from "react"
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useSyncExternalStore
+} from "react"
 import cn from "classnames"
 import { hero_section_links } from "@/data/static"
 
 interface HeroSectionNavProps {
   className?: string
+  /** "menu" lays the links out as full-width rows for the mobile header menu. */
+  variant?: "hero" | "menu"
+  /** Section targets to leave out, e.g. "about" in the header menu. */
+  exclude?: string[]
+  /** Called after a link is followed, e.g. to close the menu. */
+  onNavigate?: () => void
 }
 
 // The hero is the "About" section. It only counts as active while it sits at
@@ -21,11 +32,14 @@ const ABOUT_SCROLL_TOLERANCE = 48
 */
 const ALL_TARGETS = hero_section_links.map(link => link.target).join(",")
 
+// Off the home page (no hero), every link points back to its section on "/".
 const getAvailableTargets = () =>
-  hero_section_links
-    .filter(link => document.getElementById(link.target))
-    .map(link => link.target)
-    .join(",")
+  document.getElementById(ABOUT_TARGET)
+    ? hero_section_links
+        .filter(link => document.getElementById(link.target))
+        .map(link => link.target)
+        .join(",")
+    : ALL_TARGETS
 
 const subscribeToSections = (onChange: () => void) => {
   const observer = new MutationObserver(onChange)
@@ -35,16 +49,26 @@ const subscribeToSections = (onChange: () => void) => {
 }
 
 /** In-page links to the home page sections; highlights the section in view. */
-const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
+const HeroSectionNav = ({
+  className,
+  variant = "hero",
+  exclude = [],
+  onNavigate
+}: HeroSectionNavProps) => {
   const availableTargets = useSyncExternalStore(
     subscribeToSections,
     getAvailableTargets,
     () => ALL_TARGETS
   )
+  // `exclude` is a new array on every render; key the memo on its contents.
+  const excludeKey = exclude.join(",")
   const links = useMemo(() => {
     const available = availableTargets.split(",")
-    return hero_section_links.filter(link => available.includes(link.target))
-  }, [availableTargets])
+    const excluded = excludeKey.split(",")
+    return hero_section_links.filter(
+      link => available.includes(link.target) && !excluded.includes(link.target)
+    )
+  }, [availableTargets, excludeKey])
 
   const [sectionTarget, setSectionTarget] = useState<string | null>(null)
   const [isAboutActive, setIsAboutActive] = useState(true)
@@ -90,7 +114,10 @@ const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
     }
     syncAbout()
     // capture: the page may scroll inside a nested container, not the window
-    window.addEventListener("scroll", syncAbout, { capture: true, passive: true })
+    window.addEventListener("scroll", syncAbout, {
+      capture: true,
+      passive: true
+    })
     window.addEventListener("resize", syncAbout)
 
     return () => {
@@ -106,7 +133,9 @@ const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
     event: React.MouseEvent<HTMLAnchorElement>,
     target: string
   ) => {
+    onNavigate?.()
     const section = document.getElementById(target)
+    // Not on the home page: let the link navigate to "/#target".
     if (!section) return
 
     event.preventDefault()
@@ -117,24 +146,34 @@ const HeroSectionNav = ({ className }: HeroSectionNavProps) => {
 
     section.scrollIntoView({
       behavior: reduceMotion ? "auto" : "smooth",
-      block: "start",
+      block: "start"
     })
     window.history.replaceState(null, "", `#${target}`)
   }
 
+  const isMenu = variant === "menu"
+
   return (
     <nav aria-label="Page sections" className={className}>
-      <ul className="flex flex-col lg:gap-1 lg:py-6">
+      <ul className={cn("flex flex-col", !isMenu && "lg:gap-1 lg:py-6")}>
         {links.map(({ label, target }) => {
           const isActive = activeTarget === target
 
           return (
-            <li key={target}>
+            <li
+              key={target}
+              className={cn(isMenu && "border-b border-hairline last:border-b-0")}
+            >
               <a
-                href={`#${target}`}
+                // "/#target" works from any page; on Home the click handler
+                // scrolls in place instead.
+                href={`/#${target}`}
                 aria-current={isActive ? "location" : undefined}
                 onClick={event => handleClick(event, target)}
-                className="group flex w-fit items-center gap-4 py-[13px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-teal lg:py-2.5"
+                className={cn(
+                  "group flex items-center gap-4 py-[13px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-dark-teal",
+                  isMenu ? "w-full" : "w-fit lg:py-2.5"
+                )}
               >
                 <span
                   aria-hidden="true"
