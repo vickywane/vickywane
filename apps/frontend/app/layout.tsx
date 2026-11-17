@@ -1,12 +1,9 @@
-import { Suspense } from "react"
 import StyledComponentsRegistry from "../src/styles/StyledComponentsRegistry"
 import { Roboto_Flex, Roboto_Mono, Space_Grotesk } from "next/font/google"
-import PostHog from "@/providers/PostHog"
 import StoreProvider from "@/state/StoreProvider"
 import "@/styles/globals.css"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata, ResolvingMetadata } from "next"
-import LazyLoader from "@/framer/LazyLoader"
 import PostHogProvider from "@/providers/PostHog"
 import * as Sentry from "@sentry/nextjs"
 
@@ -60,26 +57,20 @@ export default function RootLayout({
     >
       <body>
         <StyledComponentsRegistry>
-          <Suspense fallback={<div>Loading...</div>}>
-            <PostHog>
-              <LazyLoader>
-                <StoreProvider>
-                  <PostHogProvider>
-                    <div
-                      style={{
-                        height: "100vh",
-                        overflow: "auto",
-                        width: "100%",
-                      }}
-                      className={font.className}
-                    >
-                      {children}
-                    </div>
-                  </PostHogProvider>
-                </StoreProvider>
-              </LazyLoader>
-            </PostHog>
-          </Suspense>
+          <StoreProvider>
+            <PostHogProvider>
+              <div
+                style={{
+                  height: "100vh",
+                  overflow: "auto",
+                  width: "100%",
+                }}
+                className={font.className}
+              >
+                {children}
+              </div>
+            </PostHogProvider>
+          </StoreProvider>
         </StyledComponentsRegistry>
       </body>
 
